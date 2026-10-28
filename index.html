@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mutant Farm Update 6</title>
+<title>Mutant Farm Update 7</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Signika:wght@400;600;700&display=swap">
@@ -448,6 +448,57 @@ input[type=range]{accent-color:#8fca4e}
 @keyframes fadego{0%{opacity:1}100%{opacity:0}}
 #btn-ranch img,#btn-office img{width:28px;height:28px}
 @media (max-width:640px){#hud-right{max-width:170px;gap:6px}#btn-ranch img,#btn-office img{width:34px;height:34px}}
+.capbar{display:grid;gap:6px;margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.2)}
+.capbar>div:first-child{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13.5px}
+.capbar b{font-family:var(--f-display);font-weight:400;font-size:16px}
+.capbar .xpbar{height:10px}
+.slot .patico{display:grid;place-items:center;width:40px;height:40px}
+@media (max-width:480px){.slot .patico{width:30px;height:30px}.slot .patico svg{width:24px;height:24px}}
+.cbox.dug{box-shadow:inset 0 0 0 2px #b6f04a}
+.sortbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.sortbar span{font-size:13px;color:var(--ink-dim);margin-right:2px}
+.sortbar .chip2{padding:5px 10px;font-size:13px}
+.sortbar .chip2.on{background:#7a5538}
+#todo{grid-area:todo;width:min(330px,100%);padding:8px 12px 10px;font-size:13.5px}
+#todo header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+#todo header b{font-family:var(--f-display);font-weight:400;font-size:17px;flex:1}
+#todo header span{font-size:12px;color:var(--ink-dim)}
+#todo ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+#todo li{display:flex;align-items:center;gap:7px;line-height:1.25}
+#todo li img{width:22px;height:22px;flex:none}
+#todo p{margin:2px 0 0;color:var(--ink-dim)}
+#hud{grid-template-areas:"row lvl right" "quest . ." "todo . ."}
+#todo header{cursor:pointer}
+.todo-n{display:none;font-family:var(--f-body);font-size:12px;font-weight:700;background:#c8423a;color:#fff;border-radius:9px;padding:1px 7px;vertical-align:2px}
+@media (max-width:760px){#hud{grid-template-areas:"row right" "lvl lvl" "quest quest" "todo todo"}#todo{padding:6px 10px}#todo header{margin:0}#todo header b{font-size:15px}#todo:not(.open) ul,#todo:not(.open) p{display:none}.todo-n{display:inline-block}#todo li:nth-child(n+5){display:none}#todo.open header{margin-bottom:4px}}
+#tutor{position:fixed;inset:0;z-index:72;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,10,6,.55)}
+.tu-card{width:min(460px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:22px 22px 18px;text-align:center}
+.tu-card .kick{display:block;font-family:var(--f-display);color:var(--gold);font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.tu-ic img{width:72px;height:72px}
+.tu-card h3{font-family:var(--f-display);font-weight:400;font-size:26px;margin:2px 0 8px}
+.tu-card p{text-align:left;margin:0 0 8px;line-height:1.45}
+.tu-tips{text-align:left;background:rgba(0,0,0,.2);border-radius:12px;padding:8px 12px;margin:6px 0 14px}
+.tu-tips ul{margin:4px 0 0;padding-left:18px}
+.ptree{margin-top:14px;padding:14px 10px;border-radius:14px;background:rgba(0,0,0,.22);overflow-x:auto}
+.proot{display:flex;flex-direction:column;align-items:center;gap:2px;margin:0 auto 4px;width:120px}
+.proot img{width:56px;height:56px;filter:drop-shadow(0 0 10px rgba(244,197,66,.6))}
+.proot b{font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--gold)}
+.pbranches{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:10px;min-width:690px;position:relative;padding-top:18px;border-top:3px solid rgba(244,197,66,.5)}
+.pbranch{display:flex;flex-direction:column;align-items:center}
+.pbname{font-family:var(--f-display);font-size:17px;color:var(--bc);margin-bottom:2px}
+.plink{display:block;width:4px;height:14px;background:var(--bc);opacity:.7;border-radius:2px}
+.plink.top{height:10px}
+.pnode{width:100%;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px;border-radius:12px;border:2px solid var(--bc);background:#3a2a1e;color:var(--ink);font:inherit;cursor:pointer;text-align:center}
+.pnode b{font-family:var(--f-display);font-weight:400;font-size:15px}
+.pnode small{font-size:11.5px;color:var(--ink-dim);line-height:1.25}
+.pnode em{font-style:normal;font-size:12px;font-weight:700;color:var(--gold)}
+.pnode .pips{display:flex;gap:3px}
+.pnode .pips i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15)}
+.pnode .pips i.f{background:var(--bc);box-shadow:0 0 6px var(--bc)}
+.pnode.on{background:linear-gradient(180deg,#4a3826,#3a2a1e);box-shadow:0 0 12px -2px var(--bc)}
+.pnode.lock{opacity:.45;filter:grayscale(.6)}
+.pnode:disabled{cursor:default}
+.pnode:not(:disabled):hover{filter:brightness(1.15)}
 </style>
 </head>
 <body>
@@ -478,6 +529,7 @@ input[type=range]{accent-color:#8fca4e}
     <button class="plaque hbtn" id="btn-sound" aria-label="Sound"><img id="ico-sound" alt=""></button>
     <button class="plaque hbtn" id="btn-journal"><img id="ico-journal" alt="">Journal</button>
   </div>
+  <div id="todo" class="plaque" hidden></div>
   <section id="quest" class="plaque" aria-live="polite">
     <header id="q-head"><div style="flex:1;min-width:0"><div class="qk" id="q-kick">Quest 1</div><h3 id="q-title">A Fresh Start</h3></div><button class="qtog" id="q-tog" aria-label="Collapse quest">▾</button></header>
     <p id="q-text"></p>
@@ -496,6 +548,7 @@ input[type=range]{accent-color:#8fca4e}
     <button class="slot" id="slot-sickle"><span class="key">4</span><img alt=""><span class="lbl">Sickle</span></button>
     <button class="slot" id="slot-gloves"><span class="key">5</span><img alt=""><span class="lbl">Hands</span></button>
     <button class="slot" id="slot-axe"><span class="key">6</span><img alt=""><span class="lbl">Axe</span></button>
+    <button class="slot" id="slot-pat" hidden title="Tool pattern: press R to switch"><span class="key">R</span><span class="patico"></span><span class="lbl">Single</span></button>
     <button class="slot" id="slot-scoop" hidden><span class="key">1</span><img alt=""><span class="cnt num"></span><span class="lbl">Scoop</span></button>
     <button class="slot" id="slot-brush" hidden><span class="key">2</span><img alt=""><span class="lbl">Brush</span></button>
     <button class="slot" id="slot-pail" hidden><span class="key">3</span><img alt=""><span class="lbl">Pail</span></button>
@@ -553,19 +606,20 @@ input[type=range]{accent-color:#8fca4e}
   </div>
 </div>
 <div id="fade"></div>
+<div id="tutor" hidden></div>
 <div id="crate" hidden><div class="cr-card plaque"><span class="kick" id="cr-kick">Mystery crate</span><h3 id="cr-title"></h3><p id="cr-sub"></p><div class="cgrid" id="cr-grid"></div><div class="acts" id="cr-acts" style="justify-content:center"></div></div></div>
 
 <div id="lvup" hidden><div class="conf" id="lvup-conf"></div><div class="lv-card plaque"><span class="kick">Level up!</span><div class="lv-orb"><div class="lvbig" id="lvup-n">2</div></div><h3 id="lvup-title">Farmer level 2</h3><p id="lvup-sub"></p><div class="ulist" id="lvup-list"></div><button class="btn gold big" id="lvup-ok">Continue</button></div></div>
 
 <div id="night" hidden><div class="stars" id="stars"></div><div class="orb"></div><div class="zz">z z z</div><h2 id="night-day">Day 1</h2><div class="sub" id="night-sub"></div></div>
 <div id="banner" class="plaque" hidden></div>
-<div id="menu" hidden><div class="menu-card"><div class="logo"><img id="logo-img" alt=""><h1>Mutant <span>Farm</span></h1></div><div class="menu-ver" id="menu-ver">Update 6</div><div id="menu-body" style="width:100%"></div></div></div>
+<div id="menu" hidden><div class="menu-card"><div class="logo"><img id="logo-img" alt=""><h1>Mutant <span>Farm</span></h1></div><div class="menu-ver" id="menu-ver">Update 7</div><div id="menu-body" style="width:100%"></div></div></div>
 <div id="fly"></div>
 
 <script>
 (() => {
 'use strict';
-const UPDATE = 6;
+const UPDATE = 7;
 const SAVE_KEY = 'mutant-farm-save';
 const OLD_KEY = 'hollowmere-farm-save-v1';
 const TAU = Math.PI * 2;
@@ -719,6 +773,7 @@ function toolDesc(k, t, i) {
   if (k === 'gloves') { o.push(`Planting and clearing by hand are ${pc100(1 - t.speed)} faster.`); if (t.scatter) o.push(`Scatter: ${pc100(t.scatter)} chance to plant each neighbouring empty plot too.`); }
   if (k === 'axe') { o.push(i === 1 ? 'Chops old stumps and wild trees.' : `Chops ${pc100(1 - t.speed)} faster.`); if (t.xpb) o.push(`+${pc100(t.xpb)} XP from clearing land.`); }
   if (k === 'satchel') o.push(`Seed saver: ${pc100(t.save)} chance that planting doesn’t use up the seed.`);
+  if (['hoe', 'can', 'sickle', 'gloves'].includes(k) && i >= 4) o.push(i >= 10 ? 'Works in rows, columns, crosses or 3×3 squares (press R).' : i >= 8 ? 'Works in whole rows, columns or crosses (press R).' : i >= 6 ? 'Works in whole rows or columns of 5 (press R).' : 'Works in rows or columns of 3 (press R).');
   return o.join(' ');
 }
 TOOLS.hoe.tiers.push(...mkT([['Solar Hoe', 6000000, 54, 7, 'solar', .8, .6], ['Void Hoe', 20000000, 66, 8, 'void', 1, .7]], ['grow', 'furrow']).slice(1));
@@ -741,6 +796,7 @@ const EVENTS = {
   meteor:      {name:'Meteor Shower', lvl:20, col:'#c8a8ff', desc:'Every harvest you make by hand has a 10% chance to drop a mutagen.'},
 };
 const evt = id => !!(S.event && S.event.id === id);
+const baseSell = k => sellPrice(k) / (evt('golden') ? 1.25 : 1);
 const seedPrice = cr => Math.max(1, Math.round(cr.seed * (evt('boom') ? .7 : 1)));
 const RIVALS = ['Old Mabel', 'Farmer Giles', 'Priya at Brook End', 'The Hendersons', 'Young Tobias', 'Rosa of Hilltop', 'Big Al', 'Granny Wu', 'Captain Ferris', 'Ines the Bold', 'Sir Reginald', 'Mo from Mill Lane'];
 const RECOG = [[0, 'Unknown Grower'], [200, 'Local Grower'], [800, 'County Contender'], [2500, 'Fair Favourite'], [6000, 'County Champion'], [15000, 'Regional Star'], [40000, 'National Legend'], [100000, 'Mutant Icon']];
@@ -793,15 +849,15 @@ const ROLES = {
 const ROLE_ORDER = ['waterer','collector','replanter','hauler'];
 const W_LEVELS = [null,
   {name:'Ragged tunic', mult:1, cost:0},
-  {name:'Work shirt', mult:1.2, cost:1},
-  {name:'Overalls & straw hat', mult:1.45, cost:3},
-  {name:'Foreman’s jacket', mult:1.75, cost:8},
-  {name:'Master’s finery', mult:2.1, cost:20},
-  {name:'Champion’s gear', mult:2.5, cost:50},
-  {name:'Legend’s regalia', mult:3, cost:120},
-  {name:'Hero’s mantle', mult:3.6, cost:300},
-  {name:'Titan’s plate', mult:4.3, cost:800},
-  {name:'Cosmic aura', mult:5.2, cost:2000}];
+  {name:'Work shirt', mult:1.15, cost:1},
+  {name:'Overalls & straw hat', mult:1.3, cost:3},
+  {name:'Foreman’s jacket', mult:1.5, cost:8},
+  {name:'Master’s finery', mult:1.7, cost:20},
+  {name:'Champion’s gear', mult:1.95, cost:50},
+  {name:'Legend’s regalia', mult:2.2, cost:120},
+  {name:'Hero’s mantle', mult:2.5, cost:300},
+  {name:'Titan’s plate', mult:2.8, cost:800},
+  {name:'Cosmic aura', mult:3.2, cost:2000}];
 const HUT_CAP = [0, 2, 4, 6, 8, 10, 12, 14, 16];
 const W_NAMES = ['Ada','Bilal','Chen','Dara','Esi','Farid','Gwen','Hiro','Ines','Jamal','Kemi','Lars','Mina','Nikhil','Olu','Priya','Quinn','Rosa','Sami','Tomas','Uma','Vik','Wren','Xola','Yusuf','Zara','Ayesha','Bram','Cleo','Dev','Elif','Finn','Hana','Idris','Joon','Kai','Leila','Mateo','Noor','Omar','Pip','Rania','Saoirse','Tariq','Yara','Zeke'];
 const SKINS = ['#f6d7c3','#eec1a0','#d9a07a','#b97c55','#8d5a3b','#5e3a25'];
@@ -848,15 +904,15 @@ const CRATES = [
   {id:'mutant', name:'Mutant Crate', cost:20000, lab:4, picks:6, muts:8, w:[0,10,32,40,18], pouch:[1500,5000]},
   {id:'cosmic', name:'Cosmic Crate', cost:100000, lab:6, picks:7, muts:9, w:[0,0,20,45,35], pouch:[8000,25000]},
 ];
-const LAB_SLOTS = [0,2,2,3,3,4,4,5,5,6,6], SM_OUT = [0,2,2,3,3,4,5,6,7,8,10,12,15], SM_IV = [0,10,8,6,5,4,3,2,2,1.5,1.5,1,1];
+const LAB_SLOTS = [0,2,2,3,3,4,4,5,5,6,6], SM_OUT = [0,2,2,3,3,4,5,6,7,8,10,12,15], SM_IV = [0,15,12,9,7.5,6,4.5,3,3,2.2,2.2,1.5,1.5];
 const IRR = [0,4,9,14,20,25,25,25,25], WIND = [0,100,500,2000,6000,15000,40000,100000,250000], WELLB = [0,0,.5,1,1.5,2,3];
 const MACH = {
-  tractor:   {name:'Tractor', lvl:10, lvls:[10,12,15,19,24,30,37,45,50,56,63,72], garage:1, cost:[2500,7000,18000,45000,120000,350000,900000,2500000,6000000,15000000,40000000,100000000], speed:42, work:.9, desc:'Drives to empty plots, tills them and sows seeds from your seed bag, repeating whatever grew there last.'},
-  harvester: {name:'Combine Harvester', lvl:12, lvls:[12,14,17,21,26,32,39,47,52,58,65,74], garage:2, cost:[6000,15000,40000,100000,250000,700000,1800000,4500000,11000000,28000000,70000000,180000000], speed:38, work:1, desc:'Rolls over ready crops and harvests them into your basket, with bigger harvests at higher levels. Earns half the usual XP.'},
+  tractor:   {name:'Tractor', lvl:10, lvls:[10,12,15,19,24,30,37,45,50,56,63,72], garage:1, cost:[2500,7000,18000,45000,120000,350000,900000,2500000,6000000,15000000,40000000,100000000], speed:32, work:1.3, desc:'Drives to empty plots, tills them and sows seeds from your seed bag, repeating whatever grew there last.'},
+  harvester: {name:'Combine Harvester', lvl:12, lvls:[12,14,17,21,26,32,39,47,52,58,65,74], garage:2, cost:[6000,15000,40000,100000,250000,700000,1800000,4500000,11000000,28000000,70000000,180000000], speed:28, work:1.4, desc:'Rolls over ready crops and harvests them into your basket, with bigger harvests at higher levels. Earns half the usual XP.'},
   truck:     {name:'Delivery Truck', lvl:14, lvls:[14,16,19,23,28,34,41,48,53,60,67,75], garage:3, cost:[10000,25000,60000,150000,400000,1000000,2500000,6000000,15000000,40000000,100000000,250000000], speed:70, work:0, cap:[12,30,60,120,300,600,1200,2500,5000,10000,20000,50000], bonus:[0,.05,.1,.15,.25,.35,.5,.7,.9,1.1,1.35,1.7], desc:'Loads produce from your basket, drives it to the village and sells it, adding a bonus at higher levels.'},
 };
 const MACH_ORDER = ['tractor','harvester','truck'];
-const MACH_SPEED = [1, 1.3, 1.65, 2.1, 2.7, 3.3, 4, 5, 6, 7.2, 8.5, 10];
+const MACH_SPEED = [1, 1.2, 1.4, 1.65, 1.9, 2.2, 2.5, 2.85, 3.2, 3.6, 4, 4.5];
 /* ------------------------------------------------------------------ RANCH DATA */
 const RX = 4000, RY = 4000, PEN_W = 100, PEN_H = 86, PEN_GX = 14, PEN_GY = 24;
 const BARN_PENS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 16, 16], RHANDS = [0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 14];
@@ -903,12 +959,12 @@ const RMACH = {
 const RMACH_ORDER = ['feeder', 'mill', 'groomer', 'belt'];
 const RM_PENS = [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 16], MILL_PER = [0, 30, 80, 200, 500, 1200, 3000, 8000, 20000, 50000, 120000];
 const RM_STEP = [0, 3, 7, 11, 16, 22, 29, 37, 46, 56];
-const rmLvl = (k, L) => RMACH[k].lvl + RM_STEP[L - 1], rmCost = (k, L) => Math.round(RMACH[k].base * Math.pow(2.7, L - 1)), rmBarn = L => Math.min(10, L + 1);
+const rmLvl = (k, L) => LV(RMACH[k].lvl + RM_STEP[L - 1]), rmCost = (k, L) => niceC(RMACH[k].base * Math.pow(2.7, L - 1) * Math.pow(1.16, Math.max(0, rmLvl(k, L) - (RMACH[k].lvl + RM_STEP[L - 1])))), rmBarn = L => Math.min(10, L + 1);
 const RADJ = {grow: 'Rapid', yield: 'Bountiful', value: 'Nutrient', thirst: 'Free-range', seed: 'Fertile', xp: 'Glowing', regrow: 'Hearty'};
 const RTRAIT_TXT = {grow: ['Grows up 30% faster', 'Grows up 60% faster', 'Grows up twice as fast'], yield: ['30% more products', '70% more products', '2.5× more products'], value: ['Products sell for 40% more', 'Products sell for 90% more', 'Products sell for 3× the price'], thirst: ['Feeds itself on half of all nights', 'Never needs feeding', 'Never needs feeding and grows up 25% faster'], seed: ['15% chance a night of a free baby', '30% chance a night of a free baby', '50% chance a night of a free baby'], xp: ['50% more XP', 'Double XP', 'Triple XP'], regrow: ['Never gets grumpy', 'Never gets grumpy and cheers up by 5 a night', 'Never gets grumpy and cheers up by 10 a night']};
 const rTraitText = M => RTRAIT_TXT[M.trait][M.tier - 1];
 
-const garageBoost = () => 1 + .2 * Math.max(0, (S.b.garage || 0) - 3);
+const garageBoost = () => (1 + .2 * Math.max(0, (S.b.garage || 0) - 3)) * (1 + pb('mspeed'));
 const PERKS = [
   {lvl:3, name:'Quick Hands', act:'plant', m:.9, desc:'Planting is 10% faster'},
   {lvl:5, name:'Steady Pour', act:'water', m:.9, desc:'Watering is 10% faster'},
@@ -936,6 +992,24 @@ const PERKS = [
   {lvl:74, name:'Living Legend', act:'all', m:.85, desc:'Every job is another 15% faster'},
 ];
 const PATCH_NOTES = [
+  {v:7, name:'Day & Night, Prestige', items:[
+    'A day and night cycle. Time moves on its own (about 30 seconds per hour) and crops grow all the time, not just overnight. Work stops at dusk, your farmhands go to bed, and sleeping in the farmhouse skips to the next morning with everything growing in the skipped time.',
+    'Crops grow through more stages, from sprout to flowering, and get bigger as they ripen. No two look quite the same, and some turn out Giant (double harvest) or Shiny (triple harvest).',
+    'The farmhouse now works like a town hall. Its level caps how far your buildings, machines, tools, soil and animals can go, and each restoration needs a farmer level, coins and a delivery of crops.',
+    'A daily market limit. The village can only pay so much each day, starting at 5 gold and growing with your level and your Roadside Stand. Unsold crops stay in your basket.',
+    'Large Sales: a merchant’s wagon parks by the farm every morning with big orders that pay well above market price and don’t count towards the limit.',
+    'Slower, smarter automation. Machines need a worker to drive them (Replanters drive the Tractor, Collectors the Combine, Haulers the Truck) and go back to their normal jobs when there’s nothing to drive. The Seed Maker and barn machines need a worker too. Idle workers now wander round tending the buildings.',
+    'Choose what your haulers and truck sell with the Auto-sell buttons in the Produce Stall. Crops needed for orders and the next farmhouse restoration are held back automatically.',
+    'Golden tools and better can work in rows and columns, and later crosses and squares. Press R or tap the pattern button, and hover over a plot to preview it.',
+    'Mutation Lab rework. Crates no longer highlight where the rare mutagens are. Instead you can buy crate tools: the Lucky Charm, the Dowsing Rod and the Excavator.',
+    'Prestige! From farmer level 30 you can start a new farm for Prestige Points, then spend them in a skill tree of permanent buffs.',
+    'You can now beat the game by reaching farmer level 80 with the Heavenly Kingdom.',
+    'A steeper XP curve, and the whole game is spread more evenly over all 80 levels. Mutations and ranching come later. Plant All, Water All and Harvest All now unlock at levels 70 to 78.',
+    'Tutorials pop up when you unlock something new, and the Journal has a Handbook with tips for everything you’ve unlocked.',
+    'The Farm Planner: a to-do list you can buy at the Builder’s Yard.',
+    'Sort the market by recommended order, level, cost or name.',
+    'Saves from earlier updates keep their progress. Your level is converted to the matching point on the new level road.',
+  ]},
   {v:6, name:'Ranching & the County Fair', items:[
     'Ranching! From farmer level 12 you can build the Big Barn. Tap it to go inside, where there’s a whole second farm for animals with its own pens, feed bin, tools and Ranch Office.',
     'Eleven animals to raise: Chickens, Ducks, Angora Rabbits, Sheep, Goats, Truffle Pigs, Cows, Llamas, Yaks, Moon Cows and Phoenix Hens. Babies take a few days to grow up, then make eggs, wool, milk, truffles and more every day for you to sell.',
@@ -1032,7 +1106,7 @@ const BUILD = {
   hut:       {name:'Worker Hut', max:5, cost:[400,3000,20000,100000,500000], lvl:[6,10,14,22,32], desc:'Bunks for hired farmhands. Tap it on your farm to hire and train workers.', eff:l => `Room for ${HUT_CAP[l]} workers · training up to level ${Math.min(10, l + 2)}`},
   seedmaker: {name:'Seed Maker', max:7, cost:[1500,5000,15000,50000,150000,500000,1500000], lvl:[9,11,13,16,19,26,34], desc:'Turns spare crops from your basket into seeds, so your workers and tractor never run out.', eff:l => `Turns 1 crop into ${SM_OUT[l]} seeds every ${SM_IV[l]}s · keeps up to ${l * 10} of each`},
   garage:    {name:'Garage', max:3, cost:[2500,10000,40000], lvl:[10,12,14], desc:'Parks your farm machines. Buy them at the market’s Machine Shop.', eff:l => ['', 'Room for a Tractor', 'Room for a Tractor and a Combine Harvester', 'Room for a Tractor, a Combine Harvester and a Delivery Truck'][l]},
-  lab:       {name:'Mutation Lab', max:7, cost:[2500,8000,25000,80000,250000,800000,2500000], lvl:[10,12,14,17,20,27,36], desc:'Open mystery crates, collect mutagens and splice mutant crops.', eff:l => { const n = CRATES.filter(c => c.lab <= l).length; return `${LAB_SLOTS[l]} mutagen slots · ${n} crate type${n > 1 ? 's' : ''} · +${[2, 4, 6, 8, 10].filter(x => l >= x).length} crate picks${l >= 3 ? ' · crate scanner' : ''}${l >= 5 ? ' · luckier crates' : ''} · mutant seeds ${8 * (l - 1)}% cheaper`; }},
+  lab:       {name:'Mutation Lab', max:7, cost:[2500,8000,25000,80000,250000,800000,2500000], lvl:[10,12,14,17,20,27,36], desc:'Open mystery crates, collect mutagens and splice mutant crops.', eff:l => { const n = CRATES.filter(c => c.lab <= l).length; return `${LAB_SLOTS[l]} mutagen slots · ${n} crate type${n > 1 ? 's' : ''} · +${[2, 4, 6, 8, 10].filter(x => l >= x).length} crate picks${l >= 2 ? ' · crate tools up to level ' + Math.min(5, Math.floor(l / 2)) : ''}${l >= 5 ? ' · luckier crates' : ''} · mutant seeds ${8 * (l - 1)}% cheaper`; }},
   windmill:  {name:'Windmill', max:5, cost:[50000,250000,800000,2500000,8000000], lvl:[15,19,23,31,40], desc:'Grinds grain and brings in daily income.', eff:l => `+${10*l}% yield · ${priceText(WIND[l])} a day`},
 };
 const EXT = {
@@ -1073,17 +1147,59 @@ const FARM_BLURB = [null,'',
   'White-gold roofs and windows that glow from within.',
   'A halo of light floats above the house. Heaven, but with crops.'];
 
+/* ---------- Update 7: spread the game over all 80 levels */
+const LV = L => L <= 6 ? L : L <= 20 ? Math.round(6 + (L - 6) * 24 / 14) : L <= 50 ? Math.round(30 + (L - 20) * 32 / 30) : Math.min(80, Math.round(62 + (L - 50) * 18 / 25));
+const niceC = v => { if (v < 100) return Math.round(v); const q = Math.pow(10, Math.floor(Math.log10(v)) - 1); return Math.round(v / q) * q; };
+const cs = (c, oldL, newL) => niceC(c * Math.pow(1.16, Math.max(0, (newL ?? LV(oldL)) - oldL))); // later content costs more, in line with income at its new level
+CROPS.forEach(c2 => { c2.lvl = LV(c2.lvl); });
+SOIL.forEach(s2 => { s2.cost = cs(s2.cost, s2.lvl); s2.lvl = LV(s2.lvl); });
+for (const k in TOOLS) TOOLS[k].tiers.forEach(t => { if (t) { t.cost = cs(t.cost, t.lvl); t.lvl = LV(t.lvl); } });
+for (const k in EVENTS) EVENTS[k].lvl = LV(EVENTS[k].lvl);
+for (const k in ROLES) { ROLES[k].base = cs(ROLES[k].base, ROLES[k].lvl); ROLES[k].lvl = LV(ROLES[k].lvl); }
+for (const k in MACH) { MACH[k].cost = MACH[k].cost.map((c2, j) => cs(c2, MACH[k].lvls[j])); MACH[k].lvls = MACH[k].lvls.map(LV); MACH[k].lvl = MACH[k].lvls[0]; }
+ANIMALS.forEach(A => { A.cost = cs(A.cost, A.lvl); A.lvl = LV(A.lvl); });
+for (const k in RTOOLS) RTOOLS[k].tiers.forEach(t => { if (t) { t.cost = cs(t.cost, t.lvl); t.lvl = LV(t.lvl); } });
+PERKS.forEach(p => { p.lvl = LV(p.lvl); });
+{ const oldLab = BUILD.lab.lvl.slice(), newLab = [22, 25, 28, 31, 35, 40, 48, 57, 66, 75];
+  for (const k in BUILD) { BUILD[k].cost = BUILD[k].cost.map((c2, j) => cs(c2, BUILD[k].lvl[j], k === 'lab' ? newLab[j] : undefined)); BUILD[k].lvl = BUILD[k].lvl.map(LV); }
+  BUILD.lab.lvl = newLab; const cf = Math.pow(1.16, newLab[0] - oldLab[0]); CRATES.forEach(C => { C.cost = niceC(C.cost * cf); C.pouch = C.pouch.map(v => niceC(v * cf)); }); }
+FARM.forEach(f => { if (f && f.lvl) { f.cost = cs(f.cost, f.lvl); f.lvl = LV(f.lvl); } });
+EVENTS.meteor.lvl = 24; EVENTS.moon.need = () => S.b.lab > 0;
+HORNS[0].lvl = 70; HORNS[1].lvl = 74; HORNS[2].lvl = 78;
+HORNS[0].cost = 2e8; HORNS[1].cost = 5e8; HORNS[2].cost = 1e9;
+// Farmhouse requirements (town-hall style): crops to hand over for each restoration
+const HOUSE_NEED = [null, null,
+  [['carrot', 10]], [['carrot', 20], ['radish', 10]], [['lettuce', 15], ['potato', 20]], [['onion', 20], ['tomato', 25]],
+  [['corn', 30], ['pepper', 25], ['eggplant', 15]], [['pumpkin', 30], ['melon', 25], ['sunflower', 30]], [['blueberry', 80], ['saffron', 40], ['starfruit', 30]],
+  [['dragonfruit', 40], ['moonmelon', 40], ['goldpumpkin', 30]], [['phoenix', 50], ['glowshroom', 50], ['crystalberry', 60]], [['frostlotus', 50], ['voidmelon', 50], ['sunstone', 40]],
+  [['cosmicorn', 60], ['angelpear', 40], ['solarbloom', 20]]];
+FARM.forEach((f, i) => { if (f) f.need = HOUSE_NEED[i] || []; });
+{ // fill quiet levels with small permanent skills so every level has something
+  const used = new Set([...CROPS.map(c2 => c2.lvl), ...SOIL.map(x => x.lvl), ...PERKS.map(x => x.lvl), ...HORNS.map(x => x.lvl), ...ANIMALS.map(x => x.lvl), ...Object.values(ROLES).map(x => x.lvl), ...Object.values(EVENTS).map(x => x.lvl), ...FARM.filter(Boolean).map(f => f.lvl)]);
+  for (const k in TOOLS) TOOLS[k].tiers.forEach(t => t && used.add(t.lvl)); for (const k in BUILD) BUILD[k].lvl.forEach(x => used.add(x)); for (const k in MACH) MACH[k].lvls.forEach(x => used.add(x));
+  for (const k in RTOOLS) RTOOLS[k].tiers.forEach(t => t && used.add(t.lvl)); for (const k in RMACH) for (let j = 1; j <= 10; j++) used.add(rmLvl(k, j));
+  let n = 0; for (let L = 2; L <= 80; L++) if (!used.has(L)) { n++; const g = n % 2; PERKS.push({lvl: L, name: (g ? 'Green Thumb ' : 'Market Savvy ') + ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][Math.min(9, Math.floor((n - 1) / 2))], act: g ? 'grow' : 'sell', m: 1.03, desc: g ? 'Crops grow 3% faster' : 'Everything sells for 3% more'}); }
+}
+const perkBonus = act => PERKS.reduce((a, p) => p.act === act && p.lvl <= flv() ? a * p.m : a, 1);
+const houseFor = lv => { let h = 1; for (let i = 2; i < FARM.length; i++) if (FARM[i].lvl <= lv) h = i; return h; };
+const houseOk = lv => S.farm >= houseFor(lv);
+const houseTxt = lv => `Farmhouse level ${houseFor(lv)}`;
+const gateOk = lv => lv <= flv() && houseOk(lv);
+const gateTag = lv => lv > flv() ? `<span class="tag bad">Next upgrade at farmer level ${lv}</span>` : !houseOk(lv) ? `<span class="tag bad">Needs ${houseTxt(lv)} · ${FARM[houseFor(lv)].name}</span>` : '';
+const gateMsg = lv => lv > flv() ? `Reach farmer level ${lv} first.` : !houseOk(lv) ? `Restore the farmhouse to level ${houseFor(lv)} (${FARM[houseFor(lv)].name}) first.` : '';
+
 // world layout (1 unit = 1px at zoom 1)
 const PLOT = 64, CELL = 72;
 const ORDER = [];
 for (let n = 1; n <= 5; n++) { for (let y = 0; y < n; y++) ORDER.push([n-1, y]); for (let x = 0; x < n-1; x++) ORDER.push([x, n-1]); }
-const FIELD2_X = 580, FIELD2_LVL = 30, FIELD2_COST = 2000000;
+const FIELD2_X = 580, FIELD2_LVL = LV(30), FIELD2_COST = 2000000;
 const plotRect = i => i < 25 ? {x: ORDER[i][0]*CELL, y: ORDER[i][1]*CELL, w: PLOT, h: PLOT} : {x: ORDER[i - 25][0]*CELL + FIELD2_X, y: ORDER[i - 25][1]*CELL, w: PLOT, h: PLOT};
 const maxCells = () => S.field2 ? 50 : 25;
 const OBJ = {
   nameboard: {x:-232, y:104, w:70, h:44},
   bundle:    {x:-52, y:18, w:44, h:36},
   hut:       {x:136, y:-142, w:100, h:88},
+  wagon:     {x:14, y:-114, w:84, h:64},
   eastsign:  {x:730, y:136, w:60, h:70},
   barn:      {x:380, y:470, w:180, h:140},
   seedmaker: {x:470, y:196, w:64, h:80},
@@ -1108,7 +1224,7 @@ const TREES0 = [[-330,-150,1,5],[-310,30,2,6],[-340,230,1,5],[-330,470,3,6],[110
 /* ------------------------------------------------------------------ STATE */
 function fresh() {
   return {
-    v: 6, ranch: {pens: [], feed: 0}, rtools: {scoop: 0, brush: 0, pail: 0}, rtool: 'scoop', rmach: {feeder: 0, mill: 0, groomer: 0, belt: 0}, rrecipes: {}, rbaby: {}, opt: {grass: 'auto'}, event: null, nextEvent: 0, fair: null, fairLog: [], recog: 0, field2: false, horns: {water: false, plant: false, harvest: false}, qdone: {}, qmax: 0, mach: {tractor:0, harvester:0, truck:0}, mon: {tractor:true, harvester:true, truck:true, seedmaker:true}, mstat: {tractor:0, harvester:0, truck:0},
+    v: 7, time: 360, tut: {}, todo: false, pat: {}, ltools: {charm: 0, rod: 0, drill: 0}, prestige: {pp: 0, count: 0, nodes: {}, best: 0, total: 0}, beaten: false, soldToday: 0, orders: [], ordersDay: 0, keep: {}, ranch: {pens: [], feed: 0}, rtools: {scoop: 0, brush: 0, pail: 0}, rtool: 'scoop', rmach: {feeder: 0, mill: 0, groomer: 0, belt: 0}, rrecipes: {}, rbaby: {}, opt: {grass: 'auto', holdNeeds: true, sort: 'rec', todo: true}, event: null, nextEvent: 0, fair: null, fairLog: [], recog: 0, field2: false, horns: {water: false, plant: false, harvest: false}, qdone: {}, qmax: 0, mach: {tractor:0, harvester:0, truck:0}, mon: {tractor:true, harvester:true, truck:true, seedmaker:true}, mstat: {tractor:0, harvester:0, truck:0},
     recipes: {}, mseeds: {}, mutagens: {}, mfound: {}, rid: 0, crate: null, tool: 'gloves', workers: [], cand: {}, wid: 0, name: 'My Farm', started: false, day: 1, money: 0, xp: 0, farm: 1,
     bundle: false, sign: false, house: false, home: false,
     plots: [{soil:0, st:'wild', crop:null, prog:0, water:false}],
@@ -1131,7 +1247,7 @@ function merge(base, src) {
 function load(raw) {
   try {
     const d = raw ? JSON.parse(raw) : null;
-    if (d && d.v >= 1 && d.v <= 6) {
+    if (d && d.v >= 1 && d.v <= 7) {
       S = merge(fresh(), d);
       if (d.v === 1) {
         S.v = 2; S.name = 'Hollowmere'; S.started = true; for (let i = 0; i < S.plots.length; i++) S.cleared[i] = true;
@@ -1145,7 +1261,9 @@ function load(raw) {
         QUESTS.forEach((q, i) => { const u = qU(q); if (i < pos && u <= d.v && u !== 3) S.qdone[q.t] = true; });
         S.qmax = pos;
       }
-      S.v = 6; if (!SLOT_KEYS.includes(S.tool)) S.tool = 'gloves';
+      if (d.v < 7) { let oL = 1; while (oL < 60 && S.xp >= xpForOld(oL + 1)) oL++; const fr = clamp((S.xp - xpForOld(oL)) / Math.max(1, xpForOld(oL + 1) - xpForOld(oL)), 0, .99), nL = Math.min(80, LV(oL)); S.xp = Math.round(xpFor(nL) + fr * (xpFor(nL + 1) - xpFor(nL))); S.u7 = true;  S.tut = Object.assign({events: true, fair: true, workers: true, mutants: true, ranch: true}, S.tut || {}); }
+      if (d.v < 7) { S.time = 360; S.plots.forEach(p => { if (p.water) p.wt = 1; }); }
+      S.v = 7; if (!SLOT_KEYS.includes(S.tool)) S.tool = 'gloves';
       { const nq = firstUndone(); if (nq !== S.q) { S.q = nq; startQuest(); } }
       if (!S.mon) S.mon = {tractor: true, harvester: true, truck: true, seedmaker: true};
       if (S.tools.can >= 5) S.water = Infinity; else if (typeof S.water !== 'number') S.water = 0;
@@ -1163,7 +1281,8 @@ function save() {
 }
 
 /* ------------------------------------------------------------------ DERIVED */
-const xpFor = L => L <= 1 ? 0 : Math.round(12 * Math.pow(L - 1, 1.9));
+const xpFor = L => L <= 1 ? 0 : Math.round(12 * Math.pow(L - 1, 1.9) * Math.pow(1.04, L - 1));
+const xpForOld = L => L <= 1 ? 0 : Math.round(12 * Math.pow(L - 1, 1.9));
 const MAX_LVL = 80;
 function flv() { let L = 1; while (L < MAX_LVL && S.xp >= xpFor(L + 1)) L++; return L; }
 function canCap() { const t = S.tools.can; if (!t) return 0; const base = TOOLS.can.tiers[t].cap; return base === Infinity ? Infinity : Math.round(base * (1 + WELLB[S.b.well])); }
@@ -1175,7 +1294,7 @@ const irrBonus = () => Math.max(0, S.b.irrigation - 5) * .1;
 const baseGrow = () => FARM[S.farm].grow * (1 + .05*S.b.compost + .15*S.b.greenhouse + (tierOf('hoe').grow || 0) + irrBonus());
 const waterFactor = () => tierOf('can').wf || 2;
 const yieldBonus = () => FARM[S.farm].yld + .06*S.b.scarecrow + .04*S.b.beehive + .10*S.b.windmill;
-const sellPrice = id => Math.round((evt('golden') ? 1.25 : 1) * (id === 'honey' ? 30 : isR(id) ? rBase(id) : isMut(id) ? (recOf(id) ? CROP[recOf(id).crop].sell * mutFx(id).value : 0) : CROP[id] ? CROP[id].sell : 0) * (1 + .06*S.b.stand));
+const sellPrice = id => Math.round((evt('golden') ? 1.25 : 1) * (1 + pb('price')) * perkBonus('sell') * (isR(id) ? 1 + pb('animal') : 1) * (id === 'honey' ? 30 : isR(id) ? rBase(id) : isMut(id) ? (recOf(id) ? CROP[recOf(id).crop].sell * mutFx(id).value : 0) : CROP[id] ? CROP[id].sell : 0) * (1 + .06*S.b.stand));
 const maxPlots = () => FARM[S.farm].plots + (S.field2 ? 25 : 0);
 const plotCost = n => n <= 25 ? Math.round(12 * Math.pow(1.42, n - 2)) : Math.round(250000 * Math.pow(1.15, n - 26));
 const growingCount = () => S.plots.filter(p => p.crop).length;
@@ -1222,7 +1341,7 @@ function cropFor(p) {
   return (MCROP[p.mut] = Object.assign({}, base, {leaf: mix(base.leaf, col, .45)}));
 }
 const needsWater = p => !!(p.crop && !p.water && p.prog < CROP[p.crop].need && !(p.mut && mutFx(p.mut).thirst >= 1));
-function setCrop(p, key) { p.crop = baseOf(key); p.mut = isMut(key) ? key : null; p.prog = 0; p.water = false; p.life = p.mut && mutFx(key).regrow ? mutFx(key).regrow + 1 : 0; }
+function setCrop(p, key) { p.crop = baseOf(key); p.mut = isMut(key) ? key : null; p.prog = 0; p.water = false; p.wt = 0; p.v = Math.random(); { const r = Math.random(); p.var = r < .02 + pb('shiny') ? 'shiny' : r < .08 + pb('giant') ? 'giant' : ''; } p.life = p.mut && mutFx(key).regrow ? mutFx(key).regrow + 1 : 0; }
 const labSlots = () => LAB_SLOTS[S.b.lab] || 0;
 const crateBonusPicks = () => [2, 4, 6, 8, 10].filter(x => S.b.lab >= x).length;
 function mutSeedCost(r) { return Math.round(Math.max(6, CROP[r.crop].seed * (3 + 3 * r.rarity) + 8 * r.muts.length * (r.rarity + 1)) * (1 - .08 * Math.max(0, S.b.lab - 1))); }
@@ -2201,7 +2320,7 @@ function drawTree(c, x, y, alive, fruit, t, seed) {
 const DRAW = {
   house: (c, cx, by, L, t) => drawHouse(c, cx, by, L, t), sign: (c, cx, by, L, t) => drawSign(c, cx, by, t),
   eastsign: (c, cx, by, L, t) => { c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx, by, 26, 5); c.fill(); c.fillStyle = '#6b4a2e'; c.fillRect(cx - 2.5, by - 48, 5, 48); rr(c, cx - 30, by - 64, 60, 30, 4); fillS(c, '#c7955c', 1.4); c.fillStyle = '#3e2410'; c.font = '9px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('EAST FIELD', cx, by - 54); c.font = '7px "Lilita One", sans-serif'; c.fillStyle = '#8a2a1a'; c.fillText('FOR SALE', cx, by - 43); },
-  barn: drawBarn,
+  barn: drawBarn, wagon: drawWagon,
   bundle: (c, cx, by, L, t) => drawBundle(c, cx, by, t, false), hut: drawHut, seedmaker: drawSeedMaker, garage: drawGarage, lab: drawLab, nameboard: (c, cx, by, L, t) => drawNameboard(c, cx, by, t), barrel: (c, cx, by, L, t) => drawBarrel(c, cx, by, t),
   well: drawWell, shed: drawShed, compost: drawCompost, scarecrow: drawScarecrow, beehive: drawBeehive,
   irrigation: drawIrrigation, stand: drawStand, greenhouse: drawGreenhouse, windmill: drawWindmill,
@@ -2262,6 +2381,7 @@ function icon(key) {
   else if (kind === 'stall') drawStallIcon(c, m, m + 4, r);
   else if (kind === 'book') drawBook(c, m, m, r);
   else if (kind === 'sun') drawSun(c, m, m, r);
+  else if (kind === 'moon') drawMoon(c, m, m, r);
   else if (kind === 'rain') drawRain(c, m, m, r);
   else if (kind === 'b') { // building at level
     const id = a, L = +b || 1, o = OBJ[id] || {w: 60, h: 60}; const ext = id === 'house' ? {w: 196, h: 196} : o;
@@ -2284,11 +2404,11 @@ window.addEventListener('resize', resize);
 resize();
 
 const revealT = {};
-function revealed(id) { if (id === 'eastsign') return S.q > TUT_END && !S.field2 && flv() >= FIELD2_LVL; return id === 'bundle' ? !S.bundle || bundleOpenT > 0 : id === 'sign' ? S.sign : id === 'house' || id === 'barrel' || id === 'nameboard' ? S.house : S.b[id] > 0; }
+function revealed(id) { if (id === 'wagon') return S.q > TUT_END && flv() >= LS_LVL && (S.orders || []).some(o => !o.done); if (id === 'eastsign') return S.q > TUT_END && !S.field2 && flv() >= FIELD2_LVL; return id === 'bundle' ? !S.bundle || bundleOpenT > 0 : id === 'sign' ? S.sign : id === 'house' || id === 'barrel' || id === 'nameboard' ? S.house : S.b[id] > 0; }
 const TREES = TREES0.filter(([x, y]) => !((x > 560 && x < 960 && y > -20 && y < 400) || (x > 360 && x < 580 && y > 460 && y < 640)));
 function objList() {
   const out = [];
-  for (const id of ['bundle', 'sign', 'house', 'barrel', 'nameboard', 'eastsign', ...BUILD_ORDER]) if (revealed(id)) out.push({id, ...OBJ[id]});
+  for (const id of ['bundle', 'sign', 'house', 'barrel', 'nameboard', 'eastsign', 'wagon', ...BUILD_ORDER]) if (revealed(id)) out.push({id, ...OBJ[id]});
   return out;
 }
 function bounds() {
@@ -2302,7 +2422,7 @@ function bounds() {
 }
 function viewArea() {
   const bar = $('#bar').getBoundingClientRect(); let top = 0;
-  for (const id of VW < 760 ? ['#hud-row', '#hud-right', '#lvl-chip', '#quest'] : ['#hud-row', '#hud-right', '#lvl-chip']) top = Math.max(top, $(id).getBoundingClientRect().bottom);
+  for (const id of VW < 760 ? ['#hud-row', '#hud-right', '#lvl-chip', '#quest', '#todo'] : ['#hud-row', '#hud-right', '#lvl-chip']) top = Math.max(top, $(id).getBoundingClientRect().bottom);
   top += 8; const bk = $('#bulk'), btop = bk.children.length ? bk.getBoundingClientRect().top : bar.top; const bottom = Math.min(VH, btop - 8);
   return {x: 12, y: top, w: VW - 24, h: Math.max(120, bottom - top)};
 }
@@ -2471,9 +2591,9 @@ function water(i, quiet, chain) {
     else { if (!quiet) { toast('Your watering can is empty. Tap the <b>rain barrel</b> by the house to refill it.', 'warn'); hintBarrel = now(); } return false; }
   }
   if (S.water !== Infinity) S.water--;
-  p.water = true; S.stats.watered++; if (!chain) sfx('water');
+  wet1(p); S.stats.watered++; if (!chain) sfx('water');
   swing('can', S.tools.can, r.x + 46, r.y + 8);
-  if (!chain && tierOf('can').splash) for (const j of nbrs(i)) { const q = S.plots[j]; if (needsWater(q) && Math.random() < tierOf('can').splash) { q.water = true; S.stats.watered++; const rq = plotRect(j); for (let k = 0; k < 8; k++) parts.push({x: rq.x + 16 + Math.random() * 32, y: rq.y + 6, vx: 0, vy: 50, g: 200, life: -k * .02, max: .4, type: 'drop', r: 2, rot: 0}); special(j, 'Splash!'); } }
+  if (!chain && tierOf('can').splash) for (const j of nbrs(i)) { const q = S.plots[j]; if (needsWater(q) && Math.random() < tierOf('can').splash) { wet1(q); S.stats.watered++; const rq = plotRect(j); for (let k = 0; k < 8; k++) parts.push({x: rq.x + 16 + Math.random() * 32, y: rq.y + 6, vx: 0, vy: 50, g: 200, life: -k * .02, max: .4, type: 'drop', r: 2, rot: 0}); special(j, 'Splash!'); } }
   for (let k = 0; k < 14; k++) parts.push({x: r.x + 16 + Math.random() * 32, y: r.y + 4 + Math.random() * 10, vx: (Math.random() - .5) * 12, vy: 40 + Math.random() * 40, g: 200, life: -k * .02, max: .45, type: 'drop', r: 2, rot: 0});
   if (!quiet) after();
   return true;
@@ -2492,6 +2612,7 @@ function reap(i, who) {
   const p = S.plots[i], cr = CROP[p.crop], key = p.mut && recOf(p.mut) ? p.mut : cr.id, fx = key !== cr.id ? mutFx(key) : null;
   let n = who === 'player' ? rollYield(cr) : Math.max(1, Math.floor(cr.yld * (1 + yieldBonus()) + (who === 'machine' ? (S.mach.harvester - 1) * .5 : 0) + Math.random()));
   if (fx) n = Math.max(1, Math.round(n * fx.yield));
+  const vr = p.var || ''; if (vr === 'giant') n *= 2; else if (vr === 'shiny') n *= 3; n = Math.round(n * (1 + pb('yield')));
   if (evt('butterflies')) n = Math.round(n * 1.3); if (evt('pests') && S.b.scarecrow < 3) n = Math.max(1, Math.round(n * .8));
   S.produce[key] = (S.produce[key] || 0) + n;
   S.stats.crop[cr.id] = (S.stats.crop[cr.id] || 0) + n; S.stats.harvested++;
@@ -2499,9 +2620,10 @@ function reap(i, who) {
   if (fx) { S.stats.mutHarvest++; seeds = fx.seed + (Math.random() < fx.seedChance ? 1 : 0); if (seeds) S.mseeds[key] = (S.mseeds[key] || 0) + seeds; }
   let xp = cr.xp * (fx ? fx.xp : 1); if (who !== 'player') xp /= 2; xp = Math.max(1, Math.round(xp));
   p.last = key;
-  if (fx && p.life > 1) { p.life--; p.prog = cr.need * .45; p.water = false; }
+  if (fx && p.life > 1) { p.life--; p.prog = cr.need * .45; p.water = false; p.wt = 0; }
   else { p.crop = null; p.mut = null; p.life = 0; p.prog = 0; p.water = false; p.st = S.tools.hoe >= 2 ? 'tilled' : 'rough'; }
-  return {key, n, xp, seeds, regrew: !!p.crop};
+  if (p.crop) { p.v = Math.random(); p.var = ''; }
+  return {key, n, xp, seeds, regrew: !!p.crop, vr};
 }
 function harvest(i, quiet, chain) {
   if (!S.tools.sickle) { if (!quiet) toast('These are ready! You need a <b>sickle</b> to harvest them. The Blacksmith sells one.', 'warn'); return false; }
@@ -2512,6 +2634,7 @@ function harvest(i, quiet, chain) {
   burst(r.x + 32, r.y + 34, 'leaf', 10, {up: true, sp: 80, r: 3});
   burst(r.x + 32, r.y + 28, 'spark', 6, {up: true, sp: 60, r: 3.5});
   floatText(r.x + 32, r.y + 6, `+${res.n}`, '#ffe9a8', iurl(prodIcon(res.key)));
+  if (res.vr) { floatText(r.x + 32, r.y - 30, res.vr === 'giant' ? 'Giant crop! ×2' : 'Shiny crop! ×3', res.vr === 'giant' ? '#b6f04a' : '#ffe28a'); sfx('special'); S.stats.variants = (S.stats.variants || 0) + 1; }
   if (res.seeds) floatText(r.x + 32, r.y - 12, `+${res.seeds} seed${res.seeds > 1 ? 's' : ''}`, '#e8f7c8', iurl(seedIcon(res.key)));
   if (res.regrew) floatText(r.x + 32, r.y + 40, 'Regrowing', '#9be0b0');
   const from = toScreen(r.x + 32, r.y + 30), to = centerOf($('#slot-basket'));
@@ -2599,6 +2722,7 @@ function clearYard(id) {
 }
 const lvQueue = [];
 function gainXp(x) {
+  x = Math.round(x * (1 + pb('xp')));
   if (evt('fog')) x = Math.round(x * 1.25);
   const before = flv(); S.xp += x; const a = flv();
   const el = $('#lvl-chip'); el.classList.remove('gain'); void el.offsetWidth; el.classList.add('gain');
@@ -2629,9 +2753,9 @@ function unlocksAt(L) {
   if (L === 4) out.push({ic: 'perk:all', name: 'Random events', kind: 'Feature', note: 'Every few days something unusual happens on the farm'});
   if (L === FAIR_LVL) out.push({ic: 'trophy', name: 'County Fair', kind: 'Feature', note: 'Weekly crop competitions in your Journal'});
   if (L === FIELD2_LVL) out.push({ic: 'soil:0', name: 'The East Field', kind: 'Land', note: 'A second field of 25 plots at the Land Office'});
-  if (L === 10) out.push({ic: 'crate:rusty', name: 'Mystery crates', kind: 'Lab', note: 'Open them at the Mutation Lab. Better crates come with lab upgrades.'});
+  if (L === BUILD.lab.lvl[0]) out.push({ic: 'crate:rusty', name: 'Mystery crates', kind: 'Lab', note: 'Open them at the Mutation Lab. Better crates come with lab upgrades.'});
   ROLE_ORDER.forEach(r => { if (ROLES[r].lvl === L) out.push({ic: 'wk:' + r, name: ROLES[r].name + 's', kind: 'Workers', note: 'Hire them at your Worker Hut'}); });
-  if (L === 12) out.push({ic: 'an:chicken', name: 'Ranching', kind: 'Feature', note: 'Build the Big Barn, then raise animals inside it'});
+  if (L === BUILD.barn.lvl[0]) out.push({ic: 'an:chicken', name: 'Ranching', kind: 'Feature', note: 'Build the Big Barn, then raise animals inside it'});
   ANIMALS.forEach(A => { if (A.lvl === L) out.push({ic: 'an:' + A.id, name: A.name, kind: 'Animal', note: `Ranch Office · makes ${A.pname.toLowerCase()}`}); });
   RT_ORDER.forEach(k => RTOOLS[k].tiers.forEach((t2, i) => { if (t2 && i > 1 && t2.lvl === L) out.push({ic: `rt:${k}:${i}`, name: t2.name, kind: 'Ranch tool', note: `Ranch Office · needs barn level ${t2.barn}`}); }));
   RMACH_ORDER.forEach(k => { for (let j = 1; j <= 10; j++) if (rmLvl(k, j) === L) out.push({ic: `rmi:${k}:${j}`, name: j > 1 ? `${RMACH[k].name} level ${j}` : RMACH[k].name, kind: j > 1 ? 'Upgrade' : 'Barn machine', note: RMACH[k].eff(j)}); });
@@ -2657,6 +2781,7 @@ function buySeed(id, n) {
 function toolReq(kind, tier) {
   const t = TOOLS[kind].tiers[tier]; if (!t) return 'max';
   if (t.lvl > flv()) return `Farmer level ${t.lvl}`;
+  if (!houseOk(t.lvl)) return houseTxt(t.lvl);
   if (t.shed > S.b.shed) return `Toolshed level ${t.shed}`;
   return '';
 }
@@ -2689,7 +2814,7 @@ function buyPlot() {
   after();
 }
 function upgradeSoil(tier, all) {
-  const s = SOIL[tier]; if (s.lvl > flv()) return toast(`Reach farmer level ${s.lvl} first.`, 'warn');
+  const s = SOIL[tier]; { const gm = gateMsg(s.lvl); if (gm) return toast(gm, 'warn'); }
   const elig = S.plots.map((p, i) => [p, i]).filter(([p]) => p.soil === tier - 1);
   if (!elig.length) return toast(`No plots are ready for ${s.name}.`);
   let done = 0, spent = 0;
@@ -2700,7 +2825,7 @@ function upgradeSoil(tier, all) {
 }
 function buildUp(id) {
   const B = BUILD[id], L = S.b[id]; if (L >= B.max) return;
-  if (B.lvl[L] > flv()) return toast(`Reach farmer level ${B.lvl[L]} first.`, 'warn');
+  { const gm = gateMsg(B.lvl[L]); if (gm) return toast(gm, 'warn'); }
   if (S.money < B.cost[L]) return toast('Not enough coins for that.', 'warn');
   spend(B.cost[L]); S.b[id] = L + 1; sfx('build');
   const o = OBJ[id];
@@ -2713,7 +2838,9 @@ function buildUp(id) {
 function restoreFarm() {
   const next = FARM[S.farm + 1]; if (!next) return;
   if (next.lvl > flv()) return toast(`Reach farmer level ${next.lvl} first.`, 'warn');
+  for (const [k, q] of next.need || []) if ((S.produce[k] || 0) < q) return toast(`The builders need ${q} ${esc(keyName(k))} in your basket (you have ${S.produce[k] || 0}).`, 'warn');
   if (S.money < next.cost) return toast('Not enough coins for that.', 'warn');
+  for (const [k, q] of next.need || []) { S.produce[k] -= q; if (!S.produce[k]) delete S.produce[k]; }
   spend(next.cost); S.farm++; sfx('build'); setTimeout(() => sfx('levelup'), 300);
   const h = OBJ.house; puff(h.x + h.w / 2, h.y + h.h - 40, null);
   burst(h.x + h.w / 2, h.y + 40, 'confetti', 40, {up: true, sp: 150, life: 1.4, r: 3.5});
@@ -2722,16 +2849,22 @@ function restoreFarm() {
 }
 function sell(id, n) {
   const have = S.produce[id] || 0; n = Math.min(n, have); if (!n) return;
-  const earned = sellPrice(id) * n;
+  const pr = sellPrice(id), fit = pr > 0 ? Math.floor(capLeft() / pr) : 0; if (fit < 1) return capToast();
+  if (fit < n) { n = fit; toast(`The market only had room for ${n} more today.`, 'warn'); }
+  const earned = pr * n; S.soldToday = (S.soldToday || 0) + earned;
   S.produce[id] -= n; if (!S.produce[id]) delete S.produce[id];
   S.stats.sold += n; sfx('sell');
   addMoney(earned, lastBtnPt || {x: VW / 2, y: VH / 2});
   after();
 }
 function sellAll() {
-  const items = Object.keys(S.produce); if (!items.length) return;
-  let total = 0, cnt = 0; for (const k of items) { total += sellPrice(k) * S.produce[k]; cnt += S.produce[k]; }
-  S.produce = {}; S.stats.sold += cnt; sfx('sell');
+  const items = Object.keys(S.produce).sort((a, b) => sellPrice(b) - sellPrice(a)); if (!items.length) return;
+  if (capFull()) return capToast();
+  let total = 0, cnt = 0, left = capLeft(), held = 0;
+  for (const k of items) { const pr = sellPrice(k), q = Math.min(S.produce[k], pr > 0 ? Math.floor((left - total) / pr) : 0); if (q > 0) { total += pr * q; cnt += q; S.produce[k] -= q; } if (S.produce[k] > 0) held += S.produce[k]; else delete S.produce[k]; }
+  if (!cnt) return capToast();
+  S.soldToday = (S.soldToday || 0) + total; S.stats.sold += cnt; sfx('sell');
+  if (held) setTimeout(() => toast(`You hit today’s market limit. ${held} item${held > 1 ? 's are' : ' is'} still in your basket.`, 'warn'), 400);
   addMoney(total, lastBtnPt || {x: VW / 2, y: VH / 2});
   toast(`Sold ${cnt} items for ${priceHTML(total)}.`, 'good');
   after();
@@ -2752,16 +2885,16 @@ function sleep() {
   }, 1500);
 }
 function applyNight() {
-  const lines = []; let grew = 0, ready = 0;
-  S.plots.forEach(p => {
-    if (!p.crop) return; const cr = CROP[p.crop];
-    const fx = p.mut ? mutFx(p.mut) : null, wet = p.water || (fx && (fx.thirst >= 1 || Math.random() < fx.thirst));
-    const em = (evt('breeze') ? 1.5 : 1) * (evt('heatwave') ? (wet ? 1.25 : 0) : 1) * (evt('moon') && fx ? 1.5 : 1);
-    if (p.prog < cr.need) { p.prog += (wet ? waterFactor() : 1) * growMult(p) * em; grew++; if (p.prog >= cr.need) p.prog = cr.need; }
-    p.water = false;
-  });
-  S.day++; S.stats.slept++;
+  if (S.time == null) S.time = DAWN;
+  const before = S.plots.filter(p => p.crop && p.prog < CROP[p.crop].need).length;
+  growAll(minsToDawn() / 1440); S.time = DAWN; S.stats.slept++;
+  return dawnTick(before);
+}
+function dawnTick(grew = 0) {
+  const lines = []; let ready = 0;
+  S.day++;
   if (typeof ranchNight === 'function') ranchNight(lines);
+  S.soldToday = 0; genOrders(); if ((S.orders || []).length && flv() >= LS_LVL) lines.push(`<div><img src="${iurl('b:wagon:1')}" alt="" width="26" height="26"> A merchant’s wagon arrived with ${S.orders.length} large order${S.orders.length > 1 ? 's' : ''}.</div>`);
   { const L = flv(); S.event = null;
     if (L >= 4) {
       if (!S.nextEvent) S.nextEvent = S.day + 1;
@@ -2778,12 +2911,14 @@ function applyNight() {
   let sprink = S.b.irrigation >= 5 ? Infinity : IRR[S.b.irrigation];
   S.plots.forEach(p => {
     if (!p.crop || p.prog >= CROP[p.crop].need) return;
-    if (S.weather === 'rain') p.water = true; else if (sprink > 0) { p.water = true; sprink--; }
+    const fx = p.mut ? mutFx(p.mut) : null; if (fx && fx.thirst > 0 && fx.thirst < 1 && Math.random() < fx.thirst) { wet1(p); return; }
+    if (S.weather === 'rain') wet1(p); else if (sprink > 0) { wet1(p); sprink--; }
   });
   S.plots.forEach(p => { if (p.crop && p.prog >= CROP[p.crop].need) ready++; });
   if (S.tools.can && S.water !== Infinity) S.water = canCap();
   if (ready) lines.push(`<div><img src="${iurl('basket')}" alt="" width="26" height="26"> ${ready} plot${ready > 1 ? 's are' : ' is'} ready to harvest</div>`);
   else if (grew) lines.push(`<div>${grew} crop${grew > 1 ? 's' : ''} grew overnight</div>`);
+  lines.push(`<div>It’s ${clockTxt(DAWN)}. Work can carry on until ${clockTxt(duskT())}.</div>`);
   if (S.weather === 'rain') lines.push(`<div><img src="${iurl('rain')}" alt="" width="26" height="26"> It’s raining. Every crop is watered today.</div>`);
   if (S.b.irrigation && S.weather !== 'rain') lines.push('<div>The sprinklers watered your crops at dawn.</div>');
   if (S.b.beehive) { S.produce.honey = (S.produce.honey || 0) + S.b.beehive; lines.push(`<div><img src="${iurl('p:honey')}" alt="" width="24" height="24"> +${S.b.beehive} honey from the hive</div>`); }
@@ -2828,13 +2963,16 @@ const QUESTS = [
   {t:'Better Blade', d:'Buy an Iron Sickle for bigger, faster harvests.', g:() => [S.tools.sickle >= 2 ? 1 : 0, 1], tgt:'tab:tools', k:'sickle', r:30},
   {t:'Timber!', d:'Select the axe (6) and chop down an old stump or a wild tree.', g:() => [Math.min(S.stats.chopped, 1), 1], tgt:'chop', r:25},
   {t:'Spud Life', d:'Harvest 20 potatoes.', g:() => [Math.min(cropN('potato'), 20), 20], tgt:'tab:seeds', k:'potato', r:50},
+  {t:'Giant Harvest', u:7, d:'Harvest a Giant or Shiny crop. Look for a glow around a ripening plant.', g:() => [Math.min(S.stats.variants || 0, 1), 1], r:80},
   {t:'Rising Farmer', d:'Reach farmer level 5. Tap your level to see what each level unlocks.', g:() => [Math.min(flv(), 5), 5], tgt:null, r:40},
+  {t:'Big Order', u:7, d:'From farmer level 5, a merchant’s wagon parks by the farm each morning. Fill and deliver one of its Large Sales.', g:() => [Math.min(S.stats.orders || 0, 1), 1], tgt:'tab:orders', r:100},
   {t:'Well Well Well', d:'Build the Well so your can refills itself.', g:() => [S.b.well ? 1 : 0, 1], tgt:'tab:build', k:'well', r:60},
   {t:'Tidy Homestead', d:'Restore the farm to level 3.', g:() => [Math.min(S.farm, 3) - 1, 2], tgt:'tab:build', k:'restore', r:100},
   {t:'Shed Some Light', d:'Build a Toolshed so the Blacksmith will sell you better tools.', g:() => [S.b.shed ? 1 : 0, 1], tgt:'tab:build', k:'shed', r:80},
   {t:'Loamy Ground', d:'Upgrade a plot to Loamy soil at the Land Office.', g:() => [maxSoil() >= 1 ? 1 : 0, 1], tgt:'tab:land', k:'soil', r:80},
   {t:'Clean Sweep', d:'Clear 10 patches of weeds, bushes, rocks or stumps around the farm.', g:() => [Math.min(S.stats.yard, 10), 10], tgt:'yard', r:120},
   {t:'Pocket Silver', d:'Earn 10 silver in total.', g:() => [Math.min(S.stats.earned, 1000), 1000], tgt:null, r:150, money:true},
+  {t:'Farm Planner', u:7, d:'Buy the Farm Planner at the Builder’s Yard. It keeps a to-do list for each day.', g:() => [S.todo ? 1 : 0, 1], tgt:'tab:build', r:300},
   {t:'Hired Help', d:'Reach farmer level 6, then build a Worker Hut at the Builder’s Yard.', g:() => [S.b.hut ? 1 : 0, 1], tgt:'tab:build', k:'hut', r:150},
   {t:'Many Hands', d:'Tap the Worker Hut on your farm and hire a Waterer.', g:() => [S.workers.some(w => w.role === 'waterer') ? 1 : 0, 1], tgt:'hut', r:100},
   {t:'Fair Debut', u:6, d:'Open Journal → County Fair and enter a crop from this week’s tier. The fair opens at farmer level 6.', g:() => [Math.min(S.stats.fairEntries || 0, 1), 1], r:60},
@@ -2866,11 +3004,13 @@ const QUESTS = [
   {t:'First Flock', u:6, d:'Tap the barn to go inside, then buy a chicken at the Ranch Office desk.', g:() => [Math.min(S.stats.animalsBought, 1), 1], tgt:'office', r:500},
   {t:'Egg-cellent', u:6, d:'Feed your animals with the scoop (1) every day. Once grown, collect 5 animal products with the pail (3).', g:() => [Math.min(S.stats.products, 5), 5], tgt:'pen', r:1200},
   {t:'Rare Find', u:4, d:'Find a Rare or better mutagen in a mystery crate.', g:() => [Math.min(S.stats.rareFound, 1), 1], tgt:'lab', r:1000},
+  {t:'Crate Tools', u:7, d:'Buy a crate tool in the Mutation Lab’s Crate Tools tab.', g:() => [LT_ORDER.some(k => S.ltools[k]) ? 1 : 0, 1], tgt:'lab', r:20000},
   {t:'Dressed for Success', d:'Train one worker to level 4 so they wear a foreman’s jacket.', g:() => [S.workers.some(w => w.lvl >= 4) ? 1 : 0, 1], tgt:'hut', r:6000},
   {t:'Haul Away', u:4, d:'Hire a Hauler to carry produce to your Roadside Stand. Haulers unlock at farmer level 13.', g:() => [S.workers.some(w => w.role === 'hauler') ? 1 : 0, 1], tgt:'hut', r:2000},
   {t:'Ranch Hand', u:6, d:'Hire an Animal Feeder at the Ranch Office. Ranch hands unlock at farmer level 14.', g:() => [Math.min(ranchHands().length, 1), 1], tgt:'office', k:'hand', r:4000},
   {t:'Growing Herd', u:6, d:'Have 4 animals living in the barn at once. Build more pens in the Barn tab.', g:() => [Math.min(animalCount(), 4), 4], tgt:'office', r:8000},
   {t:'Saffron Gold', d:'Harvest 20 saffron.', g:() => [Math.min(cropN('saffron'), 20), 20], tgt:'tab:seeds', k:'saffron', r:15000},
+  {t:'In a Row', u:7, d:'Buy any Golden tool, then press R (or tap the pattern button on your hotbar) to work a whole row of plots at once.', g:() => [['hoe', 'can', 'sickle', 'gloves'].some(k => (S.tools[k] || 0) >= 4) ? 1 : 0, 1], tgt:'tab:tools', r:3000},
   {t:'Luxury Living', d:'Restore the farm to level 6.', g:() => [Math.min(S.farm, 6) - 1, 5], tgt:'tab:build', k:'restore', r:20000},
   {t:'Special Delivery', u:4, d:'Buy a Delivery Truck. It needs Garage level 3 and farmer level 14.', g:() => [S.mach.truck ? 1 : 0, 1], tgt:'tab:machines', k:'truck', r:5000},
   {t:'Triple Threat', u:4, d:'Splice a mutant using three mutagens. You need Lab level 3 for the third slot.', g:() => [Object.values(S.recipes).some(r => r.muts.length >= 3) ? 1 : 0, 1], tgt:'lab', r:4000},
@@ -2904,7 +3044,12 @@ const QUESTS = [
   {t:'Phoenix Rising', u:6, d:'Collect a Sun Egg from a Phoenix Hen. They arrive at farmer level 58.', g:() => [Math.min(S.stats.ranimal.phoenixhen || 0, 1), 1], tgt:'pen', r:20000000},
   {t:'Heavenly Harvest', u:6, d:'Harvest 5 Angel Pears. They grow in Celestial soil.', g:() => [Math.min(cropN('angelpear'), 5), 5], tgt:'tab:seeds', k:'angelpear', r:40000000},
   {t:'Heavenly Kingdom', u:6, d:'Restore the farm to the Heavenly Kingdom.', g:() => [S.farm >= 12 ? 1 : 0, 1], tgt:'tab:build', k:'restore', r:200000000},
+  {t:'Mutant Farm Master', u:7, d:'Reach farmer level 80 and restore the farm to the Heavenly Kingdom. Do both and you’ve beaten the game!', g:() => [(flv() >= 80 ? 1 : 0) + (S.farm >= 12 ? 1 : 0), 2], r:0},
 ];
+QUESTS.forEach(q => { q.d = q.d.replace(/farmer level (\d+)/g, (m, n) => 'farmer level ' + LV(+n)); });
+{ const lab = QUESTS.find(q => q.t === 'The Lab'); lab.d = `Build the Mutation Lab at the Builder’s Yard. Unlocks at farmer level ${BUILD.lab.lvl[0]}.`;
+  const block = ['The Lab', 'Crate Expectations', 'Mad Scientist', 'It’s Alive!', 'Rare Find'].map(t => QUESTS.splice(QUESTS.findIndex(q => q.t === t), 1)[0]);
+  QUESTS.splice(QUESTS.findIndex(q => q.t === 'Saffron Gold'), 0, ...block); }
 const TUT_END = QUESTS.findIndex(q => q.t === 'Market Day');
 const curQuest = () => QUESTS[S.q] || null;
 const tutLocked = () => S.q <= TUT_END;
@@ -2933,7 +3078,7 @@ function checkQuests() {
   while (guard++ < 90) {
     const q = curQuest(); if (!q) return;
     const [a, b] = q.g(); if (a < b) return;
-    S.qdone[q.t] = true; S.q = firstUndone(); S.qmax = Math.max(S.qmax || 0, S.q); startQuest();
+    S.qdone[q.t] = true; if (q.t === 'Mutant Farm Master') setTimeout(beatGame, 600); S.q = firstUndone(); S.qmax = Math.max(S.qmax || 0, S.q); startQuest();
     if (q.r) addMoney(q.r, centerOf($('#quest')));
     if (q.xp) gainXp(q.xp);
     $('#quest').classList.remove('done'); void $('#quest').offsetWidth; $('#quest').classList.add('done'); sfx('quest');
@@ -3063,8 +3208,35 @@ function mutAura(c, p, cx, by, t, sn) {
   c.save(); c.globalAlpha = .26 + .12 * Math.sin(t * 2.4 + sn); ell(c, cx, by + 1, 25, 10); c.fillStyle = rc; c.fill(); c.restore();
   for (let k = 0; k < 3; k++) { const ph = (t * .5 + k / 3 + sn * .17) % 1; c.save(); c.globalAlpha = Math.sin(ph * Math.PI) * .9; orb(c, cx - 14 + k * 14 + Math.sin(t * 2 + k) * 3, by - 6 - ph * 26, 1.7, tc, false, 0); c.restore(); }
 }
+const VARC = {};
+function varCrop(p) {
+  const base = cropFor(p), ti = p.var === 'shiny' ? 9 : Math.floor((p.v ?? .5) * 4) % 4, key = (p.mut || p.crop) + '|' + ti; if (!ti) return base;
+  let v = VARC[key]; if (v) return v;
+  const fr = ti === 9 ? mix(base.fruit, '#ffd75a', .45) : ti === 1 ? lt(base.fruit, .14) : ti === 2 ? dk(base.fruit, .14) : mix(base.fruit, '#ff9a3a', .14);
+  return (VARC[key] = Object.assign({}, base, {fruit: fr, leaf: ti === 2 ? dk(base.leaf, .08) : ti === 1 ? lt(base.leaf, .06) : base.leaf}));
+}
 function drawPlant(c, p, cx, by, t, seedN) {
-  const cr = cropFor(p), g = clamp(p.prog / cr.need, 0, 1), ready = g >= 1, sw = Math.sin(t * 1.6 + seedN) * .07;
+  const g = clamp(p.prog / CROP[p.crop].need, 0, 1), sw = Math.sin(t * 1.6 + seedN) * .07;
+  if (g < .05) return drawPlantBase(c, p, cx, by, t, seedN);
+  if (g < .2) {
+    const k = (g - .05) / .15, H = 4 + 14 * k, cr = cropFor(p);
+    if (p.mut) mutAura(c, p, cx, by, t, seedN);
+    ell(c, cx, by + 1, 7 + 4 * k, 3); c.fillStyle = 'rgba(0,0,0,.14)'; c.fill();
+    line(c, cx, by, cx + sw * 12, by - H, dk(cr.leaf, .25), 1.6);
+    leaf(c, cx + sw * 12, by - H, 5 + 6 * k, 2.4 + k, -Math.PI / 2 - .9 + sw, cr.leaf, .5); leaf(c, cx + sw * 12, by - H, 5 + 6 * k, 2.4 + k, -Math.PI / 2 + .9 + sw, lt(cr.leaf, .15), .5);
+    if (k > .5) leaf(c, cx + sw * 6, by - H * .5, 4 + 4 * k, 2, -Math.PI / 2 + 1.3, cr.leaf, .4);
+    return;
+  }
+  const vr = p.var || '', ripeK = clamp((g - .7) / .3, 0, 1), vs = vr === 'giant' ? 1.35 : vr === 'shiny' ? 1.15 : .88 + .26 * (p.v ?? .5), sc = (.6 + .4 * g) * (1 + (vs - 1) * ripeK);
+  if (vr && ripeK > 0) { c.save(); c.globalAlpha = ripeK * (.35 + .15 * Math.sin(t * 3 + seedN)); glowDisc(c, cx, by - 10, 34 * sc, vr === 'giant' ? '#b6f04a' : '#ffe28a', .6); c.restore(); }
+  c.save(); c.translate(cx, by); c.scale(sc, sc); c.translate(-cx, -by);
+  drawPlantBase(c, p, cx, by, t, seedN);
+  c.restore();
+  if (g >= .55 && g < 1) { const n = 2 + (seedN % 2), cr = cropFor(p), pc = ['flower', 'shroom'].includes(cr.shape) ? lt(cr.fruit, .4) : ['bush', 'low', 'vine', 'cactus'].includes(cr.shape) ? '#fff4f4' : '#fff6c8'; for (let j = 0; j < n; j++) { const fx = cx - 10 + j * 10 + Math.sin(seedN + j) * 3, fy = by - 14 * sc - (j % 2) * 8 * sc - 6; for (let q = 0; q < 5; q++) { const a = q / 5 * TAU + t * .2; c.beginPath(); c.arc(fx + Math.cos(a) * 1.8, fy + Math.sin(a) * 1.8, 1.4, 0, TAU); c.fillStyle = pc; c.fill(); } c.beginPath(); c.arc(fx, fy, 1.1, 0, TAU); c.fillStyle = '#f4c542'; c.fill(); } }
+  if (vr === 'shiny' && g >= 1) for (let j = 0; j < 3; j++) { const ph = (t * .9 + j / 3 + seedN * .2) % 1; sparkle(c, cx - 18 + j * 18, by - 30 * sc - ph * 14, 3.6, Math.sin(ph * Math.PI)); }
+}
+function drawPlantBase(c, p, cx, by, t, seedN) {
+  const cr = varCrop(p), g = clamp(p.prog / cr.need, 0, 1), ready = g >= 1, sw = Math.sin(t * 1.6 + seedN) * .07;
   if (p.mut) mutAura(c, p, cx, by, t, seedN);
   if (g < .05) {
     ell(c, cx, by + 2, 11, 4.5); c.fillStyle = 'rgba(40,24,12,.45)'; c.fill();
@@ -3314,11 +3486,12 @@ function drawWorld(t, dt) {
   drawFence(c, t);
   S.plots.forEach((p, i) => drawPlot(c, p, i, t, hover && hover.kind === 'plot' && hover.i === i));
   drawCell(c, t);
+  drawPatPreview(c, t);
   // y-sorted objects + trees
   const items = [];
   for (const o of objList()) items.push({y: o.y + o.h, o});
   for (const d of YV) if (d.x > v0.x - 30 && d.x < v1.x + 30 && d.y > v0.y - 10 && d.y < v1.y + 70) items.push({y: d.y, yard: d});
-  for (const w of S.workers) { if (ROLES[w.role].ranch) continue; const r = WR.get(w.id); if (r) items.push({y: r.y, wk: w, r}); }
+  for (const w of S.workers) { if (ROLES[w.role].ranch) continue; const r = WR.get(w.id); if (r && r.st !== 'sleep' && !r.drive) items.push({y: r.y, wk: w, r}); }
   for (const k of MACH_ORDER) { const r = MR[k]; if (S.mach[k] && r && r.st !== 'away') items.push({y: r.y, mk: k, r}); }
   TREES.forEach(([x, y, al, fr], k) => { if (x > v0.x - 60 && x < v1.x + 60 && y > v0.y - 10 && y < v1.y + 90) items.push({y, tree: [x, y, S.farm >= al, S.farm >= fr, k]}); });
   items.sort((a, b) => a.y - b.y);
@@ -3400,6 +3573,7 @@ function drawWorld(t, dt) {
     c.stroke();
   }
   drawSkyFx(c, t);
+  drawNight(c, t);
   // soft vignette
   const vg = c.createRadialGradient(VW / 2, VH / 2, Math.min(VW, VH) * .35, VW / 2, VH / 2, Math.max(VW, VH) * .75);
   vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(20,30,10,.28)'); c.fillStyle = vg; c.fillRect(0, 0, VW, VH);
@@ -3410,13 +3584,13 @@ const ICON_BY_URL = new Map();
 const WR = new Map();
 let workerDirty = false, lastWorkerAfter = 0;
 const hutDoor = () => ({x: OBJ.hut.x + OBJ.hut.w / 2, y: OBJ.hut.y + OBJ.hut.h + 4});
-const wMult = w => W_LEVELS[w.lvl].mult;
-const wWalk = w => 38 * wMult(w) * (evt('fog') ? .7 : 1) * (w.trait === 'quick' ? 1.2 : w.trait === 'cheerful' ? 1.08 : 1);
-const wWork = w => ROLES[w.role].act / (wMult(w) * (w.trait === 'steady' ? 1.2 : w.trait === 'cheerful' ? 1.08 : 1));
+const wMult = w => W_LEVELS[w.lvl].mult * (1 + pb('wspeed'));
+const wWalk = w => 32 * wMult(w) * (evt('fog') ? .7 : 1) * (w.trait === 'quick' ? 1.2 : w.trait === 'cheerful' ? 1.08 : 1);
+const wWork = w => ROLES[w.role].act * 1.25 / (wMult(w) * (w.trait === 'steady' ? 1.2 : w.trait === 'cheerful' ? 1.08 : 1));
 const wCap = w => 2 + w.lvl;
 const workerMaxLvl = w => w && ROLES[w.role].ranch ? Math.min(10, S.b.barn + 1) : Math.min(10, S.b.hut + 2);
-const hireCost = role => Math.round(ROLES[role].base * (1 + .3 * S.workers.filter(w => w.role === role).length));
-const trainCost = w => W_LEVELS[w.lvl + 1] ? ROLES[w.role].base * W_LEVELS[w.lvl + 1].cost : 0;
+const hireCost = role => Math.round(ROLES[role].base * (1 + .3 * S.workers.filter(w => w.role === role).length) * (1 - pb('hire')));
+const trainCost = w => W_LEVELS[w.lvl + 1] ? Math.round(ROLES[w.role].base * W_LEVELS[w.lvl + 1].cost * (1 - pb('hire'))) : 0;
 function wrt(w) {
   let r = WR.get(w.id);
   if (!r) { const d = ROLES[w.role].ranch ? rDoor() : hutDoor(); r = {x: d.x + (Math.random() - .5) * 24, y: d.y + 4 + Math.random() * 10, st: 'idle', t: Math.random() * .5, job: -1, face: 1, ph: Math.random() * 6, water: wCap(w), bubble: null, fx: 0}; WR.set(w.id, r); }
@@ -3433,23 +3607,27 @@ function mvTo(r, sp, dt, tx, ty) { const dx = tx - r.x, dy = ty - r.y, d = Math.
 const PICKUP = () => ({x: OBJ.house.x + OBJ.house.w / 2 + 6, y: OBJ.house.y + OBJ.house.h + 10});
 const DROP = () => ({x: OBJ.stand.x + OBJ.stand.w / 2, y: OBJ.stand.y + OBJ.stand.h + 8});
 function takeLoad(max) {
-  const load = {}; let n = 0;
+  const load = {}; let n = 0, val = 0; const left = capLeft();
   for (const k of Object.keys(S.produce).sort((a, b) => sellPrice(b) - sellPrice(a))) {
-    while (S.produce[k] > 0 && n < max) { S.produce[k]--; load[k] = (load[k] || 0) + 1; n++; }
+    const pr = sellPrice(k); let av = autoAvail(k);
+    while (av > 0 && n < max && val + pr <= left) { S.produce[k]--; av--; load[k] = (load[k] || 0) + 1; n++; val += pr; }
     if (!S.produce[k]) delete S.produce[k]; if (n >= max) break;
   }
   return n ? load : null;
 }
+const autoCount = () => Object.keys(S.produce).reduce((a, k) => a + autoAvail(k), 0);
 const loadCount = l => l ? Object.values(l).reduce((a, b) => a + b, 0) : 0;
 const loadValue = l => l ? Object.entries(l).reduce((a, [k, n]) => a + sellPrice(k) * n, 0) : 0;
 function stepHauler(w, r, dt) {
-  const sp = wWalk(w), wander = () => { const d = hutDoor(); r.tx = d.x - 60 + Math.random() * 120; r.ty = d.y + 6 + Math.random() * 28; r.st = 'wander'; };
+  const sp = wWalk(w), wander = () => startVisit(w, r);
   if (r.st === 'idle' || r.st === 'go' || r.st === 'work') {
     if (r.st !== 'idle') r.st = 'idle';
     r.t -= dt; if (r.t > 0) return;
+    if (tryBoard(w, r)) return;
     if (!S.b.stand) { r.bubble = 'nostand'; return wander(); }
-    r.bubble = null; if (basketCount() > 0) { r.st = 'toPick'; return; } wander();
-  } else if (r.st === 'wander') { if (mvTo(r, sp, dt, r.tx, r.ty)) { r.st = 'idle'; r.t = w.trait === 'eager' ? .5 : 1.5 + Math.random() * 2; } }
+    if (autoCount() > 0 && capFull()) { r.bubble = 'cap'; return wander(); }
+    r.bubble = null; if (autoCount() > 0) { r.st = 'toPick'; return; } wander();
+  } else if (r.st === 'wander') { if (mvTo(r, sp, dt, r.tx, r.ty) && !arriveVisit(w, r)) { r.st = 'idle'; r.t = w.trait === 'eager' ? .5 : 1.5 + Math.random() * 2; } }
   else if (r.st === 'toPick') { const q = PICKUP(); if (mvTo(r, sp, dt, q.x, q.y)) { r.st = 'picking'; r.t = 0; } }
   else if (r.st === 'picking') { r.working = true; r.t += dt; if (r.t >= wWork(w)) { r.load = takeLoad(2 + 2 * w.lvl); r.st = r.load ? 'toDrop' : 'idle'; r.t = .3; workerDirty = true; } }
   else if (r.st === 'toDrop') { const q = DROP(); if (mvTo(r, sp, dt, q.x, q.y)) { r.st = 'selling'; r.t = 0; } }
@@ -3457,7 +3635,7 @@ function stepHauler(w, r, dt) {
     r.working = true; r.t += dt;
     if (r.t >= wWork(w)) {
       const cnt = loadCount(r.load), val = loadValue(r.load);
-      S.money += val; S.stats.earned += val; S.stats.sold += cnt; S.stats.hauled += cnt;
+      S.money += val; S.stats.earned += val; S.stats.sold += cnt; S.stats.hauled += cnt; S.soldToday = (S.soldToday || 0) + val;
       floatText(r.x, r.y - 32, '+' + priceText(val), '#ffe28a'); burst(r.x, r.y - 20, 'spark', 6, {up: true, sp: 50, r: 3});
       r.load = null; w.done = (w.done || 0) + 1; S.stats.workDone++; r.st = 'idle'; r.t = .3; workerDirty = true;
     }
@@ -3479,7 +3657,7 @@ function waterSrc(r) {
 function workerDo(w, r) {
   const i = r.job, p = S.plots[i], rc = plotRect(i), cx = rc.x + 32;
   if (w.role === 'waterer') {
-    p.water = true; S.stats.watered++; r.water--;
+    wet1(p); S.stats.watered++; r.water--;
     for (let k = 0; k < 8; k++) parts.push({x: cx - 12 + Math.random() * 24, y: rc.y + 10, vx: (Math.random() - .5) * 10, vy: 40, g: 200, life: -k * .02, max: .4, type: 'drop', r: 1.8, rot: 0});
   } else if (w.role === 'collector') {
     const res = reap(i, 'worker');
@@ -3494,6 +3672,15 @@ function stepWorkers(dt) {
   for (const w of S.workers) { const r = WR.get(w.id); if (r && r.job >= 0) reserved.add(w.role + r.job); }
   for (const w of S.workers) {
     const r = wrt(w); r.ph += dt * 5; r.moving = false; r.working = false;
+    if (isNight() || r.drive) {
+      if (r.drive) continue;
+      if (r.load) { for (const [k, q] of Object.entries(r.load)) S.produce[k] = (S.produce[k] || 0) + q; r.load = null; }
+      r.job = -1; r.bubble = null; if (r.st !== 'sleep') { const hm = ROLES[w.role].ranch ? rDoor() : hutDoor(); r.st = mvTo(r, wWalk(w), dt, hm.x, hm.y) ? 'sleep' : 'home'; }
+      continue;
+    }
+    if (r.st === 'sleep' || r.st === 'home') { r.st = 'idle'; r.t = Math.random() * 1.5; }
+    if (r.st === 'toMach') { stepBoarding(w, r, dt); continue; }
+    if (r.st === 'visit') { stepVisit(w, r, dt); continue; }
     if (ROLES[w.role].ranch) { stepRanchWorker(w, r, dt, reserved); continue; }
     if (w.role === 'hauler') { stepHauler(w, r, dt); continue; }
     const sp = wWalk(w);
@@ -3501,15 +3688,16 @@ function stepWorkers(dt) {
     if (r.st === 'idle') {
       r.t -= dt; if (r.t > 0) continue;
       if (w.role === 'waterer' && r.water <= 0) { r.st = 'refill'; r.bubble = 'water'; continue; }
+      if (tryBoard(w, r)) continue;
       let best = -1, bd = Infinity;
       for (let i = 0; i < S.plots.length; i++) { if (reserved.has(w.role + i) || !jobValid(w, i)) continue; const q = standPt(i, w.id), d = Math.hypot(q.x - r.x, q.y - r.y); if (d < bd) { bd = d; best = i; } }
       if (best >= 0) { r.job = best; reserved.add(w.role + best); r.st = 'go'; r.bubble = null; }
       else {
         r.bubble = w.role === 'replanter' && S.plots.some(p => p.st === 'tilled' && !p.crop) ? 'noseed' : null;
-        const d = hutDoor(); r.tx = d.x - 60 + Math.random() * 120; r.ty = d.y + 6 + Math.random() * 28; r.st = 'wander';
+        startVisit(w, r);
       }
     } else if (r.st === 'wander') {
-      if (moveTo(r.tx, r.ty)) { r.st = 'idle'; r.t = w.trait === 'eager' ? .5 : 1.4 + Math.random() * 2.2; }
+      if (moveTo(r.tx, r.ty) && !arriveVisit(w, r)) { r.st = 'idle'; r.t = w.trait === 'eager' ? .5 : 1.4 + Math.random() * 2.2; }
     } else if (r.st === 'go') {
       if (!jobValid(w, r.job)) { r.job = -1; r.st = 'idle'; r.t = .1; continue; }
       const q = standPt(r.job, w.id);
@@ -3538,8 +3726,8 @@ function drawWorkerRT(c, w, r, t) {
   if (r.bubble) {
     const bx = r.x + 8, by = r.y - 36 + Math.sin(t * 3);
     c.fillStyle = 'rgba(255,255,255,.95)'; c.beginPath(); c.arc(bx, by, 7, 0, TAU); c.fill(); c.beginPath(); c.arc(bx - 5, by + 7, 1.6, 0, TAU); c.fill();
-    c.drawImage(icon(r.bubble === 'water' ? 'tool:can:2' : r.bubble === 'nostand' ? 'stall' : r.bubble === 'nofeed' ? 'feed' : 'seed:carrot').cv, bx - 5.5, by - 5.5, 11, 11);
-    if (r.bubble === 'noseed' || r.bubble === 'nostand' || r.bubble === 'nofeed') line(c, bx - 4.5, by + 4.5, bx + 4.5, by - 4.5, '#d9362c', 1.4);
+    c.drawImage(icon(r.bubble === 'water' ? 'tool:can:2' : r.bubble === 'nostand' ? 'stall' : r.bubble === 'nofeed' ? 'feed' : r.bubble === 'cap' ? 'pouch' : r.bubble === 'visit' ? (r.vic || 'stall') : 'seed:carrot').cv, bx - 5.5, by - 5.5, 11, 11);
+    if (r.bubble === 'noseed' || r.bubble === 'nostand' || r.bubble === 'nofeed' || r.bubble === 'cap') line(c, bx - 4.5, by + 4.5, bx + 4.5, by - 4.5, '#d9362c', 1.4);
   }
 }
 const W_ICON = new Map();
@@ -3558,6 +3746,7 @@ function lookText(w) { const lk = w.look, hn = HAIR_NAMES[HAIRS.indexOf(lk.hair)
 function hireWorker(role, i) {
   const R = ROLES[role]; if (R.ranch ? !S.b.barn : !S.b.hut) return;
   if (R.lvl > flv()) return toast(`Reach farmer level ${R.lvl} to hire ${R.name.toLowerCase()}s.`, 'warn');
+  if (!houseOk(R.lvl)) return toast(gateMsg(R.lvl), 'warn');
   if (R.ranch ? ranchHands().length >= RHANDS[S.b.barn] : farmHands().length >= HUT_CAP[S.b.hut]) return toast(R.ranch ? 'The barn bunks are full. Upgrade the barn to make room.' : 'Your hut is full. Upgrade it to make room.', 'warn');
   const cost = hireCost(role); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
   const c2 = cands(role)[i]; if (!c2) return;
@@ -3588,8 +3777,10 @@ function stepVehicle(k, r, dt, L, reserved) {
   const M = MACH[k], sp = M.speed * MACH_SPEED[L - 1] * garageBoost() * (evt('fog') ? .7 : 1);
   const goPark = () => { const q = parkPt(k); if (mvTo(r, sp, dt, q.x, q.y)) r.face = -1; };
   const findJob = () => { let best = -1, bd = Infinity; for (let i = 0; i < S.plots.length; i++) { if (reserved.has(k + i) || !machValid(k, i)) continue; const q = vehPt(i), d = Math.hypot(q.x - r.x, q.y - r.y); if (d < bd) { bd = d; best = i; } } if (best >= 0) { r.job = best; reserved.add(k + best); r.st = 'go'; return true; } return false; };
-  if (!S.mon[k]) { r.job = -1; r.st = 'park'; goPark(); return; }
-  if (r.st === 'park') { goPark(); r.t -= dt; if (r.t > 0) return; r.t = 1.2; findJob(); }
+  if (!S.mon[k] || isNight()) { r.job = -1; r.st = 'park'; r.want = false; goPark(); if (r.driver && Math.hypot(r.x - parkPt(k).x, r.y - parkPt(k).y) < 3) releaseDriver(k); return; }
+  if (r.st === 'park') { goPark(); r.t -= dt; if (r.t > 0) return; r.t = 1.2;
+    if (!r.driver) { r.want = S.plots.some((p, i) => !reserved.has(k + i) && machValid(k, i)); return; }
+    if (!findJob()) { r.idleT = (r.idleT || 0) + 1.2; if (r.idleT > 3) releaseDriver(k); } else r.idleT = 0; }
   else if (r.st === 'go') { if (!machValid(k, r.job)) { r.job = -1; r.st = 'next'; return; } const q = vehPt(r.job); if (mvTo(r, sp, dt, q.x, q.y)) { r.st = 'work'; r.t = 0; } }
   else if (r.st === 'work') {
     if (!machValid(k, r.job)) { r.job = -1; r.st = 'next'; return; }
@@ -3609,8 +3800,11 @@ function stepTruck(r, dt, L) {
   const M = MACH.truck, sp = M.speed * MACH_SPEED[L - 1] * garageBoost() * (evt('fog') ? .7 : 1);
   if (r.st === 'park') {
     const q = parkPt('truck'); if (mvTo(r, sp, dt, q.x, q.y)) r.face = -1;
-    r.t -= dt; if (r.t > 0 || !S.mon.truck) return; r.t = 2;
-    if (basketCount() < Math.min(M.cap[L - 1], 5)) return;
+    r.t -= dt; if (isNight() || !S.mon.truck) { r.want = false; if (r.driver) releaseDriver('truck'); return; } if (r.t > 0) return; r.t = 2;
+    const ready = autoCount() >= Math.min(M.cap[L - 1], 5) && !capFull();
+    if (!r.driver) { r.want = ready; return; }
+    if (!ready) { r.idleT = (r.idleT || 0) + 2; if (r.idleT > 3) releaseDriver('truck'); return; }
+    r.idleT = 0;
     r.load = takeLoad(M.cap[L - 1]); if (!r.load) return;
     r.path = truckPath(); r.pi = 1; r.st = 'out'; workerDirty = true;
   } else if (r.st === 'out' || r.st === 'back') {
@@ -3627,7 +3821,7 @@ function stepTruck(r, dt, L) {
     }
   } else if (r.st === 'away') {
     r.t -= dt;
-    if (r.t <= 0) { r.sale = {cnt: loadCount(r.load), val: Math.round(loadValue(r.load) * (1 + M.bonus[L - 1]))}; r.load = null; r.path = truckPath().reverse(); r.pi = 1; r.st = 'back'; }
+    if (r.t <= 0) { r.sale = {cnt: loadCount(r.load), val: Math.round(loadValue(r.load) * (1 + M.bonus[L - 1]))}; S.soldToday = (S.soldToday || 0) + loadValue(r.load); r.load = null; r.path = truckPath().reverse(); r.pi = 1; r.st = 'back'; }
   } else r.st = 'park';
 }
 function stepMachines(dt) {
@@ -3636,7 +3830,7 @@ function stepMachines(dt) {
   for (const k of ['tractor', 'harvester']) { const r = MR[k]; if (r && r.job >= 0) reserved.add(k + r.job); }
   for (const k of MACH_ORDER) {
     const L = S.mach[k]; if (!L) continue;
-    const r = mrt(k); r.moving = false; r.working = false;
+    const r = mrt(k); r.moving = false; r.working = false; driverCheck(k, r);
     if (k === 'truck') stepTruck(r, dt, L); else stepVehicle(k, r, dt, L, reserved);
     if (r.moving || r.working) r.ph += dt * 8;
     if ((r.moving || r.working) && k !== 'truck' && Math.random() < dt * 5) parts.push({x: r.x + (k === 'tractor' ? r.face * 9 : -r.face * 15), y: r.y - (k === 'tractor' ? 25 : 30), vx: (Math.random() - .5) * 6, vy: -18, g: -10, life: 0, max: .9, type: 'dust', r: 2.2, rot: 0});
@@ -3644,7 +3838,8 @@ function stepMachines(dt) {
 }
 let smT = 0;
 function stepSeedMaker(dt) {
-  const L = S.b.seedmaker; if (!L || !S.mon.seedmaker || sleeping || !$('#menu').hidden) return;
+  const L = S.b.seedmaker; if (!L || !S.mon.seedmaker || sleeping || !$('#menu').hidden || isNight()) return;
+  if (tNow - smOpT > 1.5) return;
   smT += dt; if (smT < SM_IV[L]) return; smT = 0;
   const cap = 10 * L, out = SM_OUT[L];
   const cand = Object.keys(S.produce).filter(k => CROP[k] && S.produce[k] > 0 && (S.seeds[k] || 0) < cap).sort((a, b) => (S.seeds[a] || 0) - (S.seeds[b] || 0));
@@ -3661,11 +3856,13 @@ function drawMachineRT(c, k, r) {
   (k === 'tractor' ? drawTractor : k === 'harvester' ? drawCombine : drawTruck)(c, 0, 0, L, an);
   c.restore();
   if (L >= 10 && Math.random() < .08) burst(r.x + (Math.random() - .5) * 30, r.y - 20, 'spark', 1, {up: true, sp: 30, r: 2.4});
+  if (r.driver) drawDriver(c, k, r);
+  else if (r.want && r.st === 'park') { const bx = r.x + 10, by = r.y - 40 + Math.sin(tNow * 3) * 1.5, none = !S.workers.some(w => w.role === DRIVER[k]); c.fillStyle = 'rgba(255,255,255,.95)'; c.beginPath(); c.arc(bx, by, 8, 0, TAU); c.fill(); c.drawImage(icon('wk:' + DRIVER[k]).cv, bx - 7, by - 7, 14, 14); if (none) line(c, bx - 5, by + 5, bx + 5, by - 5, '#d9362c', 1.4); }
   c.shadowBlur = 0;
 }
 function buyHorn(id) {
   const x = HORNS.find(h => h.id === id); if (!x || S.horns[id]) return;
-  if (x.lvl > flv()) return toast(`Reach farmer level ${x.lvl} first.`, 'warn');
+  { const gm = gateMsg(x.lvl); if (gm) return toast(gm, 'warn'); }
   if (S.money < x.cost) return toast('Not enough coins for that.', 'warn');
   spend(x.cost); S.horns[id] = true; sfx('levelup'); toast(`You got the <b>${x.name}</b>! Its button sits above your hotbar.`, 'good'); after();
 }
@@ -3673,7 +3870,7 @@ function machInfo(k) { const M = MACH[k]; toast(`<b>${M.name}</b> · level ${S.m
 function buyMach(k) {
   const M = MACH[k], L = S.mach[k]; if (L >= M.lvls.length) return;
   const need = M.lvls[L];
-  if (need > flv()) return toast(`Reach farmer level ${need} first.`, 'warn');
+  { const gm = gateMsg(need); if (gm) return toast(gm, 'warn'); }
   if ((S.b.garage || 0) < M.garage) return toast(`Needs Garage level ${M.garage}.`, 'warn');
   const cost = M.cost[L]; if (S.money < cost) return toast('Not enough coins for that.', 'warn');
   spend(cost); sfx('build'); S.mach[k] = L + 1;
@@ -3804,11 +4001,13 @@ function ranchNight(lines) {
     p.fed = false; p.brushed = false;
   });
   const RM = S.rmach, auto = [];
-  if (RM.mill) { S.ranch.feed += MILL_PER[RM.mill]; auto.push(`the Feed Mill made ${MILL_PER[RM.mill].toLocaleString()} feed`); }
+  const idleM = RMACH_ORDER.filter(k => RM[k] && !rmRunOk(k)).map(k => RMACH[k].name);
+  if (idleM.length) lines.push(`<div>${idleM.join(', ')} sat idle. Barn machines need a ranch hand to run them.</div>`);
+  if (RM.mill && rmRunOk('mill')) { S.ranch.feed += MILL_PER[RM.mill]; auto.push(`the Feed Mill made ${MILL_PER[RM.mill].toLocaleString()} feed`); }
   const serve = (L, fn) => { let n = 0; for (let i = 0; i < pens.length && n < RM_PENS[L]; i++) { if (!pens[i].a) continue; n++; if (fn(i, 'machine') && L >= 9) pens[i].happy = Math.min(100, pens[i].happy + 10); } };
-  let col = 0; if (RM.belt) { const before = S.stats.products; serve(RM.belt, collectPen); col = S.stats.products - before; if (col) auto.push(`the belt collected ${col} product${col > 1 ? 's' : ''}`); }
-  if (RM.feeder) { const before = S.stats.fed; serve(RM.feeder, feedPen); const n = S.stats.fed - before; if (n) auto.push(`the feeder fed ${n} pen${n > 1 ? 's' : ''}`); }
-  if (RM.groomer) { const before = S.stats.brushed; serve(RM.groomer, brushPen); const n = S.stats.brushed - before; if (n) auto.push(`the groomer brushed ${n} pen${n > 1 ? 's' : ''}`); }
+  let col = 0; if (RM.belt && rmRunOk('belt')) { const before = S.stats.products; serve(RM.belt, collectPen); col = S.stats.products - before; if (col) auto.push(`the belt collected ${col} product${col > 1 ? 's' : ''}`); }
+  if (RM.feeder && rmRunOk('feeder')) { const before = S.stats.fed; serve(RM.feeder, feedPen); const n = S.stats.fed - before; if (n) auto.push(`the feeder fed ${n} pen${n > 1 ? 's' : ''}`); }
+  if (RM.groomer && rmRunOk('groomer')) { const before = S.stats.brushed; serve(RM.groomer, brushPen); const n = S.stats.brushed - before; if (n) auto.push(`the groomer brushed ${n} pen${n > 1 ? 's' : ''}`); }
   if (made) lines.push(`<div><img src="${iurl('an:chicken')}" alt="" width="24" height="24"> Your animals made ${made} product${made > 1 ? 's' : ''} overnight${grown ? ` and ${grown} grew up` : ''}.</div>`);
   else if (grown) lines.push(`<div>${grown} of your animals grew up overnight.</div>`);
   if (babies) lines.push(`<div><b style="color:#ff9ab8">${babies} baby animal${babies > 1 ? 's were' : ' was'} born in the barn!</b></div>`);
@@ -3824,7 +4023,7 @@ function placeAnimal(aid, mut) {
 }
 function buyAnimal(id) {
   const A = ANIMAL[id]; if (!A || !S.b.barn) return;
-  if (A.lvl > flv()) return toast(`Reach farmer level ${A.lvl} first.`, 'warn');
+  { const gm = gateMsg(A.lvl); if (gm) return toast(gm, 'warn'); }
   if (freePen() < 0) return toast('Every pen is full. Buy another pen in the Barn tab, or sell an animal.', 'warn');
   if (S.money < A.cost) return toast('Not enough coins for that.', 'warn');
   spend(A.cost); placeAnimal(id, null); sfx('hire');
@@ -3847,7 +4046,7 @@ function sellAnimal(i) {
 function buyFeed(n) { const cost = n * FEED_PRICE; if (S.money < cost) return toast('Not enough coins for that.', 'warn'); spend(cost); S.ranch.feed += n; sfx('buy'); toast(`+${n.toLocaleString()} feed in your feed bin.`, 'good'); after(); }
 function buyRTool(k) {
   const T = RTOOLS[k], nx = T.tiers[S.rtools[k] + 1]; if (!nx) return;
-  if (nx.lvl > flv()) return toast(`Reach farmer level ${nx.lvl} first.`, 'warn');
+  { const gm = gateMsg(nx.lvl); if (gm) return toast(gm, 'warn'); }
   if (nx.barn > S.b.barn) return toast(`Upgrade the barn to level ${nx.barn} first.`, 'warn');
   if (S.money < nx.cost) return toast('Not enough coins for that.', 'warn');
   spend(nx.cost); S.rtools[k]++; sfx('buy'); toast(`You bought the <b>${nx.name}</b>.`, 'good'); after();
@@ -3859,7 +4058,7 @@ function buyPen() {
 }
 function buyRMach(k) {
   const M = RMACH[k], L = S.rmach[k] + 1; if (L > 10) return;
-  if (rmLvl(k, L) > flv()) return toast(`Reach farmer level ${rmLvl(k, L)} first.`, 'warn');
+  { const gm = gateMsg(rmLvl(k, L)); if (gm) return toast(gm, 'warn'); }
   if (rmBarn(L) > S.b.barn) return toast(`Upgrade the barn to level ${rmBarn(L)} first.`, 'warn');
   const cost = rmCost(k, L); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
   spend(cost); S.rmach[k] = L; sfx('build'); const o = ROBJ[k]; burst(o.x + o.w / 2, o.y + o.h / 2, 'spark', 14, {up: true, sp: 80, r: 3});
@@ -3875,7 +4074,7 @@ function stepRanchWorker(w, r, dt, reserved) {
     let best = -1, bd = Infinity;
     for (let i = 0; i < S.ranch.pens.length; i++) { if (reserved.has(w.role + i) || !rJobValid(w, i)) continue; const q = rStandPt(i, w.id), d = Math.hypot(q.x - r.x, q.y - r.y); if (d < bd) { bd = d; best = i; } }
     if (best >= 0) { r.job = best; reserved.add(w.role + best); r.st = 'go'; r.bubble = null; }
-    else { r.bubble = w.role === 'rfeeder' && S.ranch.pens.some(p => p.a && !p.fed) ? 'nofeed' : null; const d = rDoor(); r.tx = d.x + Math.random() * 160; r.ty = d.y + Math.random() * 6 - (S.ranch.pens.length ? 0 : 0); r.st = 'wander'; }
+    else { r.bubble = w.role === 'rfeeder' && S.ranch.pens.some(p => p.a && !p.fed) ? 'nofeed' : null; const os = rObjList(), o = os[Math.floor(Math.random() * os.length)]; r.tx = o.x + o.w / 2 + (Math.random() - .5) * 30; r.ty = o.y + o.h + 8 + Math.random() * 6; r.st = 'wander'; }
   } else if (r.st === 'wander') { if (mvTo(r, sp, dt, r.tx, r.ty)) { r.st = 'idle'; r.t = w.trait === 'eager' ? .5 : 1.4 + Math.random() * 2; } }
   else if (r.st === 'go') { if (!rJobValid(w, r.job)) { r.job = -1; r.st = 'idle'; r.t = .1; return; } const q = rStandPt(r.job, w.id); if (mvTo(r, sp, dt, q.x, q.y)) { r.st = 'work'; r.t = 0; r.face = penRect(r.job).x + 50 > r.x ? 1 : -1; } }
   else if (r.st === 'work') {
@@ -3887,7 +4086,7 @@ function stepRanchWorker(w, r, dt, reserved) {
 }
 function rHitTest(sx, sy) {
   const w = toWorld(sx, sy);
-  for (const wk of ranchHands()) { const r = WR.get(wk.id); if (r && Math.abs(w.x - r.x) < 7 && w.y > r.y - 27 && w.y < r.y + 3) return {kind: 'worker', id: wk.id}; }
+  for (const wk of ranchHands()) { const r = WR.get(wk.id); if (r && r.st !== 'sleep' && Math.abs(w.x - r.x) < 7 && w.y > r.y - 27 && w.y < r.y + 3) return {kind: 'worker', id: wk.id}; }
   for (const o of rObjList()) if (w.x >= o.x && w.x <= o.x + o.w && w.y >= o.y && w.y <= o.y + o.h) return {kind: 'robj', id: o.id};
   for (let i = 0; i < S.ranch.pens.length; i++) { const r = penRect(i); if (w.x >= r.x && w.x <= r.x + r.w && w.y >= r.y - 10 && w.y <= r.y + r.h) return {kind: 'pen', i}; }
   if (nextPenOpen()) { const r = penRect(S.ranch.pens.length); if (w.x >= r.x && w.x <= r.x + r.w && w.y >= r.y && w.y <= r.y + r.h) return {kind: 'newpen'}; }
@@ -3903,6 +4102,7 @@ function rTapOn(h) {
   if (h.kind === 'newpen') return openOffice('barn');
   const it = intentFor(h); if (!it) return;
   if (it.act === 'info') { const p = S.ranch.pens[h.i]; if (!p.a) return openOffice('animals'); return toast(penStatus(p, true)); }
+  if (it.tool && isNight()) return nightToast();
   if (it.tool !== S.rtool) return wrongTool(it);
   if (it.fail) return feedPen(h.i);
   toast(`Hold down to ${VERB[it.act]}.`);
@@ -4147,7 +4347,7 @@ function drawRanch(c, t, v0, v1) {
   const items = [];
   S.ranch.pens.forEach((p, i) => { const r = penRect(i); items.push({y: r.y + r.h, pen: i}); });
   for (const o of rObjList()) items.push({y: o.y + o.h, o});
-  for (const w of ranchHands()) { const r = WR.get(w.id); if (r) items.push({y: r.y, wk: w, r}); }
+  for (const w of ranchHands()) { const r = WR.get(w.id); if (r && r.st !== 'sleep') items.push({y: r.y, wk: w, r}); }
   items.sort((a, b) => a.y - b.y);
   if (nextPenOpen()) { const r = penRect(S.ranch.pens.length), hov = hover && hover.kind === 'newpen'; c.save(); c.setLineDash([5, 4]); rr(c, r.x, r.y, r.w, r.h, 8); c.lineWidth = hov ? 2.4 : 1.6; c.strokeStyle = hov ? '#ffe28a' : 'rgba(255,240,200,.6)'; c.stroke(); c.restore(); c.fillStyle = 'rgba(255,240,200,.85)'; c.font = '22px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('+', r.x + 50, r.y + 36); c.font = '8px "Lilita One", sans-serif'; c.fillText('New pen · ' + priceText(penCost(S.ranch.pens.length + 1)), r.x + 50, r.y + 56); }
   for (const it of items) {
@@ -4228,7 +4428,7 @@ function openOffice(tab) {
 function closeOffice() { $('#office').hidden = true; sellArmed = -1; }
 const dailyFeed = () => S.ranch.pens.reduce((a, p) => a + (p.a ? ANIMAL[p.a].feed : 0), 0);
 const animalIcon = p => p.mut && S.rrecipes[p.mut] ? 'ma:' + p.mut : 'an:' + p.a;
-const lockTag = (lv, barn) => lv > flv() ? `<span class="tag bad">Next upgrade at farmer level ${lv}</span>` : barn > S.b.barn ? `<span class="tag bad">Needs barn level ${barn}</span>` : '';
+const lockTag = (lv, barn) => !gateOk(lv) ? gateTag(lv) : barn > S.b.barn ? `<span class="tag bad">Needs barn level ${barn}</span>` : '';
 function renderOffice() {
   if ($('#office').hidden) return;
   if (!S.b.barn) return closeOffice();
@@ -4252,8 +4452,8 @@ function renderOffice() {
     h += `<div class="sec">Buy a baby animal <small>${free ? `${pens.filter(p => !p.a).length} empty pen${pens.filter(p => !p.a).length === 1 ? '' : 's'}` : 'every pen is full'}</small></div>`;
     for (const A of open) {
       const hint = (qt === 'office' && A.id === 'chicken' && !n);
-      h += `<div class="row"><div class="ic"><img src="${iurl('an:' + A.id)}" alt=""></div><div><h5>${A.name}</h5><p>Grows up in ${A.days} days, then makes 1 ${A.pname.toLowerCase()} a day.</p><div class="tags"><span class="tag gold">${A.pname} sells for ${priceHTML(A.val * barnVal() * (1 + .06 * S.b.stand))}</span><span class="tag">Eats ${A.feed} feed a day</span><span class="tag">+${A.xp} XP per product</span></div></div>
-        <div class="acts"><button class="btn gold ${hint ? 'hint' : ''}" data-act="offAnimal" data-id="${A.id}" ${!free || S.money < A.cost ? 'disabled' : ''}>Buy ${priceHTML(A.cost)}</button></div></div>`;
+      h += `<div class="row"><div class="ic"><img src="${iurl('an:' + A.id)}" alt=""></div><div><h5>${A.name}</h5><p>Grows up in ${A.days} days, then makes 1 ${A.pname.toLowerCase()} a day.</p><div class="tags"><span class="tag gold">${A.pname} sells for ${priceHTML(A.val * barnVal() * (1 + .06 * S.b.stand))}</span><span class="tag">Eats ${A.feed} feed a day</span><span class="tag">+${A.xp} XP per product</span>${houseOk(A.lvl) ? '' : gateTag(A.lvl)}</div></div>
+        <div class="acts"><button class="btn gold ${hint ? 'hint' : ''}" data-act="offAnimal" data-id="${A.id}" ${!free || S.money < A.cost || !houseOk(A.lvl) ? 'disabled' : ''}>Buy ${priceHTML(A.cost)}</button></div></div>`;
     }
     if (nxt) h += `<p class="note">More animals arrive as you level up. The next one comes at farmer level ${nxt.lvl}.</p>`;
     const bl = Object.values(S.rrecipes).sort((a, b) => b.rarity - a.rarity);
@@ -4276,7 +4476,7 @@ function renderOffice() {
     }
   } else if (offTab === 'barn') {
     const BB = BUILD.barn, max = B >= BB.max, nl = BB.lvl[B];
-    h += `<div class="row"><div class="ic"><img src="${iurl('b:barn:' + B)}" alt=""></div><div><h5>Big Barn · level ${B}</h5><p>${BB.eff(B)}.</p><div class="tags">${max ? '<span class="tag">No further upgrades yet</span>' : nl > L ? `<span class="tag bad">Next upgrade at farmer level ${nl}</span>` : `<span class="tag">Level ${B + 1}: ${BB.eff(B + 1)}</span>`}</div></div><div class="acts">${!max && nl <= L ? `<button class="btn gold" data-act="build" data-id="barn" ${S.money < BB.cost[B] ? 'disabled' : ''}>Upgrade ${priceHTML(BB.cost[B])}</button>` : ''}</div></div>`;
+    h += `<div class="row"><div class="ic"><img src="${iurl('b:barn:' + B)}" alt=""></div><div><h5>Big Barn · level ${B}</h5><p>${BB.eff(B)}.</p><div class="tags">${max ? '<span class="tag">No further upgrades yet</span>' : !gateOk(nl) ? gateTag(nl) : `<span class="tag">Level ${B + 1}: ${BB.eff(B + 1)}</span>`}</div></div><div class="acts">${!max && gateOk(nl) ? `<button class="btn gold" data-act="build" data-id="barn" ${S.money < BB.cost[B] ? 'disabled' : ''}>Upgrade ${priceHTML(BB.cost[B])}</button>` : ''}</div></div>`;
     const np = pens.length + 1, can = np <= BARN_PENS[B];
     h += `<div class="row"><div class="ic"><img src="${iurl('an:sheep')}" alt=""></div><div><h5>Pens · ${pens.length} of ${BARN_PENS[B]}</h5><p>Each pen holds one animal. ${can ? '' : B < BB.max ? 'Upgrade the barn to make room for more.' : ''}</p></div><div class="acts">${can ? `<button class="btn" data-act="buyPen" ${S.money < penCost(np) ? 'disabled' : ''}>Build pen ${np} ${priceHTML(penCost(np))}</button>` : ''}</div></div>`;
     const ms = RMACH_ORDER.filter(k => S.rmach[k] || rmLvl(k, 1) <= L);
@@ -4284,7 +4484,7 @@ function renderOffice() {
     if (!ms.length) h += `<p class="note">Barn machines unlock at farmer level ${Math.min(...RMACH_ORDER.map(k => rmLvl(k, 1)))}.</p>`;
     for (const k of ms) {
       const M = RMACH[k], lv = S.rmach[k], nx = lv + 1, has = nx <= 10, lk = has ? lockTag(rmLvl(k, nx), rmBarn(nx)) : '';
-      h += `<div class="row"><div class="ic"><img src="${iurl(`rmi:${k}:${Math.max(1, lv)}`)}" alt=""></div><div><h5>${M.name}${lv ? ` <small class="tag gold">Level ${lv}</small>` : ''}</h5><p>${M.desc}</p><div class="tags">${lv ? `<span class="tag ok">${M.eff(lv)}</span>` : ''}${has ? `<span class="tag">${lv ? 'Next' : 'Level 1'}: ${M.eff(nx)}</span>` : '<span class="tag">No further upgrades yet</span>'}${lk}</div></div>
+      h += `<div class="row"><div class="ic"><img src="${iurl(`rmi:${k}:${Math.max(1, lv)}`)}" alt=""></div><div><h5>${M.name}${lv ? ` <small class="tag gold">Level ${lv}</small>` : ''}</h5><p>${M.desc}</p><div class="tags"><span class="tag ${rmRunOk(k) ? 'ok' : 'bad'}">Run by ${RM_RUN[k] ? 'an ' + ROLES[RM_RUN[k]].name.replace(/^Animal /, 'animal ').toLowerCase() : 'any ranch hand'}</span>${lv ? `<span class="tag ok">${M.eff(lv)}</span>` : ''}${has ? `<span class="tag">${lv ? 'Next' : 'Level 1'}: ${M.eff(nx)}</span>` : '<span class="tag">No further upgrades yet</span>'}${lk}</div></div>
         <div class="acts">${has && !lk ? `<button class="btn ${lv ? '' : 'gold'}" data-act="buyRMach" data-id="${k}" ${S.money < rmCost(k, nx) ? 'disabled' : ''}>${lv ? 'Upgrade' : 'Install'} ${priceHTML(rmCost(k, nx))}</button>` : ''}</div></div>`;
     }
     const nm = RMACH_ORDER.filter(k => !S.rmach[k] && rmLvl(k, 1) > L).map(k => rmLvl(k, 1)); if (ms.length && nm.length) h += `<p class="note">Another barn machine unlocks at farmer level ${Math.min(...nm)}.</p>`;
@@ -4338,6 +4538,418 @@ function doSpliceAnimal() {
 }
 function selectRTool(k) { if (!S.rtools[k]) return; S.rtool = k; sfx('select'); flash('#slot-' + k); renderHUD(); save(); }
 
+/* ------------------------------------------------------------------ DAILY SELL LIMIT + LARGE SALES */
+function pb(k) { return typeof prestigeBuff === 'function' ? prestigeBuff(k) : 0; }
+const LS_LVL = 5;
+const sellCap = () => { const L = flv(); return Math.round((L <= 10 ? 50000 : 50000 * Math.pow(1.16, L - 10)) * (1 + .1 * S.b.stand) * (1 + pb('cap'))); };
+const capLeft = () => Math.max(0, sellCap() - (S.soldToday || 0));
+const capFull = () => capLeft() < 1;
+function capToast() { toast(`The market won’t buy any more today. Your limit of ${priceHTML(sellCap())} resets at dawn. Large Sales don’t count towards it.`, 'warn'); }
+const houseNeedOf = k => { const nx = FARM[S.farm + 1]; if (!nx || !nx.need) return 0; const r = nx.need.find(([id]) => id === k); return r ? r[1] : 0; };
+const orderNeedOf = k => (S.orders || []).filter(o => !o.done).reduce((a, o) => a + (o.items[k] || 0), 0);
+const reserveOf = k => S.keep && S.keep[k] ? Infinity : (S.opt.holdNeeds === false ? 0 : houseNeedOf(k) + orderNeedOf(k));
+const autoAvail = k => Math.max(0, (S.produce[k] || 0) - reserveOf(k));
+const BUYERS = ['The Village Bakery', 'Grand Hotel Kitchens', 'Harbour Traders', 'The Travelling Circus', 'County Hospital', 'Royal Banquet Hall', 'Mill Lane School', 'The Night Market', 'Sir Reginald’s Feast', 'The Jam Factory', 'Pickle & Sons', 'Hilltop Brewery'];
+function genOrders() {
+  const L = flv(); S.ordersDay = S.day; S.orders = [];
+  if (L < LS_LVL) return;
+  const maxSoil = Math.max(...S.plots.map(p => p.soil)), pool = CROPS.filter(c2 => c2.lvl <= L && c2.soil <= maxSoil);
+  const animals = [...new Set(S.ranch.pens.filter(p => p.a && adultP(p)).map(p => p.a))];
+  const n = 1 + (L >= 15 ? 1 : 0) + (L >= 35 ? 1 : 0), plots = Math.max(1, S.plots.length);
+  for (let o = 0; o < n; o++) {
+    const items = {}, lines = 1 + Math.floor(Math.random() * Math.min(3, 1 + o + (L >= 20 ? 1 : 0)));
+    const top = pool.slice(-6);
+    for (let j = 0; j < lines; j++) {
+      if (animals.length && Math.random() < .3) { const a = animals[Math.floor(Math.random() * animals.length)], k = 'r:' + ANIMAL[a].prod; items[k] = (items[k] || 0) + 3 + Math.floor(Math.random() * 6); continue; }
+      const cr = top[Math.floor(Math.random() * top.length)]; if (!cr) continue;
+      items[cr.id] = (items[cr.id] || 0) + Math.max(5, Math.round(plots * cr.yld * (.35 + Math.random() * .5) / (1 + j * .5)));
+    }
+    if (!Object.keys(items).length) continue;
+    const base = Object.entries(items).reduce((a, [k, q]) => a + q * baseSell(k), 0), mult = 1.6 + Math.random() * .6 + Math.min(.6, L * .006);
+    S.orders.push({id: S.day * 10 + o, who: BUYERS[(S.day * 7 + o * 5) % BUYERS.length], items, pay: Math.round(base * mult * (1 + pb('order'))), mult, xp: Math.round(8 + L * L * .9), done: false});
+  }
+}
+function ensureOrders() { if (S.q > TUT_END && S.ordersDay !== S.day) genOrders(); }
+function deliverOrder(id) {
+  const o = (S.orders || []).find(x => x.id === id); if (!o || o.done) return;
+  for (const [k, q] of Object.entries(o.items)) if ((S.produce[k] || 0) < q) return toast(`You need ${q} ${esc(keyName(k))} in your basket for this order.`, 'warn');
+  for (const [k, q] of Object.entries(o.items)) { S.produce[k] -= q; if (!S.produce[k]) delete S.produce[k]; }
+  o.done = true; S.stats.orders = (S.stats.orders || 0) + 1; sfx('sell'); setTimeout(() => sfx('quest'), 200);
+  S.stats.sold += Object.values(o.items).reduce((a, b) => a + b, 0);
+  addMoney(o.pay, lastBtnPt || {x: VW / 2, y: VH / 2}); gainXp(o.xp);
+  toast(`<b>${esc(o.who)}</b> paid ${priceHTML(o.pay)} for the order. +${o.xp} XP`, 'good'); after();
+}
+function drawWagon(c, cx, by, L, t) {
+  c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx, by, 40, 6); c.fill();
+  rr(c, cx - 36, by - 34, 72, 22, 3); fillS(c, '#9a6a3a', 1.4); for (let k = 1; k < 4; k++) line(c, cx - 36 + k * 18, by - 34, cx - 36 + k * 18, by - 12, 'rgba(0,0,0,.2)', 1);
+  for (const [ox, col] of [[-22, '#e2412f'], [-6, '#f07f24'], [10, '#7fbf43'], [24, '#f4c542']]) { rr(c, cx + ox - 7, by - 44, 14, 11, 2); fillS(c, '#c7955c', .9); orb(c, cx + ox - 2, by - 45, 3.4, col, true, .5); orb(c, cx + ox + 3, by - 44, 3, col, true, .5); }
+  c.beginPath(); c.moveTo(cx - 40, by - 50); c.quadraticCurveTo(cx, by - 74, cx + 40, by - 50); c.lineTo(cx + 40, by - 46); c.lineTo(cx - 40, by - 46); c.closePath(); fillS(c, '#f1e6cc', 1.2);
+  c.save(); c.beginPath(); c.moveTo(cx - 40, by - 50); c.quadraticCurveTo(cx, by - 74, cx + 40, by - 50); c.lineTo(cx + 40, by - 46); c.lineTo(cx - 40, by - 46); c.closePath(); c.clip(); c.fillStyle = '#c8423a'; for (let k = -40; k < 40; k += 16) c.fillRect(cx + k, by - 76, 8, 32); c.restore();
+  line(c, cx - 38, by - 46, cx - 38, by - 30, '#6b4428', 2); line(c, cx + 38, by - 46, cx + 38, by - 30, '#6b4428', 2);
+  for (const ox of [-22, 22]) { c.save(); c.translate(cx + ox, by - 9); c.rotate(t * .2); c.beginPath(); c.arc(0, 0, 9, 0, TAU); fillS(c, '#6b4428', 1.2); c.beginPath(); c.arc(0, 0, 6.5, 0, TAU); c.strokeStyle = '#c7955c'; c.lineWidth = 1; c.stroke(); for (let k = 0; k < 4; k++) { c.rotate(Math.PI / 4); line(c, -6, 0, 6, 0, '#c7955c', 1); } c.restore(); }
+  line(c, cx + 36, by - 20, cx + 54, by - 14, '#6b4428', 2);
+  const open = (S.orders || []).filter(o => !o.done).length;
+  if (open) { const bx = cx + 30, byy = by - 82 + Math.sin(t * 3) * 2; c.beginPath(); c.arc(bx, byy, 9, 0, TAU); c.fillStyle = '#f4c542'; c.fill(); c.lineWidth = 1.4; c.strokeStyle = '#4a2c06'; c.stroke(); c.fillStyle = '#3b2504'; c.font = '12px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(open, bx, byy + 1); }
+}
+
+/* ------------------------------------------------------------------ DAY / NIGHT CLOCK */
+const DAWN = 360, DUSK = 1200, MIN_PER_SEC = 2; // one in-game hour lasts 30 real seconds
+const clockTxt = m => { const h = Math.floor(m / 60) % 24, mm = Math.floor(m % 60); return `${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}`; };
+const duskT = () => DUSK + 60 * pb('daylight');
+const isNight = () => (S.time ?? DAWN) >= duskT() || (S.time ?? DAWN) < DAWN;
+const minsToDawn = () => S.time < DAWN ? DAWN - S.time : 1440 - S.time + DAWN;
+const wet1 = p => { p.water = true; p.wt = 1; };
+function growAll(days) {
+  if (!(days > 0)) return;
+  const brz = evt('breeze') ? 1.5 : 1, hw = evt('heatwave'), wf = waterFactor() * (hw ? 1.25 : 1), dryF = hw ? 0 : 1, pg = (1 + pb('grow')) * perkBonus('grow');
+  for (const p of S.plots) {
+    if (!p.crop) continue; const cr = CROP[p.crop]; if (!cr) continue;
+    const fx = p.mut ? mutFx(p.mut) : null, hardy = !!(fx && fx.thirst >= 1);
+    const wetD = hardy ? days : p.water ? Math.min(p.wt ?? 1, days) : 0, dryD = days - wetD;
+    if (p.prog < cr.need) p.prog = Math.min(cr.need, p.prog + growMult(p) * brz * (evt('moon') && fx ? 1.5 : 1) * pg * (wetD * wf + dryD * dryF));
+    if (p.water && !hardy) { p.wt = (p.wt ?? 1) - days; if (p.wt <= 0) { p.water = false; p.wt = 0; } }
+  }
+}
+function daysLeft(p, wet) {
+  const cr = CROP[p.crop], rem = cr.need - p.prog; if (rem <= 0) return 0;
+  const fx = p.mut ? mutFx(p.mut) : null, hardy = !!(fx && fx.thirst >= 1), base = growMult(p) * (evt('breeze') ? 1.5 : 1) * (1 + pb('grow')) * perkBonus('grow');
+  if (wet || hardy) return rem / (base * waterFactor() * (evt('heatwave') ? 1.25 : 1));
+  return evt('heatwave') ? Infinity : rem / base;
+}
+const durTxt = d => { if (!isFinite(d)) return 'never (too hot)'; const h = d * 24; if (h < 1) return Math.max(1, Math.round(h * 60)) + 'm'; if (h < 24) return Math.floor(h) + 'h ' + Math.round((h % 1) * 60) + 'm'; return Math.floor(h / 24) + 'd ' + Math.round(h % 24) + 'h'; };
+function nightToast() { if (tNow - (S._nt || -9) < 2) return; S._nt = tNow; toast(`It’s dark, so work has stopped for the day. Tap the farmhouse to sleep until ${clockTxt(DAWN)}, when your farmhands get back to work too.`, 'warn'); }
+let duskShown = -1;
+function stepClock(dt) {
+  if (sleeping || !$('#menu').hidden || tutLocked() || (typeof tutorOpen === 'function' && tutorOpen())) return;
+  if (S.time == null) S.time = DAWN;
+  const m = dt * MIN_PER_SEC; let t0 = S.time, t1 = t0 + m;
+  growAll(m / 1440);
+  if (t0 < duskT() && t1 >= duskT()) onDusk();
+  if (t1 >= 1440) { t1 -= 1440; t0 -= 1440; }
+  S.time = t1;
+  if (t0 < DAWN && t1 >= DAWN) { const sum = dawnTick(); toast(`<b>Good morning! Day ${S.day} begins.</b> Your farmhands are back at work.`, 'good'); if (S.event) setTimeout(() => toast(`<b style="color:${EVENTS[S.event.id].col}">${EVENTS[S.event.id].name}</b>: ${EVENTS[S.event.id].desc}`), 700); sfx('wake'); S._lastSum = sum; after(); }
+}
+function onDusk() { hold = null; queue = null; sfx('sleep'); toast('The sun has set. Work stops until morning, and your farmhands are heading to bed. Sleep in the farmhouse to skip to dawn.', 'warn'); after(); }
+function darkness() { const t = S.time ?? DAWN; if (t >= 420 && t < 1080) return 0; if (t >= 1080 && t < 1200) return (t - 1080) / 120 * .32; if (t >= 1200 || t < 300) return t >= 1200 ? Math.min(.5, .32 + (t - 1200) / 60 * .18) : .5; if (t < DAWN) return .5 - (t - 300) / 60 * .1; return .4 * (1 - (t - DAWN) / 60); }
+function drawNight(c, t) {
+  const d = darkness(); if (d <= .005) return;
+  const tm = S.time ?? DAWN, dusk = tm >= 1020 && tm < 1230;
+  c.save();
+  if (dusk) { c.fillStyle = `rgba(255,140,60,${(.16 * Math.min(1, (tm - 1020) / 90)) * (tm < 1200 ? 1 : 1 - (tm - 1200) / 30)})`; c.fillRect(0, 0, VW, VH); }
+  c.fillStyle = scene === 'ranch' ? `rgba(20,14,30,${d * .5})` : `rgba(10,18,52,${d})`; c.fillRect(0, 0, VW, VH);
+  c.globalCompositeOperation = 'lighter';
+  const lights = scene === 'ranch' ? [] : objList().filter(o => o.id !== 'bundle' && o.id !== 'sign' && o.id !== 'eastsign');
+  for (const o of lights) { const p = toScreen(o.x + o.w / 2, o.y + o.h * .55), r = Math.max(30, Math.min(o.w, 110) * cam.z * .9); const g = c.createRadialGradient(p.x, p.y, 2, p.x, p.y, r); g.addColorStop(0, `rgba(255,190,90,${d * .55})`); g.addColorStop(1, 'rgba(255,190,90,0)'); c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, r, 0, TAU); c.fill(); }
+  if (scene === 'farm' && d > .3) for (let k = 0; k < 26; k++) { const x = (k * 197.3 + Math.sin(t * .5 + k) * 60) % VW, y = (k * 113.7 + Math.cos(t * .4 + k * 2) * 40) % VH, a = Math.max(0, Math.sin(t * 2 + k * 1.7)) * d; c.fillStyle = `rgba(220,255,140,${a})`; c.beginPath(); c.arc(x, y, 2.2, 0, TAU); c.fill(); }
+  c.restore();
+}
+function drawMoon(c, x, y, r) { c.save(); c.translate(x, y); glowDisc(c, 0, 0, r * 1.1, '#cfe0ff', .35); c.beginPath(); c.arc(0, 0, r * .62, 0, TAU); c.fillStyle = '#f4f0d8'; c.fill(); c.globalCompositeOperation = 'destination-out'; c.beginPath(); c.arc(r * .28, -r * .18, r * .52, 0, TAU); c.fill(); c.restore(); }
+
+/* ------------------------------------------------------------------ WORKERS DRIVE MACHINES */
+const DRIVER = {tractor: 'replanter', harvester: 'collector', truck: 'hauler'};
+const RM_RUN = {feeder: 'rfeeder', groomer: 'rgroomer', belt: 'rcollector', mill: null};
+const rmRunOk = k => RM_RUN[k] ? ranchHands().some(w => w.role === RM_RUN[k]) : ranchHands().length > 0;
+function tryBoard(w, r) {
+  const mk = Object.keys(DRIVER).find(k => DRIVER[k] === w.role && S.mach[k] && S.mon[k] && MR[k] && MR[k].want && !MR[k].driver && !MR[k].claim && MR[k].st === 'park');
+  if (!mk) return false; MR[mk].claim = w.id; r.st = 'toMach'; r.mk = mk; r.bubble = null; return true;
+}
+function stepBoarding(w, r, dt) {
+  const m = MR[r.mk]; if (!m || m.driver || isNight() || !S.mon[r.mk]) { if (m && m.claim === w.id) m.claim = null; r.st = 'idle'; r.mk = null; r.t = .2; return; }
+  if (mvTo(r, wWalk(w) * 1.2, dt, m.x + 12, m.y + 4)) { m.driver = w.id; m.claim = null; m.idleT = 0; r.drive = r.mk; r.mk = null; r.st = 'drive'; sfx('select'); }
+}
+function releaseDriver(k) {
+  const m = MR[k]; if (!m || !m.driver) return; const wr = WR.get(m.driver);
+  if (wr) { wr.drive = null; wr.st = 'idle'; wr.t = .6; wr.x = m.x + 16; wr.y = m.y + 8; }
+  m.driver = null; m.want = false; m.idleT = 0;
+}
+function driverCheck(k, r) {
+  if (r.driver && !S.workers.some(w => w.id === r.driver)) r.driver = null;
+  if (r.claim) { const wr = WR.get(r.claim); if (!wr || wr.st !== 'toMach') r.claim = null; }
+  if (r.driver) { const wr = WR.get(r.driver); if (wr) { wr.x = r.x; wr.y = r.y + 6; } }
+}
+function drawDriver(c, k, r) {
+  const w = S.workers.find(x => x.id === r.driver); if (!w) return;
+  const L = S.mach[k], msc = 1 + .045 * (L - 1), off = {tractor: [-7.8, -21.4], harvester: [-9.1, -31.8], truck: [12, -18.2]}[k], f = r.face || 1;
+  const x = r.x + off[0] * f * msc, y = r.y + off[1] * msc;
+  c.save(); c.beginPath(); c.arc(x, y + .6, 2.4 * msc, 0, TAU); c.fillStyle = w.look.skin; c.fill();
+  c.beginPath(); c.arc(x, y - .4, 2.5 * msc, Math.PI, 0); c.fillStyle = w.look.style === 'bald' ? w.look.skin : w.look.hair; c.fill(); c.restore();
+}
+/* idle workers visit buildings */
+const VISIT_SKIP = new Set(['bundle', 'sign', 'eastsign', 'nameboard', 'wagon', 'barrel']);
+function pickVisit(w) {
+  const os = objList().filter(o => !VISIT_SKIP.has(o.id));
+  if (w.role === 'replanter' && S.b.seedmaker && S.mon.seedmaker && Object.keys(S.produce).some(k => CROP[k]) && Math.random() < .7) return os.find(o => o.id === 'seedmaker');
+  return os[Math.floor(Math.random() * os.length)] || null;
+}
+function startVisit(w, r) {
+  const o = pickVisit(w); if (!o || Math.random() < .25) { const d = hutDoor(); r.tx = d.x - 60 + Math.random() * 120; r.ty = d.y + 6 + Math.random() * 28; r.st = 'wander'; r.visit = null; return; }
+  r.visit = o.id; r.tx = o.x + o.w / 2 + (Math.random() - .5) * Math.min(40, o.w * .6); r.ty = o.y + o.h + 6; r.st = 'wander';
+}
+let smOpT = -99;
+function stepVisit(w, r, dt) {
+  r.working = true; r.t -= dt; r.fx = (r.fx || 0) + dt;
+  if (r.visit === 'seedmaker' && w.role === 'replanter') smOpT = tNow;
+  if (r.fx > .5) { r.fx = 0; const o = OBJ[r.visit]; if (o) burst(o.x + o.w / 2 + (Math.random() - .5) * 20, o.y + o.h - 10, r.visit === 'well' ? 'drop' : r.visit === 'compost' ? 'dirt' : 'spark', 1, {up: true, sp: 30, r: 2}); }
+  if (r.t <= 0) { r.st = 'idle'; r.t = .3; r.visit = null; r.bubble = null; }
+}
+function arriveVisit(w, r) { if (!r.visit) return false; const o = OBJ[r.visit]; if (!o) { r.visit = null; return false; } r.st = 'visit'; r.t = r.visit === 'seedmaker' && w.role === 'replanter' ? 7 : 2 + Math.random() * 1.5; r.face = o.x + o.w / 2 > r.x ? 1 : -1; r.bubble = 'visit'; r.vic = 'b:' + r.visit + ':' + Math.max(1, r.visit === 'house' ? S.farm : S.b[r.visit] || 1); return true; }
+
+/* ------------------------------------------------------------------ ROW / COLUMN TOOLS */
+const PAT_TOOL = {seed: 'gloves', hoe: 'hoe', can: 'can', sickle: 'sickle'}, ACT_TOOLKEY = {plant: 'gloves', water: 'can', harvest: 'sickle', till: 'hoe'};
+const PAT_NAME = {one: 'Single', row: 'Row', col: 'Column', cross: 'Cross', block: 'Square'};
+function patModes(k) { const t = S.tools[k] || 0, o = ['one']; if (t >= 4) o.push('row', 'col'); if (t >= 8) o.push('cross'); if (t >= 10) o.push('block'); return o; }
+const patLen = k => (S.tools[k] || 0) >= 6 ? 5 : 3;
+function curPat(k) { const m = patModes(k), cur = (S.pat || {})[k] || 'one'; return m.includes(cur) ? cur : 'one'; }
+function cyclePat() {
+  const k = PAT_TOOL[S.tool]; if (!k || scene !== 'farm') return; const m = patModes(k); if (m.length < 2) return toast(`Better ${TOOLS[k].name.toLowerCase()}s can work in rows and columns. Golden tier and up.`);
+  S.pat = S.pat || {}; S.pat[k] = m[(m.indexOf(curPat(k)) + 1) % m.length]; sfx('select'); renderHUD(); save();
+  toast(`${TOOLS[k].name}: <b>${PAT_NAME[S.pat[k]]}</b> mode${S.pat[k] === 'one' ? '' : `. Hover over a plot to see which plots it covers.`}`);
+}
+const GRID_IX = (() => { const g = {}; ORDER.forEach(([x, y], i) => { g[x + ',' + y] = i; }); return g; })();
+function patPlots(i, k) {
+  const mode = curPat(k); if (mode === 'one') return [i];
+  const f = i >= 25 ? 25 : 0, [x, y] = ORDER[i - f], len = patLen(k), cells = [];
+  const line = (dx, dy) => { if (len >= 5) { for (let a = 0; a < 5; a++) cells.push(dx ? [a, y] : [x, a]); } else for (let a = -1; a <= 1; a++) cells.push([x + dx * a, y + dy * a]); };
+  if (mode === 'row' || mode === 'cross') line(1, 0);
+  if (mode === 'col' || mode === 'cross') line(0, 1);
+  if (mode === 'block') for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) cells.push([x + a, y + b]);
+  const out = [i];
+  for (const [cx, cy] of cells) { const j = GRID_IX[cx + ',' + cy]; if (j === undefined) continue; const jj = j + f; if (jj < S.plots.length && !out.includes(jj)) out.push(jj); }
+  return out;
+}
+function patValid(act, j) {
+  const p = S.plots[j]; if (!p) return false;
+  if (act === 'till') return p.st === 'wild' || p.st === 'rough';
+  if (act === 'plant') return p.st === 'tilled' && !p.crop && !!pickSeed(p);
+  if (act === 'water') return needsWater(p);
+  if (act === 'harvest') return !!(p.crop && p.prog >= CROP[p.crop].need);
+  return false;
+}
+const patTargets = (act, i) => { const k = ACT_TOOLKEY[act]; if (!k) return [i]; return patPlots(i, k).filter(j => j === i || patValid(act, j)); };
+function drawPatPreview(c, t) {
+  if (scene !== 'farm' || !hover || hover.kind !== 'plot' || isNight()) return;
+  const k = PAT_TOOL[S.tool]; if (!k || curPat(k) === 'one') return;
+  const it = plotIntent(hover.i); const act = it && it.tool === S.tool ? it.act : null;
+  const all = patPlots(hover.i, k);
+  c.save(); c.setLineDash([5, 4]); c.lineDashOffset = -t * 12;
+  for (const j of all) { const r = plotRect(j), ok = act && patValid(act, j); rr(c, r.x - 2, r.y - 2, r.w + 4, r.h + 4, 11); c.lineWidth = ok ? 2.6 : 1.4; c.strokeStyle = ok ? 'rgba(255,232,120,.95)' : 'rgba(255,255,255,.45)'; c.stroke(); if (ok) { c.fillStyle = 'rgba(255,232,120,.12)'; c.fill(); } }
+  c.restore();
+}
+function patSvg(mode) {
+  const on = new Set(mode === 'one' ? ['1,1'] : mode === 'row' ? ['0,1', '1,1', '2,1'] : mode === 'col' ? ['1,0', '1,1', '1,2'] : mode === 'cross' ? ['0,1', '1,1', '2,1', '1,0', '1,2'] : ['0,0', '1,0', '2,0', '0,1', '1,1', '2,1', '0,2', '1,2', '2,2']);
+  let h = '<svg viewBox="0 0 30 30" width="30" height="30">'; for (let y = 0; y < 3; y++) for (let x = 0; x < 3; x++) h += `<rect x="${1 + x * 10}" y="${1 + y * 10}" width="8" height="8" rx="2" fill="${on.has(x + ',' + y) ? '#f4c542' : 'rgba(255,255,255,.18)'}"/>`; return h + '</svg>';
+}
+
+/* ------------------------------------------------------------------ LAB CRATE TOOLS */
+const LTOOLS = {
+  charm: {name: 'Lucky Charm', base: 20000, desc: 'Makes rarer mutagens turn up more often in every crate.', eff: l => `Shifts ${12 * l}% of common finds to rarer ones`},
+  rod:   {name: 'Dowsing Rod', base: 35000, desc: 'Sometimes twitches and digs up one extra box for free when you pick.', eff: l => `${12 * l}% chance per pick to open a bonus box`},
+  drill: {name: 'Excavator', base: 60000, desc: 'Every pick also digs up the boxes around it, for free.', eff: l => ['', 'Opens 1 neighbouring box with each pick', 'Opens the boxes left and right of each pick', 'Opens a plus shape around each pick', 'Opens a plus shape and 2 corners with each pick', 'Opens a full 3×3 square with each pick'][l]},
+};
+const LT_ORDER = ['charm', 'rod', 'drill'];
+const ltLab = L => Math.min(10, 2 * L), ltCost = (k, L) => Math.round(LTOOLS[k].base * Math.pow(4, L - 1));
+function buyLTool(k) {
+  const L = (S.ltools[k] || 0) + 1; if (L > 5) return;
+  if (S.b.lab < ltLab(L)) return toast(`Upgrade the lab to level ${ltLab(L)} first.`, 'warn');
+  const cost = ltCost(k, L); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
+  spend(cost); S.ltools[k] = L; sfx('build'); toast(`${LTOOLS[k].name} is now level ${L}. ${LTOOLS[k].eff(L)}.`, 'good'); after();
+}
+function drillCells(i, L) {
+  const x = i % 5, y = Math.floor(i / 5), pts = L >= 5 ? [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]] : L >= 4 ? [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, 1]] : L >= 3 ? [[-1, 0], [1, 0], [0, -1], [0, 1]] : L >= 2 ? [[-1, 0], [1, 0]] : [[[1, 0], [-1, 0], [0, 1], [0, -1]][Math.floor(Math.random() * 4)]];
+  return pts.map(([a, b]) => [x + a, y + b]).filter(([a, b]) => a >= 0 && a < 5 && b >= 0 && b < 5).map(([a, b]) => b * 5 + a);
+}
+function openCell(i, tool) {
+  const st = S.crate; if (!st || st.open[i]) return; st.open[i] = true; if (tool) { st.tool = st.tool || []; st.tool.push(i); }
+  const cell = st.cells[i];
+  if (cell.k === 'm') {
+    const M = MUTAGEN[cell.id]; S.mutagens[cell.id] = (S.mutagens[cell.id] || 0) + 1; S.mfound[cell.id] = (S.mfound[cell.id] || 0) + 1; S.stats.mutFound++;
+    if (M.rarity >= 2) S.stats.rareFound++; if (M.rarity >= 4) S.stats.legFound++;
+    sfx('reveal', M.rarity); toast(`${tool ? `Your ${tool} dug up` : 'Found'} <b style="color:${RARITY[M.rarity].col}">${M.name}</b>, a ${RARITY[M.rarity].name.toLowerCase()} mutagen. ${M.d}.`, 'good');
+  } else if (cell.k === 'c') addMoney(cell.n, lastBtnPt); else if (!tool) sfx('empty');
+}
+/* ------------------------------------------------------------------ TO-DO LIST */
+const TODO_COST = 1500, TODO_LVL = 4; let todoOpen = false;
+function todoItems() {
+  const o = [], P = S.plots, cnt = f => P.filter(f).length;
+  if (scene === 'farm' || true) {
+    const dry = cnt(p => needsWater(p)), ready = cnt(p => p.crop && p.prog >= CROP[p.crop].need), empty = cnt(p => p.st === 'tilled' && !p.crop), rough = cnt(p => p.st === 'wild' || p.st === 'rough');
+    if (ready) o.push(['sickle', `Harvest ${ready} ready crop${ready > 1 ? 's' : ''}`]);
+    if (dry) o.push(['can', `Water ${dry} thirsty plot${dry > 1 ? 's' : ''}`]);
+    if (empty) o.push(['seed', `Plant ${empty} empty plot${empty > 1 ? 's' : ''}`]);
+    if (rough) o.push(['hoe', `Till ${rough} plot${rough > 1 ? 's' : ''}`]);
+    if (S.tools.can && S.water === 0 && !S.b.well) o.push(['can', 'Refill your watering can at the rain barrel']);
+  }
+  if (S.b.barn) { const ps = S.ranch.pens.filter(p => p.a), hu = ps.filter(p => !p.fed).length, pr = ps.reduce((a, p) => a + (p.prod || 0), 0), br = ps.filter(p => !p.brushed).length;
+    if (pr) o.push(['pail', `Collect ${pr} animal product${pr > 1 ? 's' : ''}`]); if (hu) o.push(['scoop', `Feed ${hu} hungry animal${hu > 1 ? 's' : ''}`]); if (br) o.push(['brush', `Brush ${br} animal${br > 1 ? 's' : ''}`]); }
+  const bc = basketCount(); if (bc && !capFull() && S.sign) o.push(['basket', `Sell from your basket (${priceText(capLeft())} of market limit left)`]);
+  const os = (S.orders || []).filter(x => !x.done); if (os.length) { const rd = os.filter(x => Object.entries(x.items).every(([k, n]) => (S.produce[k] || 0) >= n)).length; o.push(['wagon', rd ? `Deliver ${rd} large order${rd > 1 ? 's' : ''} (ready now)` : `Fill ${os.length} large order${os.length > 1 ? 's' : ''} before dawn`]); }
+  const nx = FARM[S.farm + 1]; if (nx && nx.lvl <= flv() && S.money >= nx.cost && (nx.need || []).every(([k, n]) => (S.produce[k] || 0) >= n)) o.push(['house', `Restore the farmhouse to ${nx.name}`]);
+  if (flv() >= FAIR_LVL && S.fair && !S.fair.done && !S.fair.best) o.push(['trophy', 'Enter this week’s County Fair']);
+  if (S.crate) o.push(['crate', 'Finish opening your mystery crate']);
+  return o;
+}
+const TODO_IC = {sickle: () => `tool:sickle:${Math.max(1, S.tools.sickle)}`, can: () => `tool:can:${Math.max(1, S.tools.can)}`, seed: () => seedIcon(validKey(S.sel)), hoe: () => `tool:hoe:${Math.max(1, S.tools.hoe)}`, pail: () => 'rt:pail:' + Math.max(1, S.rtools.pail), scoop: () => 'feed', brush: () => 'rt:brush:' + Math.max(1, S.rtools.brush), basket: () => 'basket', wagon: () => 'b:wagon:1', house: () => 'b:house:' + Math.min(12, S.farm + 1), trophy: () => 'trophy', crate: () => 'crate:rusty'};
+function renderTodo() {
+  const el = $('#todo'); const on = !!(S.todo && S.opt.todo !== false && $('#menu').hidden); el.hidden = !on; if (!on) return;
+  const it = todoItems(), left = isNight() ? 0 : Math.max(0, Math.round((duskT() - S.time) / 60 * 10) / 10);
+  el.classList.toggle('open', todoOpen); const h = `<header data-act="todoOpen"><b>To do today <small class="todo-n">${it.length}</small></b><span>${isNight() ? 'Night · sleep to continue' : `${left}h of daylight left`}</span><button class="qtog" data-act="todoHide" aria-label="Hide to-do list">×</button></header>${it.length ? `<ul>${it.slice(0, 8).map(([ic, t]) => `<li><img src="${iurl(TODO_IC[ic]())}" alt="">${esc(t).replace(/&amp;/g, '&')}</li>`).join('')}</ul>` : '<p>All done! Sleep in the farmhouse to start the next day.</p>'}`;
+  if (el.dataset.h !== h) { el.innerHTML = h; el.dataset.h = h; }
+}
+/* ------------------------------------------------------------------ PRESTIGE */
+const PRESTIGE_LVL = 30;
+const PTREE = [
+  {id: 'grower', name: 'Grower', col: '#7cd65a', nodes: [
+    {id: 'grow', name: 'Rich Roots', max: 5, cost: 3, k: 'grow', v: .06, d: l => `Crops grow ${6 * l}% faster`},
+    {id: 'yield', name: 'Harvest Moon', max: 5, cost: 5, k: 'yield', v: .05, d: l => `${5 * l}% bigger harvests`},
+    {id: 'giant', name: 'Giant Seeds', max: 5, cost: 6, k: 'giant', v: .015, d: l => `+${(1.5 * l).toFixed(1)}% chance of Giant crops`},
+    {id: 'shiny', name: 'Golden Touch', max: 3, cost: 12, k: 'shiny', v: .01, d: l => `+${l}% chance of Shiny crops`}]},
+  {id: 'merchant', name: 'Merchant', col: '#f4c542', nodes: [
+    {id: 'price', name: 'Haggler', max: 5, cost: 3, k: 'price', v: .05, d: l => `Everything sells for ${5 * l}% more`},
+    {id: 'cap', name: 'Market Friend', max: 5, cost: 4, k: 'cap', v: .2, d: l => `Daily market limit +${20 * l}%`},
+    {id: 'order', name: 'Big Buyers', max: 3, cost: 8, k: 'order', v: .15, d: l => `Large Sales pay ${15 * l}% more`},
+    {id: 'coins', name: 'Nest Egg', max: 4, cost: 6, k: 'coins', v: 1, d: l => `Start each new farm with ${priceText([0, 5000, 50000, 500000, 5000000][l])}`}]},
+  {id: 'crew', name: 'Foreman', col: '#4fb3e8', nodes: [
+    {id: 'wspeed', name: 'Hard Workers', max: 5, cost: 3, k: 'wspeed', v: .08, d: l => `Workers move and work ${8 * l}% faster`},
+    {id: 'mspeed', name: 'Mechanic', max: 5, cost: 4, k: 'mspeed', v: .08, d: l => `Machines run ${8 * l}% faster`},
+    {id: 'hire', name: 'Good Reputation', max: 3, cost: 6, k: 'hire', v: .1, d: l => `Hiring and training cost ${10 * l}% less`},
+    {id: 'daylight', name: 'Long Days', max: 3, cost: 10, k: 'daylight', v: 1, d: l => `Dusk comes ${l} hour${l > 1 ? 's' : ''} later`}]},
+  {id: 'scholar', name: 'Scholar', col: '#c88aff', nodes: [
+    {id: 'xp', name: 'Fast Learner', max: 5, cost: 3, k: 'xp', v: .06, d: l => `${6 * l}% more XP`},
+    {id: 'crate', name: 'Lab Grant', max: 3, cost: 5, k: 'crate', v: .15, d: l => `Mystery crates cost ${15 * l}% less`},
+    {id: 'picks', name: 'Keen Eye', max: 3, cost: 8, k: 'picks', v: 1, d: l => `+${l} pick${l > 1 ? 's' : ''} in every crate`},
+    {id: 'animal', name: 'Rancher’s Gift', max: 5, cost: 6, k: 'animal', v: .08, d: l => `Animal products sell for ${8 * l}% more`}]},
+  {id: 'legacy', name: 'Legacy', col: '#ff9a6a', nodes: [
+    {id: 'toolkit', name: 'Heirloom Tools', max: 2, cost: 6, k: 'toolkit', v: 1, d: l => `Start each new farm with tier ${l + 1} hoe, can, sickle and gloves`},
+    {id: 'land', name: 'Land Grant', max: 3, cost: 6, k: 'land', v: 1, d: l => `Start with ${l * 2} extra cleared plots of land`},
+    {id: 'vault', name: 'Seed Vault', max: 2, cost: 5, k: 'vault', v: 1, d: l => `Start with ${l * 25} seeds of each starter crop`},
+    {id: 'recipes', name: 'Old Notebooks', max: 1, cost: 15, k: 'recipes', v: 1, d: () => 'Keep your mutant crop recipes when you prestige'}]},
+];
+const PNODE = {}; PTREE.forEach(b => b.nodes.forEach((n, j) => { PNODE[n.id] = Object.assign(n, {branch: b.id, j, prev: j ? b.nodes[j - 1].id : null}); }));
+const pLvl = id => (S.prestige && S.prestige.nodes[id]) || 0;
+function prestigeBuff(k) { if (!S || !S.prestige) return 0; let v = 0; for (const id in S.prestige.nodes) { const n = PNODE[id]; if (n && n.k === k) v += n.v * S.prestige.nodes[id]; } return v; }
+const pNodeCost = (n, l) => n.cost * (l + 1);
+function ppFor() {
+  const L = flv(); if (L < PRESTIGE_LVL) return 0;
+  return Math.floor(Math.pow(L - PRESTIGE_LVL + 5, 1.5) + 3 * Math.log10(Math.max(10, S.stats.earned)) + (S.recog || 0) / 400 + Object.keys(S.qdone).length / 4 + S.farm * 2 + (S.beaten ? 60 : 0));
+}
+function buyPNode(id) {
+  const n = PNODE[id], l = pLvl(id); if (!n || l >= n.max) return;
+  if (n.prev && pLvl(n.prev) < 1) return toast(`Unlock ${PNODE[n.prev].name} first.`, 'warn');
+  const c = pNodeCost(n, l), P = S.prestige; if (P.pp < c) return toast('Not enough Prestige Points.', 'warn');
+  P.pp -= c; P.nodes[id] = l + 1; sfx('levelup'); toast(`<b>${n.name}</b> is now level ${l + 1}: ${n.d(l + 1)}.`, 'good'); after();
+}
+let prestArmed = false;
+function doPrestige() {
+  const gain = ppFor(); if (!gain) return;
+  const keep = {name: S.name, prestige: S.prestige, opt: S.opt, tut: S.tut, keep: {}, lifetime: {earned: (S.lifetime ? S.lifetime.earned : 0) + S.stats.earned, harvested: (S.lifetime ? S.lifetime.harvested : 0) + S.stats.harvested}};
+  const recs = pLvl('recipes') ? S.recipes : null, rid = S.rid;
+  keep.prestige.pp += gain; keep.prestige.count++; keep.prestige.best = Math.max(keep.prestige.best || 0, flv()); keep.prestige.total = (keep.prestige.total || 0) + gain;
+  S = fresh(); Object.assign(S, keep); S.started = true; resetRuntime();
+  S.bundle = S.sign = S.house = S.home = true; QUESTS.slice(0, TUT_END + 1).forEach(q => { S.qdone[q.t] = true; }); S.q = firstUndone(); S.qmax = S.q; startQuest();
+  S.tools.hoe = S.tools.can = S.tools.sickle = 1 + pLvl('toolkit'); if (pLvl('toolkit')) S.tools.gloves = 1 + pLvl('toolkit'); S.water = canCap();
+  S.money = [20, 5000, 50000, 500000, 5000000][pLvl('coins')]; S.seeds.carrot = 5 + 25 * pLvl('vault'); if (pLvl('vault')) { S.seeds.radish = 25 * pLvl('vault'); S.seeds.potato = 25 * pLvl('vault'); }
+  for (let i = 1; i <= 2 * pLvl('land'); i++) S.cleared[i] = true;
+  if (recs) { S.recipes = recs; S.rid = rid; }
+  shownMoney = S.money; prestArmed = false; $('#journal').hidden = true; S.plots[0].st = 'rough';
+  banner('Prestige', `A fresh start (×${S.prestige.count})`, `You earned ${gain} Prestige Points. Spend them in Journal → Prestige on buffs that last forever.`, `<img src="${iurl('perk:all')}" alt="">`);
+  after();
+}
+function prestigeHTML() {
+  const P = S.prestige, L = flv(), gain = ppFor();
+  let h = `<div class="hero"><div class="pair"><img src="${iurl('perk:all')}" alt=""></div><div><h5>${P.pp} Prestige Point${P.pp === 1 ? '' : 's'} to spend</h5><p>Prestige wipes your farm and starts you again on new land, but you keep everything in this tree forever. ${P.count ? `You’ve prestiged ${P.count} time${P.count > 1 ? 's' : ''}.` : ''}</p>
+    ${L >= PRESTIGE_LVL ? (prestArmed ? `<div class="acts" style="justify-content:flex-start"><button class="btn red" data-act="prestYes">Start over for ${gain} points</button><button class="btn plain sm" data-act="prestNo">Not yet</button></div><p class="note" style="margin-top:6px">Your coins, buildings, crops, workers, animals and levels will all be reset.</p>` : `<button class="btn gold" data-act="prestAsk">Prestige now for ${gain} points</button>`) : `<span class="tag bad">Prestige unlocks at farmer level ${PRESTIGE_LVL}</span>`}</div></div>`;
+  h += `<div class="ptree"><div class="proot"><img src="${iurl('perk:all')}" alt=""><b>Prestige</b></div><div class="pbranches">`;
+  for (const b of PTREE) {
+    h += `<div class="pbranch" style="--bc:${b.col}"><div class="pbname">${b.name}</div>`;
+    b.nodes.forEach((n, j) => {
+      const l = pLvl(n.id), lock = n.prev && pLvl(n.prev) < 1, max = l >= n.max, c = pNodeCost(n, l);
+      h += `${j ? '<i class="plink"></i>' : '<i class="plink top"></i>'}<button class="pnode ${l ? 'on' : ''} ${lock ? 'lock' : ''} ${max ? 'max' : ''}" data-act="pnode" data-id="${n.id}" ${lock || max || P.pp < c ? 'disabled' : ''} title="${n.d(Math.max(1, l))}"><b>${n.name}</b><small>${l ? n.d(l) : n.d(1)}</small><span class="pips">${Array.from({length: n.max}, (_, i) => `<i class="${i < l ? 'f' : ''}"></i>`).join('')}</span><em>${max ? 'Maxed' : lock ? 'Locked' : `${c} PP`}</em></button>`;
+    });
+    h += `</div>`;
+  }
+  return h + `</div></div>`;
+}
+/* ------------------------------------------------------------------ TUTORIALS + HANDBOOK */
+const GUIDES = [
+  {id: 'daynight', title: 'Day and night', ic: 'sun', when: () => S.q > TUT_END,
+    what: ['Time now moves on its own. Each hour passes in about 30 seconds, and your crops keep growing the whole time, day and night.', `Work stops at dusk (${clockTxt(DUSK)}). Your tools won’t work and your farmhands go to bed.`, 'Sleeping in the farmhouse skips straight to the next morning, and everything grows during the skipped time.'],
+    tips: ['Water crops before dusk. Watered crops grow faster for a whole day.', 'If there’s nothing left to do, sleep early to skip ahead.']},
+  {id: 'house', title: 'The farmhouse', ic: 'b:house:3', when: () => S.q > TUT_END && flv() >= 2,
+    what: ['The farmhouse works like a town hall. Its level sets how far your buildings, machines, tools, soil and animals can be upgraded.', 'Each restoration needs a farmer level, coins and a delivery of crops from your basket.'],
+    tips: ['Check the Builder’s Yard to see which crops the next restoration needs, and keep some back.', 'Turn on the to-do list to be reminded when a restoration is ready.']},
+  {id: 'market', title: 'Market limit', ic: 'pouch', when: () => S.q > TUT_END && S.stats.sold > 20,
+    what: ['The village market only has so much money each day. Your limit is shown in the Produce Stall, and it grows as you level up.', 'Anything you can’t sell stays safely in your basket for tomorrow.'],
+    tips: ['Large Sales from the merchant’s wagon don’t count towards the limit.', 'A bigger Roadside Stand raises the limit by 10% per level.']},
+  {id: 'orders', title: 'Large Sales', ic: 'b:wagon:1', when: () => flv() >= LS_LVL && (S.orders || []).length > 0 && S.q > TUT_END,
+    what: ['A merchant’s wagon parks by the farm each morning with big orders. Deliver every item on an order to be paid well above market price.', 'Orders leave at dawn, so finish them the same day.'],
+    tips: ['Your haulers and truck won’t sell crops that an open order needs.', 'Large Sales don’t count towards your daily market limit.']},
+  {id: 'events', title: 'Random events', ic: 'perk:all', when: () => !!S.event,
+    what: ['Every few days something unusual happens on the farm for a whole day, like a Fertile Breeze or a Heatwave. The chip at the top shows today’s event.'],
+    tips: ['Tap the event chip to read what it does.', 'On a Heatwave, water everything first thing.']},
+  {id: 'fair', title: 'County Fair', ic: 'trophy', when: () => flv() >= FAIR_LVL && S.q > TUT_END,
+    what: ['Each week the judges pick a crop tier. Enter your most valuable crop from that tier in Journal → County Fair.', 'Results come in when the week ends. Placing earns coins and recognition.'],
+    tips: ['Gilded mutant crops score very highly.', 'You can enter several times. Only your best score counts.']},
+  {id: 'workers', title: 'Farmhands', ic: 'wk:waterer', when: () => S.b.hut > 0,
+    what: ['Tap the Worker Hut to hire farmhands. Waterers, Collectors, Replanters and Haulers each do one job all day, then go to bed at dusk.', 'When they have nothing to do they wander round the farm and tend the buildings.'],
+    tips: ['Training makes them faster and gives them better outfits.', 'Workers also drive your machines. Hire one of each to keep the machines busy.']},
+  {id: 'machines', title: 'Machines need drivers', ic: 'mach:tractor:1', when: () => MACH_ORDER.some(k => S.mach[k]),
+    what: ['Machines need a worker to drive them. Replanters drive the Tractor, Collectors drive the Combine Harvester and Haulers drive the Delivery Truck.', 'When a machine has work, its driver hops in. When it’s done, they hop out and get back to their usual job.'],
+    tips: ['A speech bubble over a parked machine means it’s waiting for a driver.', 'The Seed Maker also needs a Replanter standing at it to work.']},
+  {id: 'autosell', title: 'Automatic selling', ic: 'basket', when: () => S.workers.some(w => w.role === 'hauler') || S.mach.truck > 0,
+    what: ['Your haulers and truck sell from your basket on their own.', 'To choose what they sell, open the Market’s Produce Stall. Each item has a button: “Auto-sell on” means they can sell it, “Kept” means they leave it alone.'],
+    tips: ['Crops needed for an open Large Sale or your next farmhouse restoration are held back automatically.', 'Keep your best mutant crops for the County Fair.']},
+  {id: 'patterns', title: 'Rows and columns', ic: 'tool:sickle:4', when: () => ['hoe', 'can', 'sickle', 'gloves'].some(k => (S.tools[k] || 0) >= 4),
+    what: ['Golden tools and better can work on several plots at once. Press R, or tap the pattern button on your hotbar, to switch between single plots, rows and columns.', 'Hover over a plot to see which plots will be covered. Better tools add whole rows, crosses and squares.'],
+    tips: ['Each extra plot makes the job take a little longer, but much less time than doing them one by one.']},
+  {id: 'variants', title: 'Giant and shiny crops', ic: 'p:pumpkin', when: () => (S.stats.variants || 0) > 0 || S.stats.harvested > 40,
+    what: ['Crops now grow through more stages and get bigger as they ripen. No two are quite the same.', 'Some turn out Giant, which doubles the harvest, and a lucky few are Shiny, which triples it.'],
+    tips: ['Look for a glow around a ripening plant. That’s a Giant or Shiny crop on the way.']},
+  {id: 'lab', title: 'Mystery crates', ic: 'crate:rusty', when: () => S.b.lab > 0,
+    what: ['Crates hide mutagens and coin pouches in a grid of 25 boxes, and you only get a few picks.', 'Crate tools in the lab improve your luck. The Lucky Charm makes rare finds more common, the Dowsing Rod opens bonus boxes and the Excavator digs up the boxes around each pick.'],
+    tips: ['Excavator picks in the middle of the grid dig up the most boxes.', 'Better crates unlock as you upgrade the lab.']},
+  {id: 'mutants', title: 'Mutant crops', ic: 'mutant', when: () => Object.keys(S.mutagens).some(k => S.mutagens[k] > 0) && S.b.lab > 0,
+    what: ['In the Gene Splicer, pick a crop and add mutagens to make a mutant. Each trait changes how it grows, sells or regrows.', 'Every mutant you make is saved, so you can make more of its seeds with coins.'],
+    tips: ['Gilded makes crops sell for more, and Evergreen makes them regrow after harvest.', 'Hardy mutants water themselves, so they’re great on Heatwave days.']},
+  {id: 'ranch', title: 'Ranching', ic: 'an:chicken', when: () => S.b.barn > 0,
+    what: ['Tap the barn to go inside. Buy animals at the Ranch Office desk.', 'Feed them with the scoop (1) every day so they grow, brush them (2) to keep them happy and collect what they make with the pail (3).'],
+    tips: ['Barn machines need a ranch hand to run them.', 'Happy animals make more products.']},
+  {id: 'todo', title: 'To-do list', ic: 'book', when: () => !!S.todo,
+    what: ['Your Farm Planner shows everything left to do before the next day, from thirsty crops to hungry animals.', 'Close it with × and turn it back on in Journal → Settings.'], tips: []},
+  {id: 'prestige', title: 'Prestige', ic: 'perk:all', when: () => flv() >= PRESTIGE_LVL,
+    what: [`From farmer level ${PRESTIGE_LVL} you can prestige: start a brand new farm and earn Prestige Points based on how well you played.`, 'Spend the points in the Prestige tree on permanent buffs that last for the whole save.'],
+    tips: ['The higher your level and the more you’ve earned, the more points you get.', 'Beating the game gives a big bonus.']},
+];
+const GUIDE = Object.fromEntries(GUIDES.map(g => [g.id, g]));
+let tutorQ = [], tutorCur = null;
+const tutorOpen = () => !!tutorCur;
+function checkGuides() {
+  if (!S.started || !$('#menu').hidden || sleeping) return; S.tut = S.tut || {};
+  for (const g of GUIDES) if (!S.tut[g.id] && !tutorQ.includes(g.id) && tutorCur !== g.id) { let ok = false; try { ok = g.when(); } catch (e) {} if (ok) tutorQ.push(g.id); }
+  tutorQ = tutorQ.filter(id => !S.tut[id]);
+  if (!tutorCur && tutorQ.length && $('#lvup').hidden && $('#night').hidden) showTutor(tutorQ.shift());
+}
+function showTutor(id, again) {
+  const g = GUIDE[id]; if (!g) return; tutorCur = id; if (!again) S.tut[id] = true;
+  $('#tutor').innerHTML = `<div class="tu-card plaque"><span class="kick">${again ? 'Handbook' : 'New to you'}</span><div class="tu-ic"><img src="${iurl(g.ic)}" alt=""></div><h3>${g.title}</h3>${g.what.map(t => `<p>${t}</p>`).join('')}${g.tips.length ? `<div class="tu-tips"><b>Tips</b><ul>${g.tips.map(t => `<li>${t}</li>`).join('')}</ul></div>` : ''}<button class="btn gold big" data-act="tutorOk">Got it</button></div>`;
+  $('#tutor').hidden = false; sfx('quest'); save();
+}
+function closeTutor() { $('#tutor').hidden = true; tutorCur = null; setTimeout(checkGuides, 300); }
+function handbookHTML() {
+  const seen = GUIDES.filter(g => S.tut && S.tut[g.id]), lock = GUIDES.length - seen.length;
+  return `<p class="note">Everything you’ve unlocked so far, with tips on how to get the most from it. New pages appear as you unlock new things.</p>` + seen.map(g => `<div class="row"><div class="ic"><img src="${iurl(g.ic)}" alt=""></div><div><h5>${g.title}</h5><p>${g.what.join(' ')}</p>${g.tips.length ? `<div class="tags">${g.tips.map(t => `<span class="tag ok">Tip: ${t}</span>`).join('')}</div>` : ''}</div><div class="acts"><button class="btn plain sm" data-act="guideShow" data-id="${g.id}">Show</button></div></div>`).join('') + (lock ? `<p class="note">${lock} more page${lock > 1 ? 's' : ''} still to unlock.</p>` : '');
+}
+
+/* ------------------------------------------------------------------ MARKET SORTING + ENDGAME */
+function sortBar() { const srt = S.opt.sort || 'rec'; return `<div class="sortbar"><span>Sort</span>${[['rec', 'Recommended'], ['lvl', 'Level'], ['cost', 'Cost'], ['name', 'A–Z']].map(([id, n]) => `<button class="chip2 ${srt === id ? 'on' : ''}" data-act="sortBy" data-id="${id}">${n}</button>`).join('')}</div>`; }
+function sortRows(R) {
+  const m = S.opt.sort || 'rec', key = {rec: r => [r.rank, r.sub ?? r.cost], lvl: r => [r.lvl, r.cost], cost: r => [r.cost, r.lvl], name: r => [r.name]}[m] || (r => [r.rank]);
+  return R.slice().sort((a, b) => { const A = key(a), B = key(b); for (let i = 0; i < A.length; i++) { if (A[i] < B[i]) return -1; if (A[i] > B[i]) return 1; } return 0; }).map(r => r.html).join('');
+}
+function beatGame() {
+  if (S.beaten) return; S.beaten = true; sfx('levelup');
+  banner('You beat Mutant Farm!', 'Master of ' + esc(S.name), 'Farmer level 80 and the Heavenly Kingdom. You’ve done everything there is to do. Prestige now for a big bonus, and start again with permanent buffs.', `<img src="${iurl('b:house:12')}" alt="">`);
+  const h = OBJ.house; burst(h.x + h.w / 2, h.y + 20, 'confetti', 80, {up: true, sp: 200, life: 1.8, r: 4});
+}
 /* ------------------------------------------------------------------ COUNTY FAIR */
 const FAIR_LVL = 6;
 const fairWeek = () => Math.floor((S.day - 1) / 7);
@@ -4449,8 +5061,8 @@ function renderHUD() {
   if (L >= MAX_LVL) { $('#xp-fill').style.width = '100%'; $('#xp-txt').textContent = `${S.xp.toLocaleString()} XP`; }
   $('#lvl-chip').title = `${hi - S.xp} XP to level ${L + 1}. Tap to see upcoming unlocks.`;
   setSrc($('#ico-sound'), iurl('spk:' + (SND.on ? 'on' : 'off'))); $('#btn-sound').title = SND.on ? 'Sound is on. Tap to mute.' : 'Sound is off. Tap to turn it on.'; $('#btn-sound').setAttribute('aria-label', $('#btn-sound').title);
-  $('#day-txt').textContent = 'Day ' + S.day;
-  { const E = S.event && EVENTS[S.event.id]; $('#evt-chip').hidden = !E; if (E) { $('#evt-txt').textContent = E.name; $('#evt-dot').style.setProperty('--ec', E.col); $('#evt-chip').title = E.desc; } } setSrc($('#wx'), iurl(S.weather === 'rain' ? 'rain' : 'sun'));
+  $('#day-txt').textContent = 'Day ' + S.day + ' · ' + clockTxt(S.time ?? DAWN);
+  { const E = S.event && EVENTS[S.event.id]; $('#evt-chip').hidden = !E; if (E) { $('#evt-txt').textContent = E.name; $('#evt-dot').style.setProperty('--ec', E.col); $('#evt-chip').title = E.desc; } } setSrc($('#wx'), iurl(isNight() ? 'moon' : S.weather === 'rain' ? 'rain' : 'sun'));
   $('#farm-name').textContent = S.name; $('#farm-lvl').textContent = FARM[S.farm].name; setSrc($('#farm-ico'), iurl('b:house:' + S.farm));
   $('#btn-market').hidden = !S.sign;
   { const inR = scene === 'ranch';
@@ -4464,6 +5076,7 @@ function renderHUD() {
       setSrc(el.querySelector('img'), iurl(`rt:${k}:${ti}`)); el.classList.toggle('sel', S.rtool === k); setHint(el, nudge.k === k && tNow < nudge.until);
       el.title = `${RTOOLS[k].tiers[ti].name}: ${rtDesc(k, ti)} (key ${RT_ORDER.indexOf(k) + 1})`;
     }
+    { const k = PAT_TOOL[S.tool], el = $('#slot-pat'), show = !inR && !!k && patModes(k).length > 1; el.hidden = !show; if (show) { const m = curPat(k); el.querySelector('.patico').innerHTML = patSvg(m); el.querySelector('.lbl').textContent = PAT_NAME[m]; } }
     const fc = $('#slot-scoop .cnt'); fc.textContent = S.ranch.feed >= 1e5 ? Math.round(S.ranch.feed / 1000) + 'k' : S.ranch.feed;
   }
   // quest card
@@ -4516,7 +5129,7 @@ function renderHUD() {
 
 /* ------------------------------------------------------------------ MARKET */
 let mkTab = 'seeds';
-const MK_TABS = [['seeds', 'Seed Shop', () => 'seed:carrot'], ['tools', 'Blacksmith', () => 'tool:hoe:2'], ['sell', 'Produce Stall', () => 'basket'], ['land', 'Land Office', () => 'b:sign:1'], ['build', 'Builder’s Yard', () => 'b:house:' + Math.min(7, S.farm + 1)], ['machines', 'Machine Shop', () => 'mach:tractor:1']];
+const MK_TABS = [['seeds', 'Seed Shop', () => 'seed:carrot'], ['tools', 'Blacksmith', () => 'tool:hoe:2'], ['sell', 'Produce Stall', () => 'basket'], ['orders', 'Large Sales', () => 'b:wagon:1'], ['land', 'Land Office', () => 'b:sign:1'], ['build', 'Builder’s Yard', () => 'b:house:' + Math.min(7, S.farm + 1)], ['machines', 'Machine Shop', () => 'mach:tractor:1']];
 function daysText(cr) {
   const m = baseGrow() * SOIL[cr.soil].mult, dry = Math.ceil(cr.need / m - 1e-9), wet = Math.ceil(cr.need / (m * waterFactor()) - 1e-9);
   return `${dry} day${dry > 1 ? 's' : ''} · ${wet} if watered`;
@@ -4537,35 +5150,42 @@ function renderMarket() {
   const qs = $('#mk-quick'), bc = basketCount();
   qs.innerHTML = bc ? `Quick sell ${priceHTML(basketValue())}` : 'Quick sell'; qs.disabled = !bc || (locked && allowTab !== 'sell');
   qs.title = bc ? `Sell all ${bc} items in your basket` : 'Your basket is empty';
-  if (mkTab === 'machines' && !(L0 >= 10 || S.b.garage)) mkTab = 'seeds';
-  $('#mk-tabs').innerHTML = MK_TABS.filter(([id]) => id !== 'machines' || L0 >= 10 || S.b.garage).map(([id, name, ic]) => `<button class="tab ${id === mkTab ? 'on' : ''} ${qt === id && id !== mkTab ? 'hint' : ''} ${locked && id !== allowTab ? 'lockd' : ''}" data-tab="${id}"><img src="${iurl(ic())}" alt="">${name}</button>`).join('');
+  if (mkTab === 'machines' && !(L0 >= BUILD.garage.lvl[0] || S.b.garage)) mkTab = 'seeds';
+  if (mkTab === 'orders' && (L0 < LS_LVL || locked)) mkTab = 'sell';
+  $('#mk-tabs').innerHTML = MK_TABS.filter(([id]) => (id !== 'machines' || L0 >= BUILD.garage.lvl[0] || S.b.garage) && (id !== 'orders' || (L0 >= LS_LVL && !locked))).map(([id, name, ic]) => `<button class="tab ${id === mkTab ? 'on' : ''} ${qt === id && id !== mkTab ? 'hint' : ''} ${locked && id !== allowTab ? 'lockd' : ''}" data-tab="${id}"><img src="${iurl(ic())}" alt="">${name}</button>`).join('');
   setHint($('#mk-close'), guided() && q.tgt === 'close');
   const L = flv(); let h = '';
   if (locked && !allowTab) {
     h = `<div class="empty"><img src="${iurl('b:house:1')}" alt=""><b style="font-family:var(--f-display);font-size:20px;color:var(--ink)">Nothing to buy for this step</b><span>${esc(q.d)}</span><button class="btn plain" data-act="closeMk">Back to farm</button></div>`;
   } else if (mkTab === 'seeds') {
     h += `<p class="note">Seeds you own: ${Object.entries(S.seeds).filter(([, v]) => v > 0).map(([k, v]) => `${CROP[k].name} ×${v}`).join(', ') || 'none yet'}. Better crops sell for more but take longer to grow and need richer soil.</p>`;
-    let lastTier = -1;
+    let lastTier = -1; const SR = [], srt = S.opt.sort || 'rec'; h += sortBar();
     for (const cr of CROPS) {
       if (cr.lvl > L) continue;
-      if (cr.soil !== lastTier) { lastTier = cr.soil; h += `<div class="sec">${TIER_NAMES[cr.soil]} <small>${SOIL[cr.soil].name}</small></div>`; }
+      const _h0 = h.length;
+      if (srt === 'lvl' && cr.soil !== lastTier) { lastTier = cr.soil; h += `<div class="sec">${TIER_NAMES[cr.soil]} <small>${SOIL[cr.soil].name}</small></div>`; }
       const locked = cr.lvl > L, soilOK = S.plots.some(p => p.soil >= cr.soil);
       const btn = n => `<button class="btn sm ${qt === 'seeds' && q.k === cr.id && n === 1 ? 'hint' : ''}" data-act="buySeed" data-id="${cr.id}" data-n="${n}" ${locked || S.money < seedPrice(cr) * n ? 'disabled' : ''}>×${n} ${priceHTML(seedPrice(cr) * n)}</button>`;
       h += `<div class="row ${locked ? 'locked' : ''}"><div class="ic ${locked ? 'dim' : ''}"><img src="${iurl('seed:' + cr.id)}" alt=""></div><div><h5>${cr.name}${S.seeds[cr.id] ? ` <small class="tag gold">owned ×${S.seeds[cr.id]}</small>` : ''}</h5>
         <div class="tags"><span class="tag">${daysText(cr)}</span><span class="tag">Yields ~${cr.yld}</span><span class="tag">Sells ${priceHTML(sellPrice(cr.id))} each</span>${cr.soil ? `<span class="tag ${soilOK ? 'ok' : 'bad'}">Needs ${SOIL[cr.soil].name}</span>` : ''}${locked ? `<span class="tag bad">Farmer level ${cr.lvl}</span>` : ''}</div></div>
         <div class="acts">${locked ? '' : btn(1) + btn(5) + btn(10)}</div></div>`;
+      if (srt !== 'lvl') { SR.push({html: h.slice(_h0), lvl: cr.lvl, cost: seedPrice(cr), name: cr.name, rank: soilOK ? (S.money >= seedPrice(cr) ? 0 : 1) : 2, sub: -cr.lvl}); h = h.slice(0, _h0); }
     }
+    h += sortRows(SR);
   } else if (mkTab === 'tools') {
     h += `<p class="note">Each upgrade replaces your old tool. Better tools need a bigger Toolshed, and many have special abilities that trigger by chance as you work.</p>`;
+    h += sortBar(); const SR = [];
     for (const k of TOOL_ORDER) {
-      const tier = S.tools[k], T = TOOLS[k], next = T.tiers[tier + 1], cur = T.tiers[tier], open = next && next.lvl <= L;
+      const tier = S.tools[k], T = TOOLS[k], next = T.tiers[tier + 1], cur = T.tiers[tier], open = next && next.lvl <= L, _h0 = h.length;
       if (!tier && !open) continue;
-      if (!open) { h += `<div class="row"><div class="ic"><img src="${iurl(`tool:${k}:${tier}`)}" alt=""></div><div><h5>${cur.name}</h5><p>${cur.desc}</p><div class="tags"><span class="tag">${next ? `Next upgrade at farmer level ${next.lvl}` : 'No further upgrades yet'}</span></div></div><div class="acts"></div></div>`; continue; }
+      if (!open) { h += `<div class="row"><div class="ic"><img src="${iurl(`tool:${k}:${tier}`)}" alt=""></div><div><h5>${cur.name}</h5><p>${cur.desc}</p><div class="tags"><span class="tag">${next ? `Next upgrade at farmer level ${next.lvl}` : 'No further upgrades yet'}</span></div></div><div class="acts"></div></div>`; SR.push({html: h.slice(_h0), lvl: next ? next.lvl : 999, cost: next ? next.cost : 1e15, name: cur.name, rank: 3}); h = h.slice(0, _h0); continue; }
       const req = toolReq(k, tier + 1), hint = qt === 'tools' && q.k === k;
       h += `<div class="row"><div class="ic ${req ? 'dim' : ''}"><img src="${iurl(`tool:${k}:${tier + 1}`)}" alt=""></div><div><h5>${next.name}</h5><p>${next.desc}</p>
         <div class="tags">${cur ? `<span class="tag">You have: ${cur.name}</span>` : `<span class="tag">${k === 'gloves' ? 'You have: bare hands' : 'You have none'}</span>`}${speedTag(k, tier + 1)}${req ? `<span class="tag bad">Needs ${req}</span>` : ''}</div></div>
         <div class="acts"><button class="btn ${hint ? 'hint' : ''}" data-act="buyTool" data-id="${k}" ${req || S.money < next.cost ? 'disabled' : ''}>${tier ? 'Upgrade' : 'Buy'} ${priceHTML(next.cost)}</button></div></div>`;
+      SR.push({html: h.slice(_h0), lvl: next.lvl, cost: next.cost, name: next.name, rank: req ? 2 : S.money >= next.cost ? 0 : 1}); h = h.slice(0, _h0);
     }
+    h += sortRows(SR);
     const hs = HORNS.filter(x => x.lvl <= L);
     if (hs.length) {
       h += `<div class="sec">Master tools <small>One-off buys for the very end of the game</small></div>`;
@@ -4575,27 +5195,40 @@ function renderMarket() {
     const items = Object.entries(S.produce).filter(([, n]) => n > 0);
     if (!items.length) h += `<div class="empty"><img src="${iurl('basket')}" alt=""><b style="font-family:var(--f-display);font-size:20px;color:var(--ink)">Your basket is empty</b><span>Harvest grown crops on the farm, then bring them here to sell.</span></div>`;
     else {
+      { const cap = sellCap(), sold = Math.min(cap, S.soldToday || 0); h += `<div class="capbar"><div><b>Market limit today</b><span>${priceHTML(sold)} of ${priceHTML(cap)} sold · resets at dawn</span></div><div class="xpbar"><i style="width:${(100 * sold / cap).toFixed(1)}%"></i></div></div>`; }
       h += `<div class="hero"><div class="pair"><img src="${iurl('basket')}" alt=""></div><div><h5>${basketCount()} items in your basket</h5><p>Worth ${priceHTML(basketValue())} at today’s prices${S.b.stand ? ` (includes +${6 * S.b.stand}% from your Roadside Stand)` : ''}.</p><button class="btn gold ${qt === 'sell' ? 'hint' : ''}" data-act="sellAll">Sell everything ${priceHTML(basketValue())}</button></div></div>`;
       for (const [id, n] of items) {
         const pr = sellPrice(id);
-        h += `<div class="row"><div class="ic"><img src="${iurl(prodIcon(id))}" alt=""></div><div><h5>${esc(produceName(id))} <small class="tag gold">×${n}</small>${isMut(id) && recOf(id) ? ` <small class="tag" style="color:${RARITY[recOf(id).rarity].col}">${RARITY[recOf(id).rarity].name} mutant</small>` : ''}${rrecOf(id) ? ` <small class="tag" style="color:${RARITY[rrecOf(id).rarity].col}">${RARITY[rrecOf(id).rarity].name} bloodline</small>` : ''}</h5><div class="tags"><span class="tag">${priceHTML(pr)} each</span><span class="tag">All: ${priceHTML(pr * n)}</span></div></div>
-          <div class="acts"><button class="btn sm plain" data-act="sell" data-id="${id}" data-n="1">Sell 1</button><button class="btn sm" data-act="sell" data-id="${id}" data-n="${n}">Sell all ${priceHTML(pr * n)}</button></div></div>`;
+        h += `<div class="row"><div class="ic"><img src="${iurl(prodIcon(id))}" alt=""></div><div><h5>${esc(produceName(id))} <small class="tag gold">×${n}</small>${isMut(id) && recOf(id) ? ` <small class="tag" style="color:${RARITY[recOf(id).rarity].col}">${RARITY[recOf(id).rarity].name} mutant</small>` : ''}${rrecOf(id) ? ` <small class="tag" style="color:${RARITY[rrecOf(id).rarity].col}">${RARITY[rrecOf(id).rarity].name} bloodline</small>` : ''}</h5><div class="tags"><span class="tag">${priceHTML(pr)} each</span><span class="tag">All: ${priceHTML(pr * n)}</span>${reserveOf(id) && !S.keep[id] ? `<span class="tag gold">${Math.min(n, reserveOf(id))} held for orders and the farmhouse</span>` : ''}</div></div>
+          <div class="acts">${S.workers.some(w => w.role === 'hauler') || S.mach.truck ? `<button class="btn sm ${S.keep[id] ? 'red' : 'plain'}" data-act="keepTog" data-id="${id}" title="Choose whether your haulers and truck may sell this">${S.keep[id] ? 'Kept' : 'Auto-sell on'}</button>` : ''}<button class="btn sm plain" data-act="sell" data-id="${id}" data-n="1">Sell 1</button><button class="btn sm" data-act="sell" data-id="${id}" data-n="${n}">Sell all ${priceHTML(pr * n)}</button></div></div>`;
       }
+    }
+  } else if (mkTab === 'orders') {
+    ensureOrders(); const os = S.orders || [];
+    h += `<div class="hero"><div class="pair"><img src="${iurl('b:wagon:1')}" alt=""></div><div><h5>Large Sales</h5><p>Every morning a merchant’s wagon brings big orders from around the county. Deliver everything on an order to get paid well above market price. Large Sales don’t count towards your daily market limit. Unfinished orders leave at dawn.</p></div></div>`;
+    if (!os.length) h += `<p class="note">No orders today. Check again tomorrow.</p>`;
+    for (const o of os) {
+      const ready = Object.entries(o.items).every(([k, n]) => (S.produce[k] || 0) >= n);
+      h += `<div class="row"><div class="ic"><img src="${iurl('pouch')}" alt=""></div><div><h5>${esc(o.who)} ${o.done ? '<span class="tag ok">Delivered</span>' : `<span class="tag gold">×${o.mult.toFixed(1)} market price</span>`}</h5><div class="tags">${Object.entries(o.items).map(([k, n]) => { const hv = S.produce[k] || 0; return `<span class="tag ${o.done || hv >= n ? 'ok' : 'bad'}"><img src="${iurl(prodIcon(k))}" alt="" style="width:18px;height:18px;vertical-align:-4px"> ${esc(keyName(k))} ${o.done ? n : Math.min(hv, n)}/${n}</span>`; }).join('')}<span class="tag">+${o.xp} XP</span></div></div>
+        <div class="acts">${o.done ? '' : `<button class="btn gold" data-act="deliver" data-id="${o.id}" ${ready ? '' : 'disabled'}>Deliver ${priceHTML(o.pay)}</button>`}</div></div>`;
     }
   } else if (mkTab === 'machines') {
     const g = S.b.garage || 0;
-    h += `<div class="hero"><div class="pair"><img src="${iurl('b:garage:' + Math.max(1, g))}" alt=""></div><div><h5>${g ? 'Garage level ' + g : 'No garage yet'}</h5><p>${g ? BUILD.garage.eff(g) + '. Machines work through the day while you play and park by the Garage when there’s nothing to do.' : 'Build a Garage at the Builder’s Yard (farmer level 10) to start buying machines.'}</p>${g < 3 ? `<button class="btn plain sm" data-tab="build">${g ? 'Upgrade' : 'Build'} the Garage</button>` : ''}</div></div>`;
+    h += `<div class="hero"><div class="pair"><img src="${iurl('b:garage:' + Math.max(1, g))}" alt=""></div><div><h5>${g ? 'Garage level ' + g : 'No garage yet'}</h5><p>${g ? BUILD.garage.eff(g) + '. Machines work through the day while you play and park by the Garage when there’s nothing to do.' : `Build a Garage at the Builder’s Yard (farmer level ${BUILD.garage.lvl[0]}) to start buying machines.`}</p>${g < 3 ? `<button class="btn plain sm" data-tab="build">${g ? 'Upgrade' : 'Build'} the Garage</button>` : ''}</div></div>`;
+    h += sortBar(); const SR = [];
     for (const k of MACH_ORDER) {
-      const M = MACH[k], Lm = S.mach[k];
+      const M = MACH[k], Lm = S.mach[k], _h0 = h.length;
       if (!Lm && M.lvls[0] > L) continue;
-      const nx = Lm < M.lvls.length, need = nx ? M.lvls[Lm] : 0, open = nx && need <= L, gOk = g >= M.garage, cost = nx ? M.cost[Lm] : 0;
+      const nx = Lm < M.lvls.length, need = nx ? M.lvls[Lm] : 0, open = nx && gateOk(need), gOk = g >= M.garage, cost = nx ? M.cost[Lm] : 0;
       const stat = lv => k === 'truck' ? `carries ${M.cap[lv - 1]} · +${Math.round(M.bonus[lv - 1] * 100)}% price` : `speed ×${MACH_SPEED[lv - 1]}${k === 'harvester' && lv > 1 ? ` · +${(lv - 1) * .5} crops` : ''}`;
-      h += `<div class="row"><div class="ic ${!Lm && !gOk ? 'dim' : ''}"><img src="${iurl(`mach:${k}:${Math.max(1, Lm)}`)}" alt=""></div><div><h5>${M.name} ${Lm ? `<span class="tag gold">Level ${Lm}</span>` : ''}</h5><p>${M.desc}</p>
-        <div class="tags">${Lm ? `<span class="tag ok">Now: ${stat(Lm)}</span><span class="tag">${S.mon[k] ? 'Working' : 'Switched off'} · ${S.mstat[k] || 0} jobs</span>` : ''}${open ? `<span class="tag">${Lm ? 'Next' : 'Level 1'}: ${stat(Lm + 1)}</span>` : `<span class="tag">${nx ? `Next upgrade at farmer level ${need}` : 'No further upgrades yet'}</span>`}${open && !gOk ? `<span class="tag bad">Garage level ${M.garage}</span>` : ''}</div></div>
+      h += `<div class="row"><div class="ic ${!Lm && !gOk ? 'dim' : ''}"><img src="${iurl(`mach:${k}:${Math.max(1, Lm)}`)}" alt=""></div><div><h5>${M.name} ${Lm ? `<span class="tag gold">Level ${Lm}</span>` : ''}</h5><p>${M.desc} A ${ROLES[DRIVER[k]].name.toLowerCase()} has to drive it. When there’s nothing to drive, they go back to their usual job.</p>${S.workers.some(w => w.role === DRIVER[k]) ? '' : `<div class="tags" style="margin-bottom:4px"><span class="tag bad">Hire a ${ROLES[DRIVER[k]].name} to drive it</span></div>`}
+        <div class="tags">${Lm ? `<span class="tag ok">Now: ${stat(Lm)}</span><span class="tag">${S.mon[k] ? 'Working' : 'Switched off'} · ${S.mstat[k] || 0} jobs</span>` : ''}${open ? `<span class="tag">${Lm ? 'Next' : 'Level 1'}: ${stat(Lm + 1)}</span>` : (nx ? gateTag(need) : '<span class="tag">No further upgrades yet</span>')}${open && !gOk ? `<span class="tag bad">Garage level ${M.garage}</span>` : ''}</div></div>
         <div class="acts">${Lm ? `<button class="btn ${S.mon[k] ? 'plain' : 'blue'} sm" data-act="machToggle" data-id="${k}">${S.mon[k] ? 'Switch off' : 'Switch on'}</button>` : ''}${open ? `<button class="btn ${qt === 'machines' && q.k === k ? 'hint' : ''}" data-act="buyMach" data-id="${k}" ${!gOk || S.money < cost ? 'disabled' : ''}>${Lm ? 'Upgrade' : 'Buy'} ${priceHTML(cost)}</button>` : ''}</div></div>`;
+      SR.push({html: h.slice(_h0), lvl: nx ? need : 999, cost: nx ? cost : 1e15, name: M.name, rank: !nx ? 4 : !open || !gOk ? 2 : S.money >= cost ? 0 : 1}); h = h.slice(0, _h0);
     }
+    h += sortRows(SR);
     const sm = S.b.seedmaker;
-    h += `<div class="sec">Seed Maker</div><div class="row"><div class="ic ${sm ? '' : 'dim'}"><img src="${iurl('b:seedmaker:' + Math.max(1, sm))}" alt=""></div><div><h5>Seed Maker${sm ? ` · level ${sm}` : ''}</h5><p>${sm ? BUILD.seedmaker.eff(sm) + '.' : BUILD.seedmaker.desc + ' Build it at the Builder’s Yard from farmer level 9.'}</p>${sm ? `<div class="tags"><span class="tag">${S.mon.seedmaker ? 'Working' : 'Switched off'} · ${S.stats.seedsMade} seeds made</span></div>` : ''}</div>
+    h += `<div class="sec">Seed Maker</div><div class="row"><div class="ic ${sm ? '' : 'dim'}"><img src="${iurl('b:seedmaker:' + Math.max(1, sm))}" alt=""></div><div><h5>Seed Maker${sm ? ` · level ${sm}` : ''}</h5><p>${sm ? BUILD.seedmaker.eff(sm) + '. A replanter has to run it, so it only works while one is standing at it.' : BUILD.seedmaker.desc + ` Build it at the Builder’s Yard from farmer level ${BUILD.seedmaker.lvl[0]}.`}</p>${sm ? `<div class="tags"><span class="tag">${S.mon.seedmaker ? 'Working' : 'Switched off'} · ${S.stats.seedsMade} seeds made</span></div>` : ''}</div>
       <div class="acts">${sm ? `<button class="btn ${S.mon.seedmaker ? 'plain' : 'blue'} sm" data-act="machToggle" data-id="seedmaker">${S.mon.seedmaker ? 'Switch off' : 'Switch on'}</button>` : '<button class="btn plain sm" data-tab="build">Builder’s Yard</button>'}</div></div>`;
   } else if (mkTab === 'land') {
     const n = S.plots.length + 1, mp = maxPlots();
@@ -4610,10 +5243,10 @@ function renderMarket() {
     if (!S.field2 && L >= FIELD2_LVL) h += `<div class="row"><div class="ic"><img src="${iurl('soil:0')}" alt=""></div><div><h5>The East Field</h5><p>A whole second field of 25 plots, east of the farm. You clear and buy its plots one by one, just like the first.</p></div><div class="acts"><button class="btn gold ${qt === 'land' && q.k === 'field' ? 'hint' : ''}" data-act="buyField" ${S.money < FIELD2_COST ? 'disabled' : ''}>Buy ${priceHTML(FIELD2_COST)}</button></div></div>`;
     h += `<div class="sec">Soil upgrades <small>Better soil grows crops faster and lets you plant higher-tier crops</small></div>`;
     for (let tier = 1; tier < SOIL.length; tier++) {
-      const s = SOIL[tier], elig = S.plots.filter(p => p.soil === tier - 1).length, have = S.plots.filter(p => p.soil >= tier).length, locked = s.lvl > L;
+      const s = SOIL[tier], elig = S.plots.filter(p => p.soil === tier - 1).length, have = S.plots.filter(p => p.soil >= tier).length, locked = !gateOk(s.lvl);
       if (s.lvl > L && have === 0) continue;
       h += `<div class="row ${locked ? 'locked' : ''}"><div class="ic" style="background:${s.col};border-color:${s.frame}"><span style="font-family:var(--f-display);font-size:20px;color:${tier >= 3 ? s.speck : '#f1e6cc'}">T${tier}</span></div><div><h5>${s.name}</h5><p>Grows crops ×${s.mult} faster and unlocks ${TIER_NAMES[tier].toLowerCase()}. Upgrades plots that have ${SOIL[tier - 1].name.toLowerCase()}.</p>
-        <div class="tags"><span class="tag">${have} plot${have === 1 ? '' : 's'} upgraded</span><span class="tag">${elig} ready to upgrade</span>${locked ? `<span class="tag bad">Farmer level ${s.lvl}</span>` : ''}</div></div>
+        <div class="tags"><span class="tag">${have} plot${have === 1 ? '' : 's'} upgraded</span><span class="tag">${elig} ready to upgrade</span>${locked ? gateTag(s.lvl) : ''}</div></div>
         <div class="acts">${locked ? '' : `<button class="btn sm" data-act="soil" data-n="${tier}" ${!elig || S.money < s.cost ? 'disabled' : ''}>1 plot ${priceHTML(s.cost)}</button>${elig > 1 ? `<button class="btn sm gold" data-act="soilAll" data-n="${tier}" ${S.money < s.cost ? 'disabled' : ''}>All ${elig} ${priceHTML(s.cost * elig)}</button>` : ''}`}</div></div>`;
     }
   } else if (mkTab === 'build') {
@@ -4621,17 +5254,23 @@ function renderMarket() {
     h += `<div class="hero"><div class="pair"><img src="${iurl('b:house:' + S.farm)}" alt="">${nxOk ? `<span class="arr">→</span><img src="${iurl('b:house:' + (S.farm + 1))}" alt="">` : ''}</div><div>`;
     if (nxOk) {
       h += `<h5>Restore to ${nx.name}</h5><p>${FARM_BLURB[S.farm + 1]}</p><div class="tags" style="margin:-2px 0 10px"><span class="tag ok">Growth ×${FARM[S.farm].grow} → ×${nx.grow}</span><span class="tag ok">Yield +${Math.round(FARM[S.farm].yld * 100)}% → +${Math.round(nx.yld * 100)}%</span>${nx.plots > FARM[S.farm].plots ? `<span class="tag ok">Max plots ${FARM[S.farm].plots} → ${nx.plots}</span>` : ''}</div>
-        <button class="btn gold ${qt === 'build' && q.k === 'restore' ? 'hint' : ''}" data-act="restore" ${S.money < nx.cost ? 'disabled' : ''}>Restore ${priceHTML(nx.cost)}</button>`;
+        ${(nx.need || []).length ? `<p style="margin:0 0 4px">The builders also need these crops from your basket:</p><div class="tags" style="margin-bottom:10px">${nx.need.map(([k, n]) => { const hv = S.produce[k] || 0; return `<span class="tag ${hv >= n ? 'ok' : 'bad'}"><img src="${iurl('p:' + k)}" alt="" style="width:18px;height:18px;vertical-align:-4px"> ${esc(keyName(k))} ${Math.min(hv, n)}/${n}</span>`; }).join('')}</div>` : ''}
+        <button class="btn gold ${qt === 'build' && q.k === 'restore' ? 'hint' : ''}" data-act="restore" ${S.money < nx.cost || (nx.need || []).some(([k, n]) => (S.produce[k] || 0) < n) ? 'disabled' : ''}>Restore ${priceHTML(nx.cost)}</button>
+        <p class="note" style="margin-top:8px">The farmhouse is the heart of the farm. Each restoration raises the highest level your buildings, machines, tools, soil and animals can reach.</p>`;
     } else h += `<h5>${FARM[S.farm].name}</h5><p>${nx ? `The next restoration unlocks at farmer level ${nx.lvl}.` : 'There are no more restorations for now.'}</p>`;
     h += `</div></div><div class="sec">Farm buildings <small>Each one appears on your farm and can be upgraded</small></div>`;
+    h += sortBar(); const SR = [];
+    if (L >= TODO_LVL || S.todo) { const _h0 = h.length; h += `<div class="row"><div class="ic"><img src="${iurl('book')}" alt=""></div><div><h5>Farm Planner ${S.todo ? '<span class="tag gold">Owned</span>' : ''}</h5><p>A to-do list that shows everything left to do before the next day: thirsty crops, ready harvests, hungry animals, open orders and more. You can hide it any time.</p></div><div class="acts">${S.todo ? `<button class="btn plain sm" data-act="todoTog">${S.opt.todo === false ? 'Show it' : 'Hide it'}</button>` : `<button class="btn" data-act="buyTodo" ${S.money < TODO_COST ? 'disabled' : ''}>Buy ${priceHTML(TODO_COST)}</button>`}</div></div>`; SR.push({html: h.slice(_h0), lvl: TODO_LVL, cost: S.todo ? 1e15 : TODO_COST, name: 'Farm Planner', rank: S.todo ? 4 : S.money >= TODO_COST ? 0 : 1}); h = h.slice(0, _h0); }
     for (const id of BUILD_ORDER) {
-      const B = BUILD[id], lv = S.b[id];
+      const B = BUILD[id], lv = S.b[id], _h0 = h.length;
       if (!lv && B.lvl[0] > L) continue;
-      const max = lv >= B.max, open = !max && B.lvl[lv] <= L, hint = qt === 'build' && q.k === id;
+      const max = lv >= B.max, open = !max && gateOk(B.lvl[lv]), hint = qt === 'build' && q.k === id;
       h += `<div class="row"><div class="ic"><img src="${iurl(`b:${id}:${Math.max(1, lv + (open ? 1 : 0))}`)}" alt=""></div><div><h5>${B.name} ${lv ? `<span class="tag gold">Level ${lv}</span>` : ''}</h5>
-        <p>${B.desc} ${lv ? `Now: ${B.eff(lv)}.` : ''}</p><div class="tags">${open ? `<span class="tag ok">${lv ? 'Next' : 'Gives'}: ${B.eff(lv + 1)}</span>` : `<span class="tag">${max ? 'No further upgrades yet' : `Next upgrade at farmer level ${B.lvl[lv]}`}</span>`}</div></div>
+        <p>${B.desc} ${lv ? `Now: ${B.eff(lv)}.` : ''}</p><div class="tags">${open ? `<span class="tag ok">${lv ? 'Next' : 'Gives'}: ${B.eff(lv + 1)}</span>` : (max ? '<span class="tag">No further upgrades yet</span>' : gateTag(B.lvl[lv]))}</div></div>
         <div class="acts">${open ? `<button class="btn ${hint ? 'hint' : ''}" data-act="build" data-id="${id}" ${S.money < B.cost[lv] ? 'disabled' : ''}>${lv ? 'Upgrade' : 'Build'} ${priceHTML(B.cost[lv])}</button>` : ''}${id === 'hut' && lv ? '<button class="btn plain sm" data-act="crew">Workers</button>' : ''}${id === 'lab' && lv ? '<button class="btn plain sm" data-act="labOpen">Open lab</button>' : ''}</div></div>`;
+      SR.push({html: h.slice(_h0), lvl: max ? 999 : B.lvl[lv], cost: max ? 1e15 : B.cost[lv], name: B.name, rank: max ? 4 : !open ? 3 : S.money >= B.cost[lv] ? 0 : 1}); h = h.slice(0, _h0);
     }
+    h += sortRows(SR);
   }
   const body = $('#mk-body'), st = body.scrollTop, key = mkTab;
   body.innerHTML = h; if (body.dataset.tab === key) body.scrollTop = st; body.dataset.tab = key;
@@ -4668,7 +5307,7 @@ function uitem(u, now) { return `<div class="uitem ${now ? 'now' : ''}"><img src
 function renderJournal() {
   if ($('#journal').hidden) return;
   $('#jr-title').textContent = S.name + ' Journal';
-  $('#jr-tabs').innerHTML = [['quests', 'Quests', 'b:sign:1'], ['levels', 'Levels', 'perk:all'], ['progress', 'Progress', 'book'], ['fair', 'County Fair', 'trophy'], ['almanac', 'Crop Almanac', 'p:carrot'], ['settings', 'Settings', 'mutant']].map(([id, n, ic]) => `<button class="tab ${id === jrTab ? 'on' : ''}" data-jtab="${id}"><img src="${iurl(ic)}" alt="">${n}</button>`).join('');
+  $('#jr-tabs').innerHTML = [['quests', 'Quests', 'b:sign:1'], ['levels', 'Levels', 'perk:all'], ['progress', 'Progress', 'book'], ['fair', 'County Fair', 'trophy'], ['handbook', 'Handbook', 'book'], ...(flv() >= PRESTIGE_LVL || S.prestige.count ? [['prestige', 'Prestige', 'perk:all']] : []), ['almanac', 'Crop Almanac', 'p:carrot'], ['settings', 'Settings', 'mutant']].map(([id, n, ic]) => `<button class="tab ${id === jrTab ? 'on' : ''}" data-jtab="${id}"><img src="${iurl(ic)}" alt="">${n}</button>`).join('');
   let h = ''; const L = flv();
   if (jrTab === 'quests') {
     const q = curQuest();
@@ -4726,10 +5365,14 @@ function renderJournal() {
         : `<p class="note">You have no ${TIER_NAMES[f.tier].toLowerCase()} in your basket. Grow and harvest some, then come back to enter.</p>`;
     }
     if (S.fairLog.length) h += `<div class="sec">Past fairs</div><div class="qlist">${S.fairLog.map(x => `<div class="qrow">${x.rank ? `<span class="medal ${x.rank <= 3 ? 'm' + x.rank : ''}">${x.rank}</span>` : '<span class="medal">–</span>'}<b>Week ${x.week + 1} · ${TIER_NAMES[x.tier]}</b>${x.rank ? `+${x.rec} · ${priceHTML(x.coins)}` : 'Not entered'}</div>`).join('')}</div>`;
+  } else if (jrTab === 'handbook') { h += handbookHTML();
+  } else if (jrTab === 'prestige') { h += prestigeHTML();
   } else if (jrTab === 'almanac') {
     h += `<p class="note">Every crop on the Mutant Farm. Harvest one to fill in its page.</p><div class="alm">${CROPS.map(c2 => { const n = S.stats.crop[c2.id] || 0; return `<div class="${n ? '' : 'lock'}"><img src="${iurl('p:' + c2.id)}" alt=""><b>${n || c2.lvl <= L ? c2.name : '???'}</b>${n ? `${n} harvested` : `Level ${c2.lvl} · ${SOIL[c2.soil].name.split(' ')[0]}`}</div>`; }).join('')}</div>`;
   } else {
     h += `<div class="row"><div class="ic"><img src="${iurl('mutant')}" alt=""></div><div><h5>Farm name</h5><div class="namerow" style="margin-top:6px"><input id="rename-in" maxlength="24" autocomplete="off" value="${esc(S.name)}" aria-label="Farm name"><button class="btn sm" data-act="rename">Save</button></div></div><div class="acts"></div></div>`;
+    if (S.todo) h += `<div class="row"><div class="ic"><img src="${iurl('book')}" alt=""></div><div><h5>To-do list</h5><p>Shows what’s left to do before the next day.</p></div><div class="acts"><button class="btn ${S.opt.todo === false ? 'blue' : 'plain'} sm" data-act="todoTog">${S.opt.todo === false ? 'Show it' : 'Hide it'}</button></div></div>`;
+    h += `<div class="row"><div class="ic"><img src="${iurl('basket')}" alt=""></div><div><h5>Hold back needed crops</h5><p>Stop haulers and the truck from selling crops your next farmhouse restoration or an open Large Sale needs.</p></div><div class="acts"><button class="btn ${S.opt.holdNeeds === false ? 'blue' : 'plain'} sm" data-act="holdTog">${S.opt.holdNeeds === false ? 'Turn on' : 'Turn off'}</button></div></div>`;
     { const gm = (S.opt && S.opt.grass) || 'auto'; h += `<div class="row"><div class="ic" style="background:${grassColor()}"></div><div><h5>Grass colour</h5><p>From farmer level 30 the grass slowly turns golden and heavenly. You can keep it green if you prefer.</p><div class="chips mode" style="margin-top:6px">${[['auto', 'Changes with level'], ['green', 'Always green'], ['gold', 'Always golden']].map(([id, nm]) => `<button class="chip2 ${gm === id ? 'on' : ''}" data-act="grassMode" data-id="${id}" style="padding-left:10px">${nm}</button>`).join('')}</div></div><div class="acts"></div></div>`; }
     h += `<div class="row"><div class="ic"><img src="${iurl('spk:' + (SND.on ? 'on' : 'off'))}" alt=""></div><div><h5>Sound</h5><p>Sound effects for farming, coins, crates and more.</p><input type="range" id="vol-in" min="0" max="100" value="${Math.round(SND.vol * 100)}" aria-label="Volume" style="width:100%;max-width:260px;margin-top:6px" ${SND.on ? '' : 'disabled'}></div><div class="acts"><button class="btn ${SND.on ? 'plain' : 'blue'} sm" data-act="sndToggle">${SND.on ? 'Turn sound off' : 'Turn sound on'}</button></div></div>`;
     h += `<div class="row"><div class="ic"><img src="${iurl('book')}" alt=""></div><div><h5>Mutant Farm · Update ${UPDATE}</h5><p>Your progress saves automatically in this browser.</p></div><div class="acts"><button class="btn plain sm" data-act="patch">Patch notes</button><button class="btn plain sm" data-act="toMenu">Main menu</button></div></div>`;
@@ -4838,28 +5481,29 @@ function openLab(tab) {
 }
 function closeLab() { $('#lab').hidden = true; }
 const rtag = (rar, extra = '') => `<span class="tag" style="color:${RARITY[rar].col}">${RARITY[rar].name}${extra}</span>`;
-function crateW(C) { const w = C.w.slice(); if (S.b.lab >= 5) { const mv = w[0] * .5; w[0] -= mv; w[2] += mv; } return w; }
+const crateCost = C => Math.round(C.cost * (1 - pb('crate')));
+function crateW(C) { const w = C.w.slice(); if (S.b.lab >= 5) { const mv = w[0] * .5; w[0] -= mv; w[2] += mv; } const ch = S.ltools.charm || 0; if (ch) { for (const i of [0, 1]) { const mv = w[i] * .12 * ch; w[i] -= mv; w[2] += mv * .55; w[3] += mv * .33; w[4] += mv * .12; } } return w; }
 function rollRarity(w) { const tot = w.reduce((a, b) => a + b, 0); let x = Math.random() * tot; for (let i = 0; i < 5; i++) { x -= w[i]; if (x < 0) return i; } return 0; }
 function openCrate(id) {
   const C = CRATES.find(c => c.id === id); if (!C) return; if (S.crate) return showCrate();
   if (S.b.lab < C.lab) return toast(`Needs Lab level ${C.lab}.`, 'warn');
-  if (S.money < C.cost) return toast('Not enough coins for that.', 'warn');
-  spend(C.cost); S.stats.crates++; sfx('open');
+  if (S.money < crateCost(C)) return toast('Not enough coins for that.', 'warn');
+  spend(crateCost(C)); S.stats.crates++; sfx('open');
   const cells = [], w = crateW(C), nm = C.muts + (S.b.lab >= 5 ? 1 : 0) + (evt('moon') ? 1 : 0);
   for (let i = 0; i < nm; i++) { const rar = rollRarity(w), pool = MUT_LIST.filter(m => m.rarity === rar); cells.push({k: 'm', id: pool[Math.floor(Math.random() * pool.length)].id}); }
   for (let i = 0; i < 4; i++) cells.push({k: 'c', n: Math.round(C.pouch[0] + Math.random() * (C.pouch[1] - C.pouch[0]))});
   while (cells.length < 25) cells.push({k: 'e'});
   for (let i = cells.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [cells[i], cells[j]] = [cells[j], cells[i]]; }
-  const total = C.picks + crateBonusPicks();
+  const total = C.picks + crateBonusPicks() + Math.round(pb('picks'));
   S.crate = {id, cells, open: Array(25).fill(false), picks: total, total, done: false};
   after(); showCrate();
 }
 function showCrate() {
   const st = S.crate; if (!st) { $('#crate').hidden = true; return; }
-  const C = CRATES.find(c => c.id === st.id) || CRATES[0], scan = S.b.lab >= 3;
+  const C = CRATES.find(c => c.id === st.id) || CRATES[0], scan = false, tl = LT_ORDER.filter(k => S.ltools[k]).map(k => LTOOLS[k].name);
   $('#cr-title').innerHTML = `<img src="${iurl('crate:' + C.id)}" alt="">${C.name}`;
   $('#cr-kick').textContent = st.done ? 'All picks used' : 'Pick a box';
-  $('#cr-sub').innerHTML = (st.done ? 'Here’s what was hiding in the other boxes.' : `Tap ${st.picks} more box${st.picks > 1 ? 'es' : ''}. Mutagens and coin pouches are hidden somewhere in the grid.${scan ? ' Your scanner makes boxes with Rare or better mutagens shimmer.' : ''}`) + `<div class="picks">${Array.from({length: st.total}, (_, i) => `<i class="${i < st.total - st.picks ? 'used' : ''}"></i>`).join('')}</div>`;
+  $('#cr-sub').innerHTML = (st.done ? 'Here’s what was hiding in the other boxes.' : `Tap ${st.picks} more box${st.picks > 1 ? 'es' : ''}. Mutagens and coin pouches are hidden somewhere in the grid.${tl.length ? ` Your ${tl.join(' and ')} help${tl.length > 1 ? '' : 's'} with every pick.` : ''}`) + `<div class="picks">${Array.from({length: st.total}, (_, i) => `<i class="${i < st.total - st.picks ? 'used' : ''}"></i>`).join('')}</div>`;
   $('#cr-grid').innerHTML = st.cells.map((cell, i) => {
     const op = st.open[i], show = op || st.done; let cls = 'cbox', inner = '', sty = '';
     if (show) {
@@ -4867,7 +5511,8 @@ function showCrate() {
       if (cell.k === 'm') { const M = MUTAGEN[cell.id]; sty = `--rc:${RARITY[M.rarity].col}`; inner = `<img src="${iurl('mg:' + cell.id)}" alt=""><span class="cl" style="color:${RARITY[M.rarity].col}">${M.name}</span>`; }
       else if (cell.k === 'c') inner = `<img src="${iurl('pouch')}" alt=""><span class="cl">${priceText(cell.n)}</span>`;
       else inner = '<span class="em">Empty</span>';
-    } else if (scan && cell.k === 'm' && MUTAGEN[cell.id].rarity >= 2) { cls += ' glint'; sty = `--gl:${RARITY[MUTAGEN[cell.id].rarity].col}`; }
+    }
+    if (op && st.tool && st.tool.includes(i)) cls += ' dug';
     return `<button class="${cls}" data-act="pickBox" data-i="${i}" ${show ? 'disabled' : ''} style="${sty}" aria-label="${show ? 'Opened box' : 'Closed box'}">${inner}</button>`;
   }).join('');
   $('#cr-acts').innerHTML = st.done ? '<button class="btn gold big" data-act="crateDone">Collect</button>' : '<button class="btn plain sm" data-act="crateLater">Finish later</button>';
@@ -4875,13 +5520,9 @@ function showCrate() {
 }
 function pickBox(i) {
   const st = S.crate; if (!st || st.done || st.open[i] || st.picks <= 0) return;
-  st.open[i] = true; st.picks--; const cell = st.cells[i];
-  if (cell.k === 'm') {
-    const M = MUTAGEN[cell.id]; S.mutagens[cell.id] = (S.mutagens[cell.id] || 0) + 1; S.mfound[cell.id] = (S.mfound[cell.id] || 0) + 1; S.stats.mutFound++;
-    if (M.rarity >= 2) S.stats.rareFound++; if (M.rarity >= 4) S.stats.legFound++;
-    sfx('reveal', M.rarity);
-    toast(`Found <b style="color:${RARITY[M.rarity].col}">${M.name}</b>, a ${RARITY[M.rarity].name.toLowerCase()} mutagen. ${M.d}.`, 'good');
-  } else if (cell.k === 'c') addMoney(cell.n, lastBtnPt); else sfx('empty');
+  st.picks--; openCell(i);
+  const dl = S.ltools.drill || 0; if (dl) for (const j of drillCells(i, dl)) if (!st.open[j]) openCell(j, 'Excavator');
+  const rl = S.ltools.rod || 0; if (rl && Math.random() < .12 * rl) { const hid = st.cells.map((c2, j) => j).filter(j => !st.open[j]); if (hid.length) openCell(hid[Math.floor(Math.random() * hid.length)], 'Dowsing Rod'); }
   if (st.picks <= 0) st.done = true;
   showCrate(); after();
 }
@@ -4890,7 +5531,7 @@ function renderLab() {
   if (!S.b.lab) return closeLab();
   const L = flv(), lab = S.b.lab, mcount = Object.values(S.mutagens).reduce((a, b) => a + b, 0);
   $('#lab-lvl').textContent = `Lab level ${lab}`;
-  $('#lab-tabs').innerHTML = [['crates', 'Mystery Crates', 'crate:rusty'], ['splice', 'Gene Splicer', 'mg:value2'], ['mutants', 'Mutant Seeds', 'mutant'], ['codex', 'Mutagen Codex', 'mg:regrow3']].map(([id, nm, ic]) => `<button class="tab ${id === labTab ? 'on' : ''}" data-ltab="${id}"><img src="${iurl(ic)}" alt="">${nm}</button>`).join('');
+  $('#lab-tabs').innerHTML = [['crates', 'Mystery Crates', 'crate:rusty'], ['ltools', 'Crate Tools', 'tool:axe:3'], ['splice', 'Gene Splicer', 'mg:value2'], ['mutants', 'Mutant Seeds', 'mutant'], ['codex', 'Mutagen Codex', 'mg:regrow3']].map(([id, nm, ic]) => `<button class="tab ${id === labTab ? 'on' : ''}" data-ltab="${id}"><img src="${iurl(ic)}" alt="">${nm}</button>`).join('');
   let h = '';
   if (labTab === 'crates') {
     h += `<div class="hero"><div class="pair"><img src="${iurl('b:lab:' + lab)}" alt=""></div><div><h5>Mystery crates</h5><p>Each crate hides mutagens and coin pouches in a 5×5 grid of boxes. You only get a few picks, so choose carefully. You have ${mcount} mutagen${mcount === 1 ? '' : 's'} ready to splice.</p>${S.crate ? '<button class="btn gold" data-act="crateResume">Finish opening your crate</button>' : ''}</div></div>`;
@@ -4898,7 +5539,14 @@ function renderLab() {
       const lk = lab < C.lab, w = crateW(C), tot = w.reduce((a, b) => a + b, 0), picks = C.picks + crateBonusPicks();
       h += `<div class="row ${lk ? 'locked' : ''}"><div class="ic ${lk ? 'dim' : ''}" style="background:radial-gradient(circle,#3a2a4a,#1f1628)"><img src="${iurl('crate:' + C.id)}" alt=""></div><div><h5>${C.name}</h5><p>${picks} picks · ${C.muts + (lab >= 5 ? 1 : 0)} mutagens and 4 coin pouches hidden in 25 boxes</p>
         <div class="tags">${w.map((x, r) => x ? rtag(r, ` ${Math.round(100 * x / tot)}%`) : '').join('')}${lk ? `<span class="tag bad">Lab level ${C.lab}</span>` : ''}</div></div>
-        <div class="acts"><button class="btn gold" data-act="openCrate" data-id="${C.id}" ${lk || S.money < C.cost || S.crate ? 'disabled' : ''}>Open ${priceHTML(C.cost)}</button></div></div>`;
+        <div class="acts"><button class="btn gold" data-act="openCrate" data-id="${C.id}" ${lk || S.money < crateCost(C) || S.crate ? 'disabled' : ''}>Open ${priceHTML(crateCost(C))}</button></div></div>`;
+    }
+  } else if (labTab === 'ltools') {
+    h += `<p class="note">Crate tools are permanent upgrades that help every time you open a crate. Better tools need a higher lab level.</p>`;
+    for (const k of LT_ORDER) {
+      const T = LTOOLS[k], l = S.ltools[k] || 0, nx = l + 1, has = nx <= 5, lk = has && S.b.lab < ltLab(nx);
+      h += `<div class="row"><div class="ic" style="background:radial-gradient(circle,#3a2a4a,#1f1628)"><img src="${iurl(k === 'charm' ? 'perk:all' : k === 'rod' ? 'tool:hoe:6' : 'tool:axe:5')}" alt=""></div><div><h5>${T.name}${l ? ` <small class="tag gold">Level ${l}</small>` : ''}</h5><p>${T.desc}</p><div class="tags">${l ? `<span class="tag ok">Now: ${T.eff(l)}</span>` : ''}${has ? `<span class="tag">${l ? 'Next' : 'Level 1'}: ${T.eff(nx)}</span>` : '<span class="tag">Fully upgraded</span>'}${lk ? `<span class="tag bad">Needs lab level ${ltLab(nx)}</span>` : ''}</div></div>
+        <div class="acts">${has && !lk ? `<button class="btn ${l ? '' : 'gold'}" data-act="buyLTool" data-id="${k}" ${S.money < ltCost(k, nx) ? 'disabled' : ''}>${l ? 'Upgrade' : 'Buy'} ${priceHTML(ltCost(k, nx))}</button>` : ''}</div></div>`;
     }
   } else if (labTab === 'splice') {
     if (S.b.barn) h += `<div class="chips mode" style="margin-bottom:6px"><button class="chip2 ${splice.kind !== 'animal' ? 'on' : ''}" data-act="spKind" data-id="crop" style="padding-left:10px">Mutant crops</button><button class="chip2 ${splice.kind === 'animal' ? 'on' : ''}" data-act="spKind" data-id="animal" style="padding-left:10px">Animal bloodlines</button></div>`;
@@ -5001,7 +5649,7 @@ function showPop(id) {
   } else {
     const B = BUILD[id], L = S.b[id], max = L >= B.max, tog = id === 'seedmaker' ? `<button class="btn ${S.mon.seedmaker ? 'plain' : 'blue'} sm" data-act="machToggle" data-id="seedmaker">${S.mon.seedmaker ? 'Switch off' : 'Switch on'}</button>` : '';
     h = `<button class="x" aria-label="Close" data-act="closePop">×</button><h4><img src="${iurl(`b:${id}:${L}`)}" alt="">${B.name}</h4><span class="tag gold">Level ${L}</span><p>${B.eff(L)}.</p>
-      <div class="acts">${tog}${max ? '<span class="tag">No further upgrades yet</span>' : B.lvl[L] > flv() ? `<span class="tag bad">Next upgrade at farmer level ${B.lvl[L]}</span>` : `<button class="btn" data-act="build" data-id="${id}" ${S.money < B.cost[L] ? 'disabled' : ''}>Upgrade · ${priceHTML(B.cost[L])}</button><p style="font-size:13px">Level ${L + 1}: ${B.eff(L + 1)}</p>`}</div>`;
+      <div class="acts">${tog}${max ? '<span class="tag">No further upgrades yet</span>' : !gateOk(B.lvl[L]) ? gateTag(B.lvl[L]) : `<button class="btn" data-act="build" data-id="${id}" ${S.money < B.cost[L] ? 'disabled' : ''}>Upgrade · ${priceHTML(B.cost[L])}</button><p style="font-size:13px">Level ${L + 1}: ${B.eff(L + 1)}</p>`}</div>`;
   }
   el.innerHTML = h; el.hidden = false; placePop();
 }
@@ -5022,9 +5670,9 @@ function tipFor(hv) {
     if (p.st === 'rough') return `<b>Harvested plot</b>Select the hoe (2), then tap to till it again.<br><small>${SOIL[p.soil].name}</small>`;
     if (!p.crop) return `<b>Tilled plot</b>${pickSeed(p) ? `Select seeds (1) and hold to plant ${keyName(pickSeed(p))} (${secs(actTime('plant'))}).` : 'No seeds to plant.'}<br><small>${SOIL[p.soil].name}</small>`;
     const cr = CROP[p.crop], g = clamp(p.prog / cr.need, 0, 1), rcp = recOf(p.mut), mline = rcp ? `<br><small style="color:${RARITY[rcp.rarity].col}">${RARITY[rcp.rarity].name} mutant${p.life > 1 ? ` · regrows ${p.life - 1} more time${p.life > 2 ? 's' : ''}` : ''}</small>` : '';
-    if (g >= 1) return `<b>${keyName(p.mut || p.crop)}</b>Ready! Hold to harvest (${secs(actTime('harvest'))}).${mline}`;
-    const nw = nightsLeft(p, true), nd = nightsLeft(p, false), hardy = p.mut && mutFx(p.mut).thirst >= 1;
-    return `<b>${keyName(p.mut || p.crop)}</b>${Math.round(g * 100)}% grown · ${hardy ? 'never needs water' : p.water ? 'watered' : `needs water · hold to water (${secs(actTime('water'))})`}<br>${hardy ? `${nw} night${nw > 1 ? 's' : ''} to go` : `${nw} night${nw > 1 ? 's' : ''} watered · ${nd} dry`}${mline}<div class="tb"><i style="width:${g * 100}%"></i></div>`;
+    if (g >= 1) return `<b>${keyName(p.mut || p.crop)}</b>Ready! Hold to harvest (${secs(actTime('harvest'))}).${mline}${p.var ? `<br><small style="color:${p.var === 'giant' ? '#b6f04a' : '#ffe28a'}">${p.var === 'giant' ? 'Giant crop · double harvest' : 'Shiny crop · triple harvest'}</small>` : ''}`;
+    const hardy = p.mut && mutFx(p.mut).thirst >= 1, vtx = p.var && g >= .7 ? `<br><small style="color:${p.var === 'giant' ? '#b6f04a' : '#ffe28a'}">${p.var === 'giant' ? 'Giant crop · double harvest' : 'Shiny crop · triple harvest'}</small>` : '';
+    return `<b>${keyName(p.mut || p.crop)}</b>${Math.round(g * 100)}% grown · ${hardy ? 'never needs water' : p.water ? 'watered' : `needs water · hold to water (${secs(actTime('water'))})`}<br>Ready in ${durTxt(daysLeft(p, true))}${hardy ? '' : ` watered · ${durTxt(daysLeft(p, false))} dry`}${mline}${vtx}<div class="tb"><i style="width:${g * 100}%"></i></div>`;
   }
   const useLine = (k, tm) => `Use your ${TOOL_NAME[k]} (${SLOT_KEYS.indexOf(k) + 1}) and hold for ${secs(tm)}`;
   if (hv.kind === 'worker') { const w = S.workers.find(x => x.id === hv.id); return w ? `<b>${esc(w.name)}</b>${ROLES[w.role].name} · level ${w.lvl}<br><small>${W_LEVELS[w.lvl].name} · ${w.done || 0} jobs done</small>` : ''; }
@@ -5033,6 +5681,7 @@ function tipFor(hv) {
   if (hv.kind === 'mach') { const M = MACH[hv.id]; return `<b>${M.name} · level ${S.mach[hv.id]}</b>${S.mon[hv.id] ? 'Working' : 'Switched off'} · ${S.mstat[hv.id] || 0} jobs done<br><small>Manage it in the Machine Shop</small>`; }
   const id = hv.id;
   if (id === 'nameboard') return `<b>${esc(S.name)}</b>Your farm.`;
+  if (id === 'wagon') { const n = (S.orders || []).filter(o => !o.done).length; return `<b>Merchant’s wagon</b>${n} large order${n === 1 ? '' : 's'} waiting. Tap to see them.`; }
   if (id === 'eastsign') return `<b>East Field</b>Buy it at the Land Office for ${priceText(FIELD2_COST)}.`;
   if (id === 'house') return `<b>Farmhouse</b>Tap to sleep.`;
   if (id === 'bundle') return `<b>Starter bundle</b>Tap to open.`;
@@ -5063,7 +5712,7 @@ function showSeedPicker() {
 function hitTest(sx, sy) {
   if (scene === 'ranch') return rHitTest(sx, sy);
   const w = toWorld(sx, sy);
-  for (const wk of farmHands()) { const r = WR.get(wk.id); if (r && Math.abs(w.x - r.x) < 7 && w.y > r.y - 27 && w.y < r.y + 3) return {kind: 'worker', id: wk.id}; }
+  for (const wk of farmHands()) { const r = WR.get(wk.id); if (r && r.st !== 'sleep' && !r.drive && Math.abs(w.x - r.x) < 7 && w.y > r.y - 27 && w.y < r.y + 3) return {kind: 'worker', id: wk.id}; }
   for (const k of MACH_ORDER) { const r = MR[k]; if (S.mach[k] && r && r.st !== 'away' && Math.abs(w.x - r.x) < 20 && w.y > r.y - 32 && w.y < r.y + 3) return {kind: 'mach', id: k}; }
   const objs = objList().filter(o => !(o.id === 'bundle' && S.bundle)).sort((a, b) => (b.y + b.h) - (a.y + a.h));
   for (const o of objs) { const pad = o.id === 'bundle' || o.id === 'barrel' || o.id === 'sign' ? 8 : 0; if (w.x >= o.x - pad && w.x <= o.x + o.w + pad && w.y >= o.y - pad && w.y <= o.y + o.h + pad) return {kind: 'obj', id: o.id}; }
@@ -5093,12 +5742,13 @@ function intentFor(h) {
 let ptr = null, hold = null, doneKey = null, lastHoldTip = -9;
 const VERB = {plant: 'plant', water: 'water', harvest: 'harvest', clear: 'clear it', till: 'clear the weeds', feed: 'feed it', brush: 'brush it', collect: 'collect'};
 const curTool = () => scene === 'ranch' ? S.rtool : S.tool;
-function canAct(h, it) { return !!(it && it.tool && it.tool === curTool() && !it.fail && actAllowed(h, it)); }
+function canAct(h, it) { return !!(it && it.tool && !isNight() && it.tool === curTool() && !it.fail && actAllowed(h, it)); }
 function beginHold(h) {
   const it = intentFor(h); if (!canAct(h, it)) return it;
-  if (it.act === 'till') { till(h.i); doneKey = hkey(h); return it; }
+  if (it.act === 'till') { const tg = patTargets('till', h.i); for (const j of tg.slice(1)) till(j, true, true); till(h.i); if (tg.length > 1) special(h.i, PAT_NAME[curPat('hoe')] + '!'); doneKey = hkey(h); return it; }
   if (!it.dur) return it;
-  hold = {h, key: hkey(h), act: it.act, dur: it.dur, t: 0, fx: 0, icon: holdIcon(it.act, h)}; hideTip(); return it;
+  const tg = h.kind === 'plot' ? patTargets(it.act, h.i) : null;
+  hold = {h, key: hkey(h), act: it.act, dur: it.dur * (tg && tg.length > 1 ? 1 + .22 * (tg.length - 1) : 1), t: 0, fx: 0, icon: holdIcon(it.act, h), tg}; hideTip(); return it;
 }
 function holdFx(act, h, pos) {
   if (act === 'water') parts.push({x: pos.x - 12 + Math.random() * 24, y: pos.y + 8, vx: (Math.random() - .5) * 10, vy: 60, g: 200, life: 0, max: .35, type: 'drop', r: 1.8, rot: 0});
@@ -5117,7 +5767,7 @@ function stepHold(dt) {
   if (hold.t >= hold.dur) {
     const hd = hold, h = hd.h; hold = null; doneKey = hd.key;
     if (h.kind === 'pen') ranchDo(hd.act, h.i);
-    else if (h.kind === 'plot') { if (hd.act === 'plant') plant(h.i); else if (hd.act === 'water') water(h.i); else harvest(h.i); }
+    else if (h.kind === 'plot') { const fn = hd.act === 'plant' ? (j, q, ch) => plant(j, q, null, ch) : hd.act === 'water' ? water : harvest; if (hd.tg) for (const j of hd.tg.slice(1)) if (patValid(hd.act, j)) fn(j, true, true); fn(h.i); }
     else if (h.kind === 'cell') clearCell(h.n); else clearYard(h.id);
   }
 }
@@ -5130,6 +5780,7 @@ function tapOn(h) {
   if (h.kind === 'plot' && it.act === 'info') return plotAction(h.i);
   if (h.kind === 'cell' && it.act === 'buy') { if (tutLocked()) return lockToast(); return h.n === S.plots.length ? showPop('cell') : toast(`This land is cleared. Plots are bought in order, so plot ${S.plots.length + 1} comes first.`); }
   if (!actAllowed(h, it)) return lockToast();
+  if (it.tool && isNight()) return nightToast();
   if (it.tool !== S.tool) return wrongTool(it);
   if (it.fail) { if (it.act === 'plant') plant(h.i); else if (it.act === 'water') water(h.i); return; }
   if (it.act === 'till') return till(h.i);
@@ -5181,6 +5832,7 @@ function objectAction(id) {
   if (id === 'barrel') return refill();
   if (id === 'hut') return openCrew();
   if (id === 'eastsign') return openMarket('land');
+  if (id === 'wagon') return openMarket('orders');
   if (id === 'barn') return enterRanch();
   if (id === 'lab') return openLab();
   if (id === 'garage') return openMarket('machines');
@@ -5192,7 +5844,7 @@ const ACTS = {
   soil: d => upgradeSoil(+d.n, false), soilAll: d => upgradeSoil(+d.n, true), build: d => buildUp(d.id),
   pick: d => { S.sel = d.id; S.tool = 'seed'; closePop(); after(); },
   quickSell: () => sellAll(), closeMk,
-  buyMach: d => buyMach(d.id), enterFair: d => enterFair(d.id), grassMode: d => { S.opt = S.opt || {}; S.opt.grass = d.id; after(); }, buyField: () => buyField2(), buyHorn: d => buyHorn(d.id), sndToggle: () => { SND.on = !SND.on; if (SND.on) sfx('select'); renderHUD(); renderJournal(); }, machToggle: d => { S.mon[d.id] = !S.mon[d.id]; toast(`${d.id === 'seedmaker' ? 'Seed Maker' : MACH[d.id].name} switched ${S.mon[d.id] ? 'on' : 'off'}.`); after(); },
+  buyMach: d => buyMach(d.id), enterFair: d => enterFair(d.id), grassMode: d => { S.opt = S.opt || {}; S.opt.grass = d.id; after(); }, buyField: () => buyField2(), sortBy: d => { S.opt.sort = d.id; renderMarket(); save(); }, buyLTool: d => buyLTool(d.id), tutorOk: () => closeTutor(), guideShow: d => { $('#journal').hidden = true; showTutor(d.id, true); }, todoOpen: () => { todoOpen = !todoOpen; renderTodo(); }, todoHide: () => { S.opt.todo = false; renderTodo(); save(); toast('To-do list hidden. Turn it back on in Journal → Settings.'); }, todoTog: () => { S.opt.todo = S.opt.todo === false; after(); }, holdTog: () => { S.opt.holdNeeds = S.opt.holdNeeds === false; after(); }, buyTodo: () => { if (S.todo) return; if (S.money < TODO_COST) return toast('Not enough coins for that.', 'warn'); spend(TODO_COST); S.todo = true; S.opt.todo = true; sfx('buy'); toast('Farm Planner bought! Your to-do list sits under the quest card.', 'good'); after(); }, pnode: d => buyPNode(d.id), prestAsk: () => { prestArmed = true; renderJournal(); }, prestNo: () => { prestArmed = false; renderJournal(); }, prestYes: () => doPrestige(), deliver: d => deliverOrder(+d.id), keepTog: d => { S.keep[d.id] = !S.keep[d.id]; if (!S.keep[d.id]) delete S.keep[d.id]; after(); }, buyHorn: d => buyHorn(d.id), sndToggle: () => { SND.on = !SND.on; if (SND.on) sfx('select'); renderHUD(); renderJournal(); }, machToggle: d => { S.mon[d.id] = !S.mon[d.id]; toast(`${d.id === 'seedmaker' ? 'Seed Maker' : MACH[d.id].name} switched ${S.mon[d.id] ? 'on' : 'off'}.`); after(); },
   labOpen: () => { $('#market').hidden = true; openLab(); },
   openCrate: d => openCrate(d.id), pickBox: d => pickBox(+d.i), crateResume: () => showCrate(),
   crateDone: () => { S.crate = null; $('#crate').hidden = true; after(); }, crateLater: () => { $('#crate').hidden = true; },
@@ -5207,7 +5859,7 @@ const ACTS = {
   crew: () => { $('#market').hidden = true; openCrew(); },
   hire: d => hireWorker(crewRole, +d.i), reroll: () => { S.cand[crewRole] = null; renderCrew(); save(); },
   wkUp: d => trainWorker(+d.id), wkFire: d => { fireArmed = +d.id; renderCrew(); }, wkFireNo: () => { fireArmed = null; renderCrew(); },
-  wkFireYes: d => { const id = +d.id, w = S.workers.find(x => x.id === id); S.workers = S.workers.filter(x => x.id !== id); WR.delete(id); fireArmed = null; if (w) toast(`${esc(w.name)} packed up and left.`); after(); },
+  wkFireYes: d => { const id = +d.id, w = S.workers.find(x => x.id === id); S.workers = S.workers.filter(x => x.id !== id); WR.delete(id); for (const k in MR) { if (MR[k].driver === id) MR[k].driver = null; if (MR[k].claim === id) MR[k].claim = null; } fireArmed = null; if (w) toast(`${esc(w.name)} packed up and left.`); after(); },
   slotSave: d => { const n = +d.n; if (slotMeta(n)) { slotArm = {kind: 'save', n}; rerenderSaves(); } else saveSlot(n); },
   slotLoad: d => { slotArm = {kind: 'load', n: +d.n}; rerenderSaves(); },
   slotYes: () => { const a = slotArm; slotArm = null; if (!a) return; if (a.kind === 'save') saveSlot(a.n); else if (a.kind === 'load') loadSlot(a.n); },
@@ -5264,6 +5916,7 @@ $('#q-head').onclick = () => { S.qmin = !S.qmin; renderHUD(); save(); };
 for (const k of SLOT_KEYS) $('#slot-' + k).onclick = () => selectTool(k);
 $('#crew-close').onclick = closeCrew;
 $('#off-close').onclick = closeOffice;
+$('#slot-pat').onclick = () => cyclePat();
 $('#office').addEventListener('click', e => { if (e.target.id === 'office') closeOffice(); });
 $('#btn-ranch').onclick = () => { if (scene === 'ranch') leaveRanch(); else enterRanch(); };
 $('#btn-office').onclick = () => openOffice();
@@ -5284,12 +5937,14 @@ document.addEventListener('keydown', e => {
     if (!$('#menu').hidden) { if (S.started && menuView !== 'main') { menuView = 'main'; renderMenu(); } return; }
     if (!$('#lvup').hidden) { $('#lvup-ok').click(); return; }
     if (!$('#crate').hidden) { $('#crate').hidden = true; if (S.crate && S.crate.done) { S.crate = null; after(); } return; }
+    if (!$('#tutor').hidden) { closeTutor(); return; }
     if (!$('#lab').hidden) { closeLab(); return; }
     if (!$('#office').hidden) { closeOffice(); return; }
     if (!$('#market').hidden) closeMarket(); else if (!$('#journal').hidden) $('#journal').hidden = true; else if (!$('#crew').hidden) closeCrew(); closePop(); return;
   }
   if (typing || !$('#menu').hidden || !$('#lvup').hidden || !$('#crate').hidden) return;
   if (/^[1-6]$/.test(e.key) && $('#market').hidden && $('#journal').hidden && $('#crew').hidden && $('#lab').hidden && $('#office').hidden && !sleeping) { if (scene === 'ranch') { const k = RT_ORDER[+e.key - 1]; if (k) selectRTool(k); return; } selectTool(SLOT_KEYS[+e.key - 1]); return; }
+  if ((e.key === 'r' || e.key === 'R') && $('#market').hidden && $('#journal').hidden && !sleeping && scene === 'farm') { cyclePat(); return; }
   if ((e.key === 'm' || e.key === 'M') && $('#market').hidden && $('#journal').hidden && S.sign && !sleeping) openMarket();
   if ((e.key === 'j' || e.key === 'J') && $('#market').hidden && $('#journal').hidden && !sleeping) openJournal();
 });
@@ -5297,20 +5952,22 @@ document.addEventListener('keydown', e => {
 /* ------------------------------------------------------------------ LOOP */
 function checkCell() {}
 function after() {
-  checkQuests(); renderHUD(); renderMarket(); renderJournal(); renderCrew(); renderLab(); renderOffice();
+  checkQuests(); renderHUD(); renderMarket(); renderJournal(); renderCrew(); renderLab(); renderOffice(); renderTodo(); checkGuides();
   if (popFor === 'cell' && !S.cleared[S.plots.length]) closePop();
   if (popFor) showPop(popFor); save();
 }
-let last = performance.now();
+let last = performance.now(), lastClk = -1, lastTodo = 0;
 function frame(ts) {
   const dt = Math.min(.05, (ts - last) / 1000); last = ts; tNow += dt;
   if (bundleOpenT > 0) bundleOpenT = Math.max(0, bundleOpenT - dt * 1.2);
   const tg = camTarget();
   if (!cam.init) { Object.assign(cam, tg); cam.init = true; }
   else { const k = 1 - Math.pow(.06, dt); cam.z = lerp(cam.z, tg.z, k); cam.ox = lerp(cam.ox, tg.ox, k); cam.oy = lerp(cam.oy, tg.oy, k); }
+  stepClock(dt); { const ck = Math.floor((S.time ?? DAWN) / 5); if (ck !== lastClk) { lastClk = ck; $('#day-txt').textContent = 'Day ' + S.day + ' · ' + clockTxt(S.time ?? DAWN); setSrc($('#wx'), iurl(isNight() ? 'moon' : S.weather === 'rain' ? 'rain' : 'sun')); } }
   stepHold(dt); stepQueue(dt); computeYV(); stepWorkers(dt); stepMachines(dt); stepSeedMaker(dt);
   if (workerDirty && tNow - lastWorkerAfter > .3) { workerDirty = false; lastWorkerAfter = tNow; after(); }
   drawWorld(tNow, dt);
+  if (tNow - lastTodo > 1.5) { lastTodo = tNow; renderTodo(); if (S.q > TUT_END) ensureOrders(); }
   updateCursor();
   updatePurse();
   if (popFor) placePop();
@@ -5336,7 +5993,7 @@ function start(data) {
   requestAnimationFrame(ts => { last = ts; frame(ts); });
 }
 try { window.claude?.hot?.snapshot?.(() => ({save: JSON.stringify(S), inGame: $('#menu').hidden && S.started})); } catch (e) {}
-window.__farm = {get S() { return S; }, get scene() { return scene; }, enterRanch, leaveRanch, buyAnimal, buyBaby, feedPen, brushPen, collectPen, ranchNight, buyPen, buyRMach, buyRTool, buyFeed, openOffice, closeOffice, penRect, penIntent, enterFair, ensureFair, buyField2, EVENTS, gainXp, split, priceHTML, priceText, sellPrice, keyName, prodIcon, icon, renderJournal, openJournal, ANIMALS, RTOOLS, selectRTool, doSpliceAnimal, renderOffice, maxCells, grassColor, camTarget, bounds, get cam() { return cam; }, openLab, openCrate, pickBox, doSplice, get splice() { return splice; }, makeMutSeeds, buyMach, get MR() { return MR; }, stepMachines, reap, mutFx, MUTAGEN, firstUndone, load, renderLab, selectTool, hireWorker, trainWorker, openCrew, stepWorkers, get WR() { return WR; }, saveSlot, loadSlot, makeCode, readCode, applyLoaded, showLevelUp, get lvQueue() { return lvQueue; }, hitTest, intentFor, renderCrew, cands, toScreen, plotRect, OBJ, YARD, clearCell, clearYard, startQueue, stepHold, get ACTS() { return ACTS; }, showMenu, unlocksAt, guided, get YV() { return YV; }, get queue() { return queue; }, plotAction, objectAction, openMarket, closeMarket, buySeed, buyTool, buyPlot, sell, sellAll, sleep, applyNight, restoreFarm, buildUp, upgradeSoil, after, waterAll, harvestAll, plantAll, flv, QUESTS};
+window.__farm = {get S() { return S; }, xpFor, CROPS, BUILD, FARM, MACH, sellCap, isNight, growAll, patPlots, patTargets, cyclePat, deliverOrder, genOrders, get MRr() { return MR; }, dawnTick, houseFor, LV, get scene() { return scene; }, enterRanch, leaveRanch, buyAnimal, buyBaby, feedPen, brushPen, collectPen, ranchNight, buyPen, buyRMach, buyRTool, buyFeed, openOffice, closeOffice, penRect, penIntent, enterFair, ensureFair, buyField2, EVENTS, gainXp, split, priceHTML, priceText, sellPrice, keyName, prodIcon, icon, renderJournal, openJournal, ANIMALS, RTOOLS, selectRTool, doSpliceAnimal, renderOffice, maxCells, grassColor, camTarget, bounds, get cam() { return cam; }, openLab, openCrate, pickBox, doSplice, get splice() { return splice; }, makeMutSeeds, buyMach, get MR() { return MR; }, stepMachines, reap, mutFx, MUTAGEN, firstUndone, load, renderLab, selectTool, hireWorker, trainWorker, openCrew, stepWorkers, get WR() { return WR; }, saveSlot, loadSlot, makeCode, readCode, applyLoaded, showLevelUp, get lvQueue() { return lvQueue; }, hitTest, intentFor, renderCrew, cands, toScreen, plotRect, OBJ, YARD, clearCell, clearYard, startQueue, stepHold, get ACTS() { return ACTS; }, showMenu, unlocksAt, guided, get YV() { return YV; }, get queue() { return queue; }, plotAction, objectAction, openMarket, closeMarket, buySeed, buyTool, buyPlot, sell, sellAll, sleep, applyNight, restoreFarm, buildUp, upgradeSoil, after, waterAll, harvestAll, plantAll, flv, QUESTS};
 if (window.claude?.hot?.ready) window.claude.hot.ready(start); else start(window.claude?.hot?.data ?? {});
 })();
 </script>
