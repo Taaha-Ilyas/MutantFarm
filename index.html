@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mutant Farm Update 9</title>
+<title>Mutant Farm Update 10</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Signika:wght@400;600;700&display=swap">
@@ -34,6 +34,22 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .coin.c{--cc:var(--copper)} .coin.s{--cc:var(--silver)} .coin.g{--cc:var(--gold)}
 .coin::after{content:'$';position:absolute;inset:0;display:grid;place-items:center;font:800 .74em/1 system-ui,-apple-system,'Segoe UI',sans-serif;color:rgba(70,40,5,.62);text-shadow:0 1px 0 rgba(255,255,255,.35)}
 .coin.s::after{color:rgba(40,50,60,.6)} .coin.c::after{color:rgba(70,30,10,.62)} .coin.p::after{color:rgba(8,40,110,.8);text-shadow:0 0 3px rgba(255,255,255,.9);z-index:1}
+#achpop{position:fixed;z-index:66;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 116px);transform:translate(-50%,40px);opacity:0;transition:transform .45s cubic-bezier(.2,1.3,.4,1),opacity .35s;pointer-events:none;width:min(380px,calc(100vw - 24px))}
+#achpop.go{transform:translate(-50%,0);opacity:1}
+.ach-card{display:flex;gap:12px;align-items:center;padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,#1e2a3a,#2a3a52);border:2px solid #f2c14e;box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 18px rgba(242,193,78,.35);color:#eef3ff}
+.ach-card img{width:52px;height:52px;flex:none;border-radius:10px;background:radial-gradient(circle,#3a4a68,#1a2232);padding:4px;box-shadow:inset 0 0 0 1.5px rgba(242,193,78,.6)}
+.ach-card small{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#f2c14e;font-weight:700}
+.ach-card b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.15}
+.ach-card span{display:block;font-size:13px;color:#c8d4ea}
+.achs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:10px}
+.ach{display:flex;gap:10px;align-items:flex-start;padding:9px;border-radius:12px;background:rgba(0,0,0,.22);border:2px solid #22150d;opacity:.62}
+.ach.on{opacity:1;background:linear-gradient(135deg,#4a3a22,#3a2a18);border-color:#c9a24a}
+.ach img{width:40px;height:40px;flex:none;filter:grayscale(1)}
+.ach.on img{filter:none}
+.ach b{display:block;font-family:var(--f-display);font-weight:400;font-size:16px;color:var(--ink)}
+.ach span{display:block;font-size:12.5px;color:var(--ink-dim);line-height:1.3}
+.ach small{display:block;font-size:11.5px;color:var(--ink-faint);margin-top:2px}
+.ach .tb{height:6px;margin-top:4px}
 #zoomctl{position:fixed;z-index:11;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px}
 #zoomctl button{width:42px;height:42px;padding:0;border-radius:12px;color:var(--ink);font-family:var(--f-display);font-size:26px;line-height:1;display:grid;place-items:center;cursor:pointer}
 #zoomctl button img{width:30px;height:30px}
@@ -580,6 +596,7 @@ input[type=range]{accent-color:#8fca4e}
 </div>
 
 <div id="zoomctl"><button class="plaque" id="zin" aria-label="Zoom in" title="Zoom in (+)">+</button><button class="plaque" id="zout" aria-label="Zoom out" title="Zoom out (−)">−</button><button class="plaque" id="btn-decor" aria-label="Decor" title="Decor: move buildings and change styles" hidden><img id="ico-decor" alt=""></button><button class="plaque" id="btn-drone" aria-label="Drone view" title="Drone view" hidden><img id="ico-drone" alt=""></button></div>
+<div id="achpop" hidden></div>
 <div id="toasts"></div>
 <div id="tip" hidden></div>
 <div id="pop" class="plaque" hidden></div>
@@ -645,13 +662,13 @@ input[type=range]{accent-color:#8fca4e}
 
 <div id="night" hidden><div class="stars" id="stars"></div><div class="orb"></div><div class="zz">z z z</div><h2 id="night-day">Day 1</h2><div class="sub" id="night-sub"></div></div>
 <div id="banner" class="plaque" hidden></div>
-<div id="menu" hidden><div class="menu-card"><div class="logo"><img id="logo-img" alt=""><h1>Mutant <span>Farm</span></h1></div><div class="menu-ver" id="menu-ver">Update 9</div><div id="menu-body" style="width:100%"></div></div></div>
+<div id="menu" hidden><div class="menu-card"><div class="logo"><img id="logo-img" alt=""><h1>Mutant <span>Farm</span></h1></div><div class="menu-ver" id="menu-ver">Update 10</div><div id="menu-body" style="width:100%"></div></div></div>
 <div id="fly"></div>
 
 <script>
 (() => {
 'use strict';
-const UPDATE = 9;
+const UPDATE = 10;
 const SAVE_KEY = 'mutant-farm-save';
 const OLD_KEY = 'hollowmere-farm-save-v1';
 const TAU = Math.PI * 2;
@@ -1025,6 +1042,14 @@ const PERKS = [
   {lvl:74, name:'Living Legend', act:'all', m:.85, desc:'Every job is another 15% faster'},
 ];
 const PATCH_NOTES = [
+  {v:10, name:'Orchards, Achievements & Merging', items:[
+    'Achievements! 66 of them, with a pop-up when you earn one and a new Achievements tab in the Journal. Unlock every one for true 100% completion.',
+    'The Orchard: a fenced building you can walk into. Plant 12 kinds of fruit tree that fruit again and again, make them bigger, and buy mulch, ladders, bees and fruit pickers.',
+    '21 new crops. Some need extra work halfway through growing (staking, weeding or hand pollinating), and the Giant Watermelon, Colossal Pumpkin and Titan Squash take up a 2×2 square of plots for a huge harvest.',
+    'Building merges: once the Well and the Nutrient Mixer reach level 5, merge them into the Nutrient Spring, which has its own levels and waters and feeds plots by itself every hour.',
+    'Things inside buildings now unlock with that building’s level instead of your farmer level: tools with the Toolshed, machines with the Garage, workers with the Worker Hut, animals and ranch gear with the Barn, soil with the Plot Workshop. The Toolshed and Garage have more levels.',
+    'Every building now shows depth on the same side, including the farmhouse. The merchant’s wagon, sprinklers, Roadside Stand, compost bins and well have been rebuilt in the same 3D style.',
+    'The merchant’s wagon only shows a number when you have everything for at least one of its orders.']},
   {v:9, name:'Mutation Tiers & Nutrient Water', items:[
     'Every building has been rebuilt from scratch out of the farmhouse’s own materials: planks, siding, stone, slate, steel, crystal and marble. Each farmhouse level gives the whole farm a new look, now with side walls and depth like the village buildings in Fishing Rise.',
     'Three new mutation farmhouse tiers before the heavenly ones: the Mutant Outpost (glowing vines), the Toxic Citadel (steel and dripping acid) and the Crystal Hive (purple crystals with lightning). The Mutant Kingdom got a darker, glowing redesign too.',
@@ -1327,7 +1352,7 @@ function drawNewProduce(c, id, r) {
     case 'auroramelon': { glowDisc(c, 0, 0, r * 1.15, '#8affd0', .45); c.beginPath(); c.ellipse(0, r * .05, r * .82, r * .66, 0, 0, TAU); fillS(c, '#2a4a6a', r * .06); c.save(); c.beginPath(); c.ellipse(0, r * .05, r * .8, r * .64, 0, 0, TAU); c.clip(); ['#8affd0', '#78a8ff', '#ff8ad8', '#b6f04a'].forEach((col, k) => { c.beginPath(); c.moveTo(-r, -r * .5 + k * r * .3); c.bezierCurveTo(-r * .3, -r * .8 + k * r * .3, r * .3, -r * .1 + k * r * .3, r, -r * .4 + k * r * .3); c.strokeStyle = col; c.lineWidth = r * .12; c.globalAlpha = .7; c.stroke(); }); c.restore(); return true; }
     case 'divinefig': { glowDisc(c, 0, 0, r * 1.2, '#ffd75a', .5); c.beginPath(); c.moveTo(0, -r * .75); c.bezierCurveTo(r * .2, -r * .5, r * .75, -r * .1, r * .55, r * .45); c.bezierCurveTo(r * .4, r * .9, -r * .4, r * .9, -r * .55, r * .45); c.bezierCurveTo(-r * .75, -r * .1, -r * .2, -r * .5, 0, -r * .75); fillS(c, '#c86ab8', r * .06); ell(c, -r * .2, 0, r * .12, r * .25, .2); c.fillStyle = 'rgba(255,255,255,.45)'; c.fill(); line(c, 0, -r * .75, r * .05, -r * .95, '#8a6a3a', r * .07); sparkle(c, r * .45, -r * .45, r * .22); sparkle(c, -r * .5, r * .3, r * .15); return true; }
   }
-  return false;
+  return drawProduce10(c, id, r);
 }
 
 /* ---------- Update 9: mutation farmhouse tiers, faster early crops, Nutrient Mixer */
@@ -1353,6 +1378,70 @@ BUILD.mixer = {name: 'Nutrient Mixer', max: 10, cost: [60000, 250000, 800000, 25
   desc: 'Brews nutrient water. Turn it on in your hotbar and every plot you water gets fed: it grows faster and gives more. Tap it to buy upgrades.', eff: l => `Brews ${NUT_BASE + 4 * l} nutrient water a day · upgrades up to level ${Math.min(10, l + 1)}`};
 BUILD_ORDER.push('mixer');
 const NUT_BASE = 6;
+
+/* ---------- Update 10: things inside buildings unlock with the building's level */
+const bReq = (b, lv, min = 0) => { let n = 0; for (const x of BUILD[b].lvl) if (x <= lv) n++; return Math.max(min, n); };
+{ // more Toolshed and Garage levels so the late tools and machines still come late
+  const S2 = BUILD.shed; S2.cost.push(1.2e8, 9e8); S2.lvl.push(80, 88); S2.max = S2.cost.length;
+  const G = BUILD.garage; G.cost.push(3e8, 1.2e9, 4e9, 1.2e10); G.lvl.push(76, 84, 90, 95); G.max = G.cost.length;
+}
+for (const k in TOOLS) TOOLS[k].tiers.forEach(t => { if (!t) return; t.shed = Math.max(t.shed || 0, bReq('shed', t.lvl)); t.olvl = t.lvl; t.lvl = 1; });
+for (const k in MACH) { const M = MACH[k]; M.gar = M.lvls.map((lv, j) => Math.max(j ? 1 : M.garage, bReq('garage', lv, 1))); M.olvls = M.lvls.slice(); M.lvls = M.lvls.map(() => 1); M.lvl = 1; }
+for (const k in ROLES) { const R = ROLES[k]; R.blv = bReq(R.ranch ? 'barn' : 'hut', R.lvl, 1); R.olvl = R.lvl; R.lvl = 1; }
+ANIMALS.forEach(A => { A.blv = bReq('barn', A.lvl, 1); A.olvl = A.lvl; A.lvl = 1; });
+for (const k in RTOOLS) RTOOLS[k].tiers.forEach(t => { if (!t) return; t.barn = Math.max(t.barn || 0, bReq('barn', t.lvl, 1)); t.lvl = 1; });
+const rmBarnK = (k, L) => Math.max(rmBarn(L), bReq('barn', rmLvl(k, L), 1));
+SOIL.forEach((s2, i) => { s2.olvl = s2.lvl; if (i) s2.lvl = 1; });
+// what each building level unlocks inside it
+function bUnlocks(b, lv) {
+  const o = [];
+  if (b === 'shed') for (const k of TOOL_ORDER) TOOLS[k].tiers.forEach(t => { if (t && t.shed === lv) o.push(t.name); });
+  if (b === 'garage') for (const k of MACH_ORDER) MACH[k].gar.forEach((g, j) => { if (g === lv && (j || lv > 0)) o.push(j ? `${MACH[k].name} level ${j + 1}` : MACH[k].name); });
+  if (b === 'hut') for (const k of ROLE_ORDER) if (ROLES[k].blv === lv && !ROLES[k].ranch) o.push(ROLES[k].name + 's');
+  if (b === 'barn') { ANIMALS.forEach(A => { if (A.blv === lv) o.push(A.name + 's'); }); for (const k of RROLE_ORDER) if (ROLES[k].blv === lv) o.push(ROLES[k].name + 's'); for (const k of RT_ORDER) RTOOLS[k].tiers.forEach(t => { if (t && t.barn === lv && t.lvl) o.push(t.name); }); }
+  if (b === 'workshop') { SOIL.forEach((s2, i) => { if (i && i === lv) o.push(s2.name); }); for (const k in PUPS) if (PU_WS[k] === lv) o.push(PUPS[k].name); }
+  if (b === 'mixer') for (const k in NUT_UP) if (NUT_UP[k].req === lv) o.push(NUT_UP[k].name);
+  if (b === 'orchard') FRUITS.forEach(f => { if (f.orch === lv) o.push(f.name + ' trees'); });
+  if (b === 'lab') CRATES.forEach(C => { if (C.lab === lv) o.push(C.name); });
+  return o;
+}
+/* ---------- Update 10: new crops, some needing extra work or a 2×2 space */
+const NEW_CROPS10 = [
+  ['garlic', 'Garlic', 0, 3, 'root', '#7aa84a', '#f2ead8'], ['spinach', 'Spinach', 0, 4, 'leafy', '#3f8f3a', '#4f9f3a'], ['beans', 'Climbing Beans', 0, 7, 'tall', '#5aa83a', '#7cc04a', 'stake'],
+  ['beetroot', 'Beetroot', 1, 7, 'root', '#5a8a3a', '#9a1f4a'], ['kale', 'Kale', 1, 10, 'leafy', '#2f6f3a', '#3f7f4a'], ['bigmelon', 'Giant Watermelon', 1, 12, 'vine', '#4f9238', '#3f8f3a', null, true],
+  ['rice', 'Paddy Rice', 2, 14, 'tall', '#8ab84a', '#e8d9a0'], ['pineapple', 'Pineapple', 2, 16, 'leafy', '#5a8a3a', '#f2b632', 'weed'], ['sugarcane', 'Sugar Cane', 2, 19, 'tall', '#6aa83a', '#c8d88a'],
+  ['grapes', 'Grapevine', 3, 22, 'vine', '#4f8f36', '#7a3a9a', 'stake'], ['tea', 'Tea Bush', 3, 24, 'bush', '#3f7f3a', '#9ad85a'], ['vanilla', 'Vanilla Orchid', 3, 26, 'flower', '#5a9a4a', '#f4ecc8', 'pollinate'],
+  ['coffee', 'Coffee', 4, 31, 'bush', '#3a7a3a', '#8a2a1a'], ['colossus', 'Colossal Pumpkin', 4, 34, 'vine', '#5c9a36', '#ff8a1a', null, true],
+  ['ghostpepper', 'Ghost Pepper', 5, 41, 'bush', '#3a6a3a', '#f0f0ff'], ['cocoa', 'Cocoa', 5, 46, 'bush', '#4a7a3a', '#a85a2a'],
+  ['moonorchid', 'Moon Orchid', 6, 53, 'flower', '#3a4a7a', '#c8d8ff', 'pollinate'], ['thundermelon', 'Thunder Melon', 6, 57, 'vine', '#3a4a6a', '#ffe04a'],
+  ['titansquash', 'Titan Squash', 7, 71, 'vine', '#c8b040', '#ffd75a', null, true], ['seraphlily', 'Seraph Lily', 7, 74, 'flower', '#c8d8a0', '#fffaf0'],
+  ['eternityrose', 'Eternity Rose', 8, 90, 'flower', '#c8a0b0', '#ff5a9a'],
+];
+const WORK_INFO = {stake: {tool: 'gloves', verb: 'tie it to a stake', name: 'staking', ic: 'tool:gloves:2'}, pollinate: {tool: 'gloves', verb: 'pollinate it', name: 'hand pollinating', ic: 'tool:gloves:3'}, weed: {tool: 'hoe', verb: 'weed round it', name: 'weeding', ic: 'tool:hoe:2'}};
+for (const [id, name, soil, lvl, shape, leaf, fruit, work, big] of NEW_CROPS10) {
+  const ref = CROPS.slice().sort((a, b) => Math.abs(a.lvl - lvl) - Math.abs(b.lvl - lvl))[0], f = work ? 1.6 : big ? 1.25 : 1;
+  const c2 = {id, name, soil, lvl, shape, leaf, fruit, seed: niceC(ref.seed * (big ? 3 : 1)), sell: niceC(ref.sell * f), yld: big ? ref.yld * 4 + 3 : ref.yld, xp: Math.round(ref.xp * (big ? 3 : f)), work: work || null, big: !!big};
+  c2.need = Math.max(.1, Math.round(FARM[houseFor(lvl)].grow * SOIL[soil].mult * 2 * GROW_HOURS(lvl) / 24 * (big ? 1.5 : 1) * 100) / 100);
+  const at = CROPS.findIndex(x => x.soil > soil || (x.soil === soil && x.lvl > lvl)); if (at < 0) CROPS.push(c2); else CROPS.splice(at, 0, c2); CROP[id] = c2;
+}
+/* ---------- Update 10: the orchard */
+BUILD.orchard = {name: 'Orchard', max: 10, cost: [15000, 60000, 250000, 1000000, 4000000, 16000000, 60000000, 250000000, 1000000000, 5000000000], lvl: [18, 24, 30, 36, 44, 52, 60, 70, 80, 92],
+  desc: 'A fenced orchard. Tap it to walk in and plant fruit trees that fruit again and again, day and night.', eff: l => `${ORCH_SLOTS[l]} tree spots · ${FRUITS.filter(f => f.orch <= l).length} kinds of tree`};
+BUILD_ORDER.push('orchard');
+const ORCH_SLOTS = [0, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+const FRUITS = [
+  ['apple', 'Apple', 1, .5, .3, 4, '#e2412f'], ['pear', 'Pear', 1, .6, .35, 4, '#c8d84a'], ['cherry', 'Cherry', 2, .6, .3, 8, '#b8102a'], ['plum', 'Plum', 3, .8, .4, 5, '#6a2a8a'],
+  ['peach', 'Peach', 4, 1, .4, 5, '#ffa070'], ['orange', 'Orange', 5, 1, .45, 6, '#f7901a'], ['lemon', 'Lemon', 5, 1, .4, 7, '#f7e04a'], ['mango', 'Mango', 6, 1.2, .5, 5, '#f2b632'],
+  ['pomegranate', 'Pomegranate', 7, 1.4, .5, 5, '#c8203a'], ['glowapple', 'Glow Apple', 8, 1.5, .55, 6, '#b6f04a'], ['crystalpear', 'Crystal Pear', 9, 1.7, .6, 6, '#c8a8ff'], ['sunpeach', 'Sun Peach', 10, 2, .6, 6, '#ffd75a'],
+].map(([id, name, orch, grow, cycle, yld, col]) => { const lv = BUILD.orchard.lvl[orch - 1], ref = Math.max(...CROPS.filter(c2 => c2.lvl <= lv).map(c2 => c2.sell)); const sell = niceC(ref * .55); return {id, name, orch, grow, cycle, yld, col, sell, cost: niceC(sell * 35), xp: Math.max(2, Math.round(Math.sqrt(sell) * .6))}; });
+const FRUIT = Object.fromEntries(FRUITS.map(f => [f.id, f]));
+/* ---------- Update 10: building merges */
+BUILD.spring = {name: 'Nutrient Spring', max: 10, cost: [0, 30000000, 80000000, 200000000, 500000000, 1200000000, 3000000000, 7000000000, 15000000000, 30000000000], lvl: [44, 50, 56, 62, 68, 74, 80, 86, 92, 98],
+  desc: 'The Well and the Nutrient Mixer, merged into one. Every hour of daylight it waters and feeds some of your plots by itself.', eff: l => `Waters and feeds ${sprPlots(l)} plots an hour · counts as Well level ${Math.min(BUILD.well.max, 4 + l)} and Mixer level ${Math.min(10, 4 + l)}`};
+BUILD_ORDER.push('spring');
+const sprPlots = l => 2 + 2 * l;
+const MERGES = [{id: 'spring', parts: ['well', 'mixer'], at: 5, cost: 10000000}];
+const mergedInto = id => MERGES.find(m => m.parts.includes(id) && S.b[m.id] > 0);
 
 // world layout (1 unit = 1px at zoom 1)
 const PLOT = 64, CELL = 72;
@@ -1387,6 +1476,8 @@ const OBJ = {
   dronehub:  {x:0, y:0, w:96, h:70},
   dock:      {x:0, y:0, w:150, h:96},
   mixer:     {x:0, y:0, w:84, h:96},
+  orchard:   {x:0, y:0, w:150, h:110},
+  spring:    {x:0, y:0, w:110, h:110},
 };
 const ROAD = [[-146, 92], [-146, 196], [-28, 196], [-28, 1400]];
 const TREES0 = [[-330,-150,1,5],[-310,30,2,6],[-340,230,1,5],[-330,470,3,6],[110,-130,1,4],[250,-150,2,5],[470,-110,1,6],[540,90,2,5],[530,290,3,6],[540,520,2,6],[40,540,1,5],[230,560,3,6],[-60,610,2,5],[400,570,4,7],[-470,-20,4,7],[-480,330,3,7],[660,180,4,7],[630,-60,5,7],[-80,-180,2,5],[180,-230,3,6],[-200,-210,4,6],[700,420,5,7],[-500,560,5,7]];
@@ -1397,19 +1488,19 @@ const FIXED = new Set(['house', 'bundle', 'sign', 'barrel', 'nameboard', 'eastsi
 function defPos(id) {
   const f2 = nFields() >= 2;
   const P = {
-    bundle: [-30, 54], sign: [-66, 178], house: [-146, 90], barrel: [-34, -2], nameboard: [-197, 148], wagon: [40, -40],
+    bundle: [-30, 54], sign: [-66, 178], house: [-146, 90], barrel: [-27, -2], nameboard: [-197, 148], wagon: [40, -40],
     // left of the fields: two columns, clear of the road
     well: [-84, 290], stand: [-126, 450], workshop: [-137, 640], shed: [-330, 280], compost: [-310, 420], greenhouse: [-362, 640],
     // above the fields
     barn: [-150, -110], lab: f2 ? [220, -30] : [380, -30], hut: f2 ? [466, 130] : [170, -30], garage: f2 ? [466, 282] : [610, -30], windmill: f2 ? [700, -30] : [800, -30],
     // right of the first field, or between and beside the fields once there are two
     scarecrow: f2 ? [990, 96] : [420, 96], beehive: f2 ? [1080, 96] : [510, 96], irrigation: f2 ? [990, 250] : [420, 250], seedmaker: f2 ? [466, 424] : [514, 250],
-    dronehub: f2 ? [466, 562] : [960, -30], dock: f2 ? [1040, 700] : [470, 530], mixer: [-330, 140],
+    dronehub: f2 ? [466, 562] : [960, -30], dock: f2 ? [1040, 700] : [470, 530], mixer: [-330, 140], spring: [-112, 300], orchard: f2 ? [930, -30] : [-330, 860],
   };
   if (id === 'eastsign') { const f = FIELD_POS[Math.min(3, nFields())]; return [f[0] + 176, f[1] + 210]; }
   return P[id] || [0, -200];
 }
-const GSCALE = {compost: 2, well: 1.2, barn: 1.3, greenhouse: 1.35, lab: 1.35, hut: 1.4, garage: 1.35, house: 1, dock: 1.3};
+const GSCALE = {spring: 1.3, orchard: 1.3, compost: 2, well: 1.2, barn: 1.3, greenhouse: 1.35, lab: 1.35, hut: 1.4, garage: 1.35, house: 1, dock: 1.3};
 function gs(id) { if (!BUILD[id] || !S.b[id]) return 1; return Math.min(GSCALE[id] || 1.55, 1 + (id === 'compost' ? .1 : .06) * (S.b[id] - 1)); }
 const objPos = id => (drag && drag.id === id ? [drag.cx, drag.by] : null) || (S.pos && S.pos[id]) || defPos(id);
 function layoutObjs() {
@@ -1443,13 +1534,13 @@ function drawScaffold(c, o, k, t) {
 /* ------------------------------------------------------------------ STATE */
 function fresh() {
   return {
-    v: 9, time: 360, tut: {}, todo: false, pat: {}, ltools: {charm: 0, rod: 0, drill: 0}, prestige: {pp: 0, count: 0, nodes: {}, best: 0, total: 0}, beaten: false, soldToday: 0, orders: [], ordersDay: 0, keep: {}, ranch: {pens: [], feed: 0}, rtools: {scoop: 0, brush: 0, pail: 0}, rtool: 'scoop', rmach: {feeder: 0, mill: 0, groomer: 0, belt: 0}, rrecipes: {}, rbaby: {}, opt: {grass: 'auto', holdNeeds: true, sort: 'rec', todo: true}, event: null, nextEvent: 0, fair: null, fairLog: [], recog: 0, field2: false, fields: 1, nut: {charges: 0, on: false, up: {}}, pos: {}, cos: {own: {}, sel: {}}, pu: {}, pv: {}, gh: {beds: [], lamps: 0, mist: 0, conv: 0}, dsell: {}, horns: {water: false, plant: false, harvest: false}, qdone: {}, qmax: 0, mach: {tractor:0, harvester:0, truck:0}, mon: {tractor:true, harvester:true, truck:true, seedmaker:true, drones:true}, mstat: {tractor:0, harvester:0, truck:0},
+    v: 10, time: 360, tut: {}, todo: false, pat: {}, ltools: {charm: 0, rod: 0, drill: 0}, prestige: {pp: 0, count: 0, nodes: {}, best: 0, total: 0}, beaten: false, soldToday: 0, orders: [], ordersDay: 0, keep: {}, ranch: {pens: [], feed: 0}, rtools: {scoop: 0, brush: 0, pail: 0}, rtool: 'scoop', rmach: {feeder: 0, mill: 0, groomer: 0, belt: 0}, rrecipes: {}, rbaby: {}, opt: {grass: 'auto', holdNeeds: true, sort: 'rec', todo: true}, event: null, nextEvent: 0, fair: null, fairLog: [], recog: 0, field2: false, fields: 1, orch: {trees: []}, ach: {}, nut: {charges: 0, on: false, up: {}}, pos: {}, cos: {own: {}, sel: {}}, pu: {}, pv: {}, gh: {beds: [], lamps: 0, mist: 0, conv: 0}, dsell: {}, horns: {water: false, plant: false, harvest: false}, qdone: {}, qmax: 0, mach: {tractor:0, harvester:0, truck:0}, mon: {tractor:true, harvester:true, truck:true, seedmaker:true, drones:true}, mstat: {tractor:0, harvester:0, truck:0},
     recipes: {}, mseeds: {}, mutagens: {}, mfound: {}, rid: 0, crate: null, tool: 'gloves', workers: [], cand: {}, wid: 0, name: 'My Farm', started: false, day: 1, money: 0, xp: 0, farm: 1,
     bundle: false, sign: false, house: false, home: false,
     plots: [{soil:0, st:'wild', crop:null, prog:0, water:false}],
     seeds: {}, produce: {}, sel: 'carrot',
     tools: {hoe:0, can:0, sickle:0, gloves:0, axe:0, satchel:0}, water: 0,
-    b: {well:0, compost:0, scarecrow:0, shed:0, hut:0, seedmaker:0, garage:0, lab:0, stand:0, beehive:0, irrigation:0, greenhouse:0, windmill:0, barn:0, workshop:0, dronehub:0, dock:0, mixer:0},
+    b: {well:0, compost:0, scarecrow:0, shed:0, hut:0, seedmaker:0, garage:0, lab:0, stand:0, beehive:0, irrigation:0, greenhouse:0, windmill:0, barn:0, workshop:0, dronehub:0, dock:0, mixer:0, orchard:0, spring:0},
     cleared: {}, yard: {}, cellShown: 0, guide: -1,
     q: 0, qb: {}, weather: 'sun', qmin: false,
     stats: {market:0, tilled:0, planted:0, watered:0, slept:0, harvested:0, sold:0, earned:0, cleared:0, yard:0, chopped:0, hired:0, workDone:0, crates:0, spliced:0, mutHarvest:0, rareFound:0, legFound:0, mutFound:0, hauled:0, trucked:0, seedsMade:0, animalsBought:0, products:0, fed:0, brushed:0, rspliced:0, ranchVisits:0, fairEntries:0, fairPodium:0, fairWins:0, fairs:0, events:0, ranimal:{}, crop:{}, bought:{}},
@@ -1466,7 +1557,7 @@ function merge(base, src) {
 function load(raw) {
   try {
     const d = raw ? JSON.parse(raw) : null;
-    if (d && d.v >= 1 && d.v <= 9) {
+    if (d && d.v >= 1 && d.v <= 10) {
       S = merge(fresh(), d);
       if (d.v === 1) {
         S.v = 2; S.name = 'Hollowmere'; S.started = true; for (let i = 0; i < S.plots.length; i++) S.cleared[i] = true;
@@ -1491,7 +1582,9 @@ function load(raw) {
         if (S.cos && S.cos.sel && OLD_THEME[S.cos.sel.theme]) S.cos.sel.theme = OLD_THEME[S.cos.sel.theme];
       }
       if (!S.nut || typeof S.nut !== 'object') S.nut = {charges: 0, on: false, up: {}}; if (!S.nut.up) S.nut.up = {};
-      S.v = 9; if (!SLOT_KEYS.includes(S.tool)) S.tool = 'gloves';
+      if (!S.orch || !Array.isArray(S.orch.trees)) S.orch = {trees: []}; if (!S.ach || typeof S.ach !== 'object') S.ach = {};
+      if (d.v < 10) { S.u10 = true; const n = checkAch(true); if (n) setTimeout(() => toast(`<b>Achievements are here!</b> You’ve already earned ${n} of ${ACH.length} from your progress so far. See them all in Journal → Achievements.`, 'good'), 2500); }
+      S.v = 10; if (!SLOT_KEYS.includes(S.tool)) S.tool = 'gloves';
       { const nq = firstUndone(); if (nq !== S.q) { S.q = nq; startQuest(); } }
       if (!S.mon) S.mon = {tractor: true, harvester: true, truck: true, seedmaker: true, drones: true};
       if (S.tools.can >= 5) S.water = Infinity; else if (typeof S.water !== 'number') S.water = 0;
@@ -1522,7 +1615,7 @@ const irrBonus = () => Math.max(0, S.b.irrigation - 5) * .1;
 const baseGrow = () => FARM[S.farm].grow * (1 + .05*S.b.compost + .15*S.b.greenhouse + (tierOf('hoe').grow || 0) + irrBonus());
 const waterFactor = () => tierOf('can').wf || 2;
 const yieldBonus = () => FARM[S.farm].yld + .06*S.b.scarecrow + .04*S.b.beehive + .10*S.b.windmill;
-const sellPrice = id => Math.round((evt('golden') ? 1.25 : 1) * (1 + pb('price')) * perkBonus('sell') * (isR(id) ? 1 + pb('animal') : 1) * (id === 'honey' ? 30 : isR(id) ? rBase(id) : isMut(id) ? (recOf(id) ? CROP[recOf(id).crop].sell * mutFx(id).value : 0) : CROP[id] ? CROP[id].sell : 0) * (1 + .06*S.b.stand));
+const sellPrice = id => Math.round((evt('golden') ? 1.25 : 1) * (1 + pb('price')) * perkBonus('sell') * (isR(id) ? 1 + pb('animal') : 1) * (id === 'honey' ? 30 : isR(id) ? rBase(id) : id.startsWith('f:') ? (FRUIT[id.slice(2)] || {sell: 0}).sell : isMut(id) ? (recOf(id) ? CROP[recOf(id).crop].sell * mutFx(id).value : 0) : CROP[id] ? CROP[id].sell : 0) * (1 + .06*S.b.stand));
 const maxPlots = () => FARM[S.farm].plots + 25 * (nFields() - 1);
 const plotCost = n => n <= 25 ? Math.round(12 * Math.pow(1.42, n - 2)) : Math.round(FIELD_BASE[Math.min(3, Math.floor((n - 1) / 25))] * Math.pow(1.15, (n - 1) % 25));
 const growingCount = () => S.plots.filter(p => p.crop).length;
@@ -1545,8 +1638,8 @@ const baseOf = k => isMut(k) ? (recOf(k) ? recOf(k).crop : null) : (CROP[k] ? k 
 const seedHave = k => isMut(k) ? (S.mseeds[k] || 0) : (S.seeds[k] || 0);
 function seedTake(k) { if (isMut(k)) S.mseeds[k] = Math.max(0, (S.mseeds[k] || 0) - 1); else S.seeds[k] = Math.max(0, (S.seeds[k] || 0) - 1); }
 const seedIcon = k => isMut(k) ? 'ms:' + k.slice(2) : 'seed:' + (CROP[k] ? k : 'carrot');
-const prodIcon = k => isR(k) ? (k.startsWith('rm:') ? 'rmp:' + k.slice(3) : 'rp:' + k.slice(2)) : isMut(k) ? 'mp:' + k.slice(2) : 'p:' + k;
-const keyName = k => isR(k) ? rKeyName(k) : isMut(k) ? (recOf(k) ? recOf(k).name : 'Mutant crop') : k === 'honey' ? 'Honey' : CROP[k] ? CROP[k].name : k;
+const prodIcon = k => typeof k === 'string' && k.startsWith('f:') ? 'fp:' + k.slice(2) : isR(k) ? (k.startsWith('rm:') ? 'rmp:' + k.slice(3) : 'rp:' + k.slice(2)) : isMut(k) ? 'mp:' + k.slice(2) : 'p:' + k;
+const keyName = k => typeof k === 'string' && k.startsWith('f:') ? (FRUIT[k.slice(2)] ? FRUIT[k.slice(2)].name : 'Fruit') : isR(k) ? rKeyName(k) : isMut(k) ? (recOf(k) ? recOf(k).name : 'Mutant crop') : k === 'honey' ? 'Honey' : CROP[k] ? CROP[k].name : k;
 const validKey = k => (isMut(k) ? recOf(k) : CROP[k]) ? k : 'carrot';
 const produceName = keyName;
 const FX_CACHE = {}, MCROP = {};
@@ -1569,7 +1662,7 @@ function cropFor(p) {
   return (MCROP[p.mut] = Object.assign({}, base, {leaf: mix(base.leaf, col, .45)}));
 }
 const needsWater = p => !!(p.crop && !p.water && p.prog < CROP[p.crop].need && !(p.mut && mutFx(p.mut).thirst >= 1));
-function setCrop(p, key) { p.nut = 0; p.fed = false; p.crop = baseOf(key); p.mut = isMut(key) ? key : null; p.prog = 0; p.water = false; p.wt = 0; p.v = Math.random(); { const r = Math.random(); p.var = r < .02 + pb('shiny') ? 'shiny' : r < .08 + pb('giant') + .01 * puL('nets') ? 'giant' : ''; } p.life = p.mut && mutFx(key).regrow ? mutFx(key).regrow + 1 : 0; }
+function setCrop(p, key) { p.nut = 0; p.fed = false; p.worked = false; p.crop = baseOf(key); p.mut = isMut(key) ? key : null; p.prog = 0; p.water = false; p.wt = 0; p.v = Math.random(); { const r = Math.random(); p.var = r < .02 + pb('shiny') ? 'shiny' : r < .08 + pb('giant') + .01 * puL('nets') ? 'giant' : ''; } p.life = p.mut && mutFx(key).regrow ? mutFx(key).regrow + 1 : 0; }
 const labSlots = () => LAB_SLOTS[S.b.lab] || 0;
 const crateBonusPicks = () => [2, 4, 6, 8, 10].filter(x => S.b.lab >= x).length;
 function mutSeedCost(r) { return Math.round(Math.max(6, CROP[r.crop].seed * (3 + 3 * r.rarity) + 8 * r.muts.length * (r.rarity + 1)) * (1 - .08 * Math.max(0, S.b.lab - 1))); }
@@ -2294,7 +2387,7 @@ function drawHouse(c, cx, by, LL, t) {
   const left = cx - W / 2, top = by - wallH;
   c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx + 6, by + 1, W * .6, 9); c.fill();
   if (L >= 7) { // tower
-    const tx = left + W - 4, tw = 36, th = wallH + 44;
+    const tx = left + 4, tw = 36, th = wallH + 44;
     if (LL >= 8) { kTex(c, KH, tx - tw / 2, by - th, tw, th, KH.tex, false); rr(c, tx - tw / 2, by - th, tw, th, 3); c.lineWidth = 1.4; c.strokeStyle = OL; c.stroke(); } else { rr(c, tx - tw / 2, by - th, tw, th, 3); fillS(c, '#ece4d2', 1.4); }
     c.beginPath(); c.moveTo(tx - tw / 2 - 5, by - th + 2); c.lineTo(tx, by - th - 38); c.lineTo(tx + tw / 2 + 5, by - th + 2); c.closePath(); fillS(c, LL >= 8 ? KH.roof : '#2f4858', 1.4); if (KH.rtex === 'crystal') kShard(c, tx, by - th - 36, 10, KH);
     line(c, tx, by - th - 38, tx, by - th - 58, '#5a4630', 1.6);
@@ -2306,9 +2399,9 @@ function drawHouse(c, cx, by, LL, t) {
   const chx = cx + W * .24, rh = two ? 52 : 46;
   const roofAt = x => top + 2 - (rh + 2) * (1 - Math.abs(x - cx) / (W / 2 + 10));
   { // side wall and roof going back to the left, like the village buildings
-    const dd = 22, rf = LL >= 8 ? KH.roof : ['', '#5b4a42', '#6e5240', '#b5452f', '#b5452f', '#3d5a80', '#2f4858', '#2f4858'][L], KS = {...KH, wall, side: dk(wall, .2), patch: false, broken: false};
-    c.save(); c.translate(left, by); c.transform(1, SK, 0, 1, 0, 0); kTex(c, KS, -dd, -wallH, dd, wallH, LL >= 8 ? KH.tex : L <= 2 ? 'boards' : 'siding', true); if (L >= 6) { c.fillStyle = dk(LL >= 8 ? KH.base || '#a9a39a' : '#a9a39a', .15); c.fillRect(-dd, -9, dd, 9); } c.beginPath(); c.rect(-dd, -wallH, dd, wallH); c.lineWidth = 1.4; c.strokeStyle = OL; c.stroke(); c.restore();
-    const ap = [cx, top - rh], eL = [left - 10, top + 2], P = [ap, eL, [eL[0] - dd, eL[1] - dd * SK], [ap[0] - dd, ap[1] - dd * SK]];
+    const dd = 14, rf = LL >= 8 ? KH.roof : ['', '#5b4a42', '#6e5240', '#b5452f', '#b5452f', '#3d5a80', '#2f4858', '#2f4858'][L], KS = {...KH, wall, side: dk(wall, .2), patch: false, broken: false};
+    c.save(); c.translate(left + W, by); c.transform(1, -SK, 0, 1, 0, 0); kTex(c, KS, 0, -wallH, dd, wallH, LL >= 8 ? KH.tex : L <= 2 ? 'boards' : 'siding', true); if (L >= 6) { c.fillStyle = dk(LL >= 8 ? KH.base || '#a9a39a' : '#a9a39a', .15); c.fillRect(0, -9, dd, 9); } c.beginPath(); c.rect(0, -wallH, dd, wallH); c.lineWidth = 1.4; c.strokeStyle = OL; c.stroke(); c.restore();
+    const ap = [cx, top - rh], eL = [left + W + 10, top + 2], P = [ap, eL, [eL[0] + dd, eL[1] - dd * SK], [ap[0] + dd, ap[1] - dd * SK]];
     poly(c, P); fillS(c, dk(rf, .12), 1.5); c.save(); poly(c, P); c.clip(); roofCourses(c, {...KH, roof: rf, rtex: LL >= 8 ? KH.rtex : 'shingle'}, ...P); c.restore();
   }
   const chTop = roofAt(chx) - (L === 1 ? 6 : 18);
@@ -2629,6 +2722,8 @@ function icon(key) {
   else if (kind === 'rain') drawRain(c, m, m, r);
   else if (kind === 'brush') drawBrushIcon(c, m, m + 2, r);
   else if (kind === 'nut') drawNutIcon(c, m, r, a);
+  else if (kind === 'fp') drawFruit(c, a, m, m + 2, r * 1.15);
+  else if (kind === 'sap') drawSapling(c, a, m, m + 4, r);
   else if (kind === 'drone') drawDroneIcon(c, m, m, r * 1.1);
   else if (kind === 'b') { // building at level
     const id = a, L = +b || 1, o = OBJB[id] || OBJ[id] || {w: 60, h: 60}; const ext = id === 'house' ? {w: 196, h: 196} : o;
@@ -2651,7 +2746,7 @@ window.addEventListener('resize', resize);
 resize();
 
 const revealT = {};
-function revealed(id) { if (id === 'wagon') return S.q > TUT_END && flv() >= LS_LVL && (S.orders || []).some(o => !o.done); if (id === 'eastsign') return S.q > TUT_END && nFields() < 4 && flv() >= FIELD_LV[nFields() + 1]; return id === 'bundle' ? !S.bundle || bundleOpenT > 0 : id === 'sign' ? S.sign : id === 'house' || id === 'barrel' || id === 'nameboard' ? S.house : S.b[id] > 0; }
+function revealed(id) { if (mergedInto(id)) return false; if (id === 'wagon') return S.q > TUT_END && flv() >= LS_LVL && (S.orders || []).some(o => !o.done); if (id === 'eastsign') return S.q > TUT_END && nFields() < 4 && flv() >= FIELD_LV[nFields() + 1]; return id === 'bundle' ? !S.bundle || bundleOpenT > 0 : id === 'sign' ? S.sign : id === 'house' || id === 'barrel' || id === 'nameboard' ? S.house : S.b[id] > 0; }
 const TREES = TREES0;
 function objList() {
   const out = [];
@@ -2661,6 +2756,7 @@ function objList() {
 function bounds() {
   if (scene === 'ranch') return rBounds();
   if (scene === 'green') return gBounds();
+  if (scene === 'orch') return oBounds();
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
   const add = r => { x0 = Math.min(x0, r.x); y0 = Math.min(y0, r.y); x1 = Math.max(x1, r.x + r.w); y1 = Math.max(y1, r.y + r.h); };
   S.plots.forEach((p, i) => add(plotRect(i)));
@@ -2814,7 +2910,7 @@ function till(i, quiet, chain) {
 function pickSeed(p) {
   const ok = k => k && seedHave(k) > 0 && baseOf(k) && CROP[baseOf(k)].soil <= p.soil;
   if (ok(S.sel)) return S.sel;
-  const alt = CROPS.slice().reverse().find(c => ok(c.id));
+  const alt = CROPS.slice().reverse().find(c => ok(c.id) && !c.big);
   if (alt) return alt.id;
   return Object.keys(S.mseeds).find(ok) || null;
 }
@@ -2828,6 +2924,7 @@ function plant(i, quiet, forceId, chain) {
     }
     return false;
   }
+  { const cr0 = CROP[baseOf(id)]; if (cr0 && cr0.big) { if (!bigFree(i, cr0.soil)) { if (!quiet) toast(`${cr0.name} takes up a 2×2 square: this plot and the ones to its right, below and diagonal must all be empty, tilled and have ${SOIL[cr0.soil].name}.`, 'warn'); return false; } bigBlock(i).slice(1).forEach(j => { S.plots[j].cover = i; }); } }
   const save = tierOf('satchel').save || 0;
   if (Math.random() < save) floatText(r.x + 32, r.y - 8, 'Seed saved!', '#e8f7c8'); else seedTake(id);
   setCrop(p, id); S.stats.planted++; if (!chain) sfx('plant'); toolFx('gloves', S.tools.gloves, r.x + 32, r.y + 34);
@@ -2841,7 +2938,7 @@ function water(i, quiet, chain) {
   const p = S.plots[i], r = plotRect(i);
   if (!S.tools.can) { if (!quiet) toast('You need a <b>watering can</b>. The Blacksmith at the market sells one.', 'warn'); return false; }
   if (S.water <= 0) {
-    if (S.b.well) { S.water = canCap(); burst(OBJ.well.x + 29, OBJ.well.y + 40, 'drop', 8, {up: true, sp: 50}); }
+    if (S.b.well) { S.water = canCap(); const wo = S.b.spring ? OBJ.spring : OBJ.well; burst(wo.x + wo.w / 2, wo.y + wo.h * .6, 'drop', 8, {up: true, sp: 50}); }
     else { if (!quiet) { toast('Your watering can is empty. Tap the <b>rain barrel</b> by the house to refill it.', 'warn'); hintBarrel = now(); } return false; }
   }
   if (S.water !== Infinity) S.water--;
@@ -2876,7 +2973,7 @@ function reap(i, who) {
   let xp = cr.xp * (fx ? fx.xp : 1); if (who !== 'player') xp /= 2; xp = Math.max(1, Math.round(xp));
   p.last = key;
   if (fx && p.life > 1) { p.life--; p.prog = cr.need * .45; p.water = false; p.wt = 0; }
-  else { p.crop = null; p.mut = null; p.life = 0; p.prog = 0; p.water = false; p.nut = 0; p.fed = false; p.st = S.tools.hoe >= 2 ? 'tilled' : 'rough'; }
+  else { if (cr.big) { S.stats.bigHarvest = (S.stats.bigHarvest || 0) + 1; S.plots.forEach(q => { if (q.cover === i) delete q.cover; }); } p.crop = null; p.mut = null; p.life = 0; p.prog = 0; p.water = false; p.nut = 0; p.fed = false; p.st = S.tools.hoe >= 2 ? 'tilled' : 'rough'; }
   if (p.crop) { p.v = Math.random(); p.var = ''; }
   return {key, n, xp, seeds, regrew: !!p.crop, vr};
 }
@@ -3000,23 +3097,23 @@ function showLevelUp() {
 function unlocksAt(L) {
   const out = [];
   CROPS.filter(c2 => c2.lvl === L).forEach(c2 => out.push({ic: 'p:' + c2.id, name: c2.name + ' seeds', kind: 'Crop', note: `Seed Shop · ${SOIL[c2.soil].name}`}));
-  TOOL_ORDER.forEach(k => TOOLS[k].tiers.forEach((t2, i) => { if (t2 && t2.lvl === L) out.push({ic: `tool:${k}:${i}`, name: t2.name, kind: 'Tool', note: `Blacksmith${t2.shed ? ` · needs Toolshed ${t2.shed}` : ''}`}); }));
-  SOIL.forEach((sl, i) => { if (i && sl.lvl === L) out.push({ic: 'soil:' + i, name: sl.name, kind: 'Soil', note: `Plot Workshop · needs workshop level ${soilWs(i)}`}); });
+  TOOL_ORDER.forEach(k => TOOLS[k].tiers.forEach((t2, i) => { if (false) out.push({ic: `tool:${k}:${i}`, name: t2.name, kind: 'Tool', note: `Blacksmith${t2.shed ? ` · needs Toolshed ${t2.shed}` : ''}`}); }));
+  SOIL.forEach((sl, i) => { if (false) out.push({ic: 'soil:' + i, name: sl.name, kind: 'Soil', note: `Plot Workshop · needs workshop level ${soilWs(i)}`}); });
   FARM.forEach((f, i) => { if (f && i > 1 && f.lvl === L) out.push({ic: 'b:house:' + i, name: 'Restore: ' + f.name, kind: 'Farm', note: `Builder’s Yard · up to ${f.plots} plots`}); });
-  BUILD_ORDER.forEach(k => BUILD[k].lvl.forEach((lv, j) => { if (lv === L) out.push({ic: `b:${k}:${j + 1}`, name: j ? `${BUILD[k].name} level ${j + 1}` : BUILD[k].name, kind: j ? 'Upgrade' : 'Building', note: BUILD[k].eff(j + 1)}); }));
-  MACH_ORDER.forEach(k => MACH[k].lvls.forEach((lv, j) => { if (lv === L) out.push({ic: `mach:${k}:${j + 1}`, name: j ? `${MACH[k].name} level ${j + 1}` : MACH[k].name, kind: j ? 'Upgrade' : 'Machine', note: j ? 'Machine Shop' : `Machine Shop · needs Garage level ${MACH[k].garage}`}); }));
+  BUILD_ORDER.forEach(k => BUILD[k].lvl.forEach((lv, j) => { if (lv === L && k !== 'spring' && (j || !mergedInto(k))) { const un = bUnlocks(k, j + 1); out.push({ic: `b:${k}:${j + 1}`, name: j ? `${BUILD[k].name} level ${j + 1}` : BUILD[k].name, kind: j ? 'Upgrade' : 'Building', note: BUILD[k].eff(j + 1) + (un.length ? ' · unlocks ' + un.join(', ') : '')}); } }));
+  MACH_ORDER.forEach(k => MACH[k].lvls.forEach((lv, j) => { if (false) out.push({ic: `mach:${k}:${j + 1}`, name: j ? `${MACH[k].name} level ${j + 1}` : MACH[k].name, kind: j ? 'Upgrade' : 'Machine', note: j ? 'Machine Shop' : `Machine Shop · needs Garage level ${MACH[k].garage}`}); }));
   HORNS.forEach(x => { if (x.lvl === L) out.push({ic: 'horn:' + x.id, name: x.name, kind: 'Master tool', note: 'Blacksmith · ' + x.desc}); });
   if (L === 4) out.push({ic: 'perk:all', name: 'Random events', kind: 'Feature', note: 'Every few days something unusual happens on the farm'});
   if (L === FAIR_LVL) out.push({ic: 'trophy', name: 'County Fair', kind: 'Feature', note: 'Weekly crop competitions in your Journal'});
   for (let f = 2; f <= 4; f++) if (L === FIELD_LV[f]) out.push({ic: 'soil:0', name: 'The ' + FIELD_NAME[f], kind: 'Land', note: '25 more plots at the Land Office'});
   if (L === COS_LVL) out.push({ic: 'brush', name: 'Decor styles', kind: 'Feature', note: 'New looks for buildings, the fence, paths, plots and trees'});
   if (L === BUILD.lab.lvl[0]) out.push({ic: 'crate:rusty', name: 'Mystery crates', kind: 'Lab', note: 'Open them at the Mutation Lab. Better crates come with lab upgrades.'});
-  ROLE_ORDER.forEach(r => { if (ROLES[r].lvl === L) out.push({ic: 'wk:' + r, name: ROLES[r].name + 's', kind: 'Workers', note: 'Hire them at your Worker Hut'}); });
+  ROLE_ORDER.forEach(r => { if (false) out.push({ic: 'wk:' + r, name: ROLES[r].name + 's', kind: 'Workers', note: 'Hire them at your Worker Hut'}); });
   if (L === BUILD.barn.lvl[0]) out.push({ic: 'an:chicken', name: 'Ranching', kind: 'Feature', note: 'Build the Big Barn, then raise animals inside it'});
-  ANIMALS.forEach(A => { if (A.lvl === L) out.push({ic: 'an:' + A.id, name: A.name, kind: 'Animal', note: `Ranch Office · makes ${A.pname.toLowerCase()}`}); });
-  RT_ORDER.forEach(k => RTOOLS[k].tiers.forEach((t2, i) => { if (t2 && i > 1 && t2.lvl === L) out.push({ic: `rt:${k}:${i}`, name: t2.name, kind: 'Ranch tool', note: `Ranch Office · needs barn level ${t2.barn}`}); }));
-  RMACH_ORDER.forEach(k => { for (let j = 1; j <= 10; j++) if (rmLvl(k, j) === L) out.push({ic: `rmi:${k}:${j}`, name: j > 1 ? `${RMACH[k].name} level ${j}` : RMACH[k].name, kind: j > 1 ? 'Upgrade' : 'Barn machine', note: RMACH[k].eff(j)}); });
-  RROLE_ORDER.forEach(r => { if (ROLES[r].lvl === L) out.push({ic: 'wk:' + r, name: ROLES[r].name + 's', kind: 'Ranch hands', note: 'Hire them at the Ranch Office'}); });
+  ANIMALS.forEach(A => { if (false) out.push({ic: 'an:' + A.id, name: A.name, kind: 'Animal', note: `Ranch Office · makes ${A.pname.toLowerCase()}`}); });
+  RT_ORDER.forEach(k => RTOOLS[k].tiers.forEach((t2, i) => { if (false) out.push({ic: `rt:${k}:${i}`, name: t2.name, kind: 'Ranch tool', note: `Ranch Office · needs barn level ${t2.barn}`}); }));
+  RMACH_ORDER.forEach(k => { for (let j = 1; j <= 10; j++) if (false) out.push({ic: `rmi:${k}:${j}`, name: j > 1 ? `${RMACH[k].name} level ${j}` : RMACH[k].name, kind: j > 1 ? 'Upgrade' : 'Barn machine', note: RMACH[k].eff(j)}); });
+  RROLE_ORDER.forEach(r => { if (false) out.push({ic: 'wk:' + r, name: ROLES[r].name + 's', kind: 'Ranch hands', note: 'Hire them at the Ranch Office'}); });
   PERKS.filter(pk => pk.lvl === L).forEach(pk => out.push({ic: 'perk:' + pk.act, name: pk.name, kind: 'Skill', note: pk.desc + ' (automatic)'}));
   return out;
 }
@@ -3071,7 +3168,7 @@ function buyPlot() {
   after();
 }
 function upgradeSoil(tier, all) {
-  const s = SOIL[tier]; { const gm = gateMsg(s.lvl); if (gm) return toast(gm, 'warn'); }
+  const s = SOIL[tier];
   if ((S.b.workshop || 0) < soilWs(tier)) return toast(S.b.workshop ? `${s.name} needs Plot Workshop level ${soilWs(tier)}.` : 'Soil upgrades are bought at the Plot Workshop. Build it at the Builder’s Yard first.', 'warn');
   const elig = S.plots.map((p, i) => [p, i]).filter(([p]) => p.soil === tier - 1);
   if (!elig.length) return toast(`No plots are ready for ${s.name}.`);
@@ -3083,9 +3180,11 @@ function upgradeSoil(tier, all) {
 }
 function buildUp(id) {
   const B = BUILD[id], L = S.b[id]; if (L >= B.max) return;
+  if (id === 'spring' && !L) return toast('Merge the Well and the Nutrient Mixer to make the Nutrient Spring.', 'warn');
+  if (mergedInto(id)) return toast(`The ${B.name} is part of the ${BUILD[mergedInto(id).id].name} now. Upgrade that instead.`, 'warn');
   { const gm = gateMsg(B.lvl[L]); if (gm) return toast(gm, 'warn'); }
   if (S.money < B.cost[L]) return toast('Not enough coins for that.', 'warn');
-  spend(B.cost[L]); S.b[id] = L + 1; sfx('build'); if (id === 'greenhouse' && !S.gh) S.gh = {beds: [], lamps: 0, mist: 0, conv: 0};
+  spend(B.cost[L]); S.b[id] = L + 1; sfx('build'); if (id === 'spring') applySpring(); if (id === 'orchard' && !S.orch) S.orch = {trees: []}; if (id === 'greenhouse' && !S.gh) S.gh = {beds: [], lamps: 0, mist: 0, conv: 0};
   layoutObjs(); for (const k in OFFC) if (k === id) delete OFFC[k]; if (L > 0) scaffold(id);
   const o = OBJ[id];
   if (L === 0) { revealT[id] = now(); puff(o.x + o.w / 2, o.y + o.h - 20, B.name); toast(`${B.name} built! ${B.eff(1)}.`, 'good'); }
@@ -3094,6 +3193,7 @@ function buildUp(id) {
   if (id === 'barn') barnBuilt(L + 1);
   if (L === 0 && id === 'greenhouse') setTimeout(() => toast('Tap the greenhouse to go inside and start your first bed.', 'good'), 900);
   if (L === 0 && id === 'workshop') setTimeout(() => toast('Tap the Plot Workshop to buy plot upgrades and better soil.', 'good'), 900);
+  if (L === 0 && id === 'orchard') setTimeout(() => toast('Tap the orchard to walk in and plant your first fruit tree.', 'good'), 900);
   if (L === 0 && id === 'mixer') { S.nut.charges = nutCap(); setTimeout(() => toast('Your Nutrient Mixer is full. Tap the green <b>Feed</b> button in your hotbar (key N) to water with nutrient water.', 'good'), 900); }
   if (L === 0 && id === 'dronehub') setTimeout(() => toast('Hire a <b>Drone Pilot</b> at the Worker Hut. Drones only fly when a pilot is at the console.', 'good'), 900);
   if (L === 0 && !S.tut.moved) { S.tut.moved = true; setTimeout(() => toast('Tip: you can move any building. Tap the paintbrush button, then “Move buildings”.'), 2600); }
@@ -3151,7 +3251,7 @@ function sleep() {
 function applyNight() {
   if (S.time == null) S.time = DAWN;
   const before = S.plots.filter(p => p.crop && p.prog < CROP[p.crop].need).length;
-  ghGrow(minsToDawn() / 1440); growAll(minsToDawn() / 1440); S.time = DAWN; S.stats.slept++;
+  ghGrow(minsToDawn() / 1440); orchGrow(minsToDawn() / 1440); growAll(minsToDawn() / 1440); S.time = DAWN; S.stats.slept++;
   return dawnTick(before);
 }
 function dawnTick(grew = 0) {
@@ -3324,7 +3424,11 @@ QUESTS.forEach(q => { q.d = q.d.replace(/farmer level (\d+)/g, (m, n) => 'farmer
   QUESTS.splice(at('Fertile Fields'), 0, {t:'Raised Beds', u:8, d:'Buy any upgrade at the Plot Workshop. Each one works on every plot at once.', g:() => [PU_ORDER.some(k => puL(k)) ? 1 : 0, 1], tgt:'workshop', r:1500});
   const tail = [
     {t:'Make It Yours', u:8, d:`From farmer level 25, tap the paintbrush button and buy a new style for your farm.`, g:() => [Object.keys(S.cos.own).length ? 1 : 0, 1], r:20000},
+    {t:'Fruitful', u:10, d:`Build the Orchard (farmer level ${BUILD.orchard.lvl[0]}), walk in and plant a fruit tree.`, g:() => [(S.b.orchard ? 1 : 0) + ((S.stats.treesPlanted || 0) > 0 ? 1 : 0), 2], tgt:'tab:build', k:'orchard', r:20000},
+    {t:'Hands-On', u:10, d:'Some new crops stop halfway until you tend them: stake Climbing Beans with your hands, weed Pineapples with your hoe, or pollinate Vanilla. Tend one.', g:() => [Math.min(1, S.stats.tended || 0), 1], r:3000},
+    {t:'Two by Two', u:10, d:'Plant a Giant Watermelon on a 2×2 square of empty tilled plots and harvest it.', g:() => [Math.min(1, S.stats.bigHarvest || 0), 1], r:8000},
     {t:'Nutrient Rich', u:9, d:`Build the Nutrient Mixer (farmer level ${BUILD.mixer.lvl[0]}), switch on nutrient water in your hotbar and water a plot with it.`, g:() => [(S.b.mixer ? 1 : 0) + ((S.stats.fed2 || 0) > 0 ? 1 : 0), 2], tgt:'tab:build', k:'mixer', r:50000},
+    {t:'Better Together', u:10, d:'Get the Well and the Nutrient Mixer to level 5, then merge them into the Nutrient Spring.', g:() => [S.b.spring ? 1 : 0, 1], r:20000000},
     {t:'Drone Pilot', u:8, d:`Build the Drone Hub (farmer level ${BUILD.dronehub.lvl[0]}) and hire a Drone Pilot at the Worker Hut.`, g:() => [(S.b.dronehub ? 1 : 0) + (S.workers.some(w => w.role === 'pilot') ? 1 : 0), 2], tgt:'tab:build', k:'dronehub', r:1000000},
     {t:'Machine Dock', u:8, d:`Build the Machine Dock (farmer level ${BUILD.dock.lvl[0]}) for a second set of machines.`, g:() => [S.b.dock ? 1 : 0, 1], tgt:'tab:build', k:'dock', r:5000000},
     {t:'South Field', u:8, d:`Buy the South Field at the Land Office (farmer level ${FIELD_LV[3]}).`, g:() => [nFields() >= 3 ? 1 : 0, 1], tgt:'tab:land', k:'field', r:20000000},
@@ -3488,7 +3592,7 @@ function drawPlot(c, p, i, t, hov) {
   drawPlotUpg(c, p, x, y, s, t, i, 1);
   if (p.nut > 0 && p.crop) drawNutSoil(c, x, y, s, t, i);
   if (hov) { rr(c, x - 1, y - 1, s + 2, s + 2, 10); c.strokeStyle = 'rgba(255,248,220,.9)'; c.lineWidth = 2.2; c.stroke(); }
-  if (p.crop) drawPlant(c, p, x + s / 2, y + s - 16, t, i);
+  if (p.crop && !CROP[p.crop].big) drawPlant(c, p, x + s / 2, y + s - 16, t, i);
   drawPlotUpg(c, p, x, y, s, t, i, 2);
   c.restore();
 }
@@ -3622,7 +3726,7 @@ function drawPlantBase(c, p, cx, by, t, seedN) {
   if (ready) for (let j = 0; j < 2; j++) { const ph = (t * .8 + j * .5 + seedN * .3) % 1; sparkle(c, cx - 14 + j * 28, by - 26 - ph * 12, 3.4, Math.sin(ph * Math.PI)); }
 }
 function drawPlotHud(c, p, i, t) {
-  const r = plotRect(i), z = cam.z, u = 1 / Math.max(.6, Math.min(z, 2.2));
+  const r = bigR(p, i), z = cam.z, u = 1 / Math.max(.6, Math.min(z, 2.2));
   if (p.crop) {
     const cr = CROP[p.crop], g = clamp(p.prog / cr.need, 0, 1);
     if (g >= 1) {
@@ -3630,6 +3734,11 @@ function drawPlotHud(c, p, i, t) {
       c.beginPath(); c.arc(bx, byy - rad, rad, 0, TAU); c.fillStyle = 'rgba(255,250,235,.95)'; c.fill(); c.lineWidth = 1.5 * u; c.strokeStyle = '#e3a521'; c.stroke();
       c.beginPath(); c.moveTo(bx - 4 * u, byy - 1); c.lineTo(bx, byy + 5 * u); c.lineTo(bx + 4 * u, byy - 1); c.fillStyle = 'rgba(255,250,235,.95)'; c.fill();
       c.drawImage(icon(p.mut && recOf(p.mut) ? prodIcon(p.mut) : 'p:' + cr.id).cv, bx - rad * .85, byy - rad * 1.85, rad * 1.7, rad * 1.7);
+    } else if (needsTend(p)) {
+      const W = WORK_INFO[cr.work], bob = Math.sin(t * 4 + i) * 3, bx = r.x + r.w / 2, byy = r.y - 6 + bob, rad = 13 * u * 1.3;
+      c.beginPath(); c.arc(bx, byy - rad, rad, 0, TAU); c.fillStyle = 'rgba(230,255,210,.97)'; c.fill(); c.lineWidth = 1.8 * u; c.strokeStyle = '#4f9a2a'; c.stroke();
+      c.beginPath(); c.moveTo(bx - 4 * u, byy - 1); c.lineTo(bx, byy + 5 * u); c.lineTo(bx + 4 * u, byy - 1); c.fillStyle = 'rgba(230,255,210,.97)'; c.fill();
+      c.drawImage(icon(W.ic).cv, bx - rad * .8, byy - rad * 1.8, rad * 1.6, rad * 1.6);
     } else {
       const bw = 40, bx = r.x + (r.w - bw) / 2, byy = r.y + r.h - 9;
       rr(c, bx - 1, byy - 1, bw + 2, 7, 3.5); c.fillStyle = 'rgba(25,15,8,.75)'; c.fill();
@@ -3655,6 +3764,7 @@ function questWorldTarget() {
   const q = curQuest(); if (!q || !q.tgt || sleeping || !guided()) return null;
   const t = q.tgt;
   if (scene === 'ranch') return ranchQTarget(t);
+  if (scene === 'orch') return null;
   if (scene === 'green') return t === 'greenhouse' && !S.gh.beds.length ? (() => { const r = bedRect(0); return {x: r.x + r.w / 2, y: r.y - 6}; })() : null;
   const oc = id => { const o = OBJ[id]; return {x: o.x + o.w / 2, y: o.y - 6}; };
   if (t === 'barn' || t === 'office' || t === 'pen') return S.b.barn ? oc('barn') : null;
@@ -3726,6 +3836,7 @@ function holdIcon(act, h) {
   if (act === 'plant') { const p = S.plots[h.i]; return seedIcon((p && pickSeed(p)) || validKey(S.sel)); }
   if (act === 'water') return `tool:can:${Math.max(1, S.tools.can)}`;
   if (act === 'harvest') return `tool:sickle:${Math.max(1, S.tools.sickle)}`;
+  if (act === 'tend') { const p = S.plots[h.i], W = p && p.crop && WORK_INFO[CROP[p.crop].work]; return W ? `tool:${W.tool}:${Math.max(1, S.tools[W.tool] || 1)}` : 'tool:gloves:1'; }
   const ty = h.kind === 'cell' ? CELL_DEBRIS[h.n] : YARD_BY[h.id].t;
   return DEBRIS[ty].axe ? `tool:axe:${Math.max(1, S.tools.axe)}` : `tool:gloves:${S.tools.gloves}`;
 }
@@ -3773,13 +3884,14 @@ function drawWorld(t, dt) {
   c.setTransform(DPR * cam.z, 0, 0, DPR * cam.z, DPR * cam.ox, DPR * cam.oy);
   c.lineJoin = 'round';
   const v0 = toWorld(0, 0), v1 = toWorld(VW, VH);
-  if (scene === 'ranch') drawRanch(c, t, v0, v1); else if (scene === 'green') drawGreen(c, t, v0, v1); else {
+  if (scene === 'ranch') drawRanch(c, t, v0, v1); else if (scene === 'green') drawGreen(c, t, v0, v1); else if (scene === 'orch') drawOrch(c, t, v0, v1); else {
   drawGround(c, v0.x, v0.y, v1.x, v1.y, t);
   if (S.farm >= 2 && S.house) fenceRect();
   drawAllPaths(c, t);
   drawFarmFence(c, t, false);
   drawFence(c, t);
-  S.plots.forEach((p, i) => drawPlot(c, p, i, t, hover && hover.kind === 'plot' && hover.i === i));
+  S.plots.forEach((p, i) => drawPlot(c, p, i, t, hover && hover.kind === 'plot' && (hover.i === i || p.cover === hover.i)));
+  drawBigCrops(c, t);
   drawCell(c, t);
   drawPatPreview(c, t);
   // y-sorted objects + trees
@@ -3807,7 +3919,7 @@ function drawWorld(t, dt) {
     else { const g = gs(o.id); drawObjStyled(c, o, t, g2 => { g2.save(); if (g !== 1) { g2.translate(cx, by); g2.scale(g, g); g2.translate(-cx, -by); } DRAW[o.id](g2, cx, by, S.b[o.id] || 1, t); g2.restore(); }, hov); }
     c.shadowBlur = 0; c.restore();
     if (SCAF[o.id] !== undefined) { const k = (t - SCAF[o.id]) / 2.4; if (k >= 1) delete SCAF[o.id]; else drawScaffold(c, o, k, t); }
-    if ((o.id === 'barn' && barnNeeds()) || (o.id === 'greenhouse' && ghNeeds())) drawAlert(c, o, t);
+    if ((o.id === 'barn' && barnNeeds()) || (o.id === 'greenhouse' && ghNeeds()) || (o.id === 'orchard' && orchNeeds())) drawAlert(c, o, t);
     if (BUILD[o.id] && sc === 1) { const tx = 'Lv ' + S.b[o.id]; c.font = '7px "Lilita One", sans-serif'; const tw = c.measureText(tx).width + 8; rr(c, cx - tw / 2, by + 3, tw, 10, 5); c.fillStyle = 'rgba(30,19,11,.82)'; c.fill(); c.fillStyle = '#f4c542'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(tx, cx, by + 8.4); }
     if (o.id === 'barrel' && t - hintBarrel < 4) drawArrow(c, cx, o.y - 6, t);
   }
@@ -3898,9 +4010,10 @@ function wrt(w) {
   if (!r) { const d = ROLES[w.role].ranch ? rDoor() : hutDoor(); r = {x: d.x + (Math.random() - .5) * 24, y: d.y + 4 + Math.random() * 10, st: 'idle', t: Math.random() * .5, job: -1, face: 1, ph: Math.random() * 6, water: wCap(w), bubble: null, fx: 0}; WR.set(w.id, r); }
   return r;
 }
-function seedForReplant(p) { if (p.plan && seedHave(p.plan) > 0 && baseOf(p.plan) && CROP[baseOf(p.plan)].soil <= p.soil) return p.plan; if (p.last && seedHave(p.last) > 0 && baseOf(p.last) && CROP[baseOf(p.last)].soil <= p.soil) return p.last; return pickSeed(p); }
+function seedForReplant(p) { const k0 = seedForReplant0(p); return k0 && CROP[baseOf(k0)] && CROP[baseOf(k0)].big ? null : k0; }
+function seedForReplant0(p) { if (p.plan && seedHave(p.plan) > 0 && baseOf(p.plan) && CROP[baseOf(p.plan)].soil <= p.soil) return p.plan; if (p.last && seedHave(p.last) > 0 && baseOf(p.last) && CROP[baseOf(p.last)].soil <= p.soil) return p.last; return pickSeed(p); }
 function replantDo(i) {
-  const p = S.plots[i], rc = plotRect(i), cx = rc.x + 32; if (p.crop) return false;
+  const p = S.plots[i], rc = plotRect(i), cx = rc.x + 32; if (p.crop || p.cover != null) return false;
   if (p.st !== 'tilled') { p.st = 'tilled'; S.stats.tilled++; burst(cx, rc.y + 34, 'dirt', 10, {up: true, sp: 60, r: 2.4}); return true; }
   const id = seedForReplant(p); if (!id) return false;
   seedTake(id); setCrop(p, id); S.stats.planted++; floatText(cx, rc.y + 10, 'Planted', '#e8f7c8', iurl(seedIcon(id))); return true;
@@ -3947,13 +4060,14 @@ function jobValid(w, i) {
   const p = S.plots[i]; if (!p) return false;
   if (w.role === 'waterer') return needsWater(p);
   if (w.role === 'collector') return !!(p.crop && p.prog >= CROP[p.crop].need);
-  if (p.crop) return false;
+  if (w.role === 'replanter' && needsTend(p)) return true;
+  if (p.crop || p.cover != null) return false;
   return p.st !== 'tilled' || !!seedForReplant(p);
 }
 function standPt(i, id) { const r = plotRect(i); return {x: r.x + 32 + (id % 2 ? 13 : -13), y: r.y + 60}; }
 function waterSrc(r) {
   const opts = [{x: OBJ.barrel.x + 34, y: OBJ.barrel.y + 38}];
-  if (S.b.well) opts.push({x: OBJ.well.x + 66, y: OBJ.well.y + 66});
+  if (S.b.spring) opts.push({x: OBJ.spring.x + OBJ.spring.w / 2 + 30, y: OBJ.spring.y + OBJ.spring.h + 6}); else if (S.b.well) opts.push({x: OBJ.well.x + 66, y: OBJ.well.y + 66});
   return opts.reduce((a, b) => Math.hypot(a.x - r.x, a.y - r.y) <= Math.hypot(b.x - r.x, b.y - r.y) ? a : b);
 }
 function workerDo(w, r) {
@@ -3965,7 +4079,8 @@ function workerDo(w, r) {
     const res = reap(i, 'worker');
     burst(cx, rc.y + 34, 'leaf', 8, {up: true, sp: 70, r: 3});
     floatText(cx, rc.y + 6, `+${res.n}`, '#ffe9a8', iurl(prodIcon(res.key))); gainXp(res.xp); flash('#slot-basket');
-  } else replantDo(i);
+  } else if (needsTend(p)) tend(i, true);
+  else replantDo(i);
   w.done = (w.done || 0) + 1; S.stats.workDone++; workerDirty = true;
 }
 function stepWorkers(dt) {
@@ -4048,6 +4163,7 @@ function cands(role) { if (!S.cand[role] || S.cand[role].length < 3) S.cand[role
 function lookText(w) { const lk = w.look, hn = HAIR_NAMES[HAIRS.indexOf(lk.hair)] || 'dark'; return (lk.style === 'bald' ? 'Shaved head' : `${STYLE_NAMES[lk.style]} ${hn} hair`) + (lk.beard ? ' · beard' : '') + (lk.freckles ? ' · freckles' : ''); }
 function hireWorker(role, i) {
   const R = ROLES[role]; if (R.ranch ? !S.b.barn : !S.b.hut) return;
+  if ((R.ranch ? S.b.barn : S.b.hut) < R.blv) return toast(`Upgrade the ${R.ranch ? 'Big Barn' : 'Worker Hut'} to level ${R.blv} to hire ${R.name.toLowerCase()}s.`, 'warn');
   if (R.lvl > flv()) return toast(`Reach farmer level ${R.lvl} to hire ${R.name.toLowerCase()}s.`, 'warn');
   if (!houseOk(R.lvl)) return toast(gateMsg(R.lvl), 'warn');
   if (R.ranch ? ranchHands().length >= RHANDS[S.b.barn] : farmHands().length >= HUT_CAP[S.b.hut]) return toast(R.ranch ? 'The barn bunks are full. Upgrade the barn to make room.' : 'Your hut is full. Upgrade it to make room.', 'warn');
@@ -4081,7 +4197,7 @@ const vehPt = i => { const rc = plotRect(i); return {x: rc.x + 32, y: rc.y + 46}
 function machValid(k, i) {
   const p = S.plots[i]; if (!p) return false;
   if (k === 'harvester') return !!(p.crop && p.prog >= CROP[p.crop].need);
-  if (p.crop) return false; return p.st !== 'tilled' || !!seedForReplant(p);
+  if (p.crop || p.cover != null) return false; return p.st !== 'tilled' || !!seedForReplant(p);
 }
 function stepVehicle(u, r, dt, L, reserved) {
   const k = kindOf(u), M = MACH[k], sp = M.speed * MACH_SPEED[L - 1] * garageBoost() * (evt('fog') ? .7 : 1);
@@ -4182,7 +4298,7 @@ function buyMach(k) {
   const M = MACH[k], L = S.mach[k]; if (L >= M.lvls.length) return;
   const need = M.lvls[L];
   { const gm = gateMsg(need); if (gm) return toast(gm, 'warn'); }
-  if ((S.b.garage || 0) < M.garage) return toast(`Needs Garage level ${M.garage}.`, 'warn');
+  if ((S.b.garage || 0) < M.gar[L]) return toast(`Needs Garage level ${M.gar[L]}.`, 'warn');
   const cost = M.cost[L]; if (S.money < cost) return toast('Not enough coins for that.', 'warn');
   spend(cost); sfx('build'); S.mach[k] = L + 1;
   if (!L) { S.mon[k] = true; const q = parkPt(k); puff(q.x, q.y - 10, M.name); }
@@ -4334,6 +4450,7 @@ function placeAnimal(aid, mut) {
 }
 function buyAnimal(id) {
   const A = ANIMAL[id]; if (!A || !S.b.barn) return;
+  if (S.b.barn < A.blv) return toast(`${A.name}s need barn level ${A.blv}.`, 'warn');
   { const gm = gateMsg(A.lvl); if (gm) return toast(gm, 'warn'); }
   if (freePen() < 0) return toast('Every pen is full. Buy another pen in the Barn tab, or sell an animal.', 'warn');
   if (S.money < A.cost) return toast('Not enough coins for that.', 'warn');
@@ -4369,8 +4486,7 @@ function buyPen() {
 }
 function buyRMach(k) {
   const M = RMACH[k], L = S.rmach[k] + 1; if (L > 10) return;
-  { const gm = gateMsg(rmLvl(k, L)); if (gm) return toast(gm, 'warn'); }
-  if (rmBarn(L) > S.b.barn) return toast(`Upgrade the barn to level ${rmBarn(L)} first.`, 'warn');
+  if (rmBarnK(k, L) > S.b.barn) return toast(`Upgrade the barn to level ${rmBarnK(k, L)} first.`, 'warn');
   const cost = rmCost(k, L); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
   spend(cost); S.rmach[k] = L; sfx('build'); const o = ROBJ[k]; burst(o.x + o.w / 2, o.y + o.h / 2, 'spark', 14, {up: true, sp: 80, r: 3});
   toast(L === 1 ? `${M.name} installed! ${M.eff(1)}.` : `${M.name} upgraded to level ${L}. ${M.eff(L)}.`, 'good'); after();
@@ -4759,14 +4875,14 @@ function renderOffice() {
           <div class="acts">${sellArmed === i ? `<button class="btn red sm" data-act="sellYes" data-i="${i}">Sell for ${priceHTML(animalSellVal(p))}</button><button class="btn plain sm" data-act="sellNo">Keep</button>` : `<button class="btn plain sm" data-act="sellAsk" data-i="${i}">Sell</button>`}</div></div>`;
       });
     }
-    const open = ANIMALS.filter(A => A.lvl <= L), nxt = ANIMALS.find(A => A.lvl > L);
+    const open = ANIMALS.filter(A => A.blv <= B), nxt = ANIMALS.find(A => A.blv > B);
     h += `<div class="sec">Buy a baby animal <small>${free ? `${pens.filter(p => !p.a).length} empty pen${pens.filter(p => !p.a).length === 1 ? '' : 's'}` : 'every pen is full'}</small></div>`;
     for (const A of open) {
       const hint = (qt === 'office' && A.id === 'chicken' && !n);
       h += `<div class="row"><div class="ic"><img src="${iurl('an:' + A.id)}" alt=""></div><div><h5>${A.name}</h5><p>Grows up in ${A.days} days, then makes 1 ${A.pname.toLowerCase()} a day.</p><div class="tags"><span class="tag gold">${A.pname} sells for ${priceHTML(A.val * barnVal() * (1 + .06 * S.b.stand))}</span><span class="tag">Eats ${A.feed} feed a day</span><span class="tag">+${A.xp} XP per product</span>${houseOk(A.lvl) ? '' : gateTag(A.lvl)}</div></div>
         <div class="acts"><button class="btn gold ${hint ? 'hint' : ''}" data-act="offAnimal" data-id="${A.id}" ${!free || S.money < A.cost || !houseOk(A.lvl) ? 'disabled' : ''}>Buy ${priceHTML(A.cost)}</button></div></div>`;
     }
-    if (nxt) h += `<p class="note">More animals arrive as you level up. The next one comes at farmer level ${nxt.lvl}.</p>`;
+    if (nxt) h += `<p class="note">More animals arrive as you upgrade the barn. ${nxt.name}s come at barn level ${nxt.blv}.</p>`;
     const bl = Object.values(S.rrecipes).sort((a, b) => b.rarity - a.rarity);
     if (bl.length) {
       h += `<div class="sec">Mutant bloodlines <small>made in the Mutation Lab’s Gene Splicer</small></div>`;
@@ -4790,34 +4906,34 @@ function renderOffice() {
     h += `<div class="row"><div class="ic"><img src="${iurl('b:barn:' + B)}" alt=""></div><div><h5>Big Barn · level ${B}</h5><p>${BB.eff(B)}.</p><div class="tags">${max ? '<span class="tag">No further upgrades yet</span>' : !gateOk(nl) ? gateTag(nl) : `<span class="tag">Level ${B + 1}: ${BB.eff(B + 1)}</span>`}</div></div><div class="acts">${!max && gateOk(nl) ? `<button class="btn gold" data-act="build" data-id="barn" ${S.money < BB.cost[B] ? 'disabled' : ''}>Upgrade ${priceHTML(BB.cost[B])}</button>` : ''}</div></div>`;
     const np = pens.length + 1, can = np <= BARN_PENS[B];
     h += `<div class="row"><div class="ic"><img src="${iurl('an:sheep')}" alt=""></div><div><h5>Pens · ${pens.length} of ${BARN_PENS[B]}</h5><p>Each pen holds one animal. ${can ? '' : B < BB.max ? 'Upgrade the barn to make room for more.' : ''}</p></div><div class="acts">${can ? `<button class="btn" data-act="buyPen" ${S.money < penCost(np) ? 'disabled' : ''}>Build pen ${np} ${priceHTML(penCost(np))}</button>` : ''}</div></div>`;
-    const ms = RMACH_ORDER.filter(k => S.rmach[k] || rmLvl(k, 1) <= L);
+    const ms = RMACH_ORDER.filter(k => S.rmach[k] || rmBarnK(k, 1) <= B);
     h += `<div class="sec">Barn machines <small>they work at dawn, before you wake up</small></div>`;
-    if (!ms.length) h += `<p class="note">Barn machines unlock at farmer level ${Math.min(...RMACH_ORDER.map(k => rmLvl(k, 1)))}.</p>`;
+    if (!ms.length) h += `<p class="note">Barn machines unlock at barn level ${Math.min(...RMACH_ORDER.map(k => rmBarnK(k, 1)))}.</p>`;
     for (const k of ms) {
-      const M = RMACH[k], lv = S.rmach[k], nx = lv + 1, has = nx <= 10, lk = has ? lockTag(rmLvl(k, nx), rmBarn(nx)) : '';
+      const M = RMACH[k], lv = S.rmach[k], nx = lv + 1, has = nx <= 10, lk = has ? lockTag(1, rmBarnK(k, nx)) : '';
       h += `<div class="row"><div class="ic"><img src="${iurl(`rmi:${k}:${Math.max(1, lv)}`)}" alt=""></div><div><h5>${M.name}${lv ? ` <small class="tag gold">Level ${lv}</small>` : ''}</h5><p>${M.desc}</p><div class="tags"><span class="tag ${rmRunOk(k) ? 'ok' : 'bad'}">Run by ${RM_RUN[k] ? 'an ' + ROLES[RM_RUN[k]].name.replace(/^Animal /, 'animal ').toLowerCase() : 'any ranch hand'}</span>${lv ? `<span class="tag ok">${M.eff(lv)}</span>` : ''}${has ? `<span class="tag">${lv ? 'Next' : 'Level 1'}: ${M.eff(nx)}</span>` : '<span class="tag">No further upgrades yet</span>'}${lk}</div></div>
         <div class="acts">${has && !lk ? `<button class="btn ${lv ? '' : 'gold'}" data-act="buyRMach" data-id="${k}" ${S.money < rmCost(k, nx) ? 'disabled' : ''}>${lv ? 'Upgrade' : 'Install'} ${priceHTML(rmCost(k, nx))}</button>` : ''}</div></div>`;
     }
-    const nm = RMACH_ORDER.filter(k => !S.rmach[k] && rmLvl(k, 1) > L).map(k => rmLvl(k, 1)); if (ms.length && nm.length) h += `<p class="note">Another barn machine unlocks at farmer level ${Math.min(...nm)}.</p>`;
+    const nm = RMACH_ORDER.filter(k => !S.rmach[k] && rmBarnK(k, 1) > B).map(k => rmBarnK(k, 1)); if (ms.length && nm.length) h += `<p class="note">Another barn machine unlocks at barn level ${Math.min(...nm)}.</p>`;
   } else {
-    const hands = ranchHands(), cap = RHANDS[B], roles = RROLE_ORDER.filter(r => ROLES[r].lvl <= L);
+    const hands = ranchHands(), cap = RHANDS[B], roles = RROLE_ORDER.filter(r => ROLES[r].blv <= B);
     h += `<p class="note">Ranch hands live in the barn and look after your animals while you’re busy. ${hands.length} of ${cap} bunks used. Training takes them up to level ${workerMaxLvl({role: 'rfeeder'})} at your barn level.</p>`;
     h += hands.map(wkCard).join('');
-    if (!roles.length) h += `<p class="note">The first ranch hands can be hired at farmer level ${ROLES.rfeeder.lvl}.</p>`;
+    if (!roles.length) h += `<p class="note">The first ranch hands can be hired at barn level ${ROLES.rfeeder.blv}.</p>`;
     else {
       if (!roles.includes(rRole)) rRole = roles[0];
       const R = ROLES[rRole], cost = hireCost(rRole), full = hands.length >= cap;
       h += `<div class="sec">Hire</div><div class="roles">${roles.map(r => `<button class="tab ${r === rRole ? 'on' : ''}" data-rrole="${r}"><img src="${iurl('wk:' + r)}" alt="">${ROLES[r].name}</button>`).join('')}</div>`;
       h += `<div class="hero"><div class="pair"><img src="${iurl('wk:' + rRole)}" alt=""></div><div><h5>${R.name}</h5><p>${R.desc}</p><div class="tags"><span class="tag gold">Costs ${priceHTML(cost)} to hire</span>${full ? '<span class="tag bad">The bunks are full</span>' : ''}</div></div></div>`;
       h += `<div class="sec">Pick a ${R.name.toLowerCase()} <button class="btn plain sm" data-act="rreroll" style="margin-left:auto">New faces</button></div><div class="cands">${cands(rRole).map((c2, i) => `<div class="cand"><div class="pt"><img src="${workerUrl(c2)}" alt=""></div><h5>${esc(c2.name)}</h5><small>${lookText(c2)}</small><span class="tag ok">${TRAIT[c2.trait].name}: ${TRAIT[c2.trait].desc.toLowerCase()}</span><button class="btn gold sm ${qt === 'office' && q.k === 'hand' ? 'hint' : ''}" data-act="rhire" data-i="${i}" ${full || S.money < cost ? 'disabled' : ''}>Hire ${priceHTML(cost)}</button></div>`).join('')}</div>`;
-      const nr = RROLE_ORDER.find(r => ROLES[r].lvl > L); if (nr) h += `<p class="note">${ROLES[nr].name}s can be hired from farmer level ${ROLES[nr].lvl}.</p>`;
+      const nr = RROLE_ORDER.find(r => ROLES[r].blv > B); if (nr) h += `<p class="note">${ROLES[nr].name}s can be hired from barn level ${ROLES[nr].blv}.</p>`;
     }
   }
   const body = $('#off-body'), st = body.scrollTop, same = body.dataset.tab === offTab;
   setHTML(body, h); if (same) body.scrollTop = st; body.dataset.tab = offTab;
 }
 function rSpliceHTML(L) {
-  const list = ANIMALS.filter(A => A.lvl <= L); if (!list.some(A => A.id === splice.animal)) splice.animal = 'chicken';
+  const list = ANIMALS.filter(A => A.blv <= S.b.barn); if (!list.some(A => A.id === splice.animal)) splice.animal = 'chicken';
   const slots = labSlots(); splice.muts = splice.muts.filter(m => (S.mutagens[m] || 0) > 0).slice(0, slots);
   const owned = MUT_LIST.filter(M => (S.mutagens[M.id] || 0) > 0);
   let h = `<div class="sec">1 · Pick an animal</div><div class="chips">${list.map(A => `<button class="chip2 ${A.id === splice.animal ? 'on' : ''}" data-act="spAnimal" data-id="${A.id}"><img src="${iurl('an:' + A.id)}" alt="">${A.name}</button>`).join('')}</div>`;
@@ -4919,6 +5035,7 @@ function growAll(days) {
     const wetD = hardy ? days : p.water ? Math.min(p.wt ?? 1, days) : 0, dryD = days - wetD;
     const nutD = p.nut > 0 ? Math.min(p.nut, days) : 0, nb = nutD ? nutPct() / 100 * nutD * (p.water || hardy ? wf : dryF) : 0;
     if (p.prog < cr.need) p.prog = Math.min(cr.need, p.prog + growMult(p) * brz * (evt('moon') && fx ? 1.5 : 1) * pg * (wetD * wf + dryD * dryF + nb));
+    if (cr.work && !p.worked && p.prog > cr.need * .5) p.prog = cr.need * .5;
     if (p.nut > 0) p.nut = Math.max(0, p.nut - days);
     if (p.water && !hardy) { p.wt = (p.wt ?? 1) - days; if (p.wt <= 0) { p.water = false; p.wt = 0; } }
   }
@@ -4936,7 +5053,7 @@ function stepClock(dt) {
   if (sleeping || !$('#menu').hidden || tutLocked() || (typeof tutorOpen === 'function' && tutorOpen())) return;
   if (S.time == null) S.time = DAWN;
   const m = dt * MIN_PER_SEC; let t0 = S.time, t1 = t0 + m;
-  growAll(m / 1440); ghGrow(m / 1440);
+  growAll(m / 1440); ghGrow(m / 1440); orchGrow(m / 1440); if (Math.floor(t1 / 60) !== Math.floor(t0 / 60)) springTick();
   if (t0 < duskT() && t1 >= duskT()) onDusk();
   if (t1 >= 1440) { t1 -= 1440; t0 -= 1440; }
   S.time = t1;
@@ -5033,7 +5150,7 @@ function patPlots(i, k) {
 function patValid(act, j) {
   const p = S.plots[j]; if (!p) return false;
   if (act === 'till') return p.st === 'wild' || p.st === 'rough';
-  if (act === 'plant') return p.st === 'tilled' && !p.crop && !!pickSeed(p);
+  if (act === 'plant') return p.st === 'tilled' && !p.crop && p.cover == null && !!pickSeed(p);
   if (act === 'water') return needsWater(p);
   if (act === 'harvest') return !!(p.crop && p.prog >= CROP[p.crop].need);
   return false;
@@ -5193,6 +5310,15 @@ const GUIDES = [
   {id: 'greenhouse', title: 'The Greenhouse', ic: 'b:greenhouse:1', when: () => scene === 'green',
     what: ['The greenhouse is an idle farm. Each bed grows one crop over and over, day and night, with no watering or replanting.', 'Start beds at the desk, one crop at a time from the cheapest up. Bigger beds make more.'],
     tips: ['A “!” over the greenhouse means crops are waiting. Tap a bed to collect it.', 'The Conveyor upgrade collects everything for you.']},
+  {id: 'orchard', title: 'The Orchard', ic: 'fp:apple', when: () => scene === 'orch',
+    what: ['Plant fruit trees at the fruit stall. Each tree takes a while to grow up, then fruits again and again, day and night, for as long as you keep it.', 'Tap a tree with ripe fruit to pick it. Fruit sells at the Produce Stall like any crop.'],
+    tips: ['Bigger trees give more fruit. Upgrade the orchard to plant more kinds of tree and more of them.', 'Fruit Pickers collect everything for you.']},
+  {id: 'special', title: 'Special crops', ic: 'p:beans', when: () => S.q > TUT_END && flv() >= CROP.beans.lvl,
+    what: ['Some crops need extra work. Climbing Beans and Grapes need staking, Pineapples need weeding and orchids need pollinating. Halfway through growing they stop and show a bubble until you tend them with the right tool.', 'Giant crops like the Giant Watermelon take up a 2×2 square of empty plots, but give a huge harvest.'],
+    tips: ['Replanters tend crops for you.', 'Plant a giant crop on the top-left plot of the square.']},
+  {id: 'merge', title: 'Merging buildings', ic: 'b:spring:1', when: () => MERGES.some(canMerge),
+    what: ['When the Well and the Nutrient Mixer both reach level 5 you can merge them into the Nutrient Spring, a new building with levels of its own.', 'The Spring keeps everything both buildings did, and every hour it waters and feeds some plots by itself.'],
+    tips: ['Merge from the Well’s popup or the Nutrient Mixer’s panel.']},
   {id: 'nutrient', title: 'Nutrient water', ic: 'nut', when: () => S.b.mixer > 0,
     what: ['The Nutrient Mixer brews nutrient water every morning. Switch it on with the green Feed button in your hotbar (key N), then water as normal.', 'Each plot you water while it’s on gets fed. Fed crops grow faster for a while and give a bigger harvest.'],
     tips: ['Tap the mixer for upgrades: a bigger tank, stronger mix, longer feeding, bigger harvests and a chance of Giant and Shiny crops.', 'Auto-Feed lets your waterers, drones and sprinklers use it too.']},
@@ -5326,7 +5452,8 @@ function kTex(c, K, x, y, w, h, tex, side) {
 // a box with a front wall and a side wall going back to the right
 function kBox(c, K, x0, by, w, h, d, tex, opt = {}) {
   tex = tex || K.tex; const top = by - h;
-  if (d > 0) { c.save(); c.translate(x0 + w, by); c.transform(1, -SK, 0, 1, 0, 0); kTex(c, K, 0, -h, d, h, opt.sideTex || tex, true); if (K.base || opt.base) { c.fillStyle = dk(opt.base || K.base, .15); c.fillRect(0, -5, d, 5); } c.beginPath(); c.rect(0, -h, d, h); c.lineWidth = 1.3; c.strokeStyle = OL; c.stroke(); c.restore(); }
+  if (d > 0) { c.save(); c.translate(x0 + w, by); c.transform(1, -SK, 0, 1, 0, 0); kTex(c, K, 0, -h, d, h, opt.sideTex || tex, true); if (K.base || opt.base) { c.fillStyle = dk(opt.base || K.base, .15); c.fillRect(0, -5, d, 5); } c.beginPath(); c.rect(0, -h, d, h); c.lineWidth = 1.3; c.strokeStyle = OL; c.stroke(); c.restore();
+    poly(c, [[x0, top], [x0 + w, top], [x0 + w + d, top - d * SK], [x0 + d, top - d * SK]]); fillS(c, opt.lid || lt(K.wall, .12), 1.2); }
   kTex(c, K, x0, top, w, h, tex, false);
   if (K.base || opt.base) { c.fillStyle = opt.base || K.base; c.fillRect(x0, by - 6, w, 6); line(c, x0, by - 6, x0 + w, by - 6, 'rgba(0,0,0,.25)', .8); }
   if (K.quoin) for (const qx of [x0, x0 + w - 5]) for (let yy = top + 2; yy < by - 8; yy += 9) { c.fillStyle = (yy / 9 | 0) % 2 ? K.quoin : dk(K.quoin, .08); c.fillRect(qx, yy, 5, 8); }
@@ -5347,8 +5474,8 @@ function poly(c, pts) { c.beginPath(); pts.forEach(([x, y], i) => i ? c.lineTo(x
 function kGable(c, K, b, rh, opt = {}) {
   const {x0, w, d, top} = b, ov = opt.ov ?? 7, cx = x0 + w / 2, ap = [cx, top - rh], eL = [x0 - ov, top + 3], eR = [x0 + w + ov, top + 3], dv = [d, -d * SK];
   // gable end (wall material)
-  c.save(); poly(c, [[x0, top + 1], [cx, ap[1] + 3], [x0 + w, top + 1]]); c.clip(); kTex(c, K, x0, ap[1], w, rh + 2, K.tex, false); c.restore();
-  poly(c, [[x0, top + 1], [cx, ap[1] + 3], [x0 + w, top + 1]]); c.lineWidth = 1.3; c.strokeStyle = OL; c.stroke();
+  if (!opt.noWall) { c.save(); poly(c, [[x0, top + 1], [cx, ap[1] + 3], [x0 + w, top + 1]]); c.clip(); kTex(c, K, x0, ap[1], w, rh + 2, K.tex, false); c.restore();
+  poly(c, [[x0, top + 1], [cx, ap[1] + 3], [x0 + w, top + 1]]); c.lineWidth = 1.3; c.strokeStyle = OL; c.stroke(); }
   // roof slope going back
   const P = [ap, eR, [eR[0] + dv[0], eR[1] + dv[1]], [ap[0] + dv[0], ap[1] + dv[1]]];
   poly(c, P); fillS(c, K.roof, 1.5); c.save(); poly(c, P); c.clip(); roofCourses(c, K, ...P); c.restore();
@@ -5917,12 +6044,12 @@ const hubPad = n => { const o = OBJ.dronehub; const k = DRONES[S.b.dronehub] || 
 const hubConsole = () => { const o = OBJ.dronehub; return {x: o.x + o.w / 2 + 18, y: o.y + o.h + 6}; };
 const pilotReady = () => S.workers.some(w => w.role === 'pilot' && WR.get(w.id) && WR.get(w.id).st === 'pilot');
 const droneSpeed = () => 85 * (1 + .12 * (S.b.dronehub || 0)) * (1 + pb('mspeed'));
-function dronePlantKey(p) { const k = p.plan || p.last; if (!k || !baseOf(k) || seedHave(k) < 1 || CROP[baseOf(k)].soil > p.soil) return null; return k; }
+function dronePlantKey(p) { const k = p.plan || p.last; if (!k || !baseOf(k) || CROP[baseOf(k)].big || seedHave(k) < 1 || CROP[baseOf(k)].soil > p.soil) return null; return k; }
 function droneJobValid(act, i) {
   const p = S.plots[i]; if (!p) return false;
   if (act === 'water') return needsWater(p);
   if (act === 'harvest') return !!(p.crop && p.prog >= CROP[p.crop].need);
-  if (act === 'plant') return p.st === 'tilled' && !p.crop && !!dronePlantKey(p);
+  if (act === 'plant') return p.st === 'tilled' && !p.crop && p.cover == null && !!dronePlantKey(p);
   if (act === 'till') return !p.crop && (p.st === 'rough' || p.st === 'wild');
   return false;
 }
@@ -6027,7 +6154,8 @@ const PANELS = {
   workshop: {title: 'Plot Workshop', awn: 'blue', tabs: () => [['plots', 'Plot upgrades', 'b:workshop:1'], ['soil', 'Soil', 'soil:2'], ['looks', 'Looks', 'perk:all']], need: () => S.b.workshop > 0},
   green: {title: 'Greenhouse', awn: 'green', tabs: () => [['beds', 'Beds', 'p:carrot'], ['up', 'Upgrades', 'b:greenhouse:1']], need: () => S.b.greenhouse > 0},
   drones: {title: 'Drone Hub', awn: 'lab', tabs: () => [['hub', 'Drones', 'b:dronehub:1'], ['sell', 'What drones sell', 'basket']], need: () => S.b.dronehub > 0},
-  mixer: {title: 'Nutrient Mixer', awn: 'green', tabs: () => [['up', 'Upgrades', 'nut']], need: () => S.b.mixer > 0},
+  mixer: {get title() { return S.b.spring ? 'Nutrient Spring' : 'Nutrient Mixer'; }, awn: 'green', tabs: () => [['up', 'Upgrades', 'nut']], need: () => S.b.mixer > 0},
+  orchard: {title: 'Orchard', awn: 'green', tabs: () => [['trees', 'Trees', 'fp:apple'], ['up', 'Upgrades', 'b:orchard:1']], need: () => S.b.orchard > 0},
   decor: {title: 'Decor', awn: '', tabs: () => [['layout', 'Layout', 'b:house:' + S.farm], ['styles', 'Styles', 'perk:all']], need: () => true},
 };
 function openPanel(kind, tab) {
@@ -6038,13 +6166,14 @@ function closePanel() { $('#panel').hidden = true; pnKind = null; }
 function renderPanel() {
   if ($('#panel').hidden || !pnKind) return; const P = PANELS[pnKind]; if (!P.need()) return closePanel();
   $('#pn-title').textContent = P.title; $('#pn-awn').className = 'awning ' + P.awn;
-  $('#pn-tag').textContent = pnKind === 'decor' ? '' : `Level ${S.b[pnKind === 'green' ? 'greenhouse' : pnKind === 'drones' ? 'dronehub' : pnKind] || 0}`; $('#pn-tag').hidden = pnKind === 'decor';
+  $('#pn-tag').textContent = pnKind === 'decor' ? '' : `Level ${S.b[pnKind === 'green' ? 'greenhouse' : pnKind === 'drones' ? 'dronehub' : pnKind === 'mixer' && S.b.spring ? 'spring' : pnKind] || 0}`; $('#pn-tag').hidden = pnKind === 'decor';
   setHTML($('#pn-tabs'), P.tabs().map(([id, nm, ic]) => `<button class="tab ${id === pnTab ? 'on' : ''}" data-ptab="${id}"><img src="${iurl(ic)}" alt="">${nm}</button>`).join(''));
   let h = '';
   if (pnKind === 'green') h = ghPanelHTML(pnTab);
   else if (pnKind === 'drones') h = dronePanelHTML(pnTab);
   else if (pnKind === 'workshop') h = workshopHTML(pnTab);
   else if (pnKind === 'mixer') h = mixerHTML(pnTab);
+  else if (pnKind === 'orchard') h = orchardHTML(pnTab);
   else h = decorHTML(pnTab);
   const body = $('#pn-body'), st = body.scrollTop, key = pnKind + pnTab; setHTML(body, h); if (body.dataset.k === key) body.scrollTop = st; body.dataset.k = key;
 }
@@ -6053,8 +6182,8 @@ function workshopHTML(tab) {
   if (tab === 'soil') {
     let h = `<p class="note">Better soil grows crops faster and lets you plant higher-tier crops. Each soil needs a Plot Workshop of at least the same level as its tier.</p>`;
     for (let tier = 1; tier < SOIL.length; tier++) {
-      const s = SOIL[tier], elig = S.plots.filter(p => p.soil === tier - 1).length, have = S.plots.filter(p => p.soil >= tier).length, locked = !gateOk(s.lvl), wsl = W < soilWs(tier);
-      if (s.lvl > L && have === 0) continue;
+      const s = SOIL[tier], elig = S.plots.filter(p => p.soil === tier - 1).length, have = S.plots.filter(p => p.soil >= tier).length, locked = false, wsl = W < soilWs(tier);
+      if (soilWs(tier) > W + 1 && have === 0) continue;
       h += `<div class="row ${locked ? 'locked' : ''}"><div class="ic" style="background:${s.col};border-color:${s.frame}"><span style="font-family:var(--f-display);font-size:20px;color:${tier >= 3 ? s.speck : '#f1e6cc'}">T${tier}</span></div><div><h5>${s.name}</h5><p>Grows crops ×${s.mult} faster and unlocks ${TIER_NAMES[tier].toLowerCase()}. Upgrades plots that have ${SOIL[tier - 1].name.toLowerCase()}.</p>
         <div class="tags"><span class="tag">${have} plot${have === 1 ? '' : 's'} upgraded</span><span class="tag">${elig} ready to upgrade</span>${locked ? gateTag(s.lvl) : ''}${wsl ? `<span class="tag bad">Needs Plot Workshop level ${soilWs(tier)}</span>` : ''}</div></div>
         <div class="acts">${locked || wsl ? '' : `<button class="btn sm ${qt === 'workshop' ? 'hint' : ''}" data-act="soil" data-n="${tier}" ${!elig || S.money < s.cost ? 'disabled' : ''}>1 plot ${priceHTML(s.cost)}</button>${elig > 1 ? `<button class="btn sm gold" data-act="soilAll" data-n="${tier}" ${S.money < s.cost ? 'disabled' : ''}>All ${elig} ${priceHTML(s.cost * elig)}</button>` : ''}`}</div></div>`;
@@ -6174,7 +6303,7 @@ function enterGreen() {
   S.stats.ghVisits = (S.stats.ghVisits || 0) + 1; after();
 }
 function leaveScene() {
-  if (scene === 'ranch') return leaveRanch(); if (scene !== 'green') return;
+  if (scene === 'ranch') return leaveRanch(); if (scene !== 'green' && scene !== 'orch') return;
   scene = 'farm'; cam.init = false; hold = null; hover = null; hideTip(); sfx('door'); closePanel();
   const f = $('#fade'); f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); after();
 }
@@ -6258,7 +6387,7 @@ function nutToggle() {
 // feed a plot while it's being watered; who = player | worker | drone | sprinkler
 function feedNut(p, who) {
   if (!S.b.mixer || !S.nut.on || S.nut.charges < 1 || !p.crop) return false;
-  if (who !== 'player' && !nutL('auto')) return false;
+  if (who !== 'player' && who !== 'spring' && !nutL('auto')) return false;
   S.nut.charges--; p.nut = nutDays(); p.fed = true; S.stats.fed2 = (S.stats.fed2 || 0) + 1;
   const g = CROP[p.crop] ? p.prog / CROP[p.crop].need : 1;
   if (!p.var && g < .3) { const r = Math.random(); if (r < .006 * nutL('shiny')) p.var = 'shiny'; else if (r < .006 * nutL('shiny') + .015 * nutL('giant')) p.var = 'giant'; }
@@ -6269,10 +6398,10 @@ function nutDawn(lines) {
   if (S.nut.charges > before) lines.push(`<div><img src="${iurl('nut')}" alt="" width="24" height="24"> The mixer brewed ${S.nut.charges - before} nutrient water (${S.nut.charges}/${nutCap()})</div>`);
 }
 function mixerHTML(tab) {
-  const M = S.b.mixer || 0, B = BUILD.mixer, max = M >= B.max, nl = B.lvl[M];
-  let h = `<div class="hero"><div class="pair"><img src="${iurl('b:mixer:' + Math.max(1, M))}" alt=""></div><div><h5>Nutrient Mixer · level ${M}</h5><p>Switch nutrient water on with the green button in your hotbar (key N). Every plot you water while it’s on gets fed: fed crops grow ${nutPct()}% faster for ${durTxt(nutDays())} and give more.</p>
+  const SPx = S.b.spring || 0, bid = SPx ? 'spring' : 'mixer', M = SPx || S.b.mixer || 0, B = BUILD[bid], max = M >= B.max, nl = B.lvl[M];
+  let h = `<div class="hero"><div class="pair"><img src="${iurl('b:' + bid + ':' + Math.max(1, M))}" alt=""></div><div><h5>${B.name} · level ${M}</h5>${SPx ? `<p>${BUILD.spring.eff(SPx)}.</p>` : ''}<p>Switch nutrient water on with the green button in your hotbar (key N). Every plot you water while it’s on gets fed: fed crops grow ${nutPct()}% faster for ${durTxt(nutDays())} and give more.</p>
     <div class="tags"><span class="tag gold">${S.nut.charges} / ${nutCap()} nutrient water</span><span class="tag">+${nutBrew()} every dawn</span><span class="tag ${S.nut.on ? 'ok' : ''}">${S.nut.on ? 'Switched on' : 'Switched off'}</span>${max ? '' : !gateOk(nl) ? gateTag(nl) : `<span class="tag">Level ${M + 1}: ${B.eff(M + 1)}</span>`}</div>
-    <div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ${S.nut.on ? 'plain' : 'gold'} sm" data-act="nutTog">${S.nut.on ? 'Switch off' : 'Switch on'}</button>${!max && gateOk(nl) ? `<button class="btn sm" data-act="build" data-id="mixer" ${S.money < B.cost[M] ? 'disabled' : ''}>Upgrade mixer ${priceHTML(B.cost[M])}</button>` : ''}</div></div></div>`;
+    <div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ${S.nut.on ? 'plain' : 'gold'} sm" data-act="nutTog">${S.nut.on ? 'Switch off' : 'Switch on'}</button>${!max && gateOk(nl) ? `<button class="btn sm" data-act="build" data-id="${bid}" ${S.money < B.cost[M] ? 'disabled' : ''}>Upgrade ${SPx ? 'spring' : 'mixer'} ${priceHTML(B.cost[M])}</button>` : ''}</div></div></div>${mergeHTML('mixer')}`;
   for (const k of NUT_ORDER) {
     const U = NUT_UP[k], l = nutL(k), mx = nutMax(k), nx = l + 1;
     h += `<div class="row ${mx ? '' : 'locked'}"><div class="ic"><img src="${iurl('nut:' + k)}" alt=""></div><div><h5>${U.name}${l ? ` <small class="tag gold">Level ${l}${U.max ? '' : ` of ${Math.min(10, mx)}`}</small>` : ''}</h5><p>${U.desc}</p><div class="tags">${l ? `<span class="tag ok">Now: ${U.eff(l)}</span>` : ''}${nx <= mx ? `<span class="tag">Next: ${U.eff(nx)}</span>` : `<span class="tag">${mx ? (l >= (U.max || 10) ? 'Fully upgraded' : 'Upgrade the mixer to go further') : `Needs Nutrient Mixer level ${U.req}`}</span>`}</div></div><div class="acts">${nx <= mx ? `<button class="btn" data-act="buyNut" data-id="${k}" ${S.money < nutCost(k, nx) ? 'disabled' : ''}>${l ? 'Upgrade' : 'Buy'} ${priceHTML(nutCost(k, nx))}</button>` : ''}</div></div>`;
@@ -6341,6 +6470,419 @@ function drawNutSoil(c, x, y, s, t, i) {
   c.save(); rr(c, x + 5, y + 5, s - 10, s - 10, 6); c.clip(); c.globalAlpha = .22 + .08 * Math.sin(t * 2 + i); c.fillStyle = '#7ce04a'; c.fillRect(x, y, s, s); c.globalAlpha = 1;
   for (let k = 0; k < 4; k++) { const ph = (t * .6 + k / 4 + i * .17) % 1; c.beginPath(); c.arc(x + 10 + ((k * 23 + i * 7) % (s - 20)), y + s - 8 - ph * (s - 16), 1.2 + ph, 0, TAU); c.fillStyle = `rgba(214,255,122,${1 - ph})`; c.fill(); }
   c.restore();
+}
+/* ------------------------------------------------------------------ UPDATE 10: new crop and fruit art */
+function drawProduce10(c, id, r) {
+  const L2 = (x1, y1, x2, y2, col, w) => line(c, x1 * r, y1 * r, x2 * r, y2 * r, col, w * r);
+  switch (id) {
+    case 'garlic': { c.beginPath(); c.moveTo(0, -r * .9); c.bezierCurveTo(r * .2, -r * .5, r * .75, -r * .2, r * .62, r * .35); c.bezierCurveTo(r * .5, r * .75, -r * .5, r * .75, -r * .62, r * .35); c.bezierCurveTo(-r * .75, -r * .2, -r * .2, -r * .5, 0, -r * .9); fillS(c, '#f4ecdc', r * .06); for (const x of [-.3, 0, .3]) { c.beginPath(); c.moveTo(x * r * .6, -r * .5); c.quadraticCurveTo(x * r * 1.4, r * .2, x * r, r * .6); c.strokeStyle = 'rgba(160,140,120,.6)'; c.lineWidth = r * .04; c.stroke(); } L2(-.15, .7, .15, .7, '#c8b8a0', .05); return true; }
+    case 'spinach': for (const [a, s] of [[-.5, .9], [.5, .9], [0, 1]]) leaf(c, 0, r * .7, r * 1.4 * s, r * .55 * s, -Math.PI / 2 + a, a ? '#3f8f3a' : '#4f9f3a', r * .05); L2(0, .7, 0, -.4, '#2f6f2a', .05); return true;
+    case 'beans': { c.rotate(.4); c.beginPath(); c.moveTo(-r * .9, -r * .1); c.quadraticCurveTo(0, -r * .55, r * .9, -r * .1); c.quadraticCurveTo(0, r * .2, -r * .9, -r * .1); fillS(c, '#7cc04a', r * .06); for (const x of [-.45, 0, .45]) orb(c, x * r, -r * .18, r * .14, '#9be06a', false, 0); L2(.9, -.1, 1.05, -.35, '#4f8a2a', .07); return true; }
+    case 'beetroot': { for (let i = -1; i <= 1; i++) leaf(c, 0, -r * .45, r * .7, r * .22, -Math.PI / 2 + i * .45, i ? '#5a8a3a' : '#8a1f3a', r * .04); orb(c, 0, r * .1, r * .6, '#9a1f4a', true, r * .06); L2(0, .7, .05, 1, '#7a1a3a', .05); return true; }
+    case 'kale': { for (const [a, s] of [[-.7, .8], [.7, .8], [0, 1]]) { c.save(); c.rotate(a); c.beginPath(); c.moveTo(0, r * .7); for (let k = 0; k <= 8; k++) { const t2 = k / 8, w = Math.sin(t2 * Math.PI) * r * .45 * s; c.lineTo(w * (k % 2 ? 1.15 : 1), r * .7 - t2 * r * 1.5 * s); } for (let k = 8; k >= 0; k--) { const t2 = k / 8, w = Math.sin(t2 * Math.PI) * r * .45 * s; c.lineTo(-w * (k % 2 ? 1.15 : 1), r * .7 - t2 * r * 1.5 * s); } c.closePath(); fillS(c, a ? '#2f6f3a' : '#3f7f4a', r * .05); c.restore(); } return true; }
+    case 'bigmelon': { c.beginPath(); c.ellipse(0, r * .05, r * .95, r * .72, 0, 0, TAU); fillS(c, '#3f8f3a', r * .06); c.save(); c.clip(); for (let k = -3; k <= 3; k++) { c.beginPath(); c.ellipse(k * r * .28, r * .05, r * .08, r * .75, 0, 0, TAU); c.fillStyle = '#2a6a2a'; c.fill(); } c.restore(); ell(c, -r * .35, -r * .3, r * .25, r * .1, -.3); c.fillStyle = 'rgba(255,255,255,.3)'; c.fill(); return true; }
+    case 'rice': { for (let k = -2; k <= 2; k++) { c.save(); c.rotate(k * .18); L2(0, .9, 0, -.4, '#a8c060', .06); for (let j = 0; j < 5; j++) { ell(c, (j % 2 ? .08 : -.08) * r, -r * .35 - j * r * .12, r * .07, r * .12); c.fillStyle = '#e8d9a0'; c.fill(); } c.restore(); } return true; }
+    case 'pineapple': { for (let i = -2; i <= 2; i++) leaf(c, 0, -r * .45, r * .7, r * .16, -Math.PI / 2 + i * .32, '#4f8a3a', r * .04); c.beginPath(); c.ellipse(0, r * .2, r * .5, r * .7, 0, 0, TAU); fillS(c, '#f2b632', r * .06); c.save(); c.clip(); c.strokeStyle = 'rgba(140,90,20,.55)'; c.lineWidth = r * .05; for (let k = -4; k <= 4; k++) { L2(k * .25 - .6, -.6, k * .25 + .6, 1, 'rgba(140,90,20,.55)', .05); L2(k * .25 + .6, -.6, k * .25 - .6, 1, 'rgba(140,90,20,.55)', .05); } c.restore(); return true; }
+    case 'sugarcane': for (const [x, h] of [[-.3, 1.7], [0, 1.9], [.3, 1.6]]) { rr(c, x * r - r * .1, r * .9 - h * r, r * .2, h * r, r * .08); fillS(c, '#c8d88a', r * .04); for (let y = r * .9 - h * r + r * .35; y < r * .9; y += r * .35) L2(x - .1, y / r, x + .1, y / r, '#8aa84a', .05); leaf(c, x * r, r * .9 - h * r, r * .5, r * .12, -Math.PI / 2 + x * 2, '#6aa83a', r * .03); } return true;
+    case 'grapes': { leaf(c, 0, -r * .6, r * .8, r * .35, -.3, '#4f8f36', r * .04); L2(0, -.8, 0, -.45, '#6b4a2e', .06); for (const [x, y] of [[-.3, -.3], [0, -.3], [.3, -.3], [-.15, 0], [.15, 0], [-.3, .25], [.3, .25], [0, .25], [-.15, .5], [.15, .5], [0, .72]]) orb(c, x * r, y * r, r * .19, '#7a3a9a', true, r * .03); return true; }
+    case 'tea': { L2(0, .8, 0, -.6, '#5a7a3a', .05); for (let k = 0; k < 5; k++) leaf(c, 0, r * (.5 - k * .25), r * .6, r * .25, k % 2 ? -.4 : -2.7, k % 2 ? '#7ac04a' : '#9ad85a', r * .04); return true; }
+    case 'vanilla': { for (const x of [-.25, .2]) { c.save(); c.rotate(x); rr(c, -r * .07, -r * .2, r * .14, r * 1.1, r * .07); fillS(c, '#3a2414', r * .03); c.restore(); } for (let k = 0; k < 5; k++) { c.save(); c.translate(0, -r * .45); c.rotate(k * TAU / 5); ell(c, 0, -r * .28, r * .14, r * .28); c.fillStyle = '#f4ecc8'; c.fill(); c.restore(); } orb(c, 0, -r * .45, r * .1, '#f2c14e', false, 0); return true; }
+    case 'coffee': { L2(-.6, -.6, .6, .4, '#5a3a1a', .05); for (const [x, y] of [[-.3, -.25], [.05, 0], [.35, .25], [-.05, -.45]]) orb(c, x * r, y * r, r * .26, '#a82a1a', true, r * .04); return true; }
+    case 'colossus': { c.beginPath(); c.ellipse(0, r * .1, r * .95, r * .68, 0, 0, TAU); fillS(c, '#ff8a1a', r * .06); for (const x of [-.55, -.2, .2, .55]) { c.beginPath(); c.ellipse(x * r, r * .1, r * .2, r * .66, 0, 0, TAU); c.strokeStyle = 'rgba(160,70,0,.5)'; c.lineWidth = r * .05; c.stroke(); } rr(c, -r * .1, -r * .78, r * .2, r * .3, r * .06); fillS(c, '#5a7a2a', r * .04); return true; }
+    case 'ghostpepper': { glowDisc(c, 0, 0, r * 1.1, '#e0e0ff', .45); c.beginPath(); c.moveTo(-r * .35, -r * .6); c.quadraticCurveTo(r * .55, -r * .55, r * .35, r * .3); c.quadraticCurveTo(r * .1, r * .95, -r * .1, r * .9); c.quadraticCurveTo(-r * .55, r * .2, -r * .35, -r * .6); fillS(c, '#f0f0ff', r * .06); for (const x of [-.1, .15]) { ell(c, x * r, -r * .05, r * .07, r * .1); c.fillStyle = '#3a3a5a'; c.fill(); } ell(c, r * .03, r * .25, r * .1, r * .07); c.fillStyle = '#3a3a5a'; c.fill(); L2(-.35, -.6, -.45, -.85, '#4f8a2a', .08); return true; }
+    case 'cocoa': { c.rotate(-.4); c.beginPath(); c.ellipse(0, 0, r * .55, r * .9, 0, 0, TAU); fillS(c, '#c8702a', r * .06); for (const x of [-.25, 0, .25]) { c.beginPath(); c.ellipse(x * r, 0, r * .08, r * .85, 0, 0, TAU); c.strokeStyle = 'rgba(90,40,10,.5)'; c.lineWidth = r * .04; c.stroke(); } return true; }
+    case 'moonorchid': { glowDisc(c, 0, 0, r * 1.15, '#c8d8ff', .5); for (let k = 0; k < 5; k++) { c.save(); c.rotate(k * TAU / 5 + .3); ell(c, 0, -r * .45, r * .26, r * .45); c.fillStyle = k % 2 ? '#dde6ff' : '#b8c8ff'; c.fill(); c.restore(); } orb(c, 0, 0, r * .2, '#7a8ad8', false, 0); sparkle(c, r * .5, -r * .5, r * .18); return true; }
+    case 'thundermelon': { glowDisc(c, 0, 0, r * 1.15, '#ffe04a', .4); c.beginPath(); c.ellipse(0, r * .05, r * .82, r * .66, 0, 0, TAU); fillS(c, '#2a3a5a', r * .06); c.save(); c.clip(); for (const x of [-.4, .15, .55]) { c.beginPath(); c.moveTo(x * r, -r * .7); c.lineTo((x - .15) * r, -r * .05); c.lineTo((x + .05) * r, -r * .05); c.lineTo((x - .12) * r, r * .75); c.strokeStyle = '#ffe04a'; c.lineWidth = r * .09; c.stroke(); } c.restore(); return true; }
+    case 'titansquash': { glowDisc(c, 0, 0, r * 1.2, '#ffd75a', .5); c.beginPath(); c.moveTo(-r * .2, -r * .85); c.bezierCurveTo(r * .3, -r * .9, r * .9, -r * .1, r * .7, r * .5); c.bezierCurveTo(r * .5, r * .95, -r * .7, r * .95, -r * .75, r * .4); c.bezierCurveTo(-r * .85, -r * .1, -r * .6, -r * .8, -r * .2, -r * .85); fillS(c, '#ffd75a', r * .06); for (const x of [-.3, .1, .45]) { c.beginPath(); c.moveTo(x * r, -r * .6); c.quadraticCurveTo((x + .15) * r, 0, x * r, r * .75); c.strokeStyle = 'rgba(180,120,0,.45)'; c.lineWidth = r * .05; c.stroke(); } sparkle(c, r * .5, -r * .5, r * .2); return true; }
+    case 'seraphlily': { c.save(); c.beginPath(); c.ellipse(0, -r * .8, r * .4, r * .1, 0, 0, TAU); c.strokeStyle = '#ffd75a'; c.lineWidth = r * .07; c.stroke(); c.restore(); for (let k = 0; k < 6; k++) { c.save(); c.rotate(k * TAU / 6); c.beginPath(); c.moveTo(0, 0); c.quadraticCurveTo(r * .25, -r * .35, 0, -r * .75); c.quadraticCurveTo(-r * .25, -r * .35, 0, 0); c.fillStyle = '#fffaf0'; c.fill(); c.strokeStyle = 'rgba(200,180,120,.6)'; c.lineWidth = r * .03; c.stroke(); c.restore(); } orb(c, 0, 0, r * .14, '#ffd75a', false, 0); return true; }
+    case 'eternityrose': { glowDisc(c, 0, 0, r * 1.15, '#ff9ad8', .5); L2(0, .4, 0, 1, '#4f7a3a', .07); for (let k = 3; k >= 1; k--) { c.beginPath(); c.arc(0, -r * .05, r * .22 * k, Math.PI * (.9 + k * .1), Math.PI * (2.1 + k * .1)); c.fillStyle = ['', '#ff3a7a', '#ff5a9a', '#ff8ab8'][k]; c.fill(); c.strokeStyle = '#b8104a'; c.lineWidth = r * .04; c.stroke(); } sparkle(c, r * .55, -r * .5, r * .2); sparkle(c, -r * .5, r * .3, r * .14); return true; }
+  }
+  return false;
+}
+function drawFruit(c, id, x, y, r) {
+  const F = FRUIT[id]; if (!F) return; c.save(); c.translate(x, y);
+  if (['glowapple', 'crystalpear', 'sunpeach'].includes(id)) glowDisc(c, 0, 0, r * 1.2, F.col, .5);
+  const stem = () => { line(c, 0, -r * .55, r * .08, -r * .85, '#6b4a2e', r * .08); leaf(c, r * .06, -r * .75, r * .5, r * .18, -.4, '#5aa83a', r * .03); };
+  if (id === 'cherry') { line(c, -r * .35, r * .1, r * .1, -r * .8, '#5a3a1a', r * .06); line(c, r * .35, r * .2, r * .1, -r * .8, '#5a3a1a', r * .06); orb(c, -r * .35, r * .3, r * .38, F.col, true, r * .05); orb(c, r * .35, r * .4, r * .38, F.col, true, r * .05); leaf(c, r * .1, -r * .8, r * .5, r * .18, -.2, '#5aa83a', r * .03); }
+  else if (id === 'pear' || id === 'crystalpear') { c.beginPath(); c.moveTo(0, -r * .65); c.bezierCurveTo(r * .35, -r * .6, r * .25, -r * .1, r * .6, r * .35); c.bezierCurveTo(r * .65, r * .85, -r * .65, r * .85, -r * .6, r * .35); c.bezierCurveTo(-r * .25, -r * .1, -r * .35, -r * .6, 0, -r * .65); fillS(c, id === 'crystalpear' ? 'rgba(200,168,255,.9)' : F.col, r * .06); if (id === 'crystalpear') { line(c, -r * .3, r * .1, r * .1, r * .6, 'rgba(255,255,255,.6)', r * .04); line(c, r * .2, -r * .2, -r * .1, r * .4, 'rgba(255,255,255,.4)', r * .04); } stem(); }
+  else if (id === 'lemon') { c.beginPath(); c.ellipse(0, 0, r * .8, r * .55, -.3, 0, TAU); fillS(c, F.col, r * .06); orb(c, -r * .72, r * .24, r * .1, F.col, false, r * .03); orb(c, r * .72, -r * .24, r * .1, F.col, false, r * .03); }
+  else if (id === 'mango') { c.beginPath(); c.moveTo(-r * .3, -r * .65); c.bezierCurveTo(r * .6, -r * .8, r * .85, r * .4, r * .1, r * .7); c.bezierCurveTo(-r * .6, r * .9, -r * .8, -r * .3, -r * .3, -r * .65); const g = c.createLinearGradient(-r, 0, r, 0); g.addColorStop(0, '#e2412f'); g.addColorStop(.5, '#f2b632'); g.addColorStop(1, '#8ac04a'); c.fillStyle = g; c.fill(); c.lineWidth = r * .06; c.strokeStyle = OL; c.stroke(); }
+  else if (id === 'pomegranate') { orb(c, 0, r * .1, r * .65, F.col, true, r * .06); for (let k = -2; k <= 2; k++) { c.beginPath(); c.moveTo(k * r * .08, -r * .5); c.lineTo(k * r * .12, -r * .78); c.strokeStyle = '#8a1a2a'; c.lineWidth = r * .08; c.stroke(); } }
+  else if (id === 'peach' || id === 'sunpeach') { orb(c, 0, r * .05, r * .65, F.col, true, r * .06); c.beginPath(); c.moveTo(0, -r * .55); c.quadraticCurveTo(-r * .25, r * .05, 0, r * .65); c.strokeStyle = 'rgba(200,80,40,.45)'; c.lineWidth = r * .05; c.stroke(); stem(); if (id === 'sunpeach') sparkle(c, r * .5, -r * .45, r * .2); }
+  else if (id === 'orange') { orb(c, 0, r * .05, r * .68, F.col, true, r * .06); c.fillStyle = 'rgba(160,80,0,.3)'; for (let k = 0; k < 8; k++) { c.beginPath(); c.arc(Math.cos(k * 2.3) * r * .38, r * .05 + Math.sin(k * 2.3) * r * .38, r * .04, 0, TAU); c.fill(); } leaf(c, 0, -r * .6, r * .45, r * .16, -.5, '#3f8f36', r * .03); }
+  else { orb(c, 0, r * .08, r * .66, F.col, true, r * .06); if (id === 'plum') { ell(c, -r * .2, -r * .15, r * .3, r * .2); c.fillStyle = 'rgba(220,200,255,.3)'; c.fill(); } stem(); }
+  c.restore();
+}
+function drawSapling(c, id, x, y, r) { c.save(); c.translate(x, y); rr(c, -r * .45, r * .35, r * .9, r * .55, r * .12); fillS(c, '#b8643a', r * .05); line(c, 0, r * .35, 0, -r * .5, '#6b4a2e', r * .1); for (const [a, s] of [[-.5, .8], [.6, .8], [0, 1]]) leaf(c, 0, -r * .3 - (a ? 0 : r * .2), r * .6 * s, r * .22 * s, -Math.PI / 2 + a, '#5aa83a', r * .03); drawFruit(c, id, r * .5, -r * .55, r * .35); c.restore(); }
+/* ------------------------------------------------------------------ UPDATE 10: crops that need extra work, and 2×2 crops */
+const needsTend = p => { if (!p || !p.crop) return false; const cr = CROP[p.crop]; return !!(cr && cr.work && !p.worked && p.prog >= cr.need * .5 - 1e-9); };
+function tend(i, quiet) {
+  const p = S.plots[i]; if (!needsTend(p)) return false; const cr = CROP[p.crop], W = WORK_INFO[cr.work], r = bigR(p, i);
+  p.worked = true; S.stats.tended = (S.stats.tended || 0) + 1; burst(r.x + 32, r.y + 30, 'spark', 8, {up: true, sp: 50, r: 3});
+  if (!quiet) { sfx('special'); floatText(r.x + 32, r.y + 2, W.name[0].toUpperCase() + W.name.slice(1) + ' done!', '#b6f04a'); gainXp(Math.max(1, Math.round(cr.xp * .3))); after(); }
+  return true;
+}
+function bigBlock(i) { const f = Math.floor(i / 25) * 25, [x, y] = ORDER[i - f], at = (a, b) => { const j = GRID_IX[a + ',' + b]; return j === undefined ? -1 : j + f; }; return [i, at(x + 1, y), at(x, y + 1), at(x + 1, y + 1)]; }
+function bigFree(i, soil) { return bigBlock(i).every(j => { const q = S.plots[j]; return j >= 0 && q && q.st === 'tilled' && !q.crop && q.cover == null && q.soil >= soil; }); }
+const bigR = (p, i) => { const r = plotRect(i); return p && p.crop && CROP[p.crop] && CROP[p.crop].big ? {x: r.x + CELL / 2, y: r.y + CELL / 2, w: r.w, h: r.h} : r; };
+function drawBigCrops(c, t) {
+  S.plots.forEach((p, i) => {
+    if (!p.crop || !CROP[p.crop] || !CROP[p.crop].big) return; const r = plotRect(i), W = CELL + PLOT, cx = r.x + W / 2, by = r.y + W - 22;
+    // one joined bed under the 2×2 crop
+    { const x = r.x, y = r.y, base = soilAt(p), col = p.water ? dk(base, .32) : base, sd = mulberry32(i * 31 + 7);
+      c.fillStyle = 'rgba(0,0,0,.18)'; rr(c, x + 2, y + 4, W, W, 11); c.fill();
+      rr(c, x, y, W, W, 11); fillS(c, SOIL[p.soil].frame, 1.4); drawPlotBorder(c, x, y, W, t, i);
+      rr(c, x + 6, y + 6, W - 12, W - 12, 8); c.fillStyle = col; c.fill();
+      c.save(); rr(c, x + 6, y + 6, W - 12, W - 12, 8); c.clip();
+      for (let k = 0; k < 9; k++) { const fy = y + 14 + k * 14; line(c, x, fy, x + W, fy, lt(col, .14), 2.8); line(c, x, fy + 3, x + W, fy + 3, dk(col, .25), 1.7); }
+      if (SOIL[p.soil].speck) { c.fillStyle = SOIL[p.soil].speck; for (let k = 0; k < 22; k++) { c.globalAlpha = .4 + .6 * Math.sin(t * 3 + k * 1.7 + i); c.fillRect(x + 6 + sd() * (W - 12), y + 6 + sd() * (W - 12), 1.8, 1.8); } c.globalAlpha = 1; }
+      c.restore();
+      if (p.soil >= 3) { rr(c, x + 1.5, y + 1.5, W - 3, W - 3, 10); c.strokeStyle = p.soil === 4 ? `rgba(220,190,255,${.6 + .3 * Math.sin(t * 2 + i)})` : 'rgba(255,240,170,.7)'; c.lineWidth = 1.4; c.stroke(); }
+      if (p.nut > 0) drawNutSoil(c, x, y, W, t, i); }
+    c.save(); c.fillStyle = 'rgba(40,25,10,.25)'; ell(c, cx, by + 4, 50, 16); c.fill(); c.translate(cx, by); c.scale(2.1, 2.1); c.translate(-cx, -by); drawPlant(c, p, cx, by, t, i); c.restore();
+  });
+}
+/* ------------------------------------------------------------------ UPDATE 10: the orchard (walk-in, like the greenhouse) */
+const OX = 16000, OY = 4000;
+const ORCH_UP = {
+  mulch:   {name: 'Orchard Mulch', desc: 'Trees grow up and fruit faster.', eff: l => `Trees grow and fruit ${15 * l}% faster`, base: 25000, max: () => S.b.orchard || 0},
+  ladders: {name: 'Tall Ladders', desc: 'Reach the fruit at the very top of every tree.', eff: l => `+${12 * l}% fruit from every tree`, base: 40000, max: () => S.b.orchard || 0},
+  hives:   {name: 'Orchard Bees', desc: 'Bees in the blossom mean more fruit sets.', eff: l => `+${l} fruit every time a tree fruits`, base: 120000, max: () => Math.max(0, (S.b.orchard || 0) - 2)},
+  pickers: {name: 'Fruit Pickers', desc: 'Pickers collect ripe fruit straight into your basket.', eff: () => 'Collects every tree for you', base: 1500000, max: () => (S.b.orchard || 0) >= 4 ? 1 : 0},
+};
+const orchL = k => (S.orch && S.orch[k]) || 0;
+const orchSlots = () => ORCH_SLOTS[S.b.orchard || 0] || 0;
+const orchSpeed = () => (1 + .15 * orchL('mulch')) * perkBonus('grow') * (1 + pb('grow'));
+const treeCap = () => 1 + Math.ceil((S.b.orchard || 0) / 2);
+const treeOut = tr => Math.max(1, Math.round(FRUIT[tr.f].yld * (1 + .5 * (tr.lvl - 1)) * (1 + .12 * orchL('ladders')) + orchL('hives')));
+const treeCost = (tr) => niceC(FRUIT[tr.f].cost * .6 * Math.pow(1.7, tr.lvl));
+const orchUpCost = (k, L) => niceC(ORCH_UP[k].base * Math.pow(2.8, L - 1));
+const fkey = id => 'f:' + id, isF = k => typeof k === 'string' && k.startsWith('f:');
+function orchGrow(days) {
+  if (!S.b.orchard || !S.orch || !S.orch.trees.length || !(days > 0)) return; const sp = orchSpeed();
+  S.orch.trees.forEach((tr, i) => {
+    const F = FRUIT[tr.f]; if (!F) return; let d = days * sp;
+    if (tr.age < F.grow) { const a = Math.min(d, F.grow - tr.age); tr.age += a; d -= a; if (tr.age >= F.grow) S.stats.treesGrown = (S.stats.treesGrown || 0) + 1; }
+    if (d > 0 && tr.age >= F.grow) { tr.prog += d / F.cycle; let made = 0; while (tr.prog >= 1) { tr.prog -= 1; made++; } if (made) { tr.store = Math.min(treeOut(tr) * 6, (tr.store || 0) + made * treeOut(tr)); if (orchL('pickers')) orchCollect(i, true); } }
+  });
+}
+function orchCollect(i, quiet) {
+  const tr = S.orch.trees[i]; if (!tr || !tr.store) return; const n = tr.store, k = fkey(tr.f); tr.store = 0;
+  S.produce[k] = (S.produce[k] || 0) + n; S.stats.fruit = (S.stats.fruit || 0) + n; S.stats.fruitKinds = S.stats.fruitKinds || {}; S.stats.fruitKinds[tr.f] = (S.stats.fruitKinds[tr.f] || 0) + n;
+  if (!quiet) { const r = treeRect(i); floatText(r.x + r.w / 2, r.y + 10, `+${n}`, '#ffe9a8', iurl('fp:' + tr.f)); sfx('harvest'); gainXp(Math.max(1, Math.round(FRUIT[tr.f].xp * Math.sqrt(n) * .5))); burst(r.x + r.w / 2, r.y + 40, 'leaf', 8, {up: true, sp: 60, r: 3}); flash('#slot-basket'); after(); }
+}
+function orchPlant(id) {
+  const F = FRUIT[id]; if (!F || !S.b.orchard) return; if (S.orch.trees.length >= orchSlots()) return toast('Every spot in the orchard has a tree. Upgrade the orchard for more room.', 'warn');
+  if (F.orch > S.b.orchard) return toast(`${F.name} trees need Orchard level ${F.orch}.`, 'warn'); if (S.money < F.cost) return toast('Not enough coins for that.', 'warn');
+  spend(F.cost); S.orch.trees.push({f: id, age: 0, prog: 0, store: 0, lvl: 1}); S.stats.treesPlanted = (S.stats.treesPlanted || 0) + 1; sfx('plant');
+  if (scene === 'orch') { const r = treeRect(S.orch.trees.length - 1); burst(r.x + r.w / 2, r.y + r.h - 10, 'dirt', 12, {up: true, sp: 60, r: 2.6}); }
+  toast(`You planted a ${F.name} tree. It fruits again and again once it’s grown.`, 'good'); after();
+}
+function orchPrune(i) { const tr = S.orch.trees[i]; if (!tr) return; if (tr.lvl >= treeCap()) return toast(`That tree is as big as it gets (level ${treeCap()}). A bigger orchard raises the limit.`, 'warn'); const cost = treeCost(tr); if (S.money < cost) return toast('Not enough coins for that.', 'warn'); spend(cost); tr.lvl++; sfx('build'); after(); }
+function orchDig(i) { const tr = S.orch.trees[i]; if (!tr) return; if (tr.store) orchCollect(i, true); S.orch.trees.splice(i, 1); orchArm = -1; sfx('dig'); toast(`You dug up the ${FRUIT[tr.f].name} tree.`); after(); }
+let orchArm = -1;
+function orchBuyUp(k) { const L = orchL(k) + 1; if (L > ORCH_UP[k].max()) return toast('Upgrade the orchard to go further.', 'warn'); const cost = orchUpCost(k, L); if (S.money < cost) return toast('Not enough coins for that.', 'warn'); spend(cost); S.orch[k] = L; sfx('build'); toast(`${ORCH_UP[k].name}: ${ORCH_UP[k].eff(L)}.`, 'good'); after(); }
+function treeRect(i) { const c2 = i % 5, r = Math.floor(i / 5); return {x: OX + c2 * 130, y: OY + r * 150, w: 110, h: 130}; }
+const OOBJ = {odoor: {x: OX - 6, y: OY - 128, w: 74, h: 102}, odesk: {x: OX + 150, y: OY - 100, w: 110, h: 74}};
+const oObjList = () => Object.keys(OOBJ).map(id => ({id, ...OOBJ[id]}));
+const orchSlotOpen = () => S.orch.trees.length < orchSlots();
+function oBounds() { let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity; const add = r => { x0 = Math.min(x0, r.x); y0 = Math.min(y0, r.y); x1 = Math.max(x1, r.x + r.w); y1 = Math.max(y1, r.y + r.h); };
+  S.orch.trees.forEach((tr, i) => add(treeRect(i))); add(treeRect(S.orch.trees.length)); oObjList().forEach(add); add({x: OX, y: OY, w: 630, h: 130}); return {x0: x0 - 30, y0: y0 - 40, x1: x1 + 30, y1: y1 + 30}; }
+function oHitTest(sx, sy) {
+  const w = toWorld(sx, sy);
+  for (const o of oObjList()) if (w.x >= o.x && w.x <= o.x + o.w && w.y >= o.y && w.y <= o.y + o.h) return {kind: 'oobj', id: o.id};
+  for (let i = 0; i < S.orch.trees.length; i++) { const r = treeRect(i); if (w.x >= r.x && w.x <= r.x + r.w && w.y >= r.y && w.y <= r.y + r.h) return {kind: 'tree', i}; }
+  if (orchSlotOpen()) { const r = treeRect(S.orch.trees.length); if (w.x >= r.x && w.x <= r.x + r.w && w.y >= r.y && w.y <= r.y + r.h) return {kind: 'newtree'}; }
+  return null;
+}
+function oTapOn(h) {
+  if (h.kind === 'oobj') return h.id === 'odoor' ? leaveScene() : openPanel('orchard');
+  if (h.kind === 'newtree') return openPanel('orchard', 'trees');
+  if (h.kind === 'tree') { const tr = S.orch.trees[h.i], F = FRUIT[tr.f]; if (tr.store) return orchCollect(h.i); return toast(tr.age < F.grow ? `<b>${F.name} tree</b> · still growing, ${Math.round(100 * tr.age / F.grow)}% of the way to fruiting.` : `<b>${F.name} tree · level ${tr.lvl}</b> · ${treeOut(tr)} fruit every ${durTxt(F.cycle / orchSpeed())}. ${Math.round(tr.prog * 100)}% to the next.`); }
+}
+function oTipFor(hv) {
+  if (hv.kind === 'oobj') return hv.id === 'odoor' ? '<b>Orchard gate</b>Tap to go back to the farm.' : '<b>Fruit stall</b>Plant new trees and buy upgrades.';
+  if (hv.kind === 'newtree') return '<b>Empty spot</b>Tap to plant a fruit tree.';
+  const tr = S.orch.trees[hv.i], F = FRUIT[tr.f], grown = tr.age >= F.grow;
+  return `<b>${F.name} tree · level ${tr.lvl}</b>${grown ? `${treeOut(tr)} fruit every ${durTxt(F.cycle / orchSpeed())}${tr.store ? `<br><b>${tr.store} ripe</b> · tap to pick` : ''}` : `Growing up · ${durTxt((F.grow - tr.age) / orchSpeed())} to go`}<div class="tb"><i style="width:${(grown ? tr.prog : tr.age / F.grow) * 100}%"></i></div>`;
+}
+const orchNeeds = () => S.b.orchard && S.orch && !orchL('pickers') && S.orch.trees.some(tr => tr.store > 0);
+function drawOrch(c, t, v0, v1) {
+  c.fillStyle = '#7cb04a'; c.fillRect(v0.x, v0.y, v1.x - v0.x, v1.y - v0.y);
+  const rng = mulberry32(7); c.strokeStyle = 'rgba(60,110,30,.35)'; c.lineWidth = 1.2; for (let k = 0; k < 260; k++) { const x = OX - 400 + rng() * 1500, y = OY - 400 + rng() * 1400; c.beginPath(); c.moveTo(x, y); c.lineTo(x - 2, y - 6); c.moveTo(x + 3, y); c.lineTo(x + 4, y - 7); c.stroke(); }
+  const n = Math.max(orchSlots(), S.orch.trees.length), rows = Math.max(1, Math.ceil(n / 5));
+  for (let r = 0; r < rows; r++) { rr(c, OX - 14, OY + r * 150 + 100, 650, 26, 13); c.fillStyle = 'rgba(150,110,60,.35)'; c.fill(); }
+  // fence round the orchard
+  const fx0 = OX - 40, fy0 = OY - 150, fx1 = OX + 670, fy1 = OY + rows * 150 + 20, K = kitNow();
+  for (const [ax, ay, bx, by] of [[fx0, fy0, fx1, fy0], [fx0, fy0, fx0, fy1], [fx1, fy0, fx1, fy1]]) { const len = Math.hypot(bx - ax, by - ay), m = Math.round(len / 26); for (let k = 0; k <= m; k++) { const x = ax + (bx - ax) * k / m, y = ay + (by - ay) * k / m; rr(c, x - 2.5, y - 20, 5, 20, 1); fillS(c, K.wood, .8); } line(c, ax, ay - 7, bx, by - 7, K.wood, 2.6); line(c, ax, ay - 15, bx, by - 15, K.wood, 2.6); }
+  for (const o of oObjList()) { const cx = o.x + o.w / 2, by = o.y + o.h, hov = hover && hover.kind === 'oobj' && hover.id === o.id; if (hov) { c.shadowColor = 'rgba(255,248,200,.95)'; c.shadowBlur = 14 * cam.z; } if (o.id === 'odoor') drawOGate(c, cx, by, t); else drawOStall(c, cx, by, t); c.shadowBlur = 0; }
+  if (orchSlotOpen()) { const r = treeRect(S.orch.trees.length), hov = hover && hover.kind === 'newtree'; c.save(); c.setLineDash([6, 5]); c.beginPath(); c.ellipse(r.x + r.w / 2, r.y + r.h - 16, 40, 14, 0, 0, TAU); c.lineWidth = hov ? 2.6 : 1.8; c.strokeStyle = hov ? '#fff8d0' : 'rgba(255,255,255,.6)'; c.stroke(); c.restore(); c.fillStyle = 'rgba(255,255,255,.9)'; c.font = '11px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('+ Plant a tree', r.x + r.w / 2, r.y + r.h - 16); }
+  S.orch.trees.forEach((tr, i) => drawOTree(c, tr, i, t));
+}
+function drawOTree(c, tr, i, t) {
+  const r = treeRect(i), F = FRUIT[tr.f], cx = r.x + r.w / 2, by = r.y + r.h - 14, grown = tr.age >= F.grow, s = grown ? 1 + .08 * (tr.lvl - 1) : .35 + .65 * tr.age / F.grow, hov = hover && hover.kind === 'tree' && hover.i === i;
+  c.save(); c.fillStyle = 'rgba(0,0,0,.18)'; ell(c, cx + 4, by, 34 * s, 9 * s); c.fill();
+  if (hov) { c.shadowColor = 'rgba(255,248,200,.95)'; c.shadowBlur = 14 * cam.z; }
+  c.translate(cx, by); c.scale(s, s);
+  c.beginPath(); c.moveTo(-6, 0); c.lineTo(-4, -46); c.lineTo(4, -46); c.lineTo(6, 0); c.closePath(); fillS(c, '#7a5232', 1.2);
+  const pal = tr.f === 'glowapple' ? ['#5aa83a', '#7ad84a', '#9be06a'] : tr.f === 'crystalpear' ? ['#8a7ad8', '#a898f0', '#c8b8ff'] : tr.f === 'sunpeach' ? ['#c8a83a', '#e8c84a', '#f8e07a'] : ['#4f8f36', '#5fa83f', '#6fb84a'];
+  const sw = Math.sin(t * .9 + i) * 1.2;
+  for (const [ox, oy, rad, k] of [[-18, -52, 20, 0], [18, -54, 20, 0], [0, -72, 23, 1], [-10, -64, 16, 2], [12, -66, 15, 2]]) orb(c, ox + sw * (oy / -60), oy, rad, pal[k], false, k === 0 ? 1.2 : 0);
+  c.shadowBlur = 0;
+  if (['glowapple', 'crystalpear', 'sunpeach'].includes(tr.f) && grown) { c.save(); c.globalAlpha = .25 + .1 * Math.sin(t * 2 + i); glowDisc(c, 0, -60, 50, F.col, .5); c.restore(); }
+  if (grown) { const nf = tr.store ? Math.min(9, 3 + tr.store) : Math.round(tr.prog * 4); for (let k = 0; k < nf; k++) { const a = k * 2.4 + i, rr2 = 10 + (k % 3) * 8; drawFruit(c, tr.f, Math.cos(a) * rr2 + sw, -62 + Math.sin(a) * rr2 * .8, 5); } }
+  c.restore();
+  // level + progress
+  rr(c, cx - 22, by + 6, 44, 5, 2.5); c.fillStyle = 'rgba(0,0,0,.4)'; c.fill(); rr(c, cx - 22, by + 6, 44 * (grown ? tr.prog : tr.age / F.grow), 5, 2.5); c.fillStyle = grown ? '#f2c14e' : '#9ad85a'; c.fill();
+  if (tr.store) { const bx = cx + 26, byy = r.y + 8 + Math.sin(t * 3 + i) * 2; c.fillStyle = 'rgba(255,255,255,.95)'; c.beginPath(); c.arc(bx, byy, 11, 0, TAU); c.fill(); c.drawImage(icon('fp:' + tr.f).cv, bx - 9, byy - 9, 18, 18); c.font = '9px "Lilita One", sans-serif'; c.textAlign = 'center'; c.lineWidth = 2.4; c.strokeStyle = '#2a1b11'; c.strokeText('×' + tr.store, bx + 10, byy + 9); c.fillStyle = '#ffe28a'; c.fillText('×' + tr.store, bx + 10, byy + 9); }
+}
+function drawOGate(c, cx, by, t) {
+  const K = kitNow(); for (const x of [cx - 30, cx + 30]) { rr(c, x - 4, by - 90, 8, 90, 2); fillS(c, K.wood, 1.2); }
+  c.beginPath(); c.moveTo(cx - 36, by - 86); c.quadraticCurveTo(cx, by - 108, cx + 36, by - 86); c.lineWidth = 6; c.strokeStyle = K.wood; c.stroke(); for (let k = 0; k < 6; k++) leaf(c, cx - 30 + k * 12, by - 94 - Math.sin(k / 5 * Math.PI) * 10, 8, 3, -1 + k * .4, '#5aa83a', .4);
+  for (const s2 of [-1, 1]) { c.save(); c.translate(cx + s2 * 2, by); for (let k = 0; k < 4; k++) { rr(c, s2 * (4 + k * 6) - 2, -60, 4, 58, 1); fillS(c, lt(K.wood, .2), .7); } line(c, s2 * 4, -48, s2 * 26, -48, K.wood, 3); line(c, s2 * 4, -14, s2 * 26, -14, K.wood, 3); c.restore(); }
+  rr(c, cx - 26, by - 124, 52, 16, 4); fillS(c, '#2f6b3a', 1.2); c.fillStyle = '#f4e6c0'; c.font = '9px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('TO FARM', cx, by - 115.5);
+}
+function drawOStall(c, cx, by, t) {
+  const K = kitNow(); const b = kBox(c, {...K, quoin: null, hazard: false, base: null}, cx - 44, by, 76, 26, 12, 'boards', {lid: lt(K.wood, .25)});
+  ['apple', 'pear', 'orange', 'plum'].forEach((id, k) => { rr(c, cx - 38 + k * 18, by - 34, 14, 8, 1); fillS(c, K.wood, .7); drawFruit(c, id, cx - 31 + k * 18, by - 36, 5); });
+  for (const x of [cx - 42, cx + 30]) line(c, x, by - 26, x, by - 66, K.wood, 3);
+  for (let k = 0; k < 6; k++) { const x0 = cx - 48 + k * 14; c.beginPath(); c.moveTo(x0, by - 72); c.lineTo(x0 + 14, by - 72); c.lineTo(x0 + 14, by - 62); c.arc(x0 + 7, by - 62, 7, 0, Math.PI); c.closePath(); c.fillStyle = k % 2 ? '#f6efdc' : '#4f8a3a'; c.fill(); c.lineWidth = 1; c.strokeStyle = OL; c.stroke(); }
+  rr(c, cx - 30, by - 20, 50, 12, 2); fillS(c, '#f6efdc', 1); c.fillStyle = '#3e2410'; c.font = '7px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('FRUIT STALL', cx - 5, by - 13.5);
+}
+function orchardHTML(tab) {
+  const L = S.b.orchard || 0;
+  if (tab === 'up') {
+    const B = BUILD.orchard, max = L >= B.max, nl = B.lvl[L];
+    let h = `<div class="row"><div class="ic"><img src="${iurl('b:orchard:' + Math.max(1, L))}" alt=""></div><div><h5>Orchard · level ${L}</h5><p>${B.eff(L)}.</p><div class="tags">${max ? '<span class="tag">No further upgrades yet</span>' : !gateOk(nl) ? gateTag(nl) : `<span class="tag">Level ${L + 1}: ${B.eff(L + 1)}</span>`}${!max && bUnlocks('orchard', L + 1).length ? `<span class="tag">Unlocks ${bUnlocks('orchard', L + 1).join(', ')}</span>` : ''}</div></div><div class="acts">${!max && gateOk(nl) ? `<button class="btn gold" data-act="build" data-id="orchard" ${S.money < B.cost[L] ? 'disabled' : ''}>Upgrade ${priceHTML(B.cost[L])}</button>` : ''}</div></div>`;
+    for (const k in ORCH_UP) { const U = ORCH_UP[k], l = orchL(k), mx = U.max(), nx = l + 1; h += `<div class="row"><div class="ic"><img src="${iurl('fp:' + ['apple', 'pear', 'cherry', 'orange'][Object.keys(ORCH_UP).indexOf(k)])}" alt=""></div><div><h5>${U.name}${l ? ` <small class="tag gold">Level ${l}</small>` : ''}</h5><p>${U.desc}</p><div class="tags">${l ? `<span class="tag ok">Now: ${U.eff(l)}</span>` : ''}${nx <= mx ? `<span class="tag">Next: ${U.eff(nx)}</span>` : `<span class="tag">${mx ? 'Upgrade the orchard to go further' : 'Needs a bigger orchard'}</span>`}</div></div><div class="acts">${nx <= mx ? `<button class="btn" data-act="orchUp" data-id="${k}" ${S.money < orchUpCost(k, nx) ? 'disabled' : ''}>${l ? 'Upgrade' : 'Buy'} ${priceHTML(orchUpCost(k, nx))}</button>` : ''}</div></div>`; }
+    return h;
+  }
+  const ready = S.orch.trees.reduce((a, tr) => a + (tr.store || 0), 0);
+  let h = `<div class="hero"><div class="pair"><img src="${iurl('b:orchard:' + Math.max(1, L))}" alt=""></div><div><h5>${S.orch.trees.length} of ${orchSlots()} spots planted</h5><p>Fruit trees take a while to grow up, then fruit again and again, day and night, for as long as you keep them. Bigger trees give more. Fruit goes in your basket and sells at the Produce Stall.</p><div class="tags"><span class="tag">Trees can grow to level ${treeCap()}</span>${ready ? `<span class="tag gold">${ready} fruit ripe</span>` : ''}</div>${ready && !orchL('pickers') ? '<div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn gold" data-act="orchAll">Pick everything</button></div>' : ''}</div></div>`;
+  S.orch.trees.forEach((tr, i) => { const F = FRUIT[tr.f], grown = tr.age >= F.grow, mx = tr.lvl >= treeCap(); h += `<div class="row"><div class="ic"><img src="${iurl('fp:' + tr.f)}" alt=""></div><div><h5>${F.name} tree <small class="tag gold">Level ${tr.lvl} of ${treeCap()}</small></h5><div class="tags">${grown ? `<span class="tag ok">${treeOut(tr)} fruit every ${durTxt(F.cycle / orchSpeed())}</span>` : `<span class="tag">Growing up · ${durTxt((F.grow - tr.age) / orchSpeed())} to go</span>`}${tr.store ? `<span class="tag gold">${tr.store} ripe</span>` : ''}<span class="tag">${priceHTML(sellPrice(fkey(tr.f)))} each</span></div></div><div class="acts">${tr.store ? `<button class="btn sm plain" data-act="orchCol" data-i="${i}">Pick</button>` : ''}${mx ? '' : `<button class="btn sm" data-act="orchPrune" data-i="${i}" ${S.money < treeCost(tr) ? 'disabled' : ''}>Bigger tree ${priceHTML(treeCost(tr))}</button>`}${orchArm === i ? `<button class="btn red sm" data-act="orchDigYes" data-i="${i}">Dig it up</button>` : `<button class="btn plain sm" data-act="orchDigAsk" data-i="${i}">Dig up</button>`}</div></div>`; });
+  h += `<div class="sec">Plant a tree <small>${orchSlotOpen() ? `${orchSlots() - S.orch.trees.length} spot${orchSlots() - S.orch.trees.length === 1 ? '' : 's'} free` : 'every spot is full'}</small></div>`;
+  for (const F of FRUITS) { const lk = F.orch > L; if (F.orch > L + 1) continue; h += `<div class="row ${lk ? 'locked' : ''}"><div class="ic"><img src="${iurl('sap:' + F.id)}" alt=""></div><div><h5>${F.name} tree</h5><p>Grows up in ${durTxt(F.grow / orchSpeed())}, then gives ${F.yld} fruit every ${durTxt(F.cycle / orchSpeed())}.</p><div class="tags"><span class="tag gold">${priceHTML(F.sell)} a fruit</span>${lk ? `<span class="tag bad">Needs Orchard level ${F.orch}</span>` : ''}</div></div><div class="acts">${lk ? '' : `<button class="btn ${S.orch.trees.length ? '' : 'gold'}" data-act="orchPlant" data-id="${F.id}" ${!orchSlotOpen() || S.money < F.cost ? 'disabled' : ''}>Plant ${priceHTML(F.cost)}</button>`}</div></div>`; }
+  return h;
+}
+function enterOrch() {
+  if (!S.b.orchard || scene === 'orch') return; if (scene === 'ranch') { scene = 'farm'; closeOffice(); }
+  scene = 'orch'; cam.init = false; hold = null; queue = null; hover = null; closePop(); hideTip(); sfx('door'); if (droneView) setDroneView(false);
+  const f = $('#fade'); f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); after();
+}
+function b10Orchard(c, cx, by, L, t) {
+  const K = kitNow(), W = 116, D = 30, x0 = cx - W / 2 - 10;
+  c.fillStyle = 'rgba(0,0,0,.15)'; ell(c, cx + 6, by + 1, 76, 10); c.fill();
+  const P = [[x0, by], [x0 + W, by], [x0 + W + D, by - D * SK * 1.6], [x0 + D, by - D * SK * 1.6]]; poly(c, P); c.fillStyle = '#6aa83a'; c.fill();
+  const post = (x, y) => { rr(c, x - 2, y - 16, 4, 16, 1); fillS(c, K.wood, .7); };
+  const edge = (a, b, n) => { for (let k = 0; k <= n; k++) post(a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n); line(c, a[0], a[1] - 6, b[0], b[1] - 6, K.wood, 1.8); line(c, a[0], a[1] - 12, b[0], b[1] - 12, K.wood, 1.8); };
+  edge(P[3], P[2], 6); edge(P[0], P[3], 3); edge(P[1], P[2], 3);
+  const trees = Math.min(6, 2 + Math.ceil(L / 2)); const spots = [[.25, .7], [.55, .72], [.82, .66], [.38, .38], [.68, .36], [.15, .4]];
+  spots.slice(0, trees).sort((a, b) => a[1] - b[1]).forEach(([u, v], k) => { const tx = x0 + u * W + v * D * .2, ty = by - (1 - v) * D * SK * 1.6 - 4; c.save(); c.translate(tx, ty); c.scale(.42, .42); line(c, 0, 0, 0, -40, '#7a5232', 8); for (const [ox, oy, rad] of [[-14, -46, 17], [14, -48, 17], [0, -64, 20]]) orb(c, ox, oy, rad, k % 2 ? '#5fa83f' : '#4f8f36', false, 1.5); for (let f = 0; f < 4; f++) orb(c, Math.cos(f * 2 + k) * 14, -54 + Math.sin(f * 2 + k) * 10, 4, FRUITS[(k + f) % FRUITS.length].col, false, .6); c.restore(); });
+  edge(P[0], P[1], 6);
+  rr(c, cx - 22, by - 30, 34, 14, 3); fillS(c, lt(K.wood, .45), 1); c.drawImage(icon('fp:apple').cv, cx - 21, by - 30, 13, 13); c.fillStyle = '#3e2410'; c.font = '7px "Lilita One", sans-serif'; c.textAlign = 'left'; c.textBaseline = 'middle'; c.fillText('ORCHARD', cx - 8, by - 23);
+}
+/* ------------------------------------------------------------------ UPDATE 10: building merges */
+const canMerge = m => !S.b[m.id] && m.parts.every(id => (S.b[id] || 0) >= m.at);
+function applySpring() { const L = S.b.spring || 0; if (!L) return; S.b.well = Math.max(S.b.well, Math.min(BUILD.well.max, 4 + L)); S.b.mixer = Math.max(S.b.mixer, Math.min(BUILD.mixer.max, 4 + L)); }
+function doMerge(id) {
+  const m = MERGES.find(x => x.id === id); if (!m || !canMerge(m)) return toast('Both buildings need to reach level ' + (m ? m.at : 5) + ' first.', 'warn');
+  if (S.money < m.cost) return toast('Not enough coins for that.', 'warn');
+  spend(m.cost); S.b[id] = 1; applySpring(); S.stats.merges = (S.stats.merges || 0) + 1; closePanel(); closePop(); layoutObjs(); scaffold(id); revealT[id] = now();
+  const o = OBJ[id]; burst(o.x + o.w / 2, o.y + o.h / 2, 'confetti', 40, {up: true, sp: 120, r: 3}); sfx('levelup');
+  banner('Buildings merged!', BUILD[id].name, `The ${m.parts.map(p => BUILD[p].name).join(' and the ')} are now one building with levels of its own. ${BUILD[id].eff(1)}.`, `<img src="${iurl('b:' + id + ':1')}" alt="">`); after();
+}
+function mergeHTML(part) {
+  const m = MERGES.find(x => x.parts.includes(part)); if (!m || S.b[m.id]) return '';
+  const ok = canMerge(m), other = m.parts.find(p => p !== part);
+  return `<div class="row"><div class="ic"><img src="${iurl('b:' + m.id + ':1')}" alt=""></div><div><h5>Merge into the ${BUILD[m.id].name}</h5><p>${BUILD[m.id].desc}</p><div class="tags">${m.parts.map(p => `<span class="tag ${(S.b[p] || 0) >= m.at ? 'ok' : 'bad'}">${BUILD[p].name} level ${S.b[p] || 0} of ${m.at}</span>`).join('')}</div></div><div class="acts">${ok ? `<button class="btn gold" data-act="merge" data-id="${m.id}" ${S.money < m.cost ? 'disabled' : ''}>Merge ${priceHTML(m.cost)}</button>` : ''}</div></div>`;
+}
+function springTick() {
+  const L = S.b.spring || 0; if (!L || isNight()) return; const o = OBJ.spring;
+  const tgts = S.plots.map((p, i) => [p, i]).filter(([p]) => needsWater(p) || (p.crop && S.nut.on && !(p.nut > 0) && S.nut.charges > 0)).slice(0, sprPlots(L));
+  for (const [p, i] of tgts) { wet1(p); feedNut(p, 'spring'); const r = plotRect(i); for (let k = 0; k < 6; k++) parts.push({x: r.x + 14 + Math.random() * 36, y: r.y + 4, vx: (Math.random() - .5) * 10, vy: 50, g: 200, life: -k * .03, max: .4, type: 'drop', r: 1.8, rot: 0}); }
+  if (tgts.length && o) burst(o.x + o.w / 2, o.y + o.h * .3, 'drop', 10, {up: true, sp: 80, r: 2});
+  S.stats.springWaters = (S.stats.springWaters || 0) + tgts.length;
+}
+function b10Spring(c, cx, by, L, t) {
+  const K = kitNow(); c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx + 4, by, 52, 9); c.fill();
+  // round basin in the kit stone
+  c.save(); rr(c, cx - 40, by - 24, 80, 24, 8); c.clip(); kTex(c, {...K, wall: K.stone}, cx - 40, by - 24, 80, 24, 'stone', false); c.restore(); rr(c, cx - 40, by - 24, 80, 24, 8); c.lineWidth = 1.4; c.strokeStyle = OL; c.stroke();
+  ell(c, cx, by - 24, 40, 10); fillS(c, dk(K.stone, .15), 1.2); ell(c, cx, by - 23.5, 33, 7.5); c.fillStyle = '#5ad84a'; c.fill();
+  c.save(); c.globalAlpha = .35 + .15 * Math.sin(t * 2.5); glowDisc(c, cx, by - 24, 40, '#9be04a', .6); c.restore();
+  for (let k = 0; k < 3; k++) { const ph = (t * .8 + k / 3) % 1; c.beginPath(); c.ellipse(cx, by - 24, 8 + ph * 26, 2 + ph * 6, 0, 0, TAU); c.strokeStyle = `rgba(230,255,200,${(1 - ph) * .8})`; c.lineWidth = 1.2; c.stroke(); }
+  // central tank-column with the old well roof on top
+  const th = 40 + Math.min(L, 10) * 3; rr(c, cx - 10, by - 24 - th, 20, th, 5); fillS(c, K.i >= 10 ? K.stone : '#9aa8b4', 1.3);
+  rr(c, cx - 6, by - 20 - th, 12, th - 8, 3); c.fillStyle = '#7ce04a'; c.fill(); for (let k = 1; k < 3; k++) line(c, cx - 10, by - 24 - th * k / 3, cx + 10, by - 24 - th * k / 3, K.gold || '#5a5a62', 1.6);
+  for (let s2 of [-1, 1]) for (let k = 0; k < 6; k++) { const ph = (t * 1.1 + k / 6) % 1, x = cx + s2 * (6 + ph * 34), y = by - 24 - th + 4 - Math.sin(ph * Math.PI) * 22 + ph * (th - 4); c.beginPath(); c.arc(x, y, 1.8 * (1 - ph * .4), 0, TAU); c.fillStyle = 'rgba(160,240,120,.9)'; c.fill(); }
+  const ty = by - 24 - th; poly(c, [[cx - 24, ty + 2], [cx, ty - 18], [cx + 24, ty + 2]]); fillS(c, K.roof, 1.3); poly(c, [[cx, ty - 18], [cx + 24, ty + 2], [cx + 32, ty - 2], [cx + 8, ty - 22]]); fillS(c, dk(K.roof, .15), 1.2); if (K.gold) line(c, cx - 24, ty + 2, cx, ty - 18, K.gold, 1.4);
+  kFx(c, K, {x0: cx - 40, w: 80, h: 24, by, top: by - 24}, 17);
+}
+/* ------------------------------------------------------------------ UPDATE 10: the 3D look everywhere (merchant wagon, sprinklers, stand, compost, well) */
+function b10Wagon(c, cx, by, L, t) {
+  c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx + 6, by, 44, 7); c.fill();
+  const K = {...KITS[3], wall: '#9a6a3a', side: '#7a5230', base: null, quoin: null, hazard: false, rainbow: false, fx: null};
+  const b = kBox(c, K, cx - 36, by - 10, 64, 22, 14, 'boards', {lid: '#6b4428'});
+  for (const [ox, col] of [[-26, '#e2412f'], [-10, '#f07f24'], [6, '#7fbf43'], [18, '#f4c542']]) { rr(c, cx + ox - 6, by - 40, 12, 9, 2); fillS(c, '#c7955c', .8); orb(c, cx + ox - 2, by - 41, 3.2, col, true, .5); orb(c, cx + ox + 3, by - 40, 2.8, col, true, .5); }
+  // canopy: striped hoop roof with depth
+  const top = by - 58; c.save(); c.beginPath(); c.moveTo(cx - 40, top + 10); c.quadraticCurveTo(cx - 4, top - 16, cx + 32, top + 10); c.lineTo(cx + 46, top + 3); c.quadraticCurveTo(cx + 10, top - 23, cx - 26, top + 3); c.closePath(); c.fillStyle = '#f1e6cc'; c.fill(); c.clip(); c.fillStyle = '#c8423a'; for (let k = -44; k < 50; k += 14) { c.beginPath(); c.moveTo(cx + k, top - 30); c.lineTo(cx + k + 7, top - 30); c.lineTo(cx + k + 21, top + 14); c.lineTo(cx + k + 14, top + 14); c.closePath(); c.fill(); } c.restore();
+  c.beginPath(); c.moveTo(cx - 40, top + 10); c.quadraticCurveTo(cx - 4, top - 16, cx + 32, top + 10); c.lineTo(cx + 46, top + 3); c.quadraticCurveTo(cx + 10, top - 23, cx - 26, top + 3); c.closePath(); c.lineWidth = 1.3; c.strokeStyle = OL; c.stroke();
+  for (const [x, y] of [[cx - 38, top + 10], [cx + 30, top + 10], [cx - 24, top + 3], [cx + 44, top + 3]]) line(c, x, y, x, y + 22 + (y === top + 3 ? -7 : 0), '#6b4428', 2);
+  const wheel = (x, y, s2) => { c.save(); c.translate(x, y); c.scale(s2, 1); c.rotate(t * .2); c.beginPath(); c.arc(0, 0, 9, 0, TAU); fillS(c, '#6b4428', 1.2); c.beginPath(); c.arc(0, 0, 6.5, 0, TAU); c.strokeStyle = '#c7955c'; c.lineWidth = 1; c.stroke(); for (let k = 0; k < 4; k++) { c.rotate(Math.PI / 4); line(c, -6, 0, 6, 0, '#c7955c', 1); } c.restore(); };
+  wheel(cx - 14, by - 13, .55); wheel(cx + 24, by - 13, .55); wheel(cx - 26, by - 6, 1); wheel(cx + 16, by - 6, 1);
+  line(c, cx + 28, by - 18, cx + 52, by - 10, '#6b4428', 2);
+  const ready = (S.orders || []).filter(o => !o.done && Object.entries(o.items).every(([k, q]) => (S.produce[k] || 0) >= q)).length;
+  if (ready) { const bx = cx + 30, byy = by - 86 + Math.sin(t * 3) * 2; c.beginPath(); c.arc(bx, byy, 9, 0, TAU); c.fillStyle = '#f4c542'; c.fill(); c.lineWidth = 1.4; c.strokeStyle = '#4a2c06'; c.stroke(); c.fillStyle = '#3b2504'; c.font = '12px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(ready, bx, byy + 1); }
+}
+function b10Irrigation(c, cx, by, L, t) {
+  const K = kitNow(), d = 8; c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx + 4, by, 28, 6); c.fill();
+  const legs = [[cx - 16, by - d * SK + 0, true], [cx + 12, by - d * SK, true], [cx - 18, by, false], [cx + 14, by, false]];
+  const leg = (x, y, back) => { const col = back ? dk(K.wood, .25) : K.wood; c.beginPath(); c.moveTo(x, y); c.lineTo(x + (x < cx ? 4 : -4), y - 40); c.lineTo(x + (x < cx ? 8 : -8), y - 40); c.lineTo(x + 4 * (x < cx ? 1 : -1) + (x < cx ? 0 : 0), y); c.closePath(); fillS(c, col, .8); };
+  for (const [x, y, bk] of legs.slice(0, 2)) leg(x + d, y, bk);
+  line(c, cx - 12 + d, by - 14 - d * SK, cx + 10 + d, by - 26 - d * SK, dk(K.wood, .25), 2); line(c, cx + 14, by - 14, cx + 14 + d, by - 14 - d * SK, K.wood, 2);
+  for (const [x, y, bk] of legs.slice(2)) leg(x, y, bk);
+  line(c, cx - 14, by - 14, cx + 10, by - 26, K.wood, 2.4); line(c, cx + 10, by - 14, cx - 14, by - 26, K.wood, 2.4); line(c, cx - 14, by - 26, cx - 14 + d, by - 26 - d * SK, K.wood, 2);
+  const th = 26 + Math.min(L, 10) * 3, b = kBox(c, {...K, base: null, quoin: null, hazard: false}, cx - 20, by - 40, 34, th, d, K.i <= 9 ? 'boards' : K.tex);
+  for (let k = 1; k < 3; k++) { line(c, cx - 20, by - 40 - th * k / 3, cx + 14, by - 40 - th * k / 3, K.gold || '#5a5a62', 1.6); line(c, cx + 14, by - 40 - th * k / 3, cx + 14 + d, by - 40 - th * k / 3 - d * SK, K.gold || '#5a5a62', 1.6); }
+  const top = by - 40 - th; poly(c, [[cx - 23, top + 2], [cx - 3, top - 14], [cx + 17, top + 2]]); fillS(c, K.roof, 1.2); poly(c, [[cx - 3, top - 14], [cx + 17, top + 2], [cx + 17 + d, top + 2 - d * SK], [cx - 3 + d, top - 14 - d * SK]]); fillS(c, dk(K.roof, .15), 1.2); if (K.gold) line(c, cx - 23, top + 2, cx - 3, top - 14, K.gold, 1.3);
+  line(c, cx + 14 + d * .5, by - 46, cx + 30, by - 46, '#8a8f96', 3); line(c, cx + 30, by - 46, cx + 30, by - 6, '#8a8f96', 3);
+  const ph = (t * 1.2) % 1; orb(c, cx + 30, by - 4 + ph * 4, 1.8 * (1 - ph) + .4, K.water || '#7fd0ff', false, 0);
+  kFx(c, K, {...b, by: by - 40}, 5);
+}
+function b10Stand(c, cx, by, L, t) {
+  const K = kitNow(), W = 84, d = 14, left = cx - W / 2 - 6, a1 = K.i >= 14 ? K.gold : K.cloth, top = by - 74;
+  c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx + 4, by, 56, 7); c.fill();
+  for (const x of [left + 3, left + W - 3]) { rr(c, x - 2.5 + d, top - d * SK, 5, 74, 1); fillS(c, dk(K.wood, .2), .8); }
+  const b = kBox(c, K, left, by, W, 28, d, null, {lid: lt(K.wood, .3)});
+  const goods = ['carrot', 'tomato', 'pumpkin', 'lettuce', 'melon', 'corn'];
+  for (let i = 0; i < Math.min(6, 3 + L); i++) { const gx = left + 10 + i * 13 + 4, gy = by - 31; rr(c, gx - 6, gy - 4, 12, 7, 1); fillS(c, K.wood, .8); drawProduce(c, goods[i], gx, gy - 4, 6); }
+  for (const x of [left + 3, left + W - 3]) { rr(c, x - 2.5, top, 5, 74 - 28, 1); fillS(c, K.wood, .8); }
+  // awning: sloped striped roof going back
+  const P = [[left - 6, top + 4], [left + W + 6, top + 4], [left + W + 6 + d, top + 4 - d * SK - 10], [left - 6 + d, top + 4 - d * SK - 10]];
+  c.save(); poly(c, P); c.clip(); for (let k = 0; k < 7; k++) { const u0 = k / 7, u1 = (k + 1) / 7; poly(c, [[P[0][0] + (P[1][0] - P[0][0]) * u0, P[0][1]], [P[0][0] + (P[1][0] - P[0][0]) * u1, P[0][1]], [P[3][0] + (P[2][0] - P[3][0]) * u1, P[3][1]], [P[3][0] + (P[2][0] - P[3][0]) * u0, P[3][1]]]); c.fillStyle = k % 2 ? '#f6efdc' : a1; c.fill(); } c.restore(); poly(c, P); c.lineWidth = 1.2; c.strokeStyle = OL; c.stroke();
+  for (let i = 0; i < 7; i++) { const x0 = left - 6 + i * (W + 12) / 7, x1 = x0 + (W + 12) / 7; c.beginPath(); c.moveTo(x0, top + 4); c.lineTo(x1, top + 4); c.lineTo(x1, top + 9); c.arc((x0 + x1) / 2, top + 9, (x1 - x0) / 2, 0, Math.PI); c.closePath(); c.fillStyle = i % 2 ? '#f6efdc' : a1; c.fill(); c.lineWidth = 1; c.strokeStyle = OL; c.stroke(); }
+  rr(c, cx - 24, by - 21, 36, 12, 2); fillS(c, '#f6efdc', 1); c.fillStyle = '#4a2c14'; c.font = '8px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('FRESH', cx - 6, by - 14.5);
+  kFx(c, K, b, 6);
+}
+function b10Compost(c, cx, by, L, t) {
+  const K = kitNow(), bins = L >= 3 ? 2 : 1, bw = bins === 2 ? 24 : 38, toxic = K.i >= 10 && K.i <= 13;
+  c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx + 3, by, 30, 5); c.fill();
+  for (let k = 0; k < bins; k++) {
+    const x = cx - (bins * bw) / 2 + k * (bw + 2) - (bins - 1);
+    kBox(c, {...K, quoin: null, base: null, rainbow: false}, x, by, bw, 20, 7, K.i <= 9 ? 'boards' : K.tex, {lid: toxic ? '#2a3a1a' : '#3a2614'});
+    const tx = x + bw / 2 + 3.5, ty = by - 23; c.beginPath(); c.ellipse(tx, ty, bw / 2 - 2, 4 + Math.min(L, 8) * .6, 0, Math.PI, 0); c.fillStyle = toxic ? '#3a5a1a' : '#5a3a1f'; c.fill();
+    for (let j = 0; j < 4; j++) orb(c, x + 6 + j * (bw - 8) / 3, ty - 2 - (j % 2) * 3, 2, toxic ? ['#b6f04a', '#7cf04a', '#d6ff4a', '#9be04a'][j] : ['#7cb342', '#c49a5a', '#f07f24', '#d9c48a'][j], false, 0);
+    if (K.gold) line(c, x, by - 20, x + bw, by - 20, K.gold, 1.2);
+  }
+  for (let i = 0; i < 2; i++) { const ph = (t * .4 + i * .5) % 1; c.save(); c.globalAlpha = (1 - ph) * .4; c.beginPath(); c.moveTo(cx - 6 + i * 10, by - 30 - ph * 18); c.quadraticCurveTo(cx - 2 + i * 10, by - 36 - ph * 18, cx - 6 + i * 10, by - 42 - ph * 18); c.strokeStyle = toxic ? '#c8f04a' : '#fff'; c.lineWidth = 1.5; c.stroke(); c.restore(); }
+  if (toxic) { c.save(); c.globalAlpha = .3 + .15 * Math.sin(t * 2); glowDisc(c, cx, by - 26, 26, '#b6f04a', .5); c.restore(); }
+  kFx(c, K, {x0: cx - bins * bw / 2, w: bins * bw, h: 20, by, top: by - 20}, 4);
+}
+function b10Well(c, cx, by, L, t) {
+  const K = kitNow(), d = 10; c.fillStyle = 'rgba(0,0,0,.2)'; ell(c, cx + 3, by - 1, 30, 6); c.fill();
+  c.save(); rr(c, cx - 23, by - 26, 46, 26, 6); c.clip(); kTex(c, {...K, wall: K.stone}, cx - 23, by - 26, 46, 26, K.i >= 12 && K.i <= 13 ? K.tex : 'stone', false); c.fillStyle = 'rgba(0,0,0,.12)'; c.fillRect(cx + 8, by - 26, 16, 26); c.restore(); rr(c, cx - 23, by - 26, 46, 26, 6); c.lineWidth = 1.4; c.strokeStyle = OL; c.stroke();
+  ell(c, cx, by - 26, 23, 6); fillS(c, dk(K.stone, .15), 1.2); ell(c, cx, by - 25.5, 17, 4); c.fillStyle = K.water || '#2f6e98'; c.fill();
+  if (K.water) { c.save(); c.globalAlpha = .35 + .2 * Math.sin(t * 2.5); glowDisc(c, cx, by - 26, 22, K.water, .6); c.restore(); }
+  c.fillStyle = dk(K.wood, .2); c.fillRect(cx - 21 + d, by - 64 - d * SK, 3.5, 34); c.fillRect(cx + 21 + d - 3, by - 64 - d * SK, 3.5, 34);
+  c.fillStyle = K.wood; c.fillRect(cx - 23, by - 62, 4, 38); c.fillRect(cx + 19, by - 62, 4, 38); line(c, cx - 21, by - 52, cx + 21, by - 52, dk(K.wood, .2), 3);
+  line(c, cx + 2, by - 52, cx + 2, by - 38 + Math.sin(t * 1.5) * 1.5, '#cbb48a', 1); rr(c, cx - 3, by - 38 + Math.sin(t * 1.5) * 1.5, 10, 8, 1.5); fillS(c, K.gold && K.i >= 14 ? K.gold : '#8a8f96', 1);
+  kGable(c, K, {x0: cx - 24, w: 48, d, top: by - 60}, 18, {ov: 6, noWall: true});
+  if (K.flowers) for (const fx of [cx - 26, cx + 26]) for (let k = 0; k < 3; k++) orb(c, fx - 3 + k * 3, by - 3 - (k % 2) * 3, 2, ['#f26b8a', '#f7c531', '#fff'][k], false, .3);
+  kFx(c, K, {x0: cx - 23, w: 46, h: 26, by, top: by - 26}, 3);
+}
+Object.assign(DRAW, {wagon: b10Wagon, irrigation: b10Irrigation, stand: b10Stand, compost: b10Compost, well: b10Well, orchard: (c, cx, by, L, t) => b10Orchard(c, cx, by, L, t), spring: (c, cx, by, L, t) => b10Spring(c, cx, by, L, t)});
+/* ------------------------------------------------------------------ UPDATE 10: achievements */
+const allMax = () => BUILD_ORDER.filter(k => !mergedInto(k) && (k !== 'spring' || S.b.spring)).every(k => (S.b[k] || 0) >= BUILD[k].max);
+const cntCrops = () => CROPS.filter(c2 => (S.stats.crop[c2.id] || 0) > 0).length;
+const ACH = [
+  ['first', 'First Harvest', 'Harvest your first crop.', 'p:carrot', () => [S.stats.harvested, 1]],
+  ['h100', 'Bumper Crop', 'Harvest 100 times.', 'basket', () => [S.stats.harvested, 100]],
+  ['h1000', 'Harvest Moon', 'Harvest 1,000 times.', 'basket', () => [S.stats.harvested, 1000]],
+  ['h10000', 'Breadbasket', 'Harvest 10,000 times.', 'basket', () => [S.stats.harvested, 10000]],
+  ['plant500', 'Green Fingers', 'Plant 500 seeds.', 'seed:carrot', () => [S.stats.planted, 500]],
+  ['water1000', 'Rainmaker', 'Water crops 1,000 times.', 'tool:can:4', () => [S.stats.watered, 1000]],
+  ['almanac', 'Complete Almanac', 'Harvest every kind of crop in the game.', 'book', () => [cntCrops(), CROPS.length]],
+  ['variant', 'Something Special', 'Harvest a Giant or Shiny crop.', 'perk:all', () => [S.stats.variants || 0, 1]],
+  ['variant50', 'Show Stealer', 'Harvest 50 Giant or Shiny crops.', 'perk:all', () => [S.stats.variants || 0, 50]],
+  ['tend', 'Hands-On', 'Stake, weed or pollinate a crop that needs extra work.', 'tool:gloves:3', () => [S.stats.tended || 0, 1]],
+  ['tend100', 'Devoted Gardener', 'Tend 100 crops that need extra work.', 'tool:gloves:6', () => [S.stats.tended || 0, 100]],
+  ['big', 'Two by Two', 'Harvest a crop that takes up four plots.', 'p:bigmelon', () => [S.stats.bigHarvest || 0, 1]],
+  ['big25', 'Heavyweight', 'Harvest 25 crops that take up four plots.', 'p:colossus', () => [S.stats.bigHarvest || 0, 25]],
+  ['soil8', 'Divine Ground', 'Upgrade a plot to Divine soil.', 'soil:8', () => [maxSoil(), 8]],
+  ['plots100', 'Every Last Acre', 'Own 100 plots.', 'soil:0', () => [S.plots.length, 100]],
+  ['fed', 'Well Fed', 'Feed 100 plots with nutrient water.', 'nut', () => [S.stats.fed2 || 0, 100]],
+  ['coin1', 'Pocket Money', 'Earn 1 gold coin in total.', 'pouch', () => [S.stats.earned, 10000]],
+  ['coin2', 'Platinum Farmer', 'Earn 1 platinum coin in total.', 'pouch', () => [S.stats.earned, 1e6]],
+  ['coin3', 'Tycoon', 'Earn 1,000 platinum coins in total.', 'pouch', () => [S.stats.earned, 1e9]],
+  ['coin4', 'Crop Billionaire', 'Earn 1,000,000 platinum coins in total.', 'pouch', () => [S.stats.earned, 1e12]],
+  ['sold', 'Market Regular', 'Sell 1,000 items.', 'stall', () => [S.stats.sold, 1000]],
+  ['order', 'Special Delivery', 'Complete a Large Sale.', 'b:wagon:1', () => [S.stats.orders || 0, 1]],
+  ['order50', 'Merchant’s Favourite', 'Complete 50 Large Sales.', 'b:wagon:1', () => [S.stats.orders || 0, 50]],
+  ['lv10', 'Getting the Hang of It', 'Reach farmer level 10.', 'perk:all', () => [flv(), 10]],
+  ['lv25', 'Seasoned Farmer', 'Reach farmer level 25.', 'perk:all', () => [flv(), 25]],
+  ['lv50', 'Master Farmer', 'Reach farmer level 50.', 'perk:all', () => [flv(), 50]],
+  ['lv75', 'Living Legend', 'Reach farmer level 75.', 'perk:all', () => [flv(), 75]],
+  ['lv100', 'Level 100', 'Reach farmer level 100.', 'perk:all', () => [flv(), 100]],
+  ['house7', 'Lord of the Manor', 'Restore the farmhouse to the Grand Manor.', 'b:house:7', () => [S.farm, FI('Grand Manor')]],
+  ['house10', 'It’s Alive', 'Restore the farmhouse to the Mutant Outpost.', 'b:house:10', () => [S.farm, FI('Mutant Outpost')]],
+  ['house13', 'Crystal Clear', 'Restore the farmhouse to the Crystal Hive.', 'b:house:13', () => [S.farm, FI('Crystal Hive')]],
+  ['house15', 'Heaven on Earth', 'Restore the farmhouse to the Heavenly Kingdom.', 'b:house:15', () => [S.farm, FI('Heavenly Kingdom')]],
+  ['house16', 'Divine Intervention', 'Restore the farmhouse to the Divine Realm.', 'b:house:16', () => [S.farm, FI('Divine Realm')]],
+  ['builder', 'Builder', 'Build every kind of building.', 'b:hut:1', () => [BUILD_ORDER.filter(k => k !== 'spring' && (S.b[k] > 0 || mergedInto(k))).length, BUILD_ORDER.length - 1]],
+  ['maxone', 'Top of the Line', 'Upgrade any building to its highest level.', 'b:barn:5', () => [BUILD_ORDER.some(k => S.b[k] >= BUILD[k].max) ? 1 : 0, 1]],
+  ['maxall', 'Nothing Left to Build', 'Upgrade every building to its highest level.', 'b:house:16', () => [allMax() ? 1 : 0, 1]],
+  ['merge', 'Better Together', 'Merge two buildings into one.', 'b:spring:1', () => [S.stats.merges || 0, 1]],
+  ['hire', 'Helping Hands', 'Hire your first farmhand.', 'wk:waterer', () => [S.stats.hired, 1]],
+  ['hire15', 'Big Team', 'Hire 15 farmhands.', 'wk:collector', () => [S.stats.hired, 15]],
+  ['machine', 'Horsepower', 'Buy your first machine.', 'mach:tractor:1', () => [MACH_ORDER.some(k => S.mach[k]) ? 1 : 0, 1]],
+  ['dock', 'Fleet Owner', 'Build the Machine Dock to its highest level.', 'b:dock:3', () => [S.b.dock || 0, BUILD.dock.max]],
+  ['drone', 'Eyes in the Sky', 'Have a drone do 1,000 jobs.', 'drone', () => [S.stats.droneJobs || 0, 1000]],
+  ['tooltop', 'Divine Craft', 'Own any Divine tool.', 'tool:hoe:11', () => [TOOL_ORDER.some(k => (S.tools[k] || 0) >= TOOLS[k].tiers.length - 1) ? 1 : 0, 1]],
+  ['toolall', 'Fully Equipped', 'Own the best tier of every tool.', 'tool:sickle:11', () => [TOOL_ORDER.filter(k => (S.tools[k] || 0) >= TOOLS[k].tiers.length - 1).length, TOOL_ORDER.length]],
+  ['gh', 'Glasshouse', 'Start a bed in the greenhouse.', 'b:greenhouse:1', () => [S.gh.beds.length, 1]],
+  ['ghall', 'Botanist', 'Grow every crop in the game in the greenhouse.', 'b:greenhouse:5', () => [S.gh.beds.length, CROPS.length]],
+  ['tree', 'Planting for the Future', 'Plant a tree in the orchard.', 'sap:apple', () => [S.stats.treesPlanted || 0, 1]],
+  ['fruit500', 'Fruit Basket', 'Pick 500 fruit.', 'fp:apple', () => [S.stats.fruit || 0, 500]],
+  ['fruitall', 'Orchard Keeper', 'Pick every kind of fruit.', 'fp:sunpeach', () => [Object.keys(S.stats.fruitKinds || {}).length, FRUITS.length]],
+  ['crate', 'What’s in the Box?', 'Open a mystery crate.', 'crate:rusty', () => [S.stats.crates, 1]],
+  ['splice', 'Mad Scientist', 'Splice a mutant crop.', 'mutant', () => [S.stats.spliced, 1]],
+  ['legend', 'One in a Million', 'Find a legendary mutagen.', 'mg:value2', () => [S.stats.legFound || 0, 1]],
+  ['mut100', 'Mutant Harvest', 'Harvest 100 mutant crops.', 'mutant', () => [S.stats.mutHarvest || 0, 100]],
+  ['animal', 'Barnyard', 'Buy your first animal.', 'an:chicken', () => [S.stats.animalsBought || 0, 1]],
+  ['product500', 'Rancher', 'Collect 500 animal products.', 'an:cow', () => [S.stats.products || 0, 500]],
+  ['fair', 'Blue Ribbon', 'Win the County Fair.', 'trophy', () => [S.stats.fairWins || 0, 1]],
+  ['events', 'Weathered', 'See 20 random events.', 'sun', () => [S.stats.events || 0, 20]],
+  ['sleep', 'Early to Bed', 'Sleep 100 nights.', 'moon', () => [S.stats.slept || 0, 100]],
+  ['style', 'Interior Decorator', 'Buy a Decor style.', 'brush', () => [Object.keys(S.cos.own).length, 1]],
+  ['clear', 'Clean Sweep', 'Clear 50 patches of wild land and yard.', 'tool:axe:2', () => [(S.stats.cleared || 0) + (S.stats.yard || 0), 50]],
+  ['quests', 'Questing', 'Finish 50 quests.', 'b:sign:1', () => [Object.keys(S.qdone).length, 50]],
+  ['questall', 'Every Last Quest', 'Finish every quest.', 'b:sign:1', () => [QUESTS.filter(q => S.qdone[q.t]).length, QUESTS.length]],
+  ['beat', 'Mutant Farm Master', 'Beat the game: level 80 and the Heavenly Kingdom.', 'mutant', () => [S.beaten ? 1 : 0, 1]],
+  ['prestige', 'Fresh Start', 'Prestige once.', 'perk:all', () => [S.prestige.count, 1]],
+  ['prestige5', 'Again and Again', 'Prestige 5 times.', 'perk:all', () => [S.prestige.count, 5]],
+].map(([id, name, desc, ic, g]) => ({id, name, desc, ic, g}));
+ACH.push({id: 'all', name: 'Completionist', desc: 'Unlock every other achievement. True 100% completion!', ic: 'trophy', g: () => [ACH.filter(a => a.id !== 'all' && S.ach[a.id]).length, ACH.length - 1]});
+const achQ = []; let achShowing = false, achLastCheck = 0;
+function checkAch(silent) {
+  if (!S.started || !S.ach) return; let n = 0;
+  for (const a of ACH) { if (S.ach[a.id]) continue; let v; try { v = a.g(); } catch (e) { continue; } if (v[0] >= v[1]) { S.ach[a.id] = S.day; n++; if (!silent) achQ.push({a, got: ACH.filter(x => S.ach[x.id]).length}); } }
+  if (n && !silent) { showAchNext(); save(); }
+  return n;
+}
+function showAchNext() {
+  if (achShowing || !achQ.length) return; const el = $('#achpop'); achShowing = true;
+  if (achQ.length > 3) { // lots at once: one card for the whole batch
+    const all = achQ.splice(0), last = all[all.length - 1];
+    el.innerHTML = `<div class="ach-card"><img src="${iurl(all[0].a.ic)}" alt=""><div><small>${all.length} achievements unlocked · ${last.got} of ${ACH.length}</small><b>${all.slice(0, 2).map(q => q.a.name).join(', ')} and ${all.length - 2} more</b><span>See them all in your Journal.</span></div></div>`;
+  } else { const {a, got} = achQ.shift();
+    el.innerHTML = `<div class="ach-card"><img src="${iurl(a.ic)}" alt=""><div><small>Achievement unlocked · ${got} of ${ACH.length}</small><b>${a.name}</b><span>${a.desc}</span></div></div>`; }
+  el.hidden = false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go'); sfx('quest');
+  setTimeout(() => { el.classList.remove('go'); setTimeout(() => { el.hidden = true; achShowing = false; showAchNext(); }, 450); }, 4600);
+}
+function achHTML() {
+  const got = ACH.filter(a => S.ach[a.id]).length, pct = Math.floor(100 * got / ACH.length);
+  let h = `<div class="hero"><div class="pair"><img src="${iurl('trophy')}" alt=""></div><div><h5>${got} of ${ACH.length} achievements · ${pct}%</h5><p>${pct >= 100 ? 'True 100% completion. You’ve done absolutely everything on the Mutant Farm!' : 'Every achievement counts towards true 100% completion. The last one unlocks when you have all the others.'}</p><div class="tb" style="height:9px;margin-top:6px"><i style="width:${pct}%"></i></div></div></div><div class="achs">`;
+  for (const a of ACH) { const on = !!S.ach[a.id]; let v = [0, 1]; try { v = a.g(); } catch (e) {} const f = clamp(v[0] / v[1], 0, 1); h += `<div class="ach ${on ? 'on' : ''}"><img src="${iurl(a.ic)}" alt=""><div><b>${a.name}</b><span>${a.desc}</span>${on ? `<small>Unlocked on day ${S.ach[a.id]}</small>` : v[1] > 1 ? `<div class="tb"><i style="width:${f * 100}%"></i></div><small>${Math.min(v[0], v[1]).toLocaleString()} / ${v[1].toLocaleString()}</small>` : ''}</div></div>`; }
+  return h + '</div>';
 }
 /* ------------------------------------------------------------------ COUNTY FAIR */
 const FAIR_LVL = 6;
@@ -6438,7 +6980,7 @@ let curPos = null;
 function toolIconKey(k) { if (k === 'seed') return seedIcon(validKey(S.sel)); if (k === 'gloves') return 'tool:gloves:' + S.tools.gloves; return `tool:${k}:${Math.max(1, S.tools[k] || 0)}`; }
 function updateCursor() {
   const el = $('#cursor');
-  if (!curPos || sleeping || editMode || droneView || scene === 'green' || !$('#panel').hidden || !$('#menu').hidden || !$('#lvup').hidden || !$('#market').hidden || !$('#journal').hidden || !$('#crew').hidden || !$('#lab').hidden || !$('#crate').hidden || !$('#office').hidden) { el.hidden = true; return; }
+  if (!curPos || sleeping || editMode || droneView || scene === 'green' || scene === 'orch' || !$('#panel').hidden || !$('#menu').hidden || !$('#lvup').hidden || !$('#market').hidden || !$('#journal').hidden || !$('#crew').hidden || !$('#lab').hidden || !$('#crate').hidden || !$('#office').hidden) { el.hidden = true; return; }
   el.hidden = false; setSrc(el.firstElementChild, iurl(scene === 'ranch' ? `rt:${S.rtool}:${S.rtools[S.rtool] || 1}` : toolIconKey(S.tool)));
   const x = curPos.touch ? Math.max(4, curPos.x - 64) : curPos.x + 16, y = curPos.touch ? Math.max(4, curPos.y - 74) : curPos.y + 18;
   el.style.transform = `translate(${Math.round(x)}px,${Math.round(y)}px)`;
@@ -6457,7 +6999,7 @@ function renderHUD() {
   { const E = S.event && EVENTS[S.event.id]; $('#evt-chip').hidden = !E; if (E) { $('#evt-txt').textContent = E.name; $('#evt-dot').style.setProperty('--ec', E.col); $('#evt-chip').title = E.desc; } } setSrc($('#wx'), iurl(isNight() ? 'moon' : S.weather === 'rain' ? 'rain' : 'sun'));
   $('#farm-name').textContent = S.name; $('#farm-lvl').textContent = FARM[S.farm].name; setSrc($('#farm-ico'), iurl('b:house:' + S.farm));
   $('#btn-market').hidden = !S.sign;
-  { const inR = scene === 'ranch', inG = scene === 'green', out = inR || inG;
+  { const inR = scene === 'ranch', inG = scene === 'green' || scene === 'orch', out = inR || inG;
     $('#btn-ranch').hidden = !S.b.barn && !inG; $('#ranch-lbl').textContent = out ? 'Farm' : 'Barn'; setSrc($('#ico-ranch'), iurl(out ? 'b:house:' + S.farm : 'b:barn:' + Math.max(1, S.b.barn))); $('#btn-ranch').title = out ? 'Go back out to the farm' : 'Go inside the barn';
     $('#btn-office').hidden = !inR; setSrc($('#ico-office'), iurl('an:chicken'));
     const qq = curQuest(), tg = qq && guided() ? qq.tgt : ''; setHint($('#btn-ranch'), !inR && ['office', 'pen'].includes(tg) && S.b.barn); setHint($('#btn-office'), inR && tg === 'office' && $('#office').hidden);
@@ -6561,7 +7103,7 @@ function renderMarket() {
       const locked = cr.lvl > L, soilOK = S.plots.some(p => p.soil >= cr.soil);
       const btn = n => `<button class="btn sm ${qt === 'seeds' && q.k === cr.id && n === 1 ? 'hint' : ''}" data-act="buySeed" data-id="${cr.id}" data-n="${n}" ${locked || S.money < seedPrice(cr) * n ? 'disabled' : ''}>×${n} ${priceHTML(seedPrice(cr) * n)}</button>`;
       h += `<div class="row ${locked ? 'locked' : ''}"><div class="ic ${locked ? 'dim' : ''}"><img src="${iurl('seed:' + cr.id)}" alt=""></div><div><h5>${cr.name}${S.seeds[cr.id] ? ` <small class="tag gold">owned ×${S.seeds[cr.id]}</small>` : ''}</h5>
-        <div class="tags"><span class="tag">${daysText(cr)}</span><span class="tag">Yields ~${cr.yld}</span><span class="tag">Sells ${priceHTML(sellPrice(cr.id))} each</span>${cr.soil ? `<span class="tag ${soilOK ? 'ok' : 'bad'}">Needs ${SOIL[cr.soil].name}</span>` : ''}${locked ? `<span class="tag bad">Farmer level ${cr.lvl}</span>` : ''}</div></div>
+        <div class="tags">${cr.big ? '<span class="tag gold">Takes up 2×2 plots</span>' : ''}${cr.work ? `<span class="tag gold">Needs ${WORK_INFO[cr.work].name} halfway</span>` : ''}<span class="tag">${daysText(cr)}</span><span class="tag">Yields ~${cr.yld}</span><span class="tag">Sells ${priceHTML(sellPrice(cr.id))} each</span>${cr.soil ? `<span class="tag ${soilOK ? 'ok' : 'bad'}">Needs ${SOIL[cr.soil].name}</span>` : ''}${locked ? `<span class="tag bad">Farmer level ${cr.lvl}</span>` : ''}</div></div>
         <div class="acts">${locked ? '' : btn(1) + btn(5) + btn(10)}</div></div>`;
       if (srt !== 'lvl') { SR.push({html: h.slice(_h0), lvl: cr.lvl, cost: seedPrice(cr), name: cr.name, rank: soilOK ? (S.money >= seedPrice(cr) ? 0 : 1) : 2, sub: -cr.lvl}); h = h.slice(0, _h0); }
     }
@@ -6613,10 +7155,10 @@ function renderMarket() {
     for (const k of MACH_ORDER) {
       const M = MACH[k], Lm = S.mach[k], _h0 = h.length;
       if (!Lm && M.lvls[0] > L) continue;
-      const nx = Lm < M.lvls.length, need = nx ? M.lvls[Lm] : 0, open = nx && gateOk(need), gOk = g >= M.garage, cost = nx ? M.cost[Lm] : 0;
+      const nx = Lm < M.lvls.length, need = nx ? M.lvls[Lm] : 0, open = nx && gateOk(need), gOk = nx && g >= M.gar[Lm], cost = nx ? M.cost[Lm] : 0;
       const stat = lv => k === 'truck' ? `carries ${M.cap[lv - 1]} · +${Math.round(M.bonus[lv - 1] * 100)}% price` : `speed ×${MACH_SPEED[lv - 1]}${k === 'harvester' && lv > 1 ? ` · +${(lv - 1) * .5} crops` : ''}`;
       h += `<div class="row"><div class="ic ${!Lm && !gOk ? 'dim' : ''}"><img src="${iurl(`mach:${k}:${Math.max(1, Lm)}`)}" alt=""></div><div><h5>${M.name} ${Lm ? `<span class="tag gold">Level ${Lm}</span>` : ''}</h5><p>${M.desc} A ${ROLES[DRIVER[k]].name.toLowerCase()} has to drive it. When there’s nothing to drive, they go back to their usual job.</p>${S.workers.some(w => w.role === DRIVER[k]) ? '' : `<div class="tags" style="margin-bottom:4px"><span class="tag bad">Hire a ${ROLES[DRIVER[k]].name} to drive it</span></div>`}
-        <div class="tags">${Lm ? `<span class="tag ok">Now: ${stat(Lm)}</span><span class="tag">${S.mon[k] ? 'Working' : 'Switched off'} · ${S.mstat[k] || 0} jobs</span>` : ''}${open ? `<span class="tag">${Lm ? 'Next' : 'Level 1'}: ${stat(Lm + 1)}</span>` : (nx ? gateTag(need) : '<span class="tag">No further upgrades yet</span>')}${open && !gOk ? `<span class="tag bad">Garage level ${M.garage}</span>` : ''}</div></div>
+        <div class="tags">${Lm ? `<span class="tag ok">Now: ${stat(Lm)}</span><span class="tag">${S.mon[k] ? 'Working' : 'Switched off'} · ${S.mstat[k] || 0} jobs</span>` : ''}${open ? `<span class="tag">${Lm ? 'Next' : 'Level 1'}: ${stat(Lm + 1)}</span>` : (nx ? gateTag(need) : '<span class="tag">No further upgrades yet</span>')}${open && !gOk ? `<span class="tag bad">Needs Garage level ${M.gar[Lm]}</span>` : ''}</div></div>
         <div class="acts">${Lm ? `<button class="btn ${S.mon[k] ? 'plain' : 'blue'} sm" data-act="machToggle" data-id="${k}">${S.mon[k] ? 'Switch off' : 'Switch on'}</button>` : ''}${open ? `<button class="btn ${qt === 'machines' && q.k === k ? 'hint' : ''}" data-act="buyMach" data-id="${k}" ${!gOk || S.money < cost ? 'disabled' : ''}>${Lm ? 'Upgrade' : 'Buy'} ${priceHTML(cost)}</button>` : ''}</div></div>`;
       SR.push({html: h.slice(_h0), lvl: nx ? need : 999, cost: nx ? cost : 1e15, name: M.name, rank: !nx ? 4 : !open || !gOk ? 2 : S.money >= cost ? 0 : 1}); h = h.slice(0, _h0);
     }
@@ -6649,10 +7191,11 @@ function renderMarket() {
     if (L >= TODO_LVL || S.todo) { const _h0 = h.length; h += `<div class="row"><div class="ic"><img src="${iurl('book')}" alt=""></div><div><h5>Farm Planner ${S.todo ? '<span class="tag gold">Owned</span>' : ''}</h5><p>A to-do list that shows everything left to do before the next day: thirsty crops, ready harvests, hungry animals, open orders and more. You can hide it any time.</p></div><div class="acts">${S.todo ? `<button class="btn plain sm" data-act="todoTog">${S.opt.todo === false ? 'Show it' : 'Hide it'}</button>` : `<button class="btn" data-act="buyTodo" ${S.money < TODO_COST ? 'disabled' : ''}>Buy ${priceHTML(TODO_COST)}</button>`}</div></div>`; SR.push({html: h.slice(_h0), lvl: TODO_LVL, cost: S.todo ? 1e15 : TODO_COST, name: 'Farm Planner', rank: S.todo ? 4 : S.money >= TODO_COST ? 0 : 1}); h = h.slice(0, _h0); }
     for (const id of BUILD_ORDER) {
       const B = BUILD[id], lv = S.b[id], _h0 = h.length;
+      if (mergedInto(id) || (id === 'spring' && !S.b.spring)) continue;
       if (!lv && B.lvl[0] > L) continue;
       const max = lv >= B.max, open = !max && gateOk(B.lvl[lv]), hint = qt === 'build' && q.k === id;
       h += `<div class="row"><div class="ic"><img src="${iurl(`b:${id}:${Math.max(1, lv + (open ? 1 : 0))}`)}" alt=""></div><div><h5>${B.name} ${lv ? `<span class="tag gold">Level ${lv}</span>` : ''}</h5>
-        <p>${B.desc} ${lv ? `Now: ${B.eff(lv)}.` : ''}</p><div class="tags">${open ? `<span class="tag ok">${lv ? 'Next' : 'Gives'}: ${B.eff(lv + 1)}</span>` : (max ? '<span class="tag">No further upgrades yet</span>' : gateTag(B.lvl[lv]))}</div></div>
+        <p>${B.desc} ${lv ? `Now: ${B.eff(lv)}.` : ''}</p><div class="tags">${open ? `<span class="tag ok">${lv ? 'Next' : 'Gives'}: ${B.eff(lv + 1)}</span>${bUnlocks(id, lv + 1).length ? `<span class="tag">Unlocks ${bUnlocks(id, lv + 1).join(', ')}</span>` : ''}` : (max ? '<span class="tag">No further upgrades yet</span>' : gateTag(B.lvl[lv]))}</div></div>
         <div class="acts">${open ? `<button class="btn ${hint ? 'hint' : ''}" data-act="build" data-id="${id}" ${S.money < B.cost[lv] ? 'disabled' : ''}>${lv ? 'Upgrade' : 'Build'} ${priceHTML(B.cost[lv])}</button>` : ''}${id === 'hut' && lv ? '<button class="btn plain sm" data-act="crew">Workers</button>' : ''}${id === 'lab' && lv ? '<button class="btn plain sm" data-act="labOpen">Open lab</button>' : ''}</div></div>`;
       SR.push({html: h.slice(_h0), lvl: max ? 999 : B.lvl[lv], cost: max ? 1e15 : B.cost[lv], name: B.name, rank: max ? 4 : !open ? 3 : S.money >= B.cost[lv] ? 0 : 1}); h = h.slice(0, _h0);
     }
@@ -6693,7 +7236,7 @@ function uitem(u, now) { return `<div class="uitem ${now ? 'now' : ''}"><img src
 function renderJournal() {
   if ($('#journal').hidden) return;
   $('#jr-title').textContent = S.name + ' Journal';
-  setHTML($('#jr-tabs'), [['quests', 'Quests', 'b:sign:1'], ['levels', 'Levels', 'perk:all'], ['progress', 'Progress', 'book'], ['fair', 'County Fair', 'trophy'], ['handbook', 'Handbook', 'book'], ...(flv() >= PRESTIGE_LVL || S.prestige.count ? [['prestige', 'Prestige', 'perk:all']] : []), ['almanac', 'Crop Almanac', 'p:carrot'], ['settings', 'Settings', 'mutant']].map(([id, n, ic]) => `<button class="tab ${id === jrTab ? 'on' : ''}" data-jtab="${id}"><img src="${iurl(ic)}" alt="">${n}</button>`).join(''));
+  setHTML($('#jr-tabs'), [['quests', 'Quests', 'b:sign:1'], ['levels', 'Levels', 'perk:all'], ['progress', 'Progress', 'book'], ['fair', 'County Fair', 'trophy'], ['handbook', 'Handbook', 'book'], ...(flv() >= PRESTIGE_LVL || S.prestige.count ? [['prestige', 'Prestige', 'perk:all']] : []), ['ach', 'Achievements', 'trophy'], ['almanac', 'Crop Almanac', 'p:carrot'], ['settings', 'Settings', 'mutant']].map(([id, n, ic]) => `<button class="tab ${id === jrTab ? 'on' : ''}" data-jtab="${id}"><img src="${iurl(ic)}" alt="">${n}</button>`).join(''));
   let h = ''; const L = flv();
   if (jrTab === 'quests') {
     const q = curQuest();
@@ -6753,6 +7296,7 @@ function renderJournal() {
     if (S.fairLog.length) h += `<div class="sec">Past fairs</div><div class="qlist">${S.fairLog.map(x => `<div class="qrow">${x.rank ? `<span class="medal ${x.rank <= 3 ? 'm' + x.rank : ''}">${x.rank}</span>` : '<span class="medal">–</span>'}<b>Week ${x.week + 1} · ${TIER_NAMES[x.tier]}</b>${x.rank ? `+${x.rec} · ${priceHTML(x.coins)}` : 'Not entered'}</div>`).join('')}</div>`;
   } else if (jrTab === 'handbook') { h += handbookHTML();
   } else if (jrTab === 'prestige') { h += prestigeHTML();
+  } else if (jrTab === 'ach') { h += achHTML();
   } else if (jrTab === 'almanac') {
     h += `<p class="note">Every crop on the Mutant Farm. Harvest one to fill in its page.</p><div class="alm">${CROPS.map(c2 => { const n = S.stats.crop[c2.id] || 0; return `<div class="${n ? '' : 'lock'}"><img src="${iurl('p:' + c2.id)}" alt=""><b>${n || c2.lvl <= L ? c2.name : '???'}</b>${n ? `${n} harvested` : `Level ${c2.lvl} · ${SOIL[c2.soil].name.split(' ')[0]}`}</div>`; }).join('')}</div>`;
   } else {
@@ -6845,10 +7389,10 @@ function renderCrew() {
     else h = `<p class="note">Workers keep going while you’re in the market or journal, and rest while you sleep. Training makes them faster and gets them better clothes. Your hut lets them train up to level ${workerMaxLvl()}.${ranchHands().length ? ' Ranch hands are managed at the Ranch Office in the barn.' : ''}</p>` + farmHands().map(wkCard).join('');
   } else {
     const roles = ROLE_ORDER.filter(r => ROLES[r].lvl <= L); if (!roles.includes(crewRole)) crewRole = roles[0] || 'waterer';
-    h += `<div class="roles">${roles.map(r => `<button class="tab ${r === crewRole ? 'on' : ''} ${ROLES[r].lvl > L ? 'lockd' : ''}" data-role="${r}"><img src="${iurl('wk:' + r)}" alt="">${ROLES[r].name}${ROLES[r].lvl > L ? ` · level ${ROLES[r].lvl}` : ''}</button>`).join('')}</div>`;
-    const R = ROLES[crewRole], cost = hireCost(crewRole), full = n >= cap, lk = R.lvl > L;
-    h += `<div class="hero"><div class="pair"><img src="${iurl('wk:' + crewRole)}" alt=""></div><div><h5>${R.name}</h5><p>${R.desc}</p><div class="tags"><span class="tag gold">Costs ${priceHTML(cost)} to hire</span><span class="tag">${S.workers.filter(w => w.role === crewRole).length} on your farm</span>${lk ? `<span class="tag bad">Unlocks at farmer level ${R.lvl}</span>` : ''}${full ? '<span class="tag bad">Hut is full</span>' : ''}</div></div></div>`;
-    if (lk) h += `<p class="note">Reach farmer level ${R.lvl} to hire ${R.name.toLowerCase()}s. Tap your level bar to see how close you are.</p>`;
+    h += `<div class="roles">${roles.map(r => `<button class="tab ${r === crewRole ? 'on' : ''} ${S.b.hut < ROLES[r].blv ? 'lockd' : ''}" data-role="${r}"><img src="${iurl('wk:' + r)}" alt="">${ROLES[r].name}${S.b.hut < ROLES[r].blv ? ` · hut ${ROLES[r].blv}` : ''}</button>`).join('')}</div>`;
+    const R = ROLES[crewRole], cost = hireCost(crewRole), full = n >= cap, lk = S.b.hut < R.blv;
+    h += `<div class="hero"><div class="pair"><img src="${iurl('wk:' + crewRole)}" alt=""></div><div><h5>${R.name}</h5><p>${R.desc}</p><div class="tags"><span class="tag gold">Costs ${priceHTML(cost)} to hire</span><span class="tag">${S.workers.filter(w => w.role === crewRole).length} on your farm</span>${lk ? `<span class="tag bad">Needs Worker Hut level ${R.blv}</span>` : ''}${full ? '<span class="tag bad">Hut is full</span>' : ''}</div></div></div>`;
+    if (lk) h += `<p class="note">Upgrade the Worker Hut to level ${R.blv} at the Builder’s Yard to hire ${R.name.toLowerCase()}s.</p>`;
     else {
       if (full) h += `<p class="note">Every bed is taken. ${S.b.hut < 3 ? 'Upgrade the Worker Hut at the Builder’s Yard to make room.' : 'Let someone go to make room.'}</p>`;
       h += `<div class="sec">Pick a ${R.name.toLowerCase()} <button class="btn plain sm" data-act="reroll" style="margin-left:auto">New faces</button></div><div class="cands">${cands(crewRole).map((c2, i) => `<div class="cand"><div class="pt"><img src="${workerUrl(c2)}" alt=""></div><h5>${esc(c2.name)}</h5><small>${lookText(c2)}</small><span class="tag ok">${TRAIT[c2.trait].name}: ${TRAIT[c2.trait].desc.toLowerCase()}</span><button class="btn gold sm" data-act="hire" data-i="${i}" ${full || S.money < cost ? 'disabled' : ''}>Hire ${priceHTML(cost)}</button></div>`).join('')}</div>`;
@@ -7035,7 +7579,7 @@ function showPop(id) {
   } else {
     const B = BUILD[id], L = S.b[id], max = L >= B.max, tog = id === 'seedmaker' ? `<button class="btn ${S.mon.seedmaker ? 'plain' : 'blue'} sm" data-act="machToggle" data-id="seedmaker">${S.mon.seedmaker ? 'Switch off' : 'Switch on'}</button>` : '';
     h = `<button class="x" aria-label="Close" data-act="closePop">×</button><h4><img src="${iurl(`b:${id}:${L}`)}" alt="">${B.name}</h4><span class="tag gold">Level ${L}</span><p>${B.eff(L)}.</p>
-      <div class="acts">${tog}${max ? '<span class="tag">No further upgrades yet</span>' : !gateOk(B.lvl[L]) ? gateTag(B.lvl[L]) : `<button class="btn" data-act="build" data-id="${id}" ${S.money < B.cost[L] ? 'disabled' : ''}>Upgrade · ${priceHTML(B.cost[L])}</button><p style="font-size:13px">Level ${L + 1}: ${B.eff(L + 1)}</p>`}</div>`;
+      <div class="acts">${tog}${max ? '<span class="tag">No further upgrades yet</span>' : !gateOk(B.lvl[L]) ? gateTag(B.lvl[L]) : `<button class="btn" data-act="build" data-id="${id}" ${S.money < B.cost[L] ? 'disabled' : ''}>Upgrade · ${priceHTML(B.cost[L])}</button><p style="font-size:13px">Level ${L + 1}: ${B.eff(L + 1)}${bUnlocks(id, L + 1).length ? `<br>Unlocks ${bUnlocks(id, L + 1).join(', ')}` : ''}</p>`}${(() => { const m = MERGES.find(x => x.parts.includes(id)); if (!m || S.b[m.id]) return ''; const oth = BUILD[m.parts.find(x => x !== id)].name; return canMerge(m) ? `<button class="btn gold" data-act="merge" data-id="${m.id}" ${S.money < m.cost ? 'disabled' : ''}>Merge with the ${oth} · ${priceHTML(m.cost)}</button>` : `<p style="font-size:12.5px">At level ${m.at} it can merge with the ${oth} (also level ${m.at}) into the ${BUILD[m.id].name}.</p>`; })()}</div>`;
   }
   el.innerHTML = h; el.hidden = false; placePop();
 }
@@ -7051,6 +7595,7 @@ function showTip(x, y, html) { const el = $('#tip'); el.innerHTML = html; el.hid
 function tipFor(hv) {
   if (scene === 'ranch') return rTipFor(hv);
   if (scene === 'green') return gTipFor(hv);
+  if (scene === 'orch') return oTipFor(hv);
   if (hv.kind === 'plot') {
     const p = S.plots[hv.i];
     if (p.st === 'wild') return `<b>Overgrown plot</b>${S.tools.hoe ? 'Select the hoe (2), then tap to clear the weeds.' : 'You need a hoe to clear it.'}<br><small>${SOIL[p.soil].name}</small>`;
@@ -7059,7 +7604,8 @@ function tipFor(hv) {
     const cr = CROP[p.crop], g = clamp(p.prog / cr.need, 0, 1), rcp = recOf(p.mut), mline = rcp ? `<br><small style="color:${RARITY[rcp.rarity].col}">${RARITY[rcp.rarity].name} mutant${p.life > 1 ? ` · regrows ${p.life - 1} more time${p.life > 2 ? 's' : ''}` : ''}</small>` : '';
     if (g >= 1) return `<b>${keyName(p.mut || p.crop)}</b>Ready! Hold to harvest (${secs(actTime('harvest'))}).${mline}${p.var ? `<br><small style="color:${p.var === 'giant' ? '#b6f04a' : '#ffe28a'}">${p.var === 'giant' ? 'Giant crop · double harvest' : 'Shiny crop · triple harvest'}</small>` : ''}`;
     const hardy = p.mut && mutFx(p.mut).thirst >= 1, vtx = p.var && g >= .7 ? `<br><small style="color:${p.var === 'giant' ? '#b6f04a' : '#ffe28a'}">${p.var === 'giant' ? 'Giant crop · double harvest' : 'Shiny crop · triple harvest'}</small>` : '';
-    return `<b>${keyName(p.mut || p.crop)}</b>${Math.round(g * 100)}% grown · ${hardy ? 'never needs water' : p.water ? 'watered' : `needs water · hold to water (${secs(actTime('water'))})`}${p.nut > 0 ? `<br><small style="color:#b6f04a">Fed with nutrient water · grows ${nutPct()}% faster for ${durTxt(p.nut)}</small>` : ''}<br>Ready in ${durTxt(daysLeft(p, true))}${hardy ? '' : ` watered · ${durTxt(daysLeft(p, false))} dry`}${mline}${vtx}<div class="tb"><i style="width:${g * 100}%"></i></div>`;
+    if (needsTend(p)) return `<b>${keyName(p.mut || p.crop)}</b>Needs ${WORK_INFO[cr.work].name} before it can grow any more. Select your ${TOOL_NAME[WORK_INFO[cr.work].tool]} and hold to ${WORK_INFO[cr.work].verb}.`;
+    return `<b>${keyName(p.mut || p.crop)}</b>${Math.round(g * 100)}% grown · ${cr.big ? 'takes up 4 plots · ' : ''}${cr.work && !p.worked ? `needs ${WORK_INFO[cr.work].name} at 50% · ` : ''}${hardy ? 'never needs water' : p.water ? 'watered' : `needs water · hold to water (${secs(actTime('water'))})`}${p.nut > 0 ? `<br><small style="color:#b6f04a">Fed with nutrient water · grows ${nutPct()}% faster for ${durTxt(p.nut)}</small>` : ''}<br>Ready in ${durTxt(daysLeft(p, true))}${hardy ? '' : ` watered · ${durTxt(daysLeft(p, false))} dry`}${mline}${vtx}<div class="tb"><i style="width:${g * 100}%"></i></div>`;
   }
   const useLine = (k, tm) => `Use your ${TOOL_NAME[k]} (${SLOT_KEYS.indexOf(k) + 1}) and hold for ${secs(tm)}`;
   if (hv.kind === 'worker') { const w = S.workers.find(x => x.id === hv.id); return w ? `<b>${esc(w.name)}</b>${ROLES[w.role].name} · level ${w.lvl}<br><small>${W_LEVELS[w.lvl].name} · ${w.done || 0} jobs done</small>` : ''; }
@@ -7074,7 +7620,7 @@ function tipFor(hv) {
   if (id === 'bundle') return `<b>Starter bundle</b>Tap to open.`;
   if (id === 'sign') return `<b>Road to market</b>Tap to visit the market.`;
   if (id === 'barrel') return `<b>Rain barrel</b>${S.tools.can ? 'Tap to refill your watering can.' : 'Refills a watering can.'}`;
-  const B = BUILD[id]; return `<b>${B.name} · level ${S.b[id]}</b>${B.eff(S.b[id])}.${id === 'hut' ? '<br><small>Tap to hire and train workers</small>' : id === 'lab' ? '<br><small>Tap to open crates and splice mutants</small>' : id === 'garage' ? '<br><small>Tap to manage your machines</small>' : id === 'barn' || id === 'greenhouse' ? '<br><small>Tap to go inside</small>' : id === 'workshop' ? '<br><small>Tap to upgrade your plots and soil</small>' : id === 'dronehub' ? '<br><small>Tap to manage your drones</small>' : id === 'mixer' ? `<br><small>${S.nut.charges}/${nutCap()} nutrient water · tap for upgrades</small>` : id === 'dock' ? '<br><small>Extra machines park here</small>' : ''}${editMode && !FIXED.has(id) ? '<br><small>Drag to move it</small>' : ''}`;
+  const B = BUILD[id]; return `<b>${B.name} · level ${S.b[id]}</b>${B.eff(S.b[id])}.${id === 'hut' ? '<br><small>Tap to hire and train workers</small>' : id === 'lab' ? '<br><small>Tap to open crates and splice mutants</small>' : id === 'garage' ? '<br><small>Tap to manage your machines</small>' : id === 'barn' || id === 'greenhouse' ? '<br><small>Tap to go inside</small>' : id === 'workshop' ? '<br><small>Tap to upgrade your plots and soil</small>' : id === 'dronehub' ? '<br><small>Tap to manage your drones</small>' : id === 'mixer' || id === 'spring' ? `<br><small>${S.nut.charges}/${nutCap()} nutrient water · tap for upgrades</small>` : id === 'orchard' ? '<br><small>Tap to go inside</small>' : id === 'dock' ? '<br><small>Extra machines park here</small>' : ''}${editMode && !FIXED.has(id) ? '<br><small>Drag to move it</small>' : ''}`;
 }
 let bannerTimer = 0;
 function banner(kick, title, text, imgs = '') {
@@ -7099,13 +7645,14 @@ function showSeedPicker() {
 function hitTest(sx, sy) {
   if (scene === 'ranch') return rHitTest(sx, sy);
   if (scene === 'green') return gHitTest(sx, sy);
+  if (scene === 'orch') return oHitTest(sx, sy);
   const w = toWorld(sx, sy);
   if (!editMode) for (const wk of farmHands()) { const r = WR.get(wk.id); if (r && r.st !== 'sleep' && !r.drive && Math.abs(w.x - r.x) < 7 && w.y > r.y - 27 && w.y < r.y + 3) return {kind: 'worker', id: wk.id}; }
   if (!editMode) for (const u of machUnits()) { const r = MR[u]; if (r && r.st !== 'away' && Math.abs(w.x - r.x) < 20 && w.y > r.y - 32 && w.y < r.y + 3) return {kind: 'mach', id: u}; }
   const objs = objList().filter(o => !(o.id === 'bundle' && S.bundle)).sort((a, b) => (b.y + b.h) - (a.y + a.h));
   for (const o of objs) { const pad = o.id === 'bundle' || o.id === 'barrel' || o.id === 'sign' ? 8 : 0; if (w.x >= o.x - pad && w.x <= o.x + o.w + pad && w.y >= o.y - pad && w.y <= o.y + o.h + pad) return {kind: 'obj', id: o.id}; }
   for (const d of YV) { const tall = d.t === 'tree' ? 50 : d.t === 'bush' || d.t === 'stump' ? 22 : 16; if (Math.abs(w.x - d.x) <= 16 && w.y >= d.y - tall && w.y <= d.y + 6) return {kind: 'yard', id: d.id}; }
-  for (let i = 0; i < S.plots.length; i++) { const r = plotRect(i); if (w.x >= r.x && w.x <= r.x + r.w && w.y >= r.y && w.y <= r.y + r.h) return {kind: 'plot', i}; }
+  for (let i = 0; i < S.plots.length; i++) { const r = plotRect(i); if (w.x >= r.x && w.x <= r.x + r.w && w.y >= r.y && w.y <= r.y + r.h) return {kind: 'plot', i: S.plots[i].cover != null && S.plots[S.plots[i].cover] && S.plots[S.plots[i].cover].crop ? S.plots[i].cover : i}; }
   for (let n = S.plots.length; n < maxCells(); n++) { const r = plotRect(n), top = !S.cleared[n] && CELL_DEBRIS[n] === 'tree' ? 14 : 0; if (w.x >= r.x && w.x <= r.x + r.w && w.y >= r.y - top && w.y <= r.y + r.h) return {kind: 'cell', n}; }
   return null;
 }
@@ -7116,6 +7663,7 @@ function plotIntent(i) {
   if (!p.crop) return pickSeed(p) ? {act: 'plant', tool: 'seed', dur: actTime('plant')} : {act: 'plant', tool: 'seed', fail: true};
   const cr = CROP[p.crop];
   if (p.prog >= cr.need) return {act: 'harvest', tool: 'sickle', dur: actTime('harvest')};
+  if (needsTend(p)) return {act: 'tend', tool: WORK_INFO[cr.work].tool, dur: actTime('plant') * 1.3};
   if (needsWater(p)) return S.water > 0 || S.b.well ? {act: 'water', tool: 'can', dur: actTime('water')} : {act: 'water', tool: 'can', fail: true};
   return {act: 'info', instant: true};
 }
@@ -7128,7 +7676,7 @@ function intentFor(h) {
   return {instant: true};
 }
 let ptr = null, hold = null, doneKey = null, lastHoldTip = -9;
-const VERB = {plant: 'plant', water: 'water', harvest: 'harvest', clear: 'clear it', till: 'clear the weeds', feed: 'feed it', brush: 'brush it', collect: 'collect'};
+const VERB = {tend: 'tend it', plant: 'plant', water: 'water', harvest: 'harvest', clear: 'clear it', till: 'clear the weeds', feed: 'feed it', brush: 'brush it', collect: 'collect'};
 const curTool = () => scene === 'ranch' ? S.rtool : S.tool;
 function canAct(h, it) { return !!(it && it.tool && !isNight() && it.tool === curTool() && !it.fail && actAllowed(h, it)); }
 function beginHold(h) {
@@ -7142,6 +7690,7 @@ function holdFx(act, h, pos) {
   if (act === 'water') parts.push({x: pos.x - 12 + Math.random() * 24, y: pos.y + 8, vx: (Math.random() - .5) * 10, vy: 60, g: 200, life: 0, max: .35, type: 'drop', r: 1.8, rot: 0});
   else if (act === 'plant') burst(pos.x, pos.y + 24, 'dirt', 1, {up: true, sp: 40, r: 2});
   else if (act === 'harvest') burst(pos.x, pos.y + 20, 'leaf', 1, {up: true, sp: 50, r: 2.4});
+  else if (act === 'tend') burst(pos.x, pos.y + 20, 'spark', 1, {up: true, sp: 40, r: 2.2});
   else if (h.kind === 'pen') burst(pos.x, pos.y + 22, act === 'feed' ? 'seed' : 'spark', 1, {up: true, sp: 50, r: 2.2});
   else { const ty = h.kind === 'cell' ? CELL_DEBRIS[h.n] : YARD_BY[h.id].t; burst(pos.x, pos.y + 22, ty === 'rocks' ? 'stone' : DEBRIS[ty].axe ? 'chip' : 'leaf', 1, {up: true, sp: 60, r: 2.4}); }
 }
@@ -7150,12 +7699,12 @@ function stepHold(dt) {
   if (!ptr || sleeping) { hold = null; return; }
   const it = intentFor(hold.h); if (!canAct(hold.h, it) || it.act !== hold.act || !it.dur) { hold = null; return; }
   hold.t += dt; hold.fx += dt; hold.snd = (hold.snd || 0) + dt;
-  if (hold.snd > .3) { hold.snd = 0; if (hold.act === 'clear') { const ty = hold.h.kind === 'cell' ? CELL_DEBRIS[hold.h.n] : YARD_BY[hold.h.id].t; sfx(DEBRIS[ty].axe ? 'chopT' : 'rustle'); } else sfx({plant: 'dig', water: 'drip', harvest: 'snip', feed: 'dig', brush: 'rustle', collect: 'drip'}[hold.act]); }
+  if (hold.snd > .3) { hold.snd = 0; if (hold.act === 'clear') { const ty = hold.h.kind === 'cell' ? CELL_DEBRIS[hold.h.n] : YARD_BY[hold.h.id].t; sfx(DEBRIS[ty].axe ? 'chopT' : 'rustle'); } else sfx({tend: 'rustle', plant: 'dig', water: 'drip', harvest: 'snip', feed: 'dig', brush: 'rustle', collect: 'drip'}[hold.act]); }
   if (hold.fx > .09) { hold.fx = 0; holdFx(hold.act, hold.h, holdPos(hold.h)); }
   if (hold.t >= hold.dur) {
     const hd = hold, h = hd.h; hold = null; doneKey = hd.key;
     if (h.kind === 'pen') ranchDo(hd.act, h.i);
-    else if (h.kind === 'plot') { const fn = hd.act === 'plant' ? (j, q, ch) => plant(j, q, null, ch) : hd.act === 'water' ? water : harvest; if (hd.tg) for (const j of hd.tg.slice(1)) if (patValid(hd.act, j)) fn(j, true, true); fn(h.i); }
+    else if (h.kind === 'plot') { const fn = hd.act === 'plant' ? (j, q, ch) => plant(j, q, null, ch) : hd.act === 'water' ? water : hd.act === 'tend' ? tend : harvest; if (hd.tg) for (const j of hd.tg.slice(1)) if (patValid(hd.act, j)) fn(j, true, true); fn(h.i); }
     else if (h.kind === 'cell') clearCell(h.n); else clearYard(h.id);
   }
 }
@@ -7164,6 +7713,7 @@ function tapOn(h) {
   if (h.kind === 'mach') return machInfo(h.id);
   if (scene === 'ranch') return rTapOn(h);
   if (scene === 'green') return gTapOn(h);
+  if (scene === 'orch') return oTapOn(h);
   if (droneView && h.kind === 'plot') return dvTapPlot(h.i);
   if (h.kind === 'obj') return objAllowed(h.id) ? objectAction(h.id) : lockToast();
   const it = intentFor(h); if (!it) return;
@@ -7248,14 +7798,17 @@ function objectAction(id) {
   if (id === 'greenhouse') return enterGreen();
   if (id === 'workshop') return openPanel('workshop');
   if (id === 'dronehub') return openPanel('drones');
-  if (id === 'mixer') return openPanel('mixer');
+  if (id === 'mixer' || id === 'spring') return openPanel('mixer');
+  if (id === 'orchard') return enterOrch();
   if (id === 'lab') return openLab();
   if (id === 'garage') return openMarket('machines');
   return showPop(id);
 }
 const ACTS = {
   sleep, waterAll, harvestAll, plantAll, sellAll, buyPlot, restore: restoreFarm, closePop,
-  buyNut: d => buyNut(d.id), nutTog: () => nutToggle(),
+  buyNut: d => buyNut(d.id), nutTog: () => nutToggle(), merge: d => doMerge(d.id),
+  orchPlant: d => orchPlant(d.id), orchCol: d => orchCollect(+d.i), orchPrune: d => orchPrune(+d.i), orchUp: d => orchBuyUp(d.id), orchDigAsk: d => { orchArm = +d.i; renderPanel(); }, orchDigYes: d => orchDig(+d.i),
+  orchAll: () => { S.orch.trees.forEach((tr, i) => { if (tr.store) orchCollect(i, true); }); sfx('harvest'); flash('#slot-basket'); toast('Picked every ripe fruit in the orchard.', 'good'); after(); },
   buyPU: d => buyPU(d.id), pvTog: d => { S.pv[d.id] = !puVis(d.id); renderPanel(); save(); },
   ghBed: () => ghBuyBed(), ghUpBed: d => ghUpBed(+d.i), ghUp: d => ghBuyUp(d.id), ghCol: d => ghCollect(+d.i), ghAll: () => { S.gh.beds.forEach((b, i) => { if (b.store) ghCollect(i, true); }); sfx('harvest'); flash('#slot-basket'); toast('Collected everything in the greenhouse.', 'good'); after(); },
   dsellTog: d => { S.dsell[d.id] = !S.dsell[d.id]; renderPanel(); save(); },
@@ -7396,6 +7949,7 @@ function after() {
 let last = performance.now(), lastClk = -1, lastTodo = 0;
 let lastKid = null;
 function frame(ts) {
+  if (tNow - achLastCheck > 2) { achLastCheck = tNow; if ($('#menu').hidden) checkAch(); }
   { const kid = eraId(); if (kid !== lastKid) { lastKid = kid; for (const k in ICON) if (k.startsWith('b:') && !k.startsWith('b:house')) delete ICON[k]; W_ICON.clear(); } }
   const dt = Math.min(.05, (ts - last) / 1000); last = ts; tNow += dt;
   if (bundleOpenT > 0) bundleOpenT = Math.max(0, bundleOpenT - dt * 1.2);
@@ -7408,7 +7962,7 @@ function frame(ts) {
   stepHold(dt); stepQueue(dt); computeYV(); stepWorkers(dt); stepMachines(dt); stepDrones(dt); stepSeedMaker(dt);
   if (workerDirty && tNow - lastWorkerAfter > .7) { workerDirty = false; lastWorkerAfter = tNow; after(); }
   drawWorld(tNow, dt);
-  if (tNow - lastTodo > 1.5) { lastTodo = tNow; renderZoom(); if (pnKind === 'green' || pnKind === 'drones' || pnKind === 'mixer') renderPanel(); renderTodo(); if (S.q > TUT_END) ensureOrders(); }
+  if (tNow - lastTodo > 1.5) { lastTodo = tNow; renderZoom(); if (pnKind === 'green' || pnKind === 'drones' || pnKind === 'mixer' || pnKind === 'orchard') renderPanel(); renderTodo(); if (S.q > TUT_END) ensureOrders(); }
   updateCursor();
   updatePurse();
   if (popFor) placePop();
@@ -7435,7 +7989,7 @@ function start(data) {
   requestAnimationFrame(ts => { last = ts; frame(ts); });
 }
 try { window.claude?.hot?.snapshot?.(() => ({save: JSON.stringify(S), inGame: $('#menu').hidden && S.started})); } catch (e) {}
-window.__farm = {get S() { return S; }, water, reap, KITS, nutCap, feedNut, SOIL, TOOLS, ROLES, PUPS, GH_BEDS, DRONES, gs, eraStyle, objPos, get editMode() { return editMode; }, get droneView() { return droneView; }, hitTest, buyField, buyPU, ghBuyBed, ghUpBed, ghBuyUp, ghGrow, ghCollect, enterGreen, leaveScene, openPanel, closePanel, setEdit, canPlace, layoutObjs, defPos, objList, zoomBy, panBy, setDroneView, dvTapPlot, buyCos, machUnits, get DRN() { return DRN; }, get cam() { return cam; }, OBJ, OBJB, FIELD_POS, niceCap, sellCapF: () => sellCap(), plotRect, buildUp, pickBox, toolFx, get WR() { return WR; }, eraId, scaffold, get SCAF() { return SCAF; }, set drag(v) { drag = v; }, get drag() { return drag; }, xpFor, CROPS, BUILD, FARM, MACH, sellCap, isNight, growAll, patPlots, patTargets, cyclePat, deliverOrder, genOrders, get MRr() { return MR; }, dawnTick, houseFor, LV, get scene() { return scene; }, enterRanch, leaveRanch, buyAnimal, buyBaby, feedPen, brushPen, collectPen, ranchNight, buyPen, buyRMach, buyRTool, buyFeed, openOffice, closeOffice, penRect, penIntent, enterFair, ensureFair, buyField2, EVENTS, gainXp, split, priceHTML, priceText, sellPrice, keyName, prodIcon, icon, renderJournal, openJournal, ANIMALS, RTOOLS, selectRTool, doSpliceAnimal, renderOffice, maxCells, grassColor, camTarget, bounds, get cam() { return cam; }, openLab, openCrate, pickBox, doSplice, get splice() { return splice; }, makeMutSeeds, buyMach, get MR() { return MR; }, stepMachines, reap, mutFx, MUTAGEN, firstUndone, load, renderLab, selectTool, hireWorker, trainWorker, openCrew, stepWorkers, get WR() { return WR; }, saveSlot, loadSlot, makeCode, readCode, applyLoaded, showLevelUp, get lvQueue() { return lvQueue; }, hitTest, intentFor, renderCrew, cands, toScreen, plotRect, OBJ, YARD, clearCell, clearYard, startQueue, stepHold, get ACTS() { return ACTS; }, showMenu, unlocksAt, guided, get YV() { return YV; }, get queue() { return queue; }, plotAction, objectAction, openMarket, closeMarket, buySeed, buyTool, buyPlot, sell, sellAll, sleep, applyNight, restoreFarm, buildUp, upgradeSoil, after, waterAll, harvestAll, plantAll, flv, QUESTS};
+window.__farm = {get S() { return S; }, water, reap, plant, growAll, MERGES, CROP, springTick, orchGrow, enterOrch, FRUIT, checkAch, ACH, KITS, nutCap, feedNut, SOIL, TOOLS, ROLES, PUPS, GH_BEDS, DRONES, gs, eraStyle, objPos, get editMode() { return editMode; }, get droneView() { return droneView; }, hitTest, buyField, buyPU, ghBuyBed, ghUpBed, ghBuyUp, ghGrow, ghCollect, enterGreen, leaveScene, openPanel, closePanel, setEdit, canPlace, layoutObjs, defPos, objList, zoomBy, panBy, setDroneView, dvTapPlot, buyCos, machUnits, get DRN() { return DRN; }, get cam() { return cam; }, OBJ, OBJB, FIELD_POS, niceCap, sellCapF: () => sellCap(), plotRect, buildUp, pickBox, toolFx, get WR() { return WR; }, eraId, scaffold, get SCAF() { return SCAF; }, set drag(v) { drag = v; }, get drag() { return drag; }, xpFor, CROPS, BUILD, FARM, MACH, sellCap, isNight, growAll, patPlots, patTargets, cyclePat, deliverOrder, genOrders, get MRr() { return MR; }, dawnTick, houseFor, LV, get scene() { return scene; }, enterRanch, leaveRanch, buyAnimal, buyBaby, feedPen, brushPen, collectPen, ranchNight, buyPen, buyRMach, buyRTool, buyFeed, openOffice, closeOffice, penRect, penIntent, enterFair, ensureFair, buyField2, EVENTS, gainXp, split, priceHTML, priceText, sellPrice, keyName, prodIcon, icon, renderJournal, openJournal, ANIMALS, RTOOLS, selectRTool, doSpliceAnimal, renderOffice, maxCells, grassColor, camTarget, bounds, get cam() { return cam; }, openLab, openCrate, pickBox, doSplice, get splice() { return splice; }, makeMutSeeds, buyMach, get MR() { return MR; }, stepMachines, reap, mutFx, MUTAGEN, firstUndone, load, renderLab, selectTool, hireWorker, trainWorker, openCrew, stepWorkers, get WR() { return WR; }, saveSlot, loadSlot, makeCode, readCode, applyLoaded, showLevelUp, get lvQueue() { return lvQueue; }, hitTest, intentFor, renderCrew, cands, toScreen, plotRect, OBJ, YARD, clearCell, clearYard, startQueue, stepHold, get ACTS() { return ACTS; }, showMenu, unlocksAt, guided, get YV() { return YV; }, get queue() { return queue; }, plotAction, objectAction, openMarket, closeMarket, buySeed, buyTool, buyPlot, sell, sellAll, sleep, applyNight, restoreFarm, buildUp, upgradeSoil, after, waterAll, harvestAll, plantAll, flv, QUESTS};
 if (window.claude?.hot?.ready) window.claude.hot.ready(start); else start(window.claude?.hot?.data ?? {});
 })();
 </script>
