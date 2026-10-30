@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mutant Farm Update 11+</title>
+<title>Mutant Farm Update 12</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Signika:wght@400;600;700&display=swap">
@@ -519,7 +519,7 @@ input[type=range]{accent-color:#8fca4e}
 .proot{display:flex;flex-direction:column;align-items:center;gap:2px;margin:0 auto 4px;width:120px}
 .proot img{width:56px;height:56px;filter:drop-shadow(0 0 10px rgba(244,197,66,.6))}
 .proot b{font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--gold)}
-.pbranches{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:10px;min-width:690px;position:relative;padding-top:18px;border-top:3px solid rgba(244,197,66,.5)}
+.pbranches{display:grid;grid-template-columns:repeat(6,minmax(130px,1fr));gap:10px;min-width:830px;position:relative;padding-top:18px;border-top:3px solid rgba(244,197,66,.5)}
 .pbranch{display:flex;flex-direction:column;align-items:center}
 .pbname{font-family:var(--f-display);font-size:17px;color:var(--bc);margin-bottom:2px}
 .plink{display:block;width:4px;height:14px;background:var(--bc);opacity:.7;border-radius:2px}
@@ -578,6 +578,7 @@ input[type=range]{accent-color:#8fca4e}
 .keys{display:grid;gap:6px}.keys>div{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr);gap:10px;align-items:center;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,.16);font-size:14px}
 .keys kbd{font-family:var(--f-display);font-size:14px;color:var(--ink);background:#4a3222;border:2px solid #22150d;border-bottom-width:3px;border-radius:7px;padding:2px 8px;justify-self:start}
 .caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:0 0 12px}.caps .capbar{margin:0}.capfor{color:var(--ink-faint);font-size:12px}
+#cr-grid[data-n="7"] .cl,#cr-grid[data-n="8"] .cl{font-size:8.5px}#cr-grid[data-n="7"] .cbox img,#cr-grid[data-n="8"] .cbox img{width:60%;height:auto}#cr-grid[data-n="3"]{max-width:300px}
 </style>
 </head>
 <body>
@@ -731,13 +732,13 @@ input[type=range]{accent-color:#8fca4e}
 
 <div id="night" hidden><div class="stars" id="stars"></div><div class="orb"></div><div class="zz">z z z</div><h2 id="night-day">Day 1</h2><div class="sub" id="night-sub"></div></div>
 <div id="banner" class="plaque" hidden></div>
-<div id="menu" hidden><div class="menu-card"><div class="logo"><img id="logo-img" alt=""><h1>Mutant <span>Farm</span></h1></div><div class="menu-ver" id="menu-ver">Update 11+</div><div id="menu-body" style="width:100%"></div></div></div>
+<div id="menu" hidden><div class="menu-card"><div class="logo"><img id="logo-img" alt=""><h1>Mutant <span>Farm</span></h1></div><div class="menu-ver" id="menu-ver">Update 12</div><div id="menu-body" style="width:100%"></div></div></div>
 <div id="fly"></div>
 
 <script>
 (() => {
 'use strict';
-const UPDATE = 11;
+const UPDATE = 12;
 const SAVE_KEY = 'mutant-farm-save';
 const OLD_KEY = 'hollowmere-farm-save-v1';
 const TAU = Math.PI * 2;
@@ -1111,6 +1112,17 @@ const PERKS = [
   {lvl:74, name:'Living Legend', act:'all', m:.85, desc:'Every job is another 15% faster'},
 ];
 const PATCH_NOTES = [
+  {v:12, name:'Collections & Mutations', items:[
+    'The barn, orchard and greenhouse are collections now. The barn keeps one of every animal, the orchard one of every fruit tree and the greenhouse one bed of every crop in the shop. New ones arrive in order as you upgrade, and the goal is to fill them all. Your main fields are where you grow whatever you like, including your own mutant crops.',
+    'Cheap to start: a chicken costs 2,500 and each new animal costs a little more than the last. The first saplings and greenhouse beds are just as cheap.',
+    'Make them pay: every pen has up to 14 comfort levels with something new to see at each one (fresh straw, a stone trough, a hay rack, painted fences, a toy, a heat lamp, flower boxes, a name plate, golden fences and more), and every comfort level adds half again to what the animal makes. Trees and beds have bigger upgrade ranges too.',
+    'Older farms: extra animals of the same kind became comfort levels for that pen, extra trees and beds of the same kind were merged into one with their levels added, and anything above the new limits was refunded.',
+    'Prestige has a new Homestead branch: Prize Pedigree, Old Roots, Heritage Glass and Country Buyers.',
+    'Mutations: every trait now goes up to tier VI, there are two new traits (Lucky makes crops turn Shiny or Giant, Twin gives double harvests) and a new Mythic rarity. Fuse three of the same mutagen into the next tier in the new Fusion tab.',
+    'Mystery crates grow with you: the Rusty Crate is a 3×3 grid with 2 or 3 mutagens, and they get bigger up to the new 8×8 Void Crate. Golden keys hidden in the grid give extra picks, big crates can hide a jackpot of three rare mutagens, and the new Nimble Fingers crate tool adds picks.',
+    'Prices checked across the whole game so each new thing costs about what you earn at that point.',
+    '6 new achievements.',
+  ]},
   {v:'11+', name:'Side Farms That Pay', items:[
     'The barn, orchard and greenhouse each have their own buyer now, the Ranch Co-op, the Fruit Merchant and the Greenhouse Grocer, with daily limits separate from the market’s. Fully upgraded, each one can earn as much as your fields do.',
     'Animal products and fruit are worth much more, priced so a full barn or orchard keeps up with its buyer at every stage of the game.',
@@ -1614,7 +1626,7 @@ for (const f of FRUITS) {
 const GH_HYDRO = l => 1 + .15 * l;
 // market permits: a new one every few levels
 const PERMIT_LV = [10, 18, 26, 34, 42, 50, 60, 70, 80, 90];
-const permitCost = n => niceC(capAt(PERMIT_LV[n]) * 1.5 * Math.pow(1.5, n));
+const permitCost = n => permitCost12(n);
 const recogRank = () => Math.max(0, RECOG.filter(([x]) => (S.recog || 0) >= x).length - 1);
 const capParts = () => ({stand: .1 * (S.b.stand || 0), permits: .12 * (S.permits || 0), farm: .03 * Math.max(0, (S.farm || 1) - 1), recog: .03 * recogRank(), ach: .005 * Object.keys(S.ach || {}).length});
 const capExtra = () => { const p = capParts(); return p.permits + p.farm + p.recog + p.ach; };
@@ -1624,13 +1636,60 @@ const bucketOf = k => isR(k) ? 'ranch' : typeof k === 'string' && k.startsWith('
 // fully upgraded for your level = the same limit as the market
 const sideAvail = b => Math.max(1, BUILD[SIDE_B[b].b].lvl.filter(x => x <= flv()).length);
 const sideShare = b => { const L = S.b[SIDE_B[b].b] || 0; return L ? .3 + .7 * Math.min(1, L / sideAvail(b)) : 0; };
-function capOfB(b) { const c = sellCap(); return b === 'crop' ? c : fineCap(c * sideShare(b)); }
+function capOfB(b) { const c = sellCap(); return b === 'crop' ? c : fineCap(c * sideShare(b) * (1 + pb('sidecap'))); }
 const soldOf = b => b === 'crop' ? (S.soldToday || 0) : ((S.soldB || {})[b] || 0);
 const capLeftB = b => Math.max(0, capOfB(b) - soldOf(b));
 const capLeftK = k => capLeftB(bucketOf(k));
 function addSold(k, v, b) { b = b || bucketOf(k); if (b === 'crop') S.soldToday = (S.soldToday || 0) + v; else { S.soldB = S.soldB || {}; S.soldB[b] = (S.soldB[b] || 0) + v; } }
 const addSoldLoad = load => { for (const [k, n] of Object.entries(load || {})) addSold(k, sellPrice(k) * n); };
 const sellableCount = () => Object.keys(S.produce).reduce((a, k) => a + (capLeftK(k) >= sellPrice(k) ? autoAvail(k) : 0), 0);
+/* ---------- Update 12: side farms are collections, cheap to start, with upgrades that make them pay */
+// barn: one pen for every animal. Animals get slowly dearer; each pen has comfort levels up to the barn's level
+const PEN_UP = l => 1 + .5 * l;
+ANIMALS.forEach((A, i) => { A.cost = niceC(2500 * Math.pow(2.9, i)); A.idx = i; });
+const ANIMAL_K = 2;
+ANIMALS.forEach(A => { A.val = niceC(capAt(A.olvl) * ANIMAL_K / (1.5 * PEN_UP(A.blv) * (1 + .05 * A.blv))); });
+const penUpCost = (A, l) => niceC(Math.max(A.cost * .6 * Math.pow(1.35, l), capAt(Math.max(BUILD.barn.lvl[A.blv - 1], BUILD.barn.lvl[Math.min(BUILD.barn.lvl.length - 1, l)])) * .05));
+// orchard: one tree of every kind. Saplings get slowly dearer; trees grow bigger with orchard upgrades
+FRUITS.forEach((f, i) => { f.idx = i; f.cost = niceC(1500 * Math.pow(2.9, i)); });
+const FRUIT_K = 4;
+FRUITS.forEach(f => {
+  const o = f.orch, lv = BUILD.orchard.lvl[o - 1], tc = 1 + Math.ceil(o / 2);
+  const perDay = (1 + .15 * o) / f.cycle * (f.yld * (1 + .5 * (tc - 1)) * (1 + .12 * o) + Math.max(0, o - 2));
+  f.sell = niceC(capAt(lv) * FRUIT_K / perDay);
+});
+// greenhouse: one bed for every crop in the shop, in order. Crops that need extra work or a 2×2 space come a little later
+const GH_LIST = CROPS.map(c2 => ({id: c2.id, lvl: c2.lvl + (c2.work || c2.big ? 6 : 0)})).sort((a, b) => a.lvl - b.lvl || CROP[a.id].sell - CROP[b.id].sell);
+const GH_IDX = Object.fromEntries(GH_LIST.map((g, i) => [g.id, i]));
+const GH_K = 1.5;
+const ghBedPrice = id => niceC(Math.max(300, capAt(GH_LIST[GH_IDX[id]].lvl) * .12));
+// mutations: six tiers for every trait, two new traits, a new Mythic rarity, bigger crates
+RARITY.push({name: 'Mythic', col: '#ff5aa8'});
+{
+  const more = {grow: [{v: 2.5}, {v: 3.1}, {v: 4}], yield: [{v: 3.2}, {v: 4.2}, {v: 5.5}], thirst: [{v: 1, g: 1.5}, {v: 1, g: 1.8}, {v: 1, g: 2.2}], value: [{v: 4}, {v: 5.5}, {v: 7.5}],
+    seed: [{s: 2, c: .5}, {s: 3, c: 0}, {s: 4, c: .5}], xp: [{v: 4}, {v: 5.5}, {v: 7.5}], regrow: [{v: 12}, {v: 18}, {v: 25}]};
+  const dsc = {grow: t => `Grows ${Math.round((t.v - 1) * 100)}% faster`, yield: t => `${t.v}× bigger harvests`, thirst: t => `Never needs watering and grows ${Math.round((t.g - 1) * 100)}% faster`, value: t => `Sells for ${t.v}× the price`,
+    seed: t => `Drops ${t.s} seed${t.s > 1 ? 's' : ''} every harvest${t.c ? `, sometimes ${t.s + 1}` : ''}`, xp: t => `${t.v}× the XP`, regrow: t => `Regrows ${t.v} times after harvest`};
+  for (const k in more) more[k].forEach(t => { t.d = dsc[k](t); MTRAITS[k].tiers.push(t); });
+  MTRAITS.lucky = {name: 'Lucky', adj: 'Lucky', col: '#ff8ad8', off: 1, tiers: [.04, .08, .12, .18, .25, .35].map(v => ({v, d: `${Math.round(v * 100)}% chance to grow Shiny or Giant`}))};
+  MTRAITS.twin = {name: 'Twin', adj: 'Twinned', col: '#ffb84a', off: 2, tiers: [.08, .15, .22, .3, .4, .55].map(v => ({v, d: `${Math.round(v * 100)}% chance of a double harvest`}))};
+  MT_ORDER.push('lucky', 'twin'); RADJ.lucky = 'Lucky'; RADJ.twin = 'Twinned';
+}
+const RAR12 = [[0, 1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 5], [2, 3, 3, 4, 5, 5]], ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+MT_ORDER.forEach(tr => MTRAITS[tr].tiers.forEach((T, j) => { const tier = j + 1, M = MTRAITS[tr]; MUTAGEN[tr + tier] = {id: tr + tier, trait: tr, tier, name: `${M.name} ${ROMAN[j]}`, rarity: RAR12[M.off][j], d: T.d}; }));
+MUT_LIST.length = 0; MUT_LIST.push(...Object.values(MUTAGEN).sort((a, b) => a.rarity - b.rarity || MT_ORDER.indexOf(a.trait) - MT_ORDER.indexOf(b.trait) || a.tier - b.tier));
+{ const spec = {rusty: [3, 2, 3, 1, 2, 0, 0, [70, 25, 5, 0, 0, 0]], steel: [4, 3, 4, 2, 3, 1, 0, [40, 35, 20, 5, 0, 0]], gold: [5, 4, 6, 3, 4, 1, 0, [15, 30, 32, 18, 5, 0]], mutant: [6, 6, 8, 4, 5, 2, .1, [0, 15, 30, 32, 18, 5]], cosmic: [7, 8, 10, 5, 6, 2, .2, [0, 5, 20, 35, 28, 12]]};
+  for (const C of CRATES) { const s2 = spec[C.id]; if (!s2) continue; [C.size, C.mlo, C.mhi, C.pouches, C.picks, C.pickCells, C.jack, C.w] = s2; }
+  const last = CRATES[CRATES.length - 1]; CRATES.push({id: 'void', name: 'Void Crate', cost: niceC(last.cost * 6), lab: 8, size: 8, mlo: 10, mhi: 13, pouches: 6, picks: 7, pickCells: 3, jack: .3, w: [0, 0, 10, 30, 35, 25], pouch: last.pouch.map(v => niceC(v * 6)), muts: 12}); }
+const MYTHIC_LVL = 5;
+// prices checked against what you earn per day at the level each thing unlocks
+const earnAt = L => capAt(L) * (1 + .1 * Math.min(10, Math.floor(L / 9)));
+const permitCost12 = n => niceC(earnAt(PERMIT_LV[n]) * 2);
+CRATES.forEach(C => { const f = {rusty: .03, steel: .05, gold: .08, mutant: .12, cosmic: .18, void: .25}[C.id] || .1, cost = niceC(earnAt(BUILD.lab.lvl[C.lab - 1]) * f); C.cost = cost; C.pouch = [niceC(cost * .15), niceC(cost * .6)]; });
+const LT_F = {charm: .15, rod: .2, drill: .3, gloves: .25};
+for (const k in TOOLS) TOOLS[k].tiers.forEach(t => { const L = t && (t.olvl || t.lvl); if (t && L >= 12) t.cost = Math.max(t.cost, niceC(earnAt(L) * .15)); });
+for (const k in ROLES) { const R = ROLES[k], L = R.olvl || R.lvl; if (L >= 12) R.base = Math.max(R.base, niceC(earnAt(L) * .08)); }
+const UPF = {mulch: .3, ladders: .4, hives: .6, pickers: 1.2, graft: 1, lamps: .3, mist: .3, hydro: .8, conv: 1};
 // world layout (1 unit = 1px at zoom 1)
 const PLOT = 64, CELL = 72;
 const ORDER = [];
@@ -1724,7 +1783,7 @@ function drawScaffold(c, o, k, t) {
 /* ------------------------------------------------------------------ STATE */
 function fresh() {
   return {
-    v: 11, time: 360, show: null, showLog: [], hist: [], vis: {up: {}, cur: null, next: 0, seen: {}}, prio: [], auto: {}, achNew: 0, permits: 0, soldB: {}, tut: {}, todo: false, pat: {}, ltools: {charm: 0, rod: 0, drill: 0}, prestige: {pp: 0, count: 0, nodes: {}, best: 0, total: 0}, beaten: false, soldToday: 0, orders: [], ordersDay: 0, keep: {}, ranch: {pens: [], feed: 0}, rtools: {scoop: 0, brush: 0, pail: 0}, rtool: 'scoop', rmach: {feeder: 0, mill: 0, groomer: 0, belt: 0}, rrecipes: {}, rbaby: {}, opt: {grass: 'auto', holdNeeds: true, sort: 'rec', todo: true}, event: null, nextEvent: 0, fair: null, fairLog: [], recog: 0, field2: false, fields: 1, orch: {trees: []}, ach: {}, nut: {charges: 0, on: false, up: {}}, pos: {}, cos: {own: {}, sel: {}}, pu: {}, pv: {}, gh: {beds: [], lamps: 0, mist: 0, conv: 0}, dsell: {}, horns: {water: false, plant: false, harvest: false}, qdone: {}, qmax: 0, mach: {tractor:0, harvester:0, truck:0}, mon: {tractor:true, harvester:true, truck:true, seedmaker:true, drones:true}, mstat: {tractor:0, harvester:0, truck:0},
+    v: 12, time: 360, show: null, showLog: [], hist: [], vis: {up: {}, cur: null, next: 0, seen: {}}, prio: [], auto: {}, achNew: 0, permits: 0, soldB: {}, tut: {}, todo: false, pat: {}, ltools: {charm: 0, rod: 0, drill: 0}, prestige: {pp: 0, count: 0, nodes: {}, best: 0, total: 0}, beaten: false, soldToday: 0, orders: [], ordersDay: 0, keep: {}, ranch: {pens: [], feed: 0}, rtools: {scoop: 0, brush: 0, pail: 0}, rtool: 'scoop', rmach: {feeder: 0, mill: 0, groomer: 0, belt: 0}, rrecipes: {}, rbaby: {}, opt: {grass: 'auto', holdNeeds: true, sort: 'rec', todo: true}, event: null, nextEvent: 0, fair: null, fairLog: [], recog: 0, field2: false, fields: 1, orch: {trees: []}, ach: {}, nut: {charges: 0, on: false, up: {}}, pos: {}, cos: {own: {}, sel: {}}, pu: {}, pv: {}, gh: {beds: [], lamps: 0, mist: 0, conv: 0}, dsell: {}, horns: {water: false, plant: false, harvest: false}, qdone: {}, qmax: 0, mach: {tractor:0, harvester:0, truck:0}, mon: {tractor:true, harvester:true, truck:true, seedmaker:true, drones:true}, mstat: {tractor:0, harvester:0, truck:0},
     recipes: {}, mseeds: {}, mutagens: {}, mfound: {}, rid: 0, crate: null, tool: 'gloves', workers: [], cand: {}, wid: 0, name: 'My Farm', started: false, day: 1, money: 0, xp: 0, farm: 1,
     bundle: false, sign: false, house: false, home: false,
     plots: [{soil:0, st:'wild', crop:null, prog:0, water:false}],
@@ -1747,7 +1806,7 @@ function merge(base, src) {
 function load(raw) {
   try {
     const d = raw ? JSON.parse(raw) : null;
-    if (d && d.v >= 1 && d.v <= 11) {
+    if (d && d.v >= 1 && d.v <= 12) {
       S = merge(fresh(), d);
       if (d.v === 1) {
         S.v = 2; S.name = 'Hollowmere'; S.started = true; for (let i = 0; i < S.plots.length; i++) S.cleared[i] = true;
@@ -1778,7 +1837,9 @@ function load(raw) {
       if (!Array.isArray(S.prio)) S.prio = []; if (!S.auto || typeof S.auto !== 'object') S.auto = {}; if (!Array.isArray(S.showLog)) S.showLog = []; if (!Array.isArray(S.hist)) S.hist = [];
       if (d.v < 11) { S.u11 = true; if (S.fair && !S.fair.done && S.fair.best) resolveFair(S.fair, null); S.show = null; }
       rebuildVisB();
-      S.v = 11; if (!SLOT_KEYS.includes(S.tool)) S.tool = 'gloves';
+      S.ranch.pens.forEach(p2 => { if (p2.lvl == null) p2.lvl = 0; });
+      if (d.v < 12) { S.u12 = true; const notes = migrate12(); setTimeout(() => toast(`<b>Update 12:</b> the barn, orchard and greenhouse now keep one of everything.${notes.length ? ' On your farm, ' + notes.join('; ') + '.' : ''}`, 'good'), 2600); }
+      S.v = 12; if (!SLOT_KEYS.includes(S.tool)) S.tool = 'gloves';
       { const nq = firstUndone(); if (nq !== S.q) { S.q = nq; startQuest(); } }
       if (!S.mon) S.mon = {tractor: true, harvester: true, truck: true, seedmaker: true, drones: true};
       if (S.tools.can >= 5) S.water = Infinity; else if (typeof S.water !== 'number') S.water = 0;
@@ -1846,6 +1907,7 @@ function mutFx(key) {
     if (M.trait === 'grow') f.grow *= v.v; else if (M.trait === 'yield') f.yield *= v.v; else if (M.trait === 'value') f.value *= v.v;
     else if (M.trait === 'regrow') f.regrow += v.v; else if (M.trait === 'seed') { f.seed += v.s; f.seedChance = Math.max(f.seedChance, v.c); }
     else if (M.trait === 'thirst') { f.thirst = Math.max(f.thirst, v.v); if (v.g) f.grow *= v.g; } else if (M.trait === 'xp') f.xp *= v.v;
+    else if (M.trait === 'twin') f.twin = Math.max(f.twin || 0, v.v); else if (M.trait === 'lucky') f.lucky = Math.max(f.lucky || 0, v.v);
   }
   return (FX_CACHE[key] = f);
 }
@@ -1856,7 +1918,7 @@ function cropFor(p) {
   return (MCROP[p.mut] = Object.assign({}, base, {leaf: mix(base.leaf, col, .45)}));
 }
 const needsWater = p => !!(p.crop && !p.water && p.prog < CROP[p.crop].need && !(p.mut && mutFx(p.mut).thirst >= 1));
-function setCrop(p, key) { p.nut = 0; p.fed = false; p.worked = false; p.crop = baseOf(key); p.mut = isMut(key) ? key : null; p.prog = 0; p.water = false; p.wt = 0; p.v = Math.random(); { const r = Math.random(); p.var = r < .02 + pb('shiny') ? 'shiny' : r < .08 + pb('giant') + .01 * puL('nets') ? 'giant' : ''; } p.life = p.mut && mutFx(key).regrow ? mutFx(key).regrow + 1 : 0; }
+function setCrop(p, key) { p.nut = 0; p.fed = false; p.worked = false; p.crop = baseOf(key); p.mut = isMut(key) ? key : null; p.prog = 0; p.water = false; p.wt = 0; p.v = Math.random(); { const r = Math.random(); p.var = r < .02 + pb('shiny') ? 'shiny' : r < .08 + pb('giant') + .01 * puL('nets') ? 'giant' : ''; } p.life = p.mut && mutFx(key).regrow ? mutFx(key).regrow + 1 : 0; if (p.mut && mutFx(key).lucky && !p.var && Math.random() < mutFx(key).lucky) p.var = Math.random() < .35 ? 'shiny' : 'giant'; }
 const labSlots = () => LAB_SLOTS[S.b.lab] || 0;
 const crateBonusPicks = () => [2, 4, 6, 8, 10].filter(x => S.b.lab >= x).length;
 function mutSeedCost(r) { return Math.round(Math.max(6, CROP[r.crop].seed * (3 + 3 * r.rarity) + 8 * r.muts.length * (r.rarity + 1)) * (1 - .08 * Math.max(0, S.b.lab - 1))); }
@@ -2370,9 +2432,9 @@ function drawVial(c, x, y, r, M, ghost) {
   c.restore();
 }
 function drawCrate(c, x, y, r, id) {
-  const st = {rusty:['#9a6a3a','#6b4626','#d0874a'], steel:['#9aa6b0','#5f6b76','#dfe6ec'], gold:['#e3b84a','#a8801e','#fff1a8'], mutant:['#4f8a3a','#24401a','#b6f04a'], cosmic:['#3a2a6a','#1e1440','#c8a8ff']}[id] || ['#9a6a3a','#6b4626','#d0874a'];
+  const st = {rusty:['#9a6a3a','#6b4626','#d0874a'], steel:['#9aa6b0','#5f6b76','#dfe6ec'], gold:['#e3b84a','#a8801e','#fff1a8'], mutant:['#4f8a3a','#24401a','#b6f04a'], cosmic:['#3a2a6a','#1e1440','#c8a8ff'], void:['#1a1a2a','#0a0a14','#ff5aa8']}[id] || ['#9a6a3a','#6b4626','#d0874a'];
   c.save(); c.translate(x, y);
-  if (id === 'cosmic') glowDisc(c, 0, 0, r, '#b779f5', .55); else if (id === 'mutant') glowDisc(c, 0, 0, r, '#b6f04a', .45); else if (id === 'gold') glowDisc(c, 0, 0, r, '#f4c542', .35);
+  if (id === 'void') glowDisc(c, 0, 0, r * 1.1, '#ff5aa8', .6); else if (id === 'cosmic') glowDisc(c, 0, 0, r, '#b779f5', .55); else if (id === 'mutant') glowDisc(c, 0, 0, r, '#b6f04a', .45); else if (id === 'gold') glowDisc(c, 0, 0, r, '#f4c542', .35);
   rr(c, -r * .8, -r * .42, r * 1.6, r * 1.1, r * .1); fillS(c, st[0], r * .06);
   for (let k = 1; k < 3; k++) line(c, -r * .78, -r * .42 + k * r * .36, r * .78, -r * .42 + k * r * .36, dk(st[0], .25), r * .04);
   rr(c, -r * .88, -r * .62, r * 1.76, r * .26, r * .06); fillS(c, st[1], r * .05);
@@ -2392,7 +2454,7 @@ function drawPouch(c, x, y, r) {
   orb(c, 0, r * .18, r * .2, '#f4c542', true, r * .04);
   c.restore();
 }
-function recipeRarity(muts) { return Math.min(4, Math.max(0, ...muts.map(m => MUTAGEN[m].rarity)) + (muts.length >= 3 ? 1 : 0)); }
+function recipeRarity(muts) { return Math.min(5, Math.max(0, ...muts.map(m => MUTAGEN[m].rarity)) + (muts.length >= 3 ? 1 : 0)); }
 function drawMutProduce(c, crop, muts, x, y, r) {
   const rar = muts.length ? recipeRarity(muts) : 0, rc = RARITY[rar].col, tc = muts.length ? MTRAITS[MUTAGEN[muts[0]].trait].col : '#b6f04a';
   glowDisc(c, x, y, r * 1.1, rc, .6);
@@ -2879,7 +2941,7 @@ function icon(key) {
   else if (kind === 'mutant') drawMutant(c, m, m + 2, r * .82);
   else if (kind === 'd') drawDebris(c, a, m, size * .86, 1.3, a === 'tree' ? 1.05 : 2.2);
   else if (kind === 'wk') drawWorker(c, SAMPLE_W[a], m, size * .97, 1.85, {face: 1});
-  else if (kind === 'mg') drawVial(c, m, m, r * 1.15, MUTAGEN[a], b === 'ghost');
+  else if (kind === 'mg') { drawVial(c, m, m, r * 1.15, MUTAGEN[a], b === 'ghost'); if (b !== 'ghost' && MUTAGEN[a] && MUTAGEN[a].tier >= 4) for (let k = 0; k < MUTAGEN[a].tier - 3; k++) sparkle(c, m + r * (.55 - k * .45), m - r * (.75 - k * .12), r * .2); }
   else if (kind === 'crate') drawCrate(c, m, m + 2, r * 1.05, a);
   else if (kind === 'pouch') drawPouch(c, m, m + 2, r);
   else if (kind === 'spk') drawSpeaker(c, m, m, r, a === 'on');
@@ -3164,6 +3226,7 @@ function reap(i, who) {
   let n = who === 'player' ? rollYield(cr) : Math.max(1, Math.floor(cr.yld * (1 + yieldBonus()) + (who === 'machine' ? .25 + (S.mach.harvester - 1) * .5 : who === 'drone' ? .5 + .6 * ((S.b.dronehub || 1) - 1) : who === 'worker' ? .08 * (reapLv - 1) : 0) + Math.random()));
   if (who !== 'player') { const t = tierOf('sickle') || {}; n += t.bonus || 0; if (t.dbl && Math.random() < t.dbl) n *= 2; }
   if (fx) n = Math.max(1, Math.round(n * fx.yield));
+  if (fx && fx.twin && Math.random() < fx.twin) n *= 2;
   const vr = p.var || ''; if (vr === 'giant') n *= 2; else if (vr === 'shiny') n *= 3; n = Math.round(n * (1 + pb('yield') + .05 * puL('beds') + (p.fed ? .06 * nutL('rich') : 0)));
   if (evt('butterflies')) n = Math.round(n * 1.3); if (evt('pests') && S.b.scarecrow < 3 && !puL('nets')) n = Math.max(1, Math.round(n * .8));
   S.produce[key] = (S.produce[key] || 0) + n;
@@ -4535,7 +4598,7 @@ function rFx(rid) {
     const M = MUTAGEN[id]; if (!M) continue; const v = MTRAITS[M.trait].tiers[M.tier - 1];
     if (M.trait === 'grow') f.grow *= v.v; else if (M.trait === 'yield') f.yield *= v.v; else if (M.trait === 'value') f.value *= v.v;
     else if (M.trait === 'thirst') { f.free = Math.max(f.free, v.v); if (v.g) f.grow *= v.g; }
-    else if (M.trait === 'seed') f.fert = Math.max(f.fert, [.15, .3, .5][M.tier - 1]); else if (M.trait === 'xp') f.xp *= v.v; else if (M.trait === 'regrow') f.hearty = Math.max(f.hearty, M.tier);
+    else if (M.trait === 'seed') f.fert = Math.max(f.fert, [.15, .3, .5, .6, .7, .8][M.tier - 1]); else if (M.trait === 'twin') f.yield *= 1 + v.v; else if (M.trait === 'lucky') f.value *= 1 + v.v; else if (M.trait === 'xp') f.xp *= v.v; else if (M.trait === 'regrow') f.hearty = Math.max(f.hearty, M.tier);
   }
   return f;
 }
@@ -4563,7 +4626,7 @@ const ROBJ = {
   belt:    {x: RX + 526, y: RY - 118, w: 72, h: 94},
 };
 function rObjList() { const out = ['door', 'desk', 'bin'].map(id => ({id, ...ROBJ[id]})); for (const k of RMACH_ORDER) if (S.rmach[k]) out.push({id: k, ...ROBJ[k]}); return out; }
-const nextPenOpen = () => S.b.barn && S.ranch.pens.length < BARN_PENS[S.b.barn];
+const nextPenOpen = () => !!S.b.barn && nextAnimalOpen();
 function rBounds() {
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
   const add = r => { x0 = Math.min(x0, r.x); y0 = Math.min(y0, r.y); x1 = Math.max(x1, r.x + r.w); y1 = Math.max(y1, r.y + r.h); };
@@ -4576,7 +4639,6 @@ function penNbrs(i) { const n = S.ranch.pens.length, c = i % 4, out = []; if (c 
 function rSpecial(i, label) { const r = penRect(i); floatText(r.x + 50, r.y - 4, label, '#b6f04a'); sfx('special'); }
 function barnBuilt(L) {
   if (L === 1) {
-    while (S.ranch.pens.length < 2) S.ranch.pens.push(emptyPen());
     for (const k of RT_ORDER) if (!S.rtools[k]) S.rtools[k] = 1;
     S.ranch.feed = Math.max(S.ranch.feed, 20);
     banner('Ranching unlocked', 'The Big Barn', 'Tap the barn on your farm to go inside. It comes with 2 pens, a set of ranch tools and 20 feed. Buy your first animal at the Ranch Office desk.', `<img src="${iurl('b:barn:1')}" alt="">`);
@@ -4638,10 +4700,10 @@ function ranchNight(lines) {
     const fed = p.fed || !!(fx && fx.free && Math.random() < fx.free);
     if (fed) {
       if (p.age < A.days) { p.age = Math.min(A.days, p.age + barnGrow() * (fx ? fx.grow : 1)); if (p.age >= A.days) grown++; }
-      else { let n = (.5 + p.happy / 100) * (fx ? fx.yield : 1); n = Math.floor(n) + (Math.random() < n % 1 ? 1 : 0); if (evt('herd')) n++; n = Math.max(1, n); p.prod += n; made += n; }
+      else { let n = (.5 + p.happy / 100) * (fx ? fx.yield : 1) * penMult(p); n = Math.floor(n) + (Math.random() < n % 1 ? 1 : 0); if (evt('herd')) n++; n = Math.max(1, n); p.prod += n; made += n; }
     } else { hungry++; p.happy = Math.max(0, p.happy - 20); }
     p.happy = fx && fx.hearty ? Math.min(100, p.happy + 5 * (fx.hearty - 1)) : Math.max(0, p.happy - 15);
-    if (fx && fx.fert && adultP(p) && Math.random() < fx.fert) { const e = pens.findIndex(q => !q.a); if (e >= 0) { pens[e] = newPen(p.a, p.mut); babies++; } }
+    if (fx && fx.fert && adultP(p) && Math.random() < fx.fert) { const e = pens.findIndex(q => !q.a); if (e >= 0) { pens[e] = newPen(p.a, p.mut); babies++; } else p.prod += 2; }
     p.fed = false; p.brushed = false;
   });
   const RM = S.rmach, auto = [];
@@ -4665,7 +4727,8 @@ function placeAnimal(aid, mut) {
   const r = penRect(e); if (scene === 'ranch') puff(r.x + 50, r.y + 60, null); burst(r.x + 50, r.y + 40, 'confetti', 20, {up: true, sp: 90, r: 2.6});
   return true;
 }
-function buyAnimal(id) {
+function buyAnimal(id) { const nx = nextAnimal(); if (nx && nx.id === id) return adoptNext(); return toast('Animals arrive in order. Adopt the next one at the Ranch Office.', 'warn'); }
+function buyAnimal0(id) {
   const A = ANIMAL[id]; if (!A || !S.b.barn) return;
   if (S.b.barn < A.blv) return toast(`${A.name}s need barn level ${A.blv}.`, 'warn');
   { const gm = gateMsg(A.lvl); if (gm) return toast(gm, 'warn'); }
@@ -4674,7 +4737,8 @@ function buyAnimal(id) {
   spend(A.cost); placeAnimal(id, null); sfx('hire');
   toast(`A baby ${A.name.toLowerCase()} moved into the barn! Feed it every day and it grows up in ${A.days} days.`, 'good'); after();
 }
-function buyBaby(rid) {
+function buyBaby(rid) { return buyBaby12(rid); }
+function buyBaby0(rid) {
   const r = S.rrecipes[rid]; if (!r) return;
   if (freePen() < 0) return toast('Every pen is full. Buy another pen in the Barn tab, or sell an animal.', 'warn');
   if ((S.rbaby[rid] || 0) > 0) S.rbaby[rid]--;
@@ -4743,7 +4807,7 @@ function rTapOn(h) {
     if (h.id === 'bin') return openOffice('supplies');
     const M = RMACH[h.id]; return toast(`<b>${M.name} · level ${S.rmach[h.id]}</b> · ${M.eff(S.rmach[h.id])}. Upgrade it at the Ranch Office.`);
   }
-  if (h.kind === 'newpen') return openOffice('barn');
+  if (h.kind === 'newpen') return openOffice('animals');
   const it = intentFor(h); if (!it) return;
   if (it.act === 'info') { const p = S.ranch.pens[h.i]; if (!p.a) return openOffice('animals'); return toast(penStatus(p, true)); }
   if (it.tool && isNight()) return nightToast();
@@ -4754,11 +4818,11 @@ function rTapOn(h) {
 function penStatus(p, full) {
   const A = ANIMAL[p.a], r = p.mut && S.rrecipes[p.mut], nm = r ? r.name : A.name;
   const age = adultP(p) ? `Adult · makes ${r ? r.pname : A.pname}` : `Baby · ${Math.floor(p.age * 10) / 10} of ${A.days} days grown`;
-  return `<b>${esc(nm)}</b>${age}<br>Happiness ${Math.round(p.happy)} · ${p.fed ? 'fed' : `hungry (${A.feed} feed)`} · ${p.brushed ? 'brushed' : 'not brushed'}${p.prod ? ` · <b>${p.prod} ready to collect</b>` : ''}${full ? '' : `<div class="tb"><i style="width:${p.happy}%;background:#ff8ab8"></i></div>`}`;
+  return `<b>${esc(nm)}</b>${age}<br>Comfort ${p.lvl || 0} · Happiness ${Math.round(p.happy)} · ${p.fed ? 'fed' : `hungry (${A.feed} feed)`} · ${p.brushed ? 'brushed' : 'not brushed'}${p.prod ? ` · <b>${p.prod} ready to collect</b>` : ''}${full ? '' : `<div class="tb"><i style="width:${p.happy}%;background:#ff8ab8"></i></div>`}`;
 }
 function rTipFor(hv) {
   if (hv.kind === 'pen') { const p = S.ranch.pens[hv.i]; if (!p.a) return '<b>Empty pen</b>Tap to buy an animal.'; const it = penIntent(hv.i), k = it.tool; return penStatus(p) + (k ? `<small>${it.fail ? 'Not enough feed in the bin' : `Use your ${RTOOLS[k].name.toLowerCase()} (${RT_ORDER.indexOf(k) + 1}) and hold for ${secs(it.dur)}`}</small>` : ''); }
-  if (hv.kind === 'newpen') return `<b>New pen</b>Build pen ${S.ranch.pens.length + 1} for ${priceText(penCost(S.ranch.pens.length + 1))}. Tap to open the Barn tab.`;
+  if (hv.kind === 'newpen') { const A = nextAnimal(); return A ? `<b>${A.name} pen</b>Adopt a ${A.name.toLowerCase()} for ${priceText(A.cost)}. Tap to open the Animals tab.` : ''; }
   if (hv.kind === 'worker') { const w = S.workers.find(x => x.id === hv.id); return w ? `<b>${esc(w.name)}</b>${ROLES[w.role].name} · level ${w.lvl}<br><small>${W_LEVELS[w.lvl].name} · ${w.done || 0} jobs done</small>` : ''; }
   const id = hv.id;
   if (id === 'door') return '<b>Barn door</b>Tap to go back out to the farm.';
@@ -4994,7 +5058,7 @@ function drawRanch(c, t, v0, v1) {
   for (const o of rObjList()) items.push({y: o.y + o.h, o});
   for (const w of ranchHands()) { const r = WR.get(w.id); if (r && r.st !== 'sleep') items.push({y: r.y, wk: w, r}); }
   items.sort((a, b) => a.y - b.y);
-  if (nextPenOpen()) { const r = penRect(S.ranch.pens.length), hov = hover && hover.kind === 'newpen'; c.save(); c.setLineDash([5, 4]); rr(c, r.x, r.y, r.w, r.h, 8); c.lineWidth = hov ? 2.4 : 1.6; c.strokeStyle = hov ? '#ffe28a' : 'rgba(255,240,200,.6)'; c.stroke(); c.restore(); c.fillStyle = 'rgba(255,240,200,.85)'; c.font = '22px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('+', r.x + 50, r.y + 36); c.font = '8px "Lilita One", sans-serif'; c.fillText('New pen · ' + priceText(penCost(S.ranch.pens.length + 1)), r.x + 50, r.y + 56); }
+  if (nextPenOpen()) { const r = penRect(S.ranch.pens.length), hov = hover && hover.kind === 'newpen'; c.save(); c.setLineDash([5, 4]); rr(c, r.x, r.y, r.w, r.h, 8); c.lineWidth = hov ? 2.4 : 1.6; c.strokeStyle = hov ? '#ffe28a' : 'rgba(255,240,200,.6)'; c.stroke(); c.restore(); c.fillStyle = 'rgba(255,240,200,.85)'; c.font = '22px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('+', r.x + 50, r.y + 36); c.font = '8px "Lilita One", sans-serif'; c.fillText(nextAnimal() ? nextAnimal().name + ' · ' + priceText(nextAnimal().cost) : '', r.x + 50, r.y + 56); }
   for (const it of items) {
     if (it.wk) { drawWorkerRT(c, it.wk, it.r, t); continue; }
     if (it.pen !== undefined) { drawPen(c, S.ranch.pens[it.pen], it.pen, t, hover && hover.kind === 'pen' && hover.i === it.pen); continue; }
@@ -5037,6 +5101,7 @@ function drawPen(c, p, i, t, hov) {
   // trough + bowl
   rr(c, r.x + 8, r.y + r.h - 22, 30, 11, 3); fillS(c, '#7a5030', 1); if (p.fed) { ell(c, r.x + 23, r.y + r.h - 20, 12, 2.6); c.fillStyle = '#e8c86a'; c.fill(); }
   ell(c, r.x + r.w - 18, r.y + r.h - 16, 8, 3.6); fillS(c, '#9aa8b4', .8); ell(c, r.x + r.w - 18, r.y + r.h - 16.6, 6, 2.4); c.fillStyle = '#6ab8e8'; c.fill();
+  drawPenDeco(c, p, i, t);
   if (p.a) {
     const A = ANIMAL[p.a], grown = adultP(p), k = grown ? 1 : .55 + .45 * p.age / A.days, wob = Math.sin(t * .5 + p.ph) * 12, face = Math.cos(t * .5 + p.ph) > 0 ? 1 : -1;
     const ax = r.x + 50 + wob, ay = r.y + 58, moving = Math.abs(Math.cos(t * .5 + p.ph)) > .25;
@@ -5081,7 +5146,7 @@ function renderOffice() {
   $('#off-lvl').textContent = `Barn level ${B}`;
   setHTML($('#off-tabs'), [['animals', 'Animals', 'an:chicken'], ['supplies', 'Feed & Tools', 'feed'], ['barn', 'Barn & Machines', 'b:barn:' + B], ['hands', 'Ranch Hands', 'wk:rfeeder']].map(([id, nm, ic]) => `<button class="tab ${id === offTab ? 'on' : ''}" data-otab="${id}"><img src="${iurl(ic)}" alt="">${nm}</button>`).join(''));
   let h = '';
-  if (offTab === 'animals') {
+  if (offTab === 'animals') { h = animalsTabHTML(); } else if (offTab === 'animals_old') {
     const free = freePen() >= 0;
     h += `<div class="hero"><div class="pair"><img src="${iurl('b:barn:' + B)}" alt=""></div><div><h5>${n} animal${n === 1 ? '' : 's'} in ${pens.length} pen${pens.length === 1 ? '' : 's'}</h5><p>Babies grow up when they’re fed, then make something to sell every day. Feed (1), brush (2) and collect (3) with your ranch tools. Happy animals make more.</p><div class="tags"><span class="tag gold">${S.ranch.feed.toLocaleString()} feed in the bin</span><span class="tag">They eat ${dailyFeed().toLocaleString()} a day</span><span class="tag ok">Products sell for ${5 * B}% more at barn level ${B}</span></div></div></div>`;
     if (n) {
@@ -5122,8 +5187,7 @@ function renderOffice() {
   } else if (offTab === 'barn') {
     const BB = BUILD.barn, max = B >= BB.max, nl = BB.lvl[B];
     h += `<div class="row"><div class="ic"><img src="${iurl('b:barn:' + B)}" alt=""></div><div><h5>Big Barn · level ${B}</h5><p>${BB.eff(B)}.</p><div class="tags">${max ? '<span class="tag">No further upgrades yet</span>' : !gateOk(nl) ? gateTag(nl) : `<span class="tag">Level ${B + 1}: ${BB.eff(B + 1)}</span>`}</div></div><div class="acts">${!max && gateOk(nl) ? `<button class="btn gold" data-act="build" data-id="barn" ${S.money < BB.cost[B] ? 'disabled' : ''}>Upgrade ${priceHTML(BB.cost[B])}</button>` : ''}</div></div>`;
-    const np = pens.length + 1, can = np <= BARN_PENS[B];
-    h += `<div class="row"><div class="ic"><img src="${iurl('an:sheep')}" alt=""></div><div><h5>Pens · ${pens.length} of ${BARN_PENS[B]}</h5><p>Each pen holds one animal. ${can ? '' : B < BB.max ? 'Upgrade the barn to make room for more.' : ''}</p></div><div class="acts">${can ? `<button class="btn" data-act="buyPen" ${S.money < penCost(np) ? 'disabled' : ''}>Build pen ${np} ${priceHTML(penCost(np))}</button>` : ''}</div></div>`;
+    h += `<p class="note">Every animal has its own pen. Upgrading the barn brings new animals and lets you make every pen comfier, which makes it produce more.</p>`;
     const ms = RMACH_ORDER.filter(k => S.rmach[k] || rmBarnK(k, 1) <= B);
     h += `<div class="sec">Barn machines <small>they work at dawn, before you wake up</small></div>`;
     if (!ms.length) h += `<p class="note">Barn machines unlock at barn level ${Math.min(...RMACH_ORDER.map(k => rmBarnK(k, 1)))}.</p>`;
@@ -5396,7 +5460,7 @@ const LTOOLS = {
   drill: {name: 'Excavator', base: 60000, desc: 'Every pick also digs up the boxes around it, for free.', eff: l => ['', 'Opens 1 neighbouring box with each pick', 'Opens the boxes left and right of each pick', 'Opens a plus shape around each pick', 'Opens a plus shape and 2 corners with each pick', 'Opens a full 3×3 square with each pick'][l]},
 };
 const LT_ORDER = ['charm', 'rod', 'drill'];
-const ltLab = L => Math.min(10, 2 * L), ltCost = (k, L) => Math.round(LTOOLS[k].base * Math.pow(4, L - 1));
+const ltLab = L => Math.min(10, 2 * L), ltCost = (k, L) => niceC(earnAt(BUILD.lab.lvl[Math.min(BUILD.lab.lvl.length, 2 * L) - 1]) * (LT_F[k] || .2));
 function buyLTool(k) {
   const L = (S.ltools[k] || 0) + 1; if (L > 5) return;
   if (S.b.lab < ltLab(L)) return toast(`Upgrade the lab to level ${ltLab(L)} first.`, 'warn');
@@ -5404,8 +5468,8 @@ function buyLTool(k) {
   spend(cost); S.ltools[k] = L; sfx('build'); toast(`${LTOOLS[k].name} is now level ${L}. ${LTOOLS[k].eff(L)}.`, 'good'); after();
 }
 function drillCells(i, L) {
-  const x = i % 5, y = Math.floor(i / 5), pts = L >= 5 ? [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]] : L >= 4 ? [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, 1]] : L >= 3 ? [[-1, 0], [1, 0], [0, -1], [0, 1]] : L >= 2 ? [[-1, 0], [1, 0]] : [[[1, 0], [-1, 0], [0, 1], [0, -1]][Math.floor(Math.random() * 4)]];
-  return pts.map(([a, b]) => [x + a, y + b]).filter(([a, b]) => a >= 0 && a < 5 && b >= 0 && b < 5).map(([a, b]) => b * 5 + a);
+  const N = S.crate ? crateN(S.crate) : 5, x = i % N, y = Math.floor(i / N), pts = L >= 5 ? [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]] : L >= 4 ? [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, 1]] : L >= 3 ? [[-1, 0], [1, 0], [0, -1], [0, 1]] : L >= 2 ? [[-1, 0], [1, 0]] : [[[1, 0], [-1, 0], [0, 1], [0, -1]][Math.floor(Math.random() * 4)]];
+  return pts.map(([a, b]) => [x + a, y + b]).filter(([a, b]) => a >= 0 && a < N && b >= 0 && b < N).map(([a, b]) => b * N + a);
 }
 function openCell(i, tool) {
   const st = S.crate; if (!st || st.open[i]) return; st.open[i] = true; if (tool) { st.tool = st.tool || []; st.tool.push(i); }
@@ -5414,7 +5478,7 @@ function openCell(i, tool) {
     const M = MUTAGEN[cell.id]; S.mutagens[cell.id] = (S.mutagens[cell.id] || 0) + 1; S.mfound[cell.id] = (S.mfound[cell.id] || 0) + 1; S.stats.mutFound++;
     if (M.rarity >= 2) S.stats.rareFound++; if (M.rarity >= 4) S.stats.legFound++;
     sfx('reveal', M.rarity); toast(`${tool ? `Your ${tool} dug up` : 'Found'} <b style="color:${RARITY[M.rarity].col}">${M.name}</b>, a ${RARITY[M.rarity].name.toLowerCase()} mutagen. ${M.d}.`, 'good');
-  } else if (cell.k === 'c') addMoney(cell.n, lastBtnPt); else if (!tool) sfx('empty');
+  } else if (cell.k === 'c') addMoney(cell.n, lastBtnPt); else if (cell.k === 'p' || cell.k === 'j') crateCellExtra(st, i, tool); else if (!tool) sfx('empty');
 }
 /* ------------------------------------------------------------------ TO-DO LIST */
 const TODO_COST = 1500, TODO_LVL = 4; let todoOpen = false;
@@ -6112,7 +6176,7 @@ const PUPS = {
 const PU_IC = {beds: 'soil:3', mulch: 'd:bush', drip: 'tool:can:4', nets: 'perk:harvest', lamps: 'moon'};
 const PU_ORDER = ['beds', 'mulch', 'drip', 'nets', 'lamps'], PU_WS = {beds: 1, mulch: 1, drip: 2, nets: 3, lamps: 4};
 const puL = k => (S.pu && S.pu[k]) || 0;
-const puCost = (k, L) => niceC(PUPS[k].base * Math.pow(3.1, L - 1));
+const puCost = (k, L) => niceC(Math.max(PUPS[k].base * Math.pow(3.1, L - 1), earnAt(BUILD.workshop.lvl[Math.min(BUILD.workshop.lvl.length, PU_WS[k] + L - 1) - 1]) * .25));
 const puMax = k => Math.max(0, Math.min(10, (S.b.workshop || 0) - PU_WS[k] + 1));
 const puVis = k => puL(k) > 0 && !(S.pv && S.pv[k] === false);
 function buyPU(k) {
@@ -6135,12 +6199,12 @@ function drawPlotUpg(c, p, x, y, s, t, i, stage) {
 /* ------------------------------------------------------------------ GREENHOUSE (idle farm) */
 const GX = 8000, GY = 4000, GH_BEDS = [0, 3, 5, 7, 9, 12, 15, 18, 21, 24, 28, 32, 36];
 const GH_ORDER = () => CROPS.slice().sort((a, b) => a.lvl - b.lvl || a.sell - b.sell);
-const ghNext = () => (S.gh.pick && CROP[S.gh.pick] && CROP[S.gh.pick].lvl <= flv() ? CROP[S.gh.pick] : ghBest()) || null;
-const ghBedCost = cr => niceC(Math.max(400, cr.sell * 220 + cr.seed * 40));
-const ghUpCost = b => niceC(ghBedCost(CROP[b.crop]) * .35 * Math.pow(1.25, b.lvl));
-const ghBedMax = () => 4 + 2 * (S.b.greenhouse || 0);
+const ghNext = () => { const g = ghNextAny(); return g && g.lvl <= flv() ? g.cr : null; };
+const ghBedCost = cr => ghBedPrice(cr.id);
+const ghUpCost = b => niceC(Math.max(ghBedCost(CROP[b.crop]) * .5 * Math.pow(1.35, b.lvl), earnAt(BUILD.greenhouse.lvl[Math.min(9, Math.max(0, b.lvl - 3))]) * .03));
+const ghBedMax = () => 3 + (S.b.greenhouse || 0);
 const ghSpeed = () => 2.2 * (1 + .25 * (S.gh.lamps || 0)) * perkBonus('grow') * (1 + pb('grow'));
-const ghOut = b => { const cr = CROP[b.crop]; return Math.max(1, Math.round(b.lvl * cr.yld * (1 + yieldBonus()) * (1 + .1 * (S.gh.mist || 0)) * GH_HYDRO(S.gh.hydro || 0))); };
+const ghOut = b => { const cr = CROP[b.crop]; return Math.max(1, Math.round(b.lvl * cr.yld * (1 + yieldBonus()) * (1 + .1 * (S.gh.mist || 0)) * GH_HYDRO(S.gh.hydro || 0) * GH_K * (1 + pb('ghout')))); };
 const ghDays = b => CROP[b.crop].need / ghSpeed();
 const GH_UP = {
   lamps: {name: 'Grow Lamps', desc: 'Every bed grows faster.', eff: l => `Beds grow ${25 * l}% faster`, base: 20000, max: () => S.b.greenhouse || 0},
@@ -6148,7 +6212,7 @@ const GH_UP = {
   hydro: {name: 'Hydroponics', desc: 'Nutrient-rich water channels under every bed.', eff: l => `+${15 * l}% from every bed`, base: 2000000, max: () => Math.max(0, (S.b.greenhouse || 0) - 3)},
   conv:  {name: 'Conveyor', desc: 'Carries finished crops straight to your basket, so you never have to collect.', eff: () => 'Collects every bed for you', base: 250000, max: () => (S.b.greenhouse || 0) >= 3 ? 1 : 0},
 };
-const ghUpCostOf = (k, L) => niceC(GH_UP[k].base * Math.pow(3, L - 1));
+const ghUpCostOf = (k, L) => niceC(earnAt(BUILD.greenhouse.lvl[Math.min(BUILD.greenhouse.lvl.length, L) - 1]) * (UPF[k] || .5));
 function ghGrow(days) {
   if (!S.b.greenhouse || !S.gh.beds.length || !(days > 0)) return;
   for (const b of S.gh.beds) {
@@ -6163,10 +6227,10 @@ function ghCollect(i, quiet) {
   if (!quiet) { const r = bedRect(i); floatText(r.x + r.w / 2, r.y + 4, `+${n}`, '#ffe9a8', iurl('p:' + b.crop)); sfx('harvest'); gainXp(Math.max(1, Math.round(CROP[b.crop].xp * .25 * Math.sqrt(n)))); flash('#slot-basket'); after(); }
 }
 function ghBuyBed() {
-  const cr = ghNext(); if (!cr) return; if (S.gh.beds.length >= GH_BEDS[S.b.greenhouse]) return toast('Every bed space is taken. Upgrade the greenhouse for more room.', 'warn');
+  const cr = ghNext(); if (!cr) return; 
   if (cr.lvl > flv()) return toast(`${cr.name} unlocks at farmer level ${cr.lvl}.`, 'warn');
   const cost = ghBedCost(cr); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
-  spend(cost); S.gh.beds.push({crop: cr.id, lvl: 1, prog: 0, store: 0}); sfx('plant'); toast(`A bed of ${cr.name} is growing in the greenhouse.`, 'good'); after();
+  spend(cost); S.gh.beds.push({crop: cr.id, lvl: 1, prog: 0, store: 0}); ghSortBeds(); sfx('plant'); toast(`A bed of ${cr.name} is growing in the greenhouse.`, 'good'); after();
 }
 function ghUpBed(i) {
   const b = S.gh.beds[i]; if (!b) return; if (b.lvl >= ghBedMax()) return toast(`That bed is fully upgraded (level ${ghBedMax()}). A bigger greenhouse raises the limit.`, 'warn');
@@ -6178,10 +6242,10 @@ function ghBuyUp(k) {
   const cost = ghUpCostOf(k, L); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
   spend(cost); S.gh[k] = L; sfx('build'); toast(`${GH_UP[k].name}: ${GH_UP[k].eff(L)}.`, 'good'); after();
 }
-function bedRect(i) { const c2 = i % 2, r = Math.floor(i / 2); return {x: GX + c2 * 262, y: GY + r * 86, w: 244, h: 66}; }
+function bedRect(i) { const c2 = i % 4, r = Math.floor(i / 4); return {x: GX + c2 * 262, y: GY + r * 86, w: 244, h: 66}; }
 const GOBJ = {gdoor: {x: GX - 4, y: GY - 126, w: 74, h: 102}, gdesk: {x: GX + 110, y: GY - 98, w: 98, h: 74}};
 function gObjList() { return Object.keys(GOBJ).map(id => ({id, ...GOBJ[id]})); }
-const ghSlotOpen = () => S.gh.beds.length < GH_BEDS[S.b.greenhouse || 0] && !!ghNext();
+const ghSlotOpen = () => !!ghNext();
 function gBounds() {
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity; const add = r => { x0 = Math.min(x0, r.x); y0 = Math.min(y0, r.y); x1 = Math.max(x1, r.x + r.w); y1 = Math.max(y1, r.y + r.h); };
   S.gh.beds.forEach((b, i) => add(bedRect(i))); if (ghSlotOpen() || !S.gh.beds.length) add(bedRect(S.gh.beds.length)); gObjList().forEach(add); add({x: GX, y: GY, w: 506, h: 66});
@@ -6255,11 +6319,12 @@ function ghPanelHTML(tab) {
     return h;
   }
   const ready = S.gh.beds.reduce((a, b) => a + (b.store || 0), 0);
-  let h = `<div class="hero"><div class="pair"><img src="${iurl('b:greenhouse:' + Math.max(1, L))}" alt=""></div><div><h5>${S.gh.beds.length} of ${slots} beds growing</h5><p>The greenhouse is an idle farm. Each bed grows the crop you choose over and over, day and night, with no watering or replanting. The Greenhouse Grocer buys what it grows with a daily limit of its own, so the greenhouse earns on top of your fields.</p><div class="tags"><span class="tag">Each bed can be upgraded to level ${ghBedMax()}</span>${ready ? `<span class="tag gold">${ready} crops ready</span>` : ''}</div>${ready && !S.gh.conv ? '<div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn gold" data-act="ghAll">Collect everything</button></div>' : ''}</div></div>`;
+  let h = `<div class="hero"><div class="pair"><img src="${iurl('b:greenhouse:' + Math.max(1, L))}" alt=""></div><div><h5>${S.gh.beds.length} of ${GH_LIST.length} crops growing</h5><p>The greenhouse is an idle farm. It keeps one bed of every crop in the shop. Each bed grows its crop over and over, day and night, with no watering or replanting. Make beds bigger to make them pay more. The Greenhouse Grocer buys what it grows with a daily limit of its own.</p><div class="tags"><span class="tag">Each bed can be upgraded to level ${ghBedMax()}</span>${ready ? `<span class="tag gold">${ready} crops ready</span>` : ''}</div>${ready && !S.gh.conv ? '<div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn gold" data-act="ghAll">Collect everything</button></div>' : ''}</div></div>`;
   h += ghGrocerHTML();
-  S.gh.beds.forEach((b, i) => { const cr = CROP[b.crop], cost = ghUpCost(b), mx = b.lvl >= ghBedMax(); h += `<div class="row"><div class="ic"><img src="${iurl('p:' + b.crop)}" alt=""></div><div><h5>${cr.name} <small class="tag gold">Level ${b.lvl} of ${ghBedMax()}</small></h5><div class="tags"><span class="tag">Makes ${ghOut(b)} every ${durTxt(ghDays(b))}</span>${b.store ? `<span class="tag gold">${b.store} ready</span>` : ''}${mx ? '<span class="tag">Fully upgraded · a bigger greenhouse raises the limit</span>' : ''}</div></div><div class="acts">${ghNext() && ghNext().id !== b.crop ? `<button class="btn sm plain" data-act="ghSwap" data-i="${i}">Switch to ${ghNext().name} ${priceHTML(niceC(ghBedCost(ghNext()) * .4))}</button>` : ''}${b.store ? `<button class="btn sm plain" data-act="ghCol" data-i="${i}">Collect</button>` : ''}${mx ? '' : `<button class="btn sm" data-act="ghUpBed" data-i="${i}" ${S.money < cost ? 'disabled' : ''}>Bigger bed ${priceHTML(cost)}</button>`}</div></div>`; });
+  S.gh.beds.forEach((b, i) => { const cr = CROP[b.crop], cost = ghUpCost(b), mx = b.lvl >= ghBedMax(); h += `<div class="row"><div class="ic"><img src="${iurl('p:' + b.crop)}" alt=""></div><div><h5>${cr.name} <small class="tag gold">Level ${b.lvl} of ${ghBedMax()}</small></h5><div class="tags"><span class="tag">Makes ${ghOut(b)} every ${durTxt(ghDays(b))}</span>${b.store ? `<span class="tag gold">${b.store} ready</span>` : ''}${mx ? '<span class="tag">Fully upgraded · a bigger greenhouse raises the limit</span>' : ''}</div></div><div class="acts">${false ? `<button class="btn sm plain" data-act="ghSwap" data-i="${i}">Switch to ${ghNext().name} ${priceHTML(niceC(ghBedCost(ghNext()) * .4))}</button>` : ''}${b.store ? `<button class="btn sm plain" data-act="ghCol" data-i="${i}">Collect</button>` : ''}${mx ? '' : `<button class="btn sm" data-act="ghUpBed" data-i="${i}" ${S.money < cost ? 'disabled' : ''}>Bigger bed ${priceHTML(cost)}</button>`}</div></div>`; });
   const cr = ghNext();
-  if (cr) h += `<div class="sec">New bed <small>Pick what it grows. The best earners are first.</small></div>${ghPickerHTML()}<div class="row"><div class="ic"><img src="${iurl('seed:' + cr.id)}" alt=""></div><div><h5>${cr.name}</h5><p>New beds grow the crop you pick above. You can switch any bed to it later and keep the bed’s level.</p><div class="tags">${cr.lvl > flv() ? `<span class="tag bad">Farmer level ${cr.lvl}</span>` : ''}${S.gh.beds.length >= slots ? '<span class="tag bad">Upgrade the greenhouse for another bed</span>' : ''}</div></div><div class="acts"><button class="btn gold" data-act="ghBed" ${S.gh.beds.length >= slots || cr.lvl > flv() || S.money < ghBedCost(cr) ? 'disabled' : ''}>Start bed ${priceHTML(ghBedCost(cr))}</button></div></div>`;
+  if (!cr && ghNextAny()) h += `<div class="sec">Next bed</div><p class="note">The next bed, ${ghNextAny().cr.name}, opens at farmer level ${ghNextAny().lvl}.</p>`;
+  else if (cr) h += `<div class="sec">Next bed <small>${S.gh.beds.length} of ${GH_LIST.length} crops</small></div><div class="row"><div class="ic"><img src="${iurl('seed:' + cr.id)}" alt=""></div><div><h5>${cr.name}</h5><p>Every crop in the shop gets one bed, in order. Crops that need extra work or a 2×2 space come a few levels after you unlock them.</p><div class="tags">${cr.lvl > flv() ? `<span class="tag bad">Farmer level ${cr.lvl}</span>` : ''}</div></div><div class="acts"><button class="btn gold" data-act="ghBed" ${cr.lvl > flv() || S.money < ghBedCost(cr) ? 'disabled' : ''}>Start bed ${priceHTML(ghBedCost(cr))}</button></div></div>${ghPickerHTML()}`;
   else h += `<p class="note">You’re growing every crop in the game. Amazing!</p>`;
   return h;
 }
@@ -6786,12 +6851,13 @@ const ORCH_UP = {
   pickers: {name: 'Fruit Pickers', desc: 'Pickers collect ripe fruit straight into your basket.', eff: () => 'Collects every tree for you', base: 1500000, max: () => (S.b.orchard || 0) >= 4 ? 1 : 0},
 };
 const orchL = k => (S.orch && S.orch[k]) || 0;
-const orchSlots = () => ORCH_SLOTS[S.b.orchard || 0] || 0;
-const orchSpeed = () => (1 + .15 * orchL('mulch')) * perkBonus('grow') * (1 + pb('grow'));
+const orchSlots = () => FRUITS.filter(f => f.orch <= (S.b.orchard || 0)).length;
+const orchSpeed = () => (1 + .15 * orchL('mulch')) * perkBonus('grow') * (1 + pb('grow')) * (1 + pb('orchspd'));
 const treeCap = () => 1 + Math.ceil((S.b.orchard || 0) / 2) + 2 * orchL('graft');
 const treeOut = tr => Math.max(1, Math.round(FRUIT[tr.f].yld * (1 + .5 * (tr.lvl - 1)) * (1 + .12 * orchL('ladders')) + orchL('hives')));
-const treeCost = (tr) => niceC(FRUIT[tr.f].cost * .6 * Math.pow(1.7, tr.lvl));
-const orchUpCost = (k, L) => niceC(ORCH_UP[k].base * Math.pow(2.8, L - 1));
+const treeCost = (tr) => niceC(Math.max(FRUIT[tr.f].cost * .5 * Math.pow(1.3, tr.lvl), earnAt(BUILD.orchard.lvl[Math.min(9, FRUIT[tr.f].orch - 1 + Math.floor(tr.lvl / 2))]) * .04));
+const orchUpReq = (k, L) => k === 'graft' ? 2 * L + 2 : k === 'hives' ? L + 2 : k === 'pickers' ? 4 : L;
+const orchUpCost = (k, L) => niceC(earnAt(BUILD.orchard.lvl[Math.min(BUILD.orchard.lvl.length, orchUpReq(k, L)) - 1]) * (UPF[k] || .5));
 const fkey = id => 'f:' + id, isF = k => typeof k === 'string' && k.startsWith('f:');
 function orchGrow(days) {
   if (!S.b.orchard || !S.orch || !S.orch.trees.length || !(days > 0)) return; const sp = orchSpeed();
@@ -6808,8 +6874,10 @@ function orchCollect(i, quiet) {
 }
 function orchPlant(id) {
   const F = FRUIT[id]; if (!F || !S.b.orchard) return; if (S.orch.trees.length >= orchSlots()) return toast('Every spot in the orchard has a tree. Upgrade the orchard for more room.', 'warn');
+  if (S.orch.trees.some(t => t.f === id)) return toast(`You already have a ${F.name} tree. The orchard keeps one of each kind.`, 'warn');
+  { const nf = nextFruit(); if (nf && nf.id !== id) return toast(`The ${nf.name} tree comes next.`, 'warn'); }
   if (F.orch > S.b.orchard) return toast(`${F.name} trees need Orchard level ${F.orch}.`, 'warn'); if (S.money < F.cost) return toast('Not enough coins for that.', 'warn');
-  spend(F.cost); S.orch.trees.push({f: id, age: 0, prog: 0, store: 0, lvl: 1}); S.stats.treesPlanted = (S.stats.treesPlanted || 0) + 1; sfx('plant');
+  spend(F.cost); S.orch.trees.push({f: id, age: 0, prog: 0, store: 0, lvl: 1}); S.orch.trees.sort((a, b) => FRUIT[a.f].idx - FRUIT[b.f].idx); S.stats.treesPlanted = (S.stats.treesPlanted || 0) + 1; sfx('plant');
   if (scene === 'orch') { const r = treeRect(S.orch.trees.length - 1); burst(r.x + r.w / 2, r.y + r.h - 10, 'dirt', 12, {up: true, sp: 60, r: 2.6}); }
   toast(`You planted a ${F.name} tree. It fruits again and again once it’s grown.`, 'good'); after();
 }
@@ -6895,8 +6963,7 @@ function orchardHTML(tab) {
   const ready = S.orch.trees.reduce((a, tr) => a + (tr.store || 0), 0);
   let h = `<div class="hero"><div class="pair"><img src="${iurl('b:orchard:' + Math.max(1, L))}" alt=""></div><div><h5>${S.orch.trees.length} of ${orchSlots()} spots planted</h5><p>Fruit trees take a while to grow up, then fruit again and again, day and night, for as long as you keep them. Bigger trees give more. Fruit goes in your basket and sells at the Produce Stall.</p><div class="tags"><span class="tag">Trees can grow to level ${treeCap()}</span>${ready ? `<span class="tag gold">${ready} fruit ripe</span>` : ''}</div>${ready && !orchL('pickers') ? '<div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn gold" data-act="orchAll">Pick everything</button></div>' : ''}</div></div>`;
   S.orch.trees.forEach((tr, i) => { const F = FRUIT[tr.f], grown = tr.age >= F.grow, mx = tr.lvl >= treeCap(); h += `<div class="row"><div class="ic"><img src="${iurl('fp:' + tr.f)}" alt=""></div><div><h5>${F.name} tree <small class="tag gold">Level ${tr.lvl} of ${treeCap()}</small></h5><div class="tags">${grown ? `<span class="tag ok">${treeOut(tr)} fruit every ${durTxt(F.cycle / orchSpeed())}</span>` : `<span class="tag">Growing up · ${durTxt((F.grow - tr.age) / orchSpeed())} to go</span>`}${tr.store ? `<span class="tag gold">${tr.store} ripe</span>` : ''}<span class="tag">${priceHTML(sellPrice(fkey(tr.f)))} each</span></div></div><div class="acts">${tr.store ? `<button class="btn sm plain" data-act="orchCol" data-i="${i}">Pick</button>` : ''}${mx ? '' : `<button class="btn sm" data-act="orchPrune" data-i="${i}" ${S.money < treeCost(tr) ? 'disabled' : ''}>Bigger tree ${priceHTML(treeCost(tr))}</button>`}${orchArm === i ? `<button class="btn red sm" data-act="orchDigYes" data-i="${i}">Dig it up</button>` : `<button class="btn plain sm" data-act="orchDigAsk" data-i="${i}">Dig up</button>`}</div></div>`; });
-  h += `<div class="sec">Plant a tree <small>${orchSlotOpen() ? `${orchSlots() - S.orch.trees.length} spot${orchSlots() - S.orch.trees.length === 1 ? '' : 's'} free` : 'every spot is full'}</small></div>`;
-  for (const F of FRUITS) { const lk = F.orch > L; if (F.orch > L + 1) continue; h += `<div class="row ${lk ? 'locked' : ''}"><div class="ic"><img src="${iurl('sap:' + F.id)}" alt=""></div><div><h5>${F.name} tree</h5><p>Grows up in ${durTxt(F.grow / orchSpeed())}, then gives ${F.yld} fruit every ${durTxt(F.cycle / orchSpeed())}.</p><div class="tags"><span class="tag gold">${priceHTML(F.sell)} a fruit</span>${lk ? `<span class="tag bad">Needs Orchard level ${F.orch}</span>` : ''}</div></div><div class="acts">${lk ? '' : `<button class="btn ${S.orch.trees.length ? '' : 'gold'}" data-act="orchPlant" data-id="${F.id}" ${!orchSlotOpen() || S.money < F.cost ? 'disabled' : ''}>Plant ${priceHTML(F.cost)}</button>`}</div></div>`; }
+  h += plantNextHTML();
   return h;
 }
 function enterOrch() {
@@ -7102,6 +7169,12 @@ ACH.push({id: 'show5', name: 'Ribbon Collector', desc: 'Finish in the top 3 at t
 ACH.push({id: 'permits', name: 'Fully Licensed', desc: 'Buy every Market Permit.', ic: 'pouch', g: () => [S.permits || 0, PERMIT_LV.length]},
   {id: 'goose', name: 'The Goose That Lays', desc: 'Collect a Golden Egg.', ic: 'an:goldgoose', g: () => [(S.stats.ranimal || {}).goldgoose || 0, 1]},
   {id: 'grocer', name: 'Glasshouse Tycoon', desc: 'Earn a billion coins from the Greenhouse Grocer.', ic: 'b:greenhouse:5', g: () => [Math.floor((S.stats.ghShipped || 0) / 1e6), 1000]});
+ACH.push({id: 'zoo', name: 'Full Barn', desc: 'Keep one of every animal in the barn.', ic: 'an:auroralpaca', g: () => [S.ranch.pens.filter(p => p.a).length, ANIMALS.length]},
+  {id: 'grove', name: 'Every Tree', desc: 'Grow one of every kind of fruit tree.', ic: 'fp:astralplum', g: () => [S.orch ? S.orch.trees.length : 0, FRUITS.length]},
+  {id: 'glass', name: 'Living Catalogue', desc: 'Grow a greenhouse bed of every crop in the shop.', ic: 'b:greenhouse:8', g: () => [S.gh.beds.length, GH_LIST.length]},
+  {id: 'fuse', name: 'Fusion Chemist', desc: 'Fuse three mutagens into a stronger one.', ic: 'mg:grow4', g: () => [S.stats.fused || 0, 1]},
+  {id: 'tier6', name: 'Peak Mutation', desc: 'Make a tier VI mutagen.', ic: 'mg:value6', g: () => [Math.max(S.stats.tier6 || 0, MUT_LIST.some(M => M.tier >= 6 && S.mfound[M.id]) ? 1 : 0), 1]},
+  {id: 'jackpot', name: 'Jackpot!', desc: 'Find a jackpot box in a mystery crate.', ic: 'crate:mutant', g: () => [S.stats.jackpots || 0, 1]});
 ACH.push({id: 'all', name: 'Completionist', desc: 'Unlock every other achievement. True 100% completion!', ic: 'trophy', g: () => [ACH.filter(a => a.id !== 'all' && S.ach[a.id]).length, ACH.length - 1]});
 const achQ = []; let achShowing = false, achLastCheck = 0;
 function checkAch(silent) {
@@ -7588,6 +7661,7 @@ ACTS11.saveNow = () => { save(); savedAt = performance.now(); sfx('quest'); toas
 ACTS11.qminTog = () => { S.qmin = !S.qmin; after(); };
 ACTS11.resume = () => closePause();
 function drawUiIcon(c, a, m, r) {
+  if (a === 'key') { c.save(); c.translate(m, m); c.rotate(-.6); glowDisc(c, 0, 0, r, '#ffd75a', .4); c.beginPath(); c.arc(-r * .35, 0, r * .3, 0, TAU); c.lineWidth = r * .14; c.strokeStyle = '#d9a020'; c.stroke(); rr(c, -r * .08, -r * .07, r * .85, r * .14, r * .04); c.fillStyle = '#d9a020'; c.fill(); c.fillRect(r * .5, 0, r * .1, r * .25); c.fillRect(r * .66, 0, r * .1, r * .18); sparkle(c, r * .3, -r * .45, r * .15); c.restore(); return; }
   if (a === 'build') { // hammer over a plank
     c.save(); c.translate(m, m); rr(c, -r * .8, r * .25, r * 1.6, r * .4, r * .06); fillS(c, '#c7955c', r * .06); line(c, -r * .6, r * .45, r * .6, r * .45, 'rgba(90,55,25,.4)', r * .04);
     c.rotate(-.7); rr(c, -r * .09, -r * .55, r * .18, r * 1.1, r * .06); fillS(c, '#8a5b34', r * .05); rr(c, -r * .42, -r * .72, r * .84, r * .3, r * .06); fillS(c, '#9aa8b4', r * .05); c.restore();
@@ -7708,6 +7782,182 @@ ACTS11.todoCfg = () => { openPause('settings'); setTimeout(() => { const el = $(
 /* ------------------------------------------------------------------ UPDATE 11+: orchard grafting */
 ORCH_UP.graft = {name: 'Grafting', desc: 'Grafted branches let every tree grow two more levels.', eff: l => `Trees grow up to ${2 * l} levels higher`, base: 3000000, max: () => Math.max(0, Math.floor(((S.b.orchard || 0) - 2) / 2))};
 GH_BEDS[1] = Math.max(GH_BEDS[1], 4);
+/* ------------------------------------------------------------------ UPDATE 12: the barn is a collection, one of every animal */
+const penCap = () => S.b.barn || 0;
+const penMult = p => PEN_UP(p.lvl || 0) * (1 + pb('barnout'));
+const penOf = aid => S.ranch.pens.findIndex(p => p.a === aid);
+const nextAnimal = () => ANIMALS.find(A => penOf(A.id) < 0) || null;
+const nextAnimalOpen = () => { const A = nextAnimal(); return !!(A && S.b.barn >= A.blv); };
+function insertPen(aid, mut) {
+  S.ranch.pens = S.ranch.pens.filter(p => p.a); const A = ANIMAL[aid], pen = newPen(aid, mut); pen.lvl = 0; let at = S.ranch.pens.findIndex(p => p.a && ANIMAL[p.a].idx > A.idx); if (at < 0) at = S.ranch.pens.length;
+  S.ranch.pens.splice(at, 0, pen); for (const w of S.workers) { const r = WR.get(w.id); if (r && ROLES[w.role].ranch) { r.job = -1; r.st = 'idle'; } }
+  S.stats.animalsBought++; const r = penRect(at); if (scene === 'ranch') puff(r.x + 50, r.y + 60, null); burst(r.x + 50, r.y + 40, 'confetti', 20, {up: true, sp: 90, r: 2.6}); return at;
+}
+function adoptNext() {
+  const A = nextAnimal(); if (!A || !S.b.barn) return; if (S.b.barn < A.blv) return toast(`${A.name}s need barn level ${A.blv}.`, 'warn');
+  if (S.money < A.cost) return toast('Not enough coins for that.', 'warn');
+  spend(A.cost); insertPen(A.id, null); sfx('hire'); S.stats.zoo = S.ranch.pens.length;
+  toast(`A baby ${A.name.toLowerCase()} moved into its own pen! Feed it every day and it grows up in ${A.days} days.`, 'good'); after();
+}
+function penUp(i) {
+  const p = S.ranch.pens[i]; if (!p || !p.a) return; const l = p.lvl || 0; if (l >= penCap()) return toast(`That pen is as comfy as this barn allows. Upgrade the barn for more.`, 'warn');
+  const cost = penUpCost(ANIMAL[p.a], l); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
+  spend(cost); p.lvl = l + 1; sfx('build'); const r = penRect(i); burst(r.x + 50, r.y + 40, 'spark', 12, {up: true, sp: 70, r: 3});
+  toast(`${PEN_DECO[Math.min(PEN_DECO.length - 1, p.lvl - 1)]} for the ${ANIMAL[p.a].name.toLowerCase()} pen. It now makes ${PEN_UP(p.lvl)}× as much.`, 'good'); after();
+}
+const PEN_DECO = ['Fresh straw', 'A stone water trough', 'A hay rack', 'Painted fences', 'A toy ball', 'A warm heat lamp', 'Flower boxes', 'A brass name plate', 'A cosy shelter', 'Golden fences', 'A prize rosette', 'Glowing lanterns', 'A crystal trough', 'A starry canopy'];
+function drawPenDeco(c, p, i, t) {
+  const l = p.lvl || 0; if (!l || !p.a) return; const r = penRect(i), x = r.x, y = r.y;
+  if (l >= 1) { c.fillStyle = 'rgba(240,215,120,.55)'; for (let k = 0; k < 10; k++) { const a = (k * 29 + i * 13) % 84, b = (k * 41 + i * 5) % 40; ell(c, x + 8 + a, y + 40 + b, 5, 1.6, (k % 3 - 1) * .4); c.fill(); } }
+  if (l >= 2) { rr(c, x + r.w - 30, y + r.h - 22, 22, 9, 2); fillS(c, '#a8b0b8', .8); c.fillStyle = '#7ac0e8'; c.fillRect(x + r.w - 28, y + r.h - 20, 18, 3); }
+  if (l >= 3) { rr(c, x + r.w - 22, y + 18, 14, 16, 2); fillS(c, '#8a5b34', .8); c.fillStyle = '#e8cc6a'; for (let k = 0; k < 3; k++) c.fillRect(x + r.w - 20 + k * 4, y + 20, 2, 12); }
+  if (l >= 4) { const col = ['#c8423a', '#3d6fb0', '#4b8a3a', '#d4a020', '#8a4ab0'][i % 5]; line(c, x + 2, y + 8, x + r.w - 2, y + 8, col, 2); line(c, x + 2, y + r.h - 4, x + r.w - 2, y + r.h - 4, col, 2); }
+  if (l >= 5) orb(c, x + 20 + Math.sin(t * .7 + i) * 6, y + 46, 4, ['#e2412f', '#3d6fb0', '#f4c542'][i % 3], true, .5);
+  if (l >= 6) { line(c, x + 50, y + 2, x + 50, y + 14, '#3a3a3a', 1); c.beginPath(); c.arc(x + 50, y + 16, 3.4, 0, TAU); c.fillStyle = '#ffb84a'; c.fill(); c.save(); c.globalAlpha = .25 + .1 * Math.sin(t * 3 + i); glowDisc(c, x + 50, y + 30, 30, '#ffb84a', .6); c.restore(); }
+  if (l >= 7) for (const fx of [x + 12, x + r.w - 28]) { rr(c, fx, y - 2, 16, 6, 1.5); fillS(c, '#8a5b34', .6); for (let k = 0; k < 3; k++) orb(c, fx + 3 + k * 5, y - 3, 2, ['#ff7aa8', '#ffd75a', '#c8a8ff'][k], false, 0); }
+  if (l >= 8) { rr(c, x + 34, y + r.h - 10, 32, 8, 2); fillS(c, '#d9a020', .8); c.fillStyle = '#4a2c06'; c.font = '5px "Lilita One", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(ANIMAL[p.a].name.toUpperCase().slice(0, 12), x + 50, y + r.h - 6); }
+  if (l >= 9) { poly(c, [[x + 4, y + 24], [x + 24, y + 14], [x + 24, y + 34], [x + 4, y + 34]]); fillS(c, '#b8864a', .7); }
+  if (l >= 10) { line(c, x + 2, y + 8, x + r.w - 2, y + 8, '#f4c542', 2.4); line(c, x + 2, y + r.h - 4, x + r.w - 2, y + r.h - 4, '#f4c542', 2.4); }
+  if (l >= 11) { c.beginPath(); c.arc(x + r.w - 10, y + 12, 4, 0, TAU); c.fillStyle = '#3d6fb0'; c.fill(); c.beginPath(); c.arc(x + r.w - 10, y + 12, 2, 0, TAU); c.fillStyle = '#f4c542'; c.fill(); }
+  if (l >= 12) for (const lx of [x + 6, x + r.w - 6]) { c.save(); c.globalAlpha = .5 + .3 * Math.sin(t * 2 + lx); glowDisc(c, lx, y + 6, 8, '#9be04a', .7); c.restore(); }
+  if (l >= 13) { rr(c, x + r.w - 30, y + r.h - 22, 22, 9, 2); fillS(c, '#c8a8ff', .8); }
+  if (l >= 14) { c.save(); c.globalAlpha = .7; for (let k = 0; k < 5; k++) sparkle(c, x + 10 + k * 20, y + 6 + Math.sin(t * 2 + k) * 2, 1.6); c.restore(); }
+}
+function animalsTabHTML() {
+  const B = S.b.barn, have = S.ranch.pens.filter(p => p.a).length, nx = nextAnimal();
+  let h = `<div class="hero"><div class="pair"><img src="${iurl('b:barn:' + B)}" alt=""></div><div><h5>${have} of ${ANIMALS.length} animals</h5><p>Your barn keeps one of every animal, each in its own pen. New animals arrive in order as you upgrade the barn. Make each pen comfier to make it produce more.</p><div class="xpbar big"><i style="width:${(100 * have / ANIMALS.length).toFixed(1)}%"></i></div></div></div>`;
+  if (nx) h += `<div class="sec">Next animal</div><div class="row"><div class="ic"><img src="${iurl('an:' + nx.id)}" alt=""></div><div><h5>${nx.name}</h5><p>Grows up in ${nx.days} days, then makes ${nx.pname.toLowerCase()} every day.</p><div class="tags"><span class="tag gold">${nx.pname} sells for ${priceHTML(sellPrice('r:' + nx.prod))}</span>${B < nx.blv ? `<span class="tag bad">Needs barn level ${nx.blv}</span>` : ''}</div></div><div class="acts">${B >= nx.blv ? `<button class="btn gold ${!have ? 'hint' : ''}" data-act="adoptNext" ${S.money < nx.cost ? 'disabled' : ''}>Adopt ${priceHTML(nx.cost)}</button>` : ''}</div></div>`;
+  else h += `<p class="note">You have one of every animal in the game. A complete barn!</p>`;
+  if (have) h += `<div class="sec">Your pens <small>comfort level up to ${penCap()} at this barn level</small></div>`;
+  S.ranch.pens.forEach((p, i) => {
+    if (!p.a) return; const A = ANIMAL[p.a], rc = p.mut && S.rrecipes[p.mut], l = p.lvl || 0, mx = l >= penCap(), cost = mx ? 0 : penUpCost(A, l);
+    h += `<div class="row"><div class="ic" ${rc ? 'style="background:radial-gradient(circle,#4a3a5a,#241a2e)"' : ''}><img src="${iurl(animalIcon(p))}" alt=""></div><div><h5>${esc(rc ? rc.name : A.name)}${l ? ` <small class="tag gold">Comfort ${l}</small>` : ''}${rc ? ' ' + rtag(rc.rarity) : ''}</h5>
+      <div class="tags"><span class="tag ok">Makes ×${PEN_UP(l)}</span><span class="tag ${p.happy >= 60 ? 'ok' : p.happy >= 30 ? '' : 'bad'}">Happiness ${Math.round(p.happy)}</span><span class="tag ${p.fed ? 'ok' : 'bad'}">${p.fed ? 'Fed today' : 'Hungry'}</span>${adultP(p) ? '' : `<span class="tag">Baby · grows up in ${Math.max(0, Math.ceil(A.days - p.age))} days</span>`}${p.prod ? `<span class="tag gold">${p.prod} ready</span>` : ''}${mx ? '' : `<span class="tag">Next: ${PEN_DECO[Math.min(PEN_DECO.length - 1, l)]}, ×${PEN_UP(l + 1)}</span>`}</div></div>
+      <div class="acts">${mx ? '' : `<button class="btn sm" data-act="penUp" data-i="${i}" ${S.money < cost ? 'disabled' : ''}>Comfier ${priceHTML(cost)}</button>`}</div></div>`;
+  });
+  const up = ANIMALS.filter(A => penOf(A.id) < 0 && A !== nx).slice(0, 4);
+  if (up.length) h += `<div class="sec">Coming later</div><div class="chips">${up.map(A => `<span class="chip2"><img src="${iurl('an:' + A.id)}" alt="" style="filter:grayscale(.7);opacity:.7">${A.name} <small>barn ${A.blv}</small></span>`).join('')}</div>`;
+  const bl = Object.values(S.rrecipes).sort((a, b) => b.rarity - a.rarity);
+  if (bl.length) {
+    h += `<div class="sec">Mutant bloodlines <small>a bloodline baby takes its species’ pen and keeps the pen’s comfort</small></div>`;
+    for (const r of bl) { const vouch = S.rbaby[r.id] || 0, cost = babyCost(r), has = penOf(r.animal) >= 0;
+      h += `<div class="row"><div class="ic" style="background:radial-gradient(circle,#4a3a5a,#241a2e)"><img src="${iurl('ma:' + r.id)}" alt=""></div><div><h5>${esc(r.name)} ${rtag(r.rarity)}</h5><p>${ANIMAL[r.animal].name} · ${r.muts.map(id => MUTAGEN[id].name).join(' + ')}</p>${has ? '' : `<div class="tags"><span class="tag bad">Adopt a ${ANIMAL[r.animal].name.toLowerCase()} first</span></div>`}</div>
+        <div class="acts"><button class="btn ${vouch ? 'gold' : ''}" data-act="offBaby" data-id="${r.id}" ${!has || (!vouch && S.money < cost) ? 'disabled' : ''}>${vouch ? 'Place free baby' : `Buy baby ${priceHTML(cost)}`}</button></div></div>`; }
+  } else if (S.b.lab) h += `<p class="note">Splice mutagens into an animal in the Mutation Lab’s Gene Splicer to start a mutant bloodline.</p>`;
+  return h;
+}
+function buyBaby12(rid) {
+  const r = S.rrecipes[rid]; if (!r) return; const i = penOf(r.animal); if (i < 0) return toast(`Adopt a ${ANIMAL[r.animal].name.toLowerCase()} first. The bloodline baby takes its pen.`, 'warn');
+  if ((S.rbaby[rid] || 0) > 0) S.rbaby[rid]--; else { const cost = babyCost(r); if (S.money < cost) return toast('Not enough coins for that.', 'warn'); spend(cost); }
+  const old = S.ranch.pens[i], pen = newPen(r.animal, rid); pen.lvl = old.lvl || 0; pen.prod = old.prod || 0; S.ranch.pens[i] = pen; sfx('splice');
+  const rr2 = penRect(i); burst(rr2.x + 50, rr2.y + 40, 'confetti', 20, {up: true, sp: 90, r: 2.6}); toast(`A baby <b>${esc(r.name)}</b> moved into the ${ANIMAL[r.animal].name.toLowerCase()} pen!`, 'good'); after();
+}
+ACTS11.adoptNext = () => adoptNext();
+ACTS11.penUp = d => penUp(+d.i);
+
+/* ------------------------------------------------------------------ UPDATE 12: the orchard is a collection, one of every tree */
+const nextFruit = () => FRUITS.find(f => !S.orch.trees.some(t => t.f === f.id)) || null;
+function plantNext() { const f = nextFruit(); if (!f) return; return orchPlant(f.id); }
+function plantNextHTML() {
+  const f = nextFruit(), have = S.orch.trees.length, L = S.b.orchard || 0;
+  let h = `<div class="sec">Next tree <small>${have} of ${FRUITS.length} kinds planted</small></div>`;
+  if (!f) return h + `<p class="note">Every kind of fruit tree is growing here. A complete orchard!</p>`;
+  const lk = f.orch > L;
+  h += `<div class="row ${lk ? 'locked' : ''}"><div class="ic"><img src="${iurl('sap:' + f.id)}" alt=""></div><div><h5>${f.name} tree</h5><p>Grows up in ${durTxt(f.grow / orchSpeed())}, then gives ${f.yld} fruit every ${durTxt(f.cycle / orchSpeed())}.</p><div class="tags"><span class="tag gold">${priceHTML(sellPrice(fkey(f.id)))} a fruit</span>${lk ? `<span class="tag bad">Needs Orchard level ${f.orch}</span>` : ''}</div></div><div class="acts">${lk ? '' : `<button class="btn gold" data-act="orchPlant" data-id="${f.id}" ${S.money < f.cost ? 'disabled' : ''}>Plant ${priceHTML(f.cost)}</button>`}</div></div>`;
+  const up = FRUITS.filter(x => x !== f && !S.orch.trees.some(t => t.f === x.id)).slice(0, 5);
+  if (up.length) h += `<div class="chips" style="margin-top:4px">${up.map(x => `<span class="chip2"><img src="${iurl('fp:' + x.id)}" alt="" style="filter:grayscale(.7);opacity:.7">${x.name} <small>orchard ${x.orch}</small></span>`).join('')}</div>`;
+  return h;
+}
+
+/* ------------------------------------------------------------------ UPDATE 12: the greenhouse is a collection, one bed of every crop */
+const ghOwned = id => S.gh.beds.some(b => b.crop === id);
+const ghNextAny = () => { const g = GH_LIST.find(x => !ghOwned(x.id)); return g ? {cr: CROP[g.id], lvl: g.lvl} : null; };
+function ghSortBeds() { S.gh.beds.sort((a, b) => (GH_IDX[a.crop] ?? 999) - (GH_IDX[b.crop] ?? 999)); }
+function ghPickerHTML() {
+  const up = GH_LIST.filter(g => !ghOwned(g.id)).slice(1, 9);
+  return up.length ? `<div class="chips" style="margin:4px 0 8px">${up.map(g => `<span class="chip2"><img src="${iurl('p:' + g.id)}" alt="" style="filter:grayscale(.7);opacity:.7">${CROP[g.id].name} <small>level ${g.lvl}</small></span>`).join('')}</div>` : '';
+}
+
+/* ------------------------------------------------------------------ UPDATE 12: older farms move to collections */
+function migrate12() {
+  let refund = 0; const notes = [];
+  // barn: keep one of each animal; every extra one becomes a comfort level for that pen
+  { const keep = {}; let dup = 0, empty = 0;
+    for (const p of S.ranch.pens || []) { if (!p.a || !ANIMAL[p.a]) { empty++; continue; } const K = keep[p.a];
+      if (!K) { keep[p.a] = Object.assign({}, p, {lvl: p.lvl || 0}); continue; }
+      dup++; if ((p.mut && !K.mut) || (adultP(p) && !adultP(K))) { const lv = K.lvl, pr = K.prod; Object.assign(K, p); K.lvl = lv; K.prod += pr; } else K.prod += p.prod || 0; K.lvl = (K.lvl || 0) + 1; }
+    S.ranch.pens = ANIMALS.filter(A => keep[A.id]).map(A => { const P = keep[A.id], cap = penCap(); if (P.lvl > cap) { refund += (P.lvl - cap) * A.cost * .5; P.lvl = cap; } return P; });
+    refund += empty * 1000; if (dup) notes.push(`${dup} extra animal${dup > 1 ? 's became' : ' became'} pen comfort levels`); }
+  // orchard: keep one tree of each kind; extra trees add their levels
+  if (S.orch && S.orch.trees) { const keep = {}; let dup = 0;
+    for (const t of S.orch.trees) { if (!FRUIT[t.f]) continue; const K = keep[t.f]; if (!K) { keep[t.f] = Object.assign({}, t); continue; } dup++; if (t.lvl > K.lvl) { const s0 = K.store; Object.assign(K, t); K.store += s0 || 0; t.lvl = 1; } K.lvl += t.lvl; K.store = (K.store || 0) + (t.store || 0); }
+    S.orch.trees = FRUITS.filter(f => keep[f.id]).map(f => { const T = keep[f.id], cap = treeCap(); if (T.lvl > cap) { refund += (T.lvl - cap) * f.cost * .5; T.lvl = cap; } return T; });
+    if (dup) notes.push(`${dup} extra tree${dup > 1 ? 's were' : ' was'} grafted onto ${dup > 1 ? 'others' : 'another'} of the same kind`); }
+  // greenhouse: keep one bed of each crop; extra beds add their levels
+  if (S.gh && S.gh.beds) { const keep = {}; let dup = 0;
+    for (const b of S.gh.beds) { if (!CROP[b.crop]) continue; const K = keep[b.crop]; if (!K) { keep[b.crop] = Object.assign({}, b); continue; } dup++; K.lvl += b.lvl; K.store = (K.store || 0) + (b.store || 0); }
+    S.gh.beds = Object.values(keep).map(b => { const cap = ghBedMax(); if (b.lvl > cap) { refund += (b.lvl - cap) * ghBedPrice(b.crop) * .5; b.lvl = cap; } return b; }); ghSortBeds(); delete S.gh.pick;
+    if (dup) notes.push(`${dup} extra greenhouse bed${dup > 1 ? 's were' : ' was'} merged into ${dup > 1 ? 'others' : 'another'} of the same crop`); }
+  refund = Math.round(refund); if (refund) { S.money += refund; notes.push(`you were refunded ${priceText(refund)} for levels above the new limits`); }
+  return notes;
+}
+
+/* ------------------------------------------------------------------ UPDATE 12: prestige for the side farms */
+PTREE.push({id: 'homestead', name: 'Homestead', col: '#a8e070', nodes: [
+  {id: 'barnout', name: 'Prize Pedigree', max: 5, cost: 4, k: 'barnout', v: .1, d: l => `Animals make ${10 * l}% more`},
+  {id: 'orchspd', name: 'Old Roots', max: 5, cost: 4, k: 'orchspd', v: .1, d: l => `Fruit trees grow and fruit ${10 * l}% faster`},
+  {id: 'ghout', name: 'Heritage Glass', max: 5, cost: 5, k: 'ghout', v: .1, d: l => `Greenhouse beds make ${10 * l}% more`},
+  {id: 'sidecap', name: 'Country Buyers', max: 5, cost: 8, k: 'sidecap', v: .1, d: l => `The Ranch Co-op, Fruit Merchant and Greenhouse Grocer buy ${10 * l}% more each day`}]});
+{ const b = PTREE[PTREE.length - 1]; b.nodes.forEach((n, j) => { PNODE[n.id] = Object.assign(n, {branch: b.id, j, prev: j ? b.nodes[j - 1].id : null}); }); }
+
+/* ------------------------------------------------------------------ UPDATE 12: mutation crates of every size, picks, jackpots, fusion */
+LTOOLS.gloves = {name: 'Nimble Fingers', base: 50000, desc: 'Steady hands let you open more boxes in every crate.', eff: l => `+${l} pick${l > 1 ? 's' : ''} in every crate`};
+LT_ORDER.push('gloves');
+const crateN = st => Math.round(Math.sqrt(st.cells.length));
+const cratePicks = C => Math.min(Math.ceil((C.size || 5) * (C.size || 5) * .45), C.picks + crateBonusPicks() + Math.round(pb('picks')) + (S.ltools.gloves || 0));
+function openCrate(id) {
+  const C = CRATES.find(c => c.id === id); if (!C) return; if (S.crate) return showCrate();
+  if (S.b.lab < C.lab) return toast(`Needs Lab level ${C.lab}.`, 'warn');
+  if (S.money < crateCost(C)) return toast('Not enough coins for that.', 'warn');
+  spend(crateCost(C)); S.stats.crates++; sfx('open');
+  const n = C.size || 5, cells = [], w = crateW(C), nm = C.mlo + Math.floor(Math.random() * (C.mhi - C.mlo + 1)) + (S.b.lab >= 5 ? 1 : 0) + (evt('moon') ? 1 : 0);
+  const roll = () => { const rar = rollRarity(w), pool = MUT_LIST.filter(m => m.rarity === rar); return (pool.length ? pool : MUT_LIST)[Math.floor(Math.random() * (pool.length || MUT_LIST.length))].id; };
+  for (let i = 0; i < nm && cells.length < n * n - 1; i++) cells.push({k: 'm', id: roll()});
+  for (let i = 0; i < (C.pouches || 1) && cells.length < n * n; i++) cells.push({k: 'c', n: Math.round(C.pouch[0] + Math.random() * (C.pouch[1] - C.pouch[0]))});
+  for (let i = 0; i < (C.pickCells || 0) && cells.length < n * n; i++) cells.push({k: 'p'});
+  if (C.jack && Math.random() < C.jack && cells.length < n * n) { const r0 = Math.min(5, Math.max(...MUT_LIST.map(m => m.rarity)) - 1), pool = MUT_LIST.filter(m => m.rarity >= r0); cells.push({k: 'j', ids: [0, 1, 2].map(() => pool[Math.floor(Math.random() * pool.length)].id)}); }
+  while (cells.length < n * n) cells.push({k: 'e'});
+  for (let i = cells.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [cells[i], cells[j]] = [cells[j], cells[i]]; }
+  const total = cratePicks(C); S.crate = {id, cells, open: Array(n * n).fill(false), picks: total, total, done: false};
+  after(); showCrate();
+}
+function crateCellExtra(st, i, tool) {
+  const cell = st.cells[i];
+  if (cell.k === 'p') { st.picks++; st.total++; sfx('special'); toast(`${tool ? `Your ${tool} found` : 'You found'} a <b>golden key</b>: one extra pick!`, 'good'); }
+  else if (cell.k === 'j') { sfx('levelup'); for (const id of cell.ids) { S.mutagens[id] = (S.mutagens[id] || 0) + 1; S.mfound[id] = (S.mfound[id] || 0) + 1; S.stats.mutFound++; if (MUTAGEN[id].rarity >= 4) S.stats.legFound++; }
+    S.stats.jackpots = (S.stats.jackpots || 0) + 1; banner('Jackpot!', 'Three rare mutagens', cell.ids.map(id => `<b style="color:${RARITY[MUTAGEN[id].rarity].col}">${MUTAGEN[id].name}</b>`).join(' · '), `<img src="${iurl('crate:' + st.id)}" alt="">`); }
+}
+const cellHTML12 = cell => cell.k === 'p' ? `<img src="${iurl('ui:key')}" alt=""><span class="cl" style="color:#ffd75a">Extra pick</span>` : cell.k === 'j' ? `<img src="${iurl('mg:' + cell.ids[0])}" alt=""><span class="cl" style="color:#ff5aa8">Jackpot ×3</span>` : '';
+// fusion: three of the same mutagen make one of the next tier
+const fuseCost = M => niceC(400 * Math.pow(4.5, M.tier));
+function fuseMut(id) {
+  const M = MUTAGEN[id], nx = M && MUTAGEN[M.trait + (M.tier + 1)]; if (!nx) return; if ((S.mutagens[id] || 0) < 3) return toast('You need 3 of the same mutagen to fuse them.', 'warn');
+  const cost = fuseCost(M); if (S.money < cost) return toast('Not enough coins for that.', 'warn');
+  spend(cost); S.mutagens[id] -= 3; S.mutagens[nx.id] = (S.mutagens[nx.id] || 0) + 1; S.mfound[nx.id] = (S.mfound[nx.id] || 0) + 1; S.stats.fused = (S.stats.fused || 0) + 1; if (nx.tier >= 6) S.stats.tier6 = (S.stats.tier6 || 0) + 1;
+  sfx('splice'); banner('Fusion', esc(nx.name), `<span style="color:${RARITY[nx.rarity].col}">${RARITY[nx.rarity].name}</span> · ${nx.d}`, `<img src="${iurl('mg:' + nx.id)}" alt="">`); after();
+}
+function fuseHTML() {
+  let h = `<p class="note">Put three of the same mutagen into the fusion chamber to make one of the next tier up. Every trait goes up to tier VI, and the top tiers are far stronger than anything a crate usually gives.</p>`;
+  const rows = MUT_LIST.filter(M => (S.mutagens[M.id] || 0) > 0 && MUTAGEN[M.trait + (M.tier + 1)]).sort((a, b) => MT_ORDER.indexOf(a.trait) - MT_ORDER.indexOf(b.trait) || a.tier - b.tier);
+  if (!rows.length) return h + `<div class="empty"><img src="${iurl('mg:grow1')}" alt=""><b style="font-family:var(--f-display);font-size:20px;color:var(--ink)">Nothing to fuse yet</b><span>Find mutagens in mystery crates. Three of the same kind can be fused.</span></div>`;
+  for (const M of rows) { const nx = MUTAGEN[M.trait + (M.tier + 1)], have = S.mutagens[M.id] || 0, ok = have >= 3, cost = fuseCost(M);
+    h += `<div class="row"><div class="ic" style="background:radial-gradient(circle,#3a2a4a,#1f1628)"><img src="${iurl('mg:' + M.id)}" alt=""></div><div><h5>${M.name} <small class="tag ${ok ? 'gold' : ''}">${have} of 3</small> → <span style="color:${RARITY[nx.rarity].col}">${nx.name}</span></h5><p>${nx.d}.</p><div class="tags">${rtag(nx.rarity)}</div></div><div class="acts"><button class="btn ${ok ? 'gold' : ''}" data-act="fuse" data-id="${M.id}" ${!ok || S.money < cost ? 'disabled' : ''}>Fuse ${priceHTML(cost)}</button></div></div>`; }
+  return h;
+}
+ACTS11.fuse = d => fuseMut(d.id);
+BUILD.barn.eff = l => `${ANIMALS.filter(A => A.blv <= l).length} kinds of animal · pens up to comfort ${l} · ${RHANDS[l] || 0} ranch hand${RHANDS[l] === 1 ? '' : 's'}`;
+BUILD.orchard.eff = l => `${FRUITS.filter(f => f.orch <= l).length} kinds of tree · trees grow to level ${1 + Math.ceil(l / 2)}`;
+BUILD.greenhouse.eff = l => `Beds grow to level ${3 + l} · +${15 * l}% growth on every plot`;
 /* ------------------------------------------------------------------ COUNTY FAIR */
 const FAIR_LVL = 6;
 const fairWeek = () => Math.floor((S.day - 1) / 7);
@@ -8246,8 +8496,8 @@ function closeLab() { $('#lab').hidden = true; }
 const rtag = (rar, extra = '') => `<span class="tag" style="color:${RARITY[rar].col}">${RARITY[rar].name}${extra}</span>`;
 const crateCost = C => Math.round(C.cost * (1 - pb('crate')));
 function crateW(C) { const w = C.w.slice(); if (S.b.lab >= 5) { const mv = w[0] * .5; w[0] -= mv; w[2] += mv; } const ch = S.ltools.charm || 0; if (ch) { for (const i of [0, 1]) { const mv = w[i] * .12 * ch; w[i] -= mv; w[2] += mv * .55; w[3] += mv * .33; w[4] += mv * .12; } } return w; }
-function rollRarity(w) { const tot = w.reduce((a, b) => a + b, 0); let x = Math.random() * tot; for (let i = 0; i < 5; i++) { x -= w[i]; if (x < 0) return i; } return 0; }
-function openCrate(id) {
+function rollRarity(w) { const tot = w.reduce((a, b) => a + b, 0); let x = Math.random() * tot; for (let i = 0; i < w.length; i++) { x -= w[i]; if (x < 0) return i; } return 0; }
+function openCrate0(id) {
   const C = CRATES.find(c => c.id === id); if (!C) return; if (S.crate) return showCrate();
   if (S.b.lab < C.lab) return toast(`Needs Lab level ${C.lab}.`, 'warn');
   if (S.money < crateCost(C)) return toast('Not enough coins for that.', 'warn');
@@ -8266,14 +8516,15 @@ function showCrate() {
   const C = CRATES.find(c => c.id === st.id) || CRATES[0], scan = false, tl = LT_ORDER.filter(k => S.ltools[k]).map(k => LTOOLS[k].name);
   $('#cr-title').innerHTML = `<img src="${iurl('crate:' + C.id)}" alt="">${C.name}`;
   $('#cr-kick').textContent = st.done ? 'All picks used' : 'Pick a box';
-  $('#cr-sub').innerHTML = (st.done ? 'Here’s what was hiding in the other boxes.' : `Tap ${st.picks} more box${st.picks > 1 ? 'es' : ''}. Mutagens and coin pouches are hidden somewhere in the grid.${tl.length ? ` Your ${tl.join(' and ')} help${tl.length > 1 ? '' : 's'} with every pick.` : ''}`) + `<div class="picks">${Array.from({length: st.total}, (_, i) => `<i class="${i < st.total - st.picks ? 'used' : ''}"></i>`).join('')}</div>`;
+  $('#cr-sub').innerHTML = (st.done ? 'Here’s what was hiding in the other boxes.' : `Tap ${st.picks} more box${st.picks > 1 ? 'es' : ''}. Mutagens and coin pouches are hidden somewhere in the grid, and golden keys give you an extra pick.${tl.length ? ` Your ${tl.join(' and ')} help${tl.length > 1 ? '' : 's'} with every pick.` : ''}`) + `<div class="picks">${Array.from({length: st.total}, (_, i) => `<i class="${i < st.total - st.picks ? 'used' : ''}"></i>`).join('')}</div>`;
+  { const N = crateN(st), g = $('#cr-grid'); g.style.gridTemplateColumns = `repeat(${N},minmax(0,1fr))`; g.style.maxWidth = Math.min(600, N * 82) + 'px'; g.dataset.n = N; }
   $('#cr-grid').innerHTML = st.cells.map((cell, i) => {
     const op = st.open[i], show = op || st.done; let cls = 'cbox', inner = '', sty = '';
     if (show) {
       cls += ' open' + (op ? '' : ' missed');
       if (cell.k === 'm') { const M = MUTAGEN[cell.id]; sty = `--rc:${RARITY[M.rarity].col}`; inner = `<img src="${iurl('mg:' + cell.id)}" alt=""><span class="cl" style="color:${RARITY[M.rarity].col}">${M.name}</span>`; }
       else if (cell.k === 'c') inner = `<img src="${iurl('pouch')}" alt=""><span class="cl">${priceText(cell.n)}</span>`;
-      else inner = '<span class="em">Empty</span>';
+      else if (cell.k === 'p' || cell.k === 'j') inner = cellHTML12(cell); else inner = '<span class="em">Empty</span>';
     }
     if (op && st.tool && st.tool.includes(i)) cls += ' dug';
     return `<button class="${cls}" data-act="pickBox" data-i="${i}" ${show ? 'disabled' : ''} style="${sty}" aria-label="${show ? 'Opened box' : 'Closed box'}">${inner}</button>`;
@@ -8282,7 +8533,7 @@ function showCrate() {
   $('#crate').hidden = false;
 }
 function pickBox(i) {
-  const st = S.crate; if (!st || st.done || st.open[i] || st.picks <= 0) return;
+  const st = S.crate; if (!st || st.done || !(i >= 0 && i < st.cells.length) || st.open[i] || st.picks <= 0) return;
   st.picks--; openCell(i);
   const dl = S.ltools.drill || 0; if (dl) for (const j of drillCells(i, dl)) if (!st.open[j]) openCell(j, 'Excavator');
   const rl = S.ltools.rod || 0; if (rl && Math.random() < .12 * rl) { const hid = st.cells.map((c2, j) => j).filter(j => !st.open[j]); if (hid.length) openCell(hid[Math.floor(Math.random() * hid.length)], 'Dowsing Rod'); }
@@ -8294,13 +8545,13 @@ function renderLab() {
   if (!S.b.lab) return closeLab();
   const L = flv(), lab = S.b.lab, mcount = Object.values(S.mutagens).reduce((a, b) => a + b, 0);
   $('#lab-lvl').textContent = `Lab level ${lab}`;
-  setHTML($('#lab-tabs'), [['crates', 'Mystery Crates', 'crate:rusty'], ['ltools', 'Crate Tools', 'tool:axe:3'], ['splice', 'Gene Splicer', 'mg:value2'], ['mutants', 'Mutant Seeds', 'mutant'], ['codex', 'Mutagen Codex', 'mg:regrow3']].map(([id, nm, ic]) => `<button class="tab ${id === labTab ? 'on' : ''}" data-ltab="${id}"><img src="${iurl(ic)}" alt="">${nm}</button>`).join(''));
+  setHTML($('#lab-tabs'), [['crates', 'Mystery Crates', 'crate:rusty'], ['ltools', 'Crate Tools', 'tool:axe:3'], ['splice', 'Gene Splicer', 'mg:value2'], ['fuse', 'Fusion', 'mg:twin3'], ['mutants', 'Mutant Seeds', 'mutant'], ['codex', 'Mutagen Codex', 'mg:regrow3']].map(([id, nm, ic]) => `<button class="tab ${id === labTab ? 'on' : ''}" data-ltab="${id}"><img src="${iurl(ic)}" alt="">${nm}</button>`).join(''));
   let h = '';
   if (labTab === 'crates') {
-    h += `<div class="hero"><div class="pair"><img src="${iurl('b:lab:' + lab)}" alt=""></div><div><h5>Mystery crates</h5><p>Each crate hides mutagens and coin pouches in a 5×5 grid of boxes. You only get a few picks, so choose carefully. You have ${mcount} mutagen${mcount === 1 ? '' : 's'} ready to splice.</p>${S.crate ? '<button class="btn gold" data-act="crateResume">Finish opening your crate</button>' : ''}</div></div>`;
+    h += `<div class="hero"><div class="pair"><img src="${iurl('b:lab:' + lab)}" alt=""></div><div><h5>Mystery crates</h5><p>Each crate hides mutagens, coin pouches and golden keys in a grid of boxes, from 3×3 up to 8×8. Golden keys give you an extra pick. You only get a few picks, so choose carefully. You have ${mcount} mutagen${mcount === 1 ? '' : 's'} ready to splice.</p>${S.crate ? '<button class="btn gold" data-act="crateResume">Finish opening your crate</button>' : ''}</div></div>`;
     for (const C of CRATES.filter(c => c.lab <= lab)) {
       const lk = lab < C.lab, w = crateW(C), tot = w.reduce((a, b) => a + b, 0), picks = C.picks + crateBonusPicks();
-      h += `<div class="row ${lk ? 'locked' : ''}"><div class="ic ${lk ? 'dim' : ''}" style="background:radial-gradient(circle,#3a2a4a,#1f1628)"><img src="${iurl('crate:' + C.id)}" alt=""></div><div><h5>${C.name}</h5><p>${picks} picks · ${C.muts + (lab >= 5 ? 1 : 0)} mutagens and 4 coin pouches hidden in 25 boxes</p>
+      h += `<div class="row ${lk ? 'locked' : ''}"><div class="ic ${lk ? 'dim' : ''}" style="background:radial-gradient(circle,#3a2a4a,#1f1628)"><img src="${iurl('crate:' + C.id)}" alt=""></div><div><h5>${C.name}</h5><p>${cratePicks(C)} picks · ${C.mlo}–${C.mhi} mutagens in a ${C.size}×${C.size} grid${C.pickCells ? ` · ${C.pickCells} golden key${C.pickCells > 1 ? 's' : ''}` : ''}${C.jack ? ` · ${Math.round(C.jack * 100)}% chance of a jackpot` : ''}</p>
         <div class="tags">${w.map((x, r) => x ? rtag(r, ` ${Math.round(100 * x / tot)}%`) : '').join('')}${lk ? `<span class="tag bad">Lab level ${C.lab}</span>` : ''}</div></div>
         <div class="acts"><button class="btn gold" data-act="openCrate" data-id="${C.id}" ${lk || S.money < crateCost(C) || S.crate ? 'disabled' : ''}>Open ${priceHTML(crateCost(C))}</button></div></div>`;
     }
@@ -8308,7 +8559,7 @@ function renderLab() {
     h += `<p class="note">Crate tools are permanent upgrades that help every time you open a crate. Better tools need a higher lab level.</p>`;
     for (const k of LT_ORDER) {
       const T = LTOOLS[k], l = S.ltools[k] || 0, nx = l + 1, has = nx <= 5, lk = has && S.b.lab < ltLab(nx);
-      h += `<div class="row"><div class="ic" style="background:radial-gradient(circle,#3a2a4a,#1f1628)"><img src="${iurl(k === 'charm' ? 'perk:all' : k === 'rod' ? 'tool:hoe:6' : 'tool:axe:5')}" alt=""></div><div><h5>${T.name}${l ? ` <small class="tag gold">Level ${l}</small>` : ''}</h5><p>${T.desc}</p><div class="tags">${l ? `<span class="tag ok">Now: ${T.eff(l)}</span>` : ''}${has ? `<span class="tag">${l ? 'Next' : 'Level 1'}: ${T.eff(nx)}</span>` : '<span class="tag">Fully upgraded</span>'}${lk ? `<span class="tag bad">Needs lab level ${ltLab(nx)}</span>` : ''}</div></div>
+      h += `<div class="row"><div class="ic" style="background:radial-gradient(circle,#3a2a4a,#1f1628)"><img src="${iurl(k === 'charm' ? 'perk:all' : k === 'rod' ? 'tool:hoe:6' : k === 'gloves' ? 'tool:gloves:6' : 'tool:axe:5')}" alt=""></div><div><h5>${T.name}${l ? ` <small class="tag gold">Level ${l}</small>` : ''}</h5><p>${T.desc}</p><div class="tags">${l ? `<span class="tag ok">Now: ${T.eff(l)}</span>` : ''}${has ? `<span class="tag">${l ? 'Next' : 'Level 1'}: ${T.eff(nx)}</span>` : '<span class="tag">Fully upgraded</span>'}${lk ? `<span class="tag bad">Needs lab level ${ltLab(nx)}</span>` : ''}</div></div>
         <div class="acts">${has && !lk ? `<button class="btn ${l ? '' : 'gold'}" data-act="buyLTool" data-id="${k}" ${S.money < ltCost(k, nx) ? 'disabled' : ''}>${l ? 'Upgrade' : 'Buy'} ${priceHTML(ltCost(k, nx))}</button>` : ''}</div></div>`;
     }
   } else if (labTab === 'splice') {
@@ -8330,6 +8581,7 @@ function renderLab() {
         <div class="acts" style="justify-content:flex-start;margin-top:10px"><button class="btn gold" data-act="splice" ${dup ? 'disabled' : ''}>Splice mutant</button></div>${dup ? '<p class="note" style="margin-top:6px">You already have this exact mutant. Make more of its seeds in Mutant Seeds.</p>' : '<p class="note" style="margin-top:6px">Splicing uses up these mutagens and gives you 3 free seeds. The recipe is saved, so you can make more seeds with coins any time.</p>'}</div></div>`;
     }
     }
+  } else if (labTab === 'fuse') { h += fuseHTML();
   } else if (labTab === 'mutants') {
     const list = Object.values(S.recipes).sort((a, b) => b.rarity - a.rarity || +b.id - +a.id);
     if (!list.length) h = `<div class="empty"><img src="${iurl('mutant')}" alt=""><b style="font-family:var(--f-display);font-size:20px;color:var(--ink)">No mutants yet</b><span>Splice mutagens into a crop in the Gene Splicer. Every mutant you make is saved here.</span><button class="btn gold" data-ltab="splice">Open the Gene Splicer</button></div>`;
@@ -8842,7 +9094,7 @@ function start(data) {
   requestAnimationFrame(ts => { last = ts; frame(ts); });
 }
 try { window.claude?.hot?.snapshot?.(() => ({save: JSON.stringify(S), inGame: $('#menu').hidden && S.started})); } catch (e) {}
-window.__farm = {get S() { return S; }, capOfB, soldOf, sellableCount, capExtra, todoItems, todoItems0, ghShip, ghNext, ORCH_UP, SOIL, ANIMAL, FRUITS, ORCH_SLOTS, treeCap, ghBedMax, yieldBonus, maxPlots, FIELD_LV, rBase, isR, drawWorker, openPause, closePause, isPaused, showOpen, myScore, genShow, ensureShow, visHere, get VISB() { return VISB; }, renderDock, openBag, openEvents, VISITORS, SHOW_CATS, autoOn, wMulti, get mkMode() { return mkMode; }, water, reap, plant, growAll, MERGES, CROP, springTick, orchGrow, enterOrch, FRUIT, checkAch, ACH, KITS, nutCap, feedNut, SOIL, TOOLS, ROLES, PUPS, GH_BEDS, DRONES, gs, eraStyle, objPos, get editMode() { return editMode; }, get droneView() { return droneView; }, hitTest, buyField, buyPU, ghBuyBed, ghUpBed, ghBuyUp, ghGrow, ghCollect, enterGreen, leaveScene, openPanel, closePanel, setEdit, canPlace, layoutObjs, defPos, objList, zoomBy, panBy, setDroneView, dvTapPlot, buyCos, machUnits, get DRN() { return DRN; }, get cam() { return cam; }, OBJ, OBJB, FIELD_POS, niceCap, sellCapF: () => sellCap(), plotRect, buildUp, pickBox, toolFx, get WR() { return WR; }, eraId, scaffold, get SCAF() { return SCAF; }, set drag(v) { drag = v; }, get drag() { return drag; }, xpFor, CROPS, BUILD, FARM, MACH, sellCap, isNight, growAll, patPlots, patTargets, cyclePat, deliverOrder, genOrders, get MRr() { return MR; }, dawnTick, houseFor, LV, get scene() { return scene; }, enterRanch, leaveRanch, buyAnimal, buyBaby, feedPen, brushPen, collectPen, ranchNight, buyPen, buyRMach, buyRTool, buyFeed, openOffice, closeOffice, penRect, penIntent, enterFair, ensureFair, buyField2, EVENTS, gainXp, split, priceHTML, priceText, sellPrice, keyName, prodIcon, icon, renderJournal, openJournal, ANIMALS, RTOOLS, selectRTool, doSpliceAnimal, renderOffice, maxCells, grassColor, camTarget, bounds, get cam() { return cam; }, openLab, openCrate, pickBox, doSplice, get splice() { return splice; }, makeMutSeeds, buyMach, get MR() { return MR; }, stepMachines, reap, mutFx, MUTAGEN, firstUndone, load, renderLab, selectTool, hireWorker, trainWorker, openCrew, stepWorkers, get WR() { return WR; }, saveSlot, loadSlot, makeCode, readCode, applyLoaded, showLevelUp, get lvQueue() { return lvQueue; }, hitTest, intentFor, renderCrew, cands, toScreen, plotRect, OBJ, YARD, clearCell, clearYard, startQueue, stepHold, get ACTS() { return ACTS; }, showMenu, unlocksAt, guided, get YV() { return YV; }, get queue() { return queue; }, plotAction, objectAction, openMarket, closeMarket, buySeed, buyTool, buyPlot, sell, sellAll, sleep, applyNight, restoreFarm, buildUp, upgradeSoil, after, waterAll, harvestAll, plantAll, flv, QUESTS};
+window.__farm = {get S() { return S; }, migrate12, orchUpReq, FIELD_COST, HORNS, PUPS, puCost, PU_WS, RMACH, rmCost, rmLvl, RT_COST, RT_LVL, LTOOLS, ltCost, ltLab, NUT_UP, nutCost, ORCH_UP, orchUpCost, GH_UP, ghUpCostOf, PERMIT_LV, permitCost, penUpCost, treeCost, ghBedPrice, W_LEVELS, crateCost, LS_LVL, adoptNext, penUp, nextAnimal, nextFruit, plantNext, ghNextAny, GH_LIST, fuseMut, MUT_LIST, MTRAITS, CRATES, penMult, PTREE, PNODE, ANIMALS, capAt, capOfB, soldOf, sellableCount, capExtra, todoItems, todoItems0, ghShip, ghNext, ORCH_UP, SOIL, ANIMAL, FRUITS, ORCH_SLOTS, treeCap, ghBedMax, yieldBonus, maxPlots, FIELD_LV, rBase, isR, drawWorker, openPause, closePause, isPaused, showOpen, myScore, genShow, ensureShow, visHere, get VISB() { return VISB; }, renderDock, openBag, openEvents, VISITORS, SHOW_CATS, autoOn, wMulti, get mkMode() { return mkMode; }, water, reap, plant, growAll, MERGES, CROP, springTick, orchGrow, enterOrch, FRUIT, checkAch, ACH, KITS, nutCap, feedNut, SOIL, TOOLS, ROLES, PUPS, GH_BEDS, DRONES, gs, eraStyle, objPos, get editMode() { return editMode; }, get droneView() { return droneView; }, hitTest, buyField, buyPU, ghBuyBed, ghUpBed, ghBuyUp, ghGrow, ghCollect, enterGreen, leaveScene, openPanel, closePanel, setEdit, canPlace, layoutObjs, defPos, objList, zoomBy, panBy, setDroneView, dvTapPlot, buyCos, machUnits, get DRN() { return DRN; }, get cam() { return cam; }, OBJ, OBJB, FIELD_POS, niceCap, sellCapF: () => sellCap(), plotRect, buildUp, pickBox, toolFx, get WR() { return WR; }, eraId, scaffold, get SCAF() { return SCAF; }, set drag(v) { drag = v; }, get drag() { return drag; }, xpFor, CROPS, BUILD, FARM, MACH, sellCap, isNight, growAll, patPlots, patTargets, cyclePat, deliverOrder, genOrders, get MRr() { return MR; }, dawnTick, houseFor, LV, get scene() { return scene; }, enterRanch, leaveRanch, buyAnimal, buyBaby, feedPen, brushPen, collectPen, ranchNight, buyPen, buyRMach, buyRTool, buyFeed, openOffice, closeOffice, penRect, penIntent, enterFair, ensureFair, buyField2, EVENTS, gainXp, split, priceHTML, priceText, sellPrice, keyName, prodIcon, icon, renderJournal, openJournal, ANIMALS, RTOOLS, selectRTool, doSpliceAnimal, renderOffice, maxCells, grassColor, camTarget, bounds, get cam() { return cam; }, openLab, openCrate, pickBox, doSplice, get splice() { return splice; }, makeMutSeeds, buyMach, get MR() { return MR; }, stepMachines, reap, mutFx, MUTAGEN, firstUndone, load, renderLab, selectTool, hireWorker, trainWorker, openCrew, stepWorkers, get WR() { return WR; }, saveSlot, loadSlot, makeCode, readCode, applyLoaded, showLevelUp, get lvQueue() { return lvQueue; }, hitTest, intentFor, renderCrew, cands, toScreen, plotRect, OBJ, YARD, clearCell, clearYard, startQueue, stepHold, get ACTS() { return ACTS; }, showMenu, unlocksAt, guided, get YV() { return YV; }, get queue() { return queue; }, plotAction, objectAction, openMarket, closeMarket, buySeed, buyTool, buyPlot, sell, sellAll, sleep, applyNight, restoreFarm, buildUp, upgradeSoil, after, waterAll, harvestAll, plantAll, flv, QUESTS};
 if (window.claude?.hot?.ready) window.claude.hot.ready(start); else start(window.claude?.hot?.data ?? {});
 })();
 </script>
